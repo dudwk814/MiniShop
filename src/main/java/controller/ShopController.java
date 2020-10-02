@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Log4j
-public class HomeController {
+public class ShopController {
 
-    @GetMapping("/")
-    public String home() {
+    @GetMapping("/shop")
+    public String shop() {
 
-        log.info("Main Page");
-        return "home";
+        log.info("Shop Page");
+
+        return "shop/shop";
     }
-
-
 }
