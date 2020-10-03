@@ -116,6 +116,21 @@
                     ><span class="icon-shopping_cart"></span>[0]</a
                     >
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="userDropdown"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                    ><span class="icon-user"></span> </a
+                    > <div class="dropdown-menu" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="/user/joinForm">Join</a>
+                    <a class="dropdown-item" href="/user/loginForm">Login</a>
+                </div>
+                </li>
             </ul>
         </div>
     </div>
