@@ -4,10 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UserMapper">
 
+    <!-- 단일 회원 조회 -->
+    <select id="get" resultType="domain.UserVO">
+        <![CDATA[
+            select * from member where mNo = #{mNo}
+        ]]>
+    </select>
+
+    <!-- 전체 회원 조회 -->
+    <select id="getList" resultType="domain.UserVO">
+        <![CDATA[
+            select * from member where mNo > 0
+        ]]>
+    </select>
+
     <insert id="register">
         <![CDATA[
             insert into member (mNo, mId, mPw, mPw2, mName, address, regDate)
-            values (seq_member.nextval, #{mID}, #{mPw}, #{mPw2}, #{mName}, #{address}, sysdate)
+            values (seq_member.nextval, #{mId}, #{mPw}, #{mPw2}, #{mName}, #{address}, sysdate)
         ]]>
     </insert>
+
+    <update id="update">
+        <![CDATA[
+            update member set mPw = #{mPw}, mPw2 = #{mPw2}, address = #{address} where mNo = #{mNo}
+        ]]>
+    </update>
+
+    <delete id="delete">
+        <![CDATA[
+            delete from member where mNo = #{mNo}
+        ]]>
+    </delete>
 </mapper>

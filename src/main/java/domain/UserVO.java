@@ -7,7 +7,8 @@ import java.util.Date;
 @Data
 public class UserVO {
 
-    private String mno;
+    private String mNo;
+    private String mName;
     private String mId;
     private String mPw;
     private String mPw2;

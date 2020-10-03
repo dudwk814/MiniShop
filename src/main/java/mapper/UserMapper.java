@@ -2,7 +2,17 @@ package mapper;
 
 import domain.UserVO;
 
+import java.util.List;
+
 public interface UserMapper {
 
-    public void register(UserVO vo);
+    public UserVO get(Long mNo);
+
+    public List<UserVO> getList();
+
+    public int register(UserVO vo);
+
+    public int update(UserVO vo);
+
+    public int delete(Long mNo);
 }
