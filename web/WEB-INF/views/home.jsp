@@ -1,811 +1,170 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-09-30
-  Time: 오후 6:16
+  Date: 2020-10-04
+  Time: 오후 9:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contentType}/"/>
+<c:set var="root" value="${pageContext.request.contextPath}/"/>
+
 <%@ include file="includes/header.jsp"%>
 
-<section id="home-section" class="hero">
-<div class="home-slider owl-carousel">
-    <div class="slider-item js-fullheight">
-        <div class="overlay"></div>
-        <div class="container-fluid p-0">
-            <div
-                    class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
-                    data-scrollax-parent="true"
-            >
-                <img
-                        class="one-third order-md-last img-fluid"
-                        src="/resources/images/bg_1.png"
-                        alt=""
-                />
-                <div
-                        class="one-forth d-flex align-items-center ftco-animate"
-                        data-scrollax=" properties: { translateY: '70%' }"
-                >
-                    <div class="text">
-                        <span class="subheading">#New Arrival</span>
-                        <div class="horizontal">
-                            <h1 class="mb-4 mt-3">Shoes Collection 2019</h1>
-                            <p class="mb-4">
-                                A small river named Duden flows by their place and
-                                supplies it with the necessary regelialia. It is a
-                                paradisematic country.
-                            </p>
+<!-- Page Content -->
+<div class="container">
 
-                            <p><a href="#" class="btn-custom">Discover Now</a></p>
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <h1 class="my-4">Shop Name</h1>
+            <div class="list-group">
+                <a href="#" class="list-group-item">Category 1</a>
+                <a href="#" class="list-group-item">Category 2</a>
+                <a href="#" class="list-group-item">Category 3</a>
+            </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+            <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item One</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="slider-item js-fullheight">
-        <div class="overlay"></div>
-        <div class="container-fluid p-0">
-            <div
-                    class="row d-flex no-gutters slider-text align-items-center justify-content-end"
-                    data-scrollax-parent="true"
-            >
-                <img
-                        class="one-third order-md-last img-fluid"
-                        src="/resources/images/bg_2.png"
-                        alt=""
-                />
-                <div
-                        class="one-forth d-flex align-items-center ftco-animate"
-                        data-scrollax=" properties: { translateY: '70%' }"
-                >
-                    <div class="text">
-                        <span class="subheading">#New Arrival</span>
-                        <div class="horizontal">
-                            <h1 class="mb-4 mt-3">New Shoes Winter Collection</h1>
-                            <p class="mb-4">
-                                A small river named Duden flows by their place and
-                                supplies it with the necessary regelialia. It is a
-                                paradisematic country.
-                            </p>
-
-                            <p><a href="#" class="btn-custom">Discover Now</a></p>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item Two</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item Three</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item Four</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item Five</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item Six</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+            <!-- /.row -->
+
         </div>
+        <!-- /.col-lg-9 -->
+
     </div>
+    <!-- /.row -->
+
 </div>
-</section>
-<section class="ftco-section ftco-no-pt ftco-no-pb">
-    <div class="container">
-        <div class="row no-gutters ftco-services">
-            <div
-                    class="col-lg-4 text-center d-flex align-self-stretch ftco-animate"
-            >
-                <div class="media block-6 services p-4 py-md-5">
-                    <div
-                            class="icon d-flex justify-content-center align-items-center mb-4"
-                    >
-                        <span class="flaticon-bag"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Free Shipping</h3>
-                        <p>
-                            Far far away, behind the word mountains, far from the
-                            countries Vokalia and Consonantia, there live the blind texts.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div
-                    class="col-lg-4 text-center d-flex align-self-stretch ftco-animate"
-            >
-                <div class="media block-6 services p-4 py-md-5">
-                    <div
-                            class="icon d-flex justify-content-center align-items-center mb-4"
-                    >
-                        <span class="flaticon-customer-service"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Support Customer</h3>
-                        <p>
-                            Far far away, behind the word mountains, far from the
-                            countries Vokalia and Consonantia, there live the blind texts.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div
-                    class="col-lg-4 text-center d-flex align-self-stretch ftco-animate"
-            >
-                <div class="media block-6 services p-4 py-md-5">
-                    <div
-                            class="icon d-flex justify-content-center align-items-center mb-4"
-                    >
-                        <span class="flaticon-payment-security"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Secure Payments</h3>
-                        <p>
-                            Far far away, behind the word mountains, far from the
-                            countries Vokalia and Consonantia, there live the blind texts.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section bg-light">
-    <div class="container">
-        <div class="row justify-content-center mb-3 pb-3">
-            <div class="col-md-12 heading-section text-center ftco-animate">
-                <h2 class="mb-4">New Shoes Arrival</h2>
-                <p>
-                    Far far away, behind the word mountains, far from the countries
-                    Vokalia and Consonantia
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product d-flex flex-column">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-1.png"
-                            alt="Colorlib Template"
-                    />
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price"><span>$120.00</span></p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product d-flex flex-column">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-2.png"
-                            alt="Colorlib Template"
-                    />
-                        <span class="status">50% Off</span>
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price">
-                    <span class="mr-2 price-dc">$120.00</span
-                    ><span class="price-sale">$80.00</span>
-                            </p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-3.png"
-                            alt="Colorlib Template"
-                    />
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price"><span>$120.00</span></p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-4.png"
-                            alt="Colorlib Template"
-                    />
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price"><span>$120.00</span></p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product d-flex flex-column">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-5.png"
-                            alt="Colorlib Template"
-                    />
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price"><span>$120.00</span></p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product d-flex flex-column">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-6.png"
-                            alt="Colorlib Template"
-                    />
-                        <span class="status">50% Off</span>
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price">
-                    <span class="mr-2 price-dc">$120.00</span
-                    ><span class="price-sale">$80.00</span>
-                            </p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-7.png"
-                            alt="Colorlib Template"
-                    />
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price"><span>$120.00</span></p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-                <div class="product">
-                    <a href="#" class="img-prod"
-                    ><img
-                            class="img-fluid"
-                            src="/resources/images/product-8.png"
-                            alt="Colorlib Template"
-                    />
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3">
-                        <div class="d-flex">
-                            <div class="cat">
-                                <span>Lifestyle</span>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3><a href="#">Nike Free RN 2019 iD</a></h3>
-                        <div class="pricing">
-                            <p class="price"><span>$120.00</span></p>
-                        </div>
-                        <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"
-                            ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
-                            ></a>
-                            <a href="#" class="buy-now text-center py-2"
-                            >Buy now<span><i class="ion-ios-cart ml-1"></i></span
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-lg-4">
-                <div
-                        class="choose-wrap divider-one img p-5 d-flex align-items-end"
-                        style="background-image: url(/resources/images/choose-1.jpg);"
-                >
-                    <div class="text text-center text-white px-2">
-                        <span class="subheading">Men's Shoes</span>
-                        <h2>Men's Collection</h2>
-                        <p>
-                            Separated they live in Bookmarksgrove right at the coast of
-                            the Semantics, a large language ocean.
-                        </p>
-                        <p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div
-                        class="row no-gutters choose-wrap divider-two align-items-stretch"
-                >
-                    <div class="col-md-12">
-                        <div
-                                class="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end"
-                                style="background-image: url(/resources/images/choose-2.jpg);"
-                        >
-                            <div class="col-md-7 d-flex align-items-center">
-                                <div class="text text-white px-5">
-                                    <span class="subheading">Women's Shoes</span>
-                                    <h2>Women's Collection</h2>
-                                    <p>
-                                        Separated they live in Bookmarksgrove right at the coast
-                                        of the Semantics, a large language ocean.
-                                    </p>
-                                    <p>
-                                        <a href="#" class="btn btn-black px-3 py-2">Shop now</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="row no-gutters">
-                            <div class="col-md-6">
-                                <div
-                                        class="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center"
-                                >
-                                    <div class="text text-center px-5">
-                                        <span class="subheading">Summer Sale</span>
-                                        <h2>Extra 50% Off</h2>
-                                        <p>
-                                            Separated they live in Bookmarksgrove right at the
-                                            coast of the Semantics, a large language ocean.
-                                        </p>
-                                        <p>
-                                            <a href="#" class="btn btn-black px-3 py-2"
-                                            >Shop now</a
-                                            >
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div
-                                        class="choose-wrap wrap img align-self-stretch d-flex align-items-center"
-                                        style="background-image: url(/resources/images/choose-3.jpg);"
-                                >
-                                    <div class="text text-center text-white px-5">
-                                        <span class="subheading">Shoes</span>
-                                        <h2>Best Sellers</h2>
-                                        <p>
-                                            Separated they live in Bookmarksgrove right at the
-                                            coast of the Semantics, a large language ocean.
-                                        </p>
-                                        <p>
-                                            <a href="#" class="btn btn-black px-3 py-2"
-                                            >Shop now</a
-                                            >
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section ftco-deal bg-primary">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="/resources/images/prod-1.png" class="img-fluid" alt="" />
-            </div>
-            <div class="col-md-6">
-                <div class="heading-section heading-section-white">
-                    <span class="subheading">Deal of the month</span>
-                    <h2 class="mb-3">Deal of the month</h2>
-                </div>
-                <div id="timer" class="d-flex mb-4">
-                    <div class="time" id="days"></div>
-                    <div class="time pl-4" id="hours"></div>
-                    <div class="time pl-4" id="minutes"></div>
-                    <div class="time pl-4" id="seconds"></div>
-                </div>
-                <div class="text-deal">
-                    <h2><a href="#">Nike Free RN 2019 iD</a></h2>
-                    <p class="price">
-                <span class="mr-2 price-dc">$120.00</span
-                ><span class="price-sale">$80.00</span>
-                    </p>
-                    <ul class="thumb-deal d-flex mt-4">
-                        <li
-                                class="img"
-                                style="background-image: url(/resources/images/product-6.png);"
-                        ></li>
-                        <li
-                                class="img"
-                                style="background-image: url(/resources/images/product-2.png);"
-                        ></li>
-                        <li
-                                class="img"
-                                style="background-image: url(/resources/images/product-4.png);"
-                        ></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section testimony-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="services-flow">
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="flaticon-bag"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Free Shipping</h3>
-                            <p class="mb-0">
-                                Separated they live in. A small river named Duden flows
-                            </p>
-                        </div>
-                    </div>
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="flaticon-heart-box"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Valuable Gifts</h3>
-                            <p class="mb-0">
-                                Separated they live in. A small river named Duden flows
-                            </p>
-                        </div>
-                    </div>
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="flaticon-payment-security"></span>
-                        </div>
-                        <div class="text">
-                            <h3>All Day Support</h3>
-                            <p class="mb-0">
-                                Separated they live in. A small river named Duden flows
-                            </p>
-                        </div>
-                    </div>
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="flaticon-customer-service"></span>
-                        </div>
-                        <div class="text">
-                            <h3>All Day Support</h3>
-                            <p class="mb-0">
-                                Separated they live in. A small river named Duden flows
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="heading-section ftco-animate mb-5">
-                    <h2 class="mb-4">Our satisfied customer says</h2>
-                    <p>
-                        Far far away, behind the word mountains, far from the countries
-                        Vokalia and Consonantia, there live the blind texts. Separated
-                        they live in
-                    </p>
-                </div>
-                <div class="carousel-testimony owl-carousel">
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div
-                                    class="user-img mb-4"
-                                    style="background-image: url(/resources/images/person_1.jpg);"
-                            >
-                    <span
-                            class="quote d-flex align-items-center justify-content-center"
-                    >
-                      <i class="icon-quote-left"></i>
-                    </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind
-                                    texts.
-                                </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Marketing Manager</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div
-                                    class="user-img mb-4"
-                                    style="background-image: url(/resources/images/person_2.jpg);"
-                            >
-                    <span
-                            class="quote d-flex align-items-center justify-content-center"
-                    >
-                      <i class="icon-quote-left"></i>
-                    </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind
-                                    texts.
-                                </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Interface Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div
-                                    class="user-img mb-4"
-                                    style="background-image: url(/resources/images/person_3.jpg);"
-                            >
-                    <span
-                            class="quote d-flex align-items-center justify-content-center"
-                    >
-                      <i class="icon-quote-left"></i>
-                    </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind
-                                    texts.
-                                </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">UI Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div
-                                    class="user-img mb-4"
-                                    style="background-image: url(/resources/images/person_1.jpg);"
-                            >
-                    <span
-                            class="quote d-flex align-items-center justify-content-center"
-                    >
-                      <i class="icon-quote-left"></i>
-                    </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind
-                                    texts.
-                                </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Web Developer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div
-                                    class="user-img mb-4"
-                                    style="background-image: url(/resources/images/person_1.jpg);"
-                            >
-                    <span
-                            class="quote d-flex align-items-center justify-content-center"
-                    >
-                      <i class="icon-quote-left"></i>
-                    </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind
-                                    texts.
-                                </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">System Analyst</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- /.container -->
 
 
-
-<%@ include file="includes/footer.jsp"%>

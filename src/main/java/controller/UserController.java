@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.UserService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/")
 @Log4j
 public class UserController {
 
@@ -29,9 +30,13 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute("user") UserVO user, Model model) {
+    public String join(UserVO user, RedirectAttributes rttr) {
 
-        log.info("join : " + user.toString());
+        log.info("join : " + user);
+
+        userService.register(user);
+
+        rttr.addFlashAttribute("result", user.getUser_name());
 
         return "redirect:/";
     }
@@ -42,5 +47,13 @@ public class UserController {
         log.info("Move to loginForm");
 
         return "user/loginForm";
+    }
+
+    @PostMapping("/login")
+    public String login(UserVO user, RedirectAttributes rttr) {
+
+        log.info("login...." + user.getUser_id());
+
+        return "redirect:/";
     }
 }

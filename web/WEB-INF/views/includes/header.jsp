@@ -1,138 +1,77 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-01
-  Time: 오전 10:40
+  Date: 2020-10-04
+  Time: 오후 9:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contentType}/"/>
+<c:set var="root" value="${pageContext.request.contextPath}/"/>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Minishop</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <title>Shop Homepage - Start Bootstrap Template</title>
 
-    <link rel="stylesheet" href="/resources/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/css/animate.css">
+    <!-- Bootstrap core CSS -->
+    <%--<link href="/resources/shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/resources/css/magnific-popup.css">
+    <!-- Custom styles for this template -->
+    <link href="/resources/shop/css/shop-homepage.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/resources/css/aos.css">
+    <!-- icomoon.io icon -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
-
-
-    <link rel="stylesheet" href="/resources/css/flaticon.css">
-    <link rel="stylesheet" href="/resources/css/icomoon.css">
-    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
-<body class="goto-here">
-<div class="py-1 bg-black">
-    <div class="container">
-        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-            <div class="col-lg-12 d-block">
-                <div class="row d-flex">
-                    <div class="col-md pr-4 d-flex topper align-items-center">
-                        <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                        <span class="text">02-000-0000</span>
-                    </div>
-                    <div class="col-md pr-4 d-flex topper align-items-center">
-                        <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                        <span class="text">kj99658103@gmail.com</span>
-                    </div>
-                    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">해당 웹사이트는 연습용 프로젝트로 실제 결제기능을 지원하지 않습니다.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<nav
-        class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-        id="ftco-navbar"
->
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="${root}">Minishop</a>
-        <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#ftco-nav"
-                aria-controls="ftco-nav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-        >
-            <span class="oi oi-menu"></span> Menu
+        <a class="navbar-brand" href="${root}">Mini Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="ftco-nav">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a href="${root}" class="nav-link">Home</a>
+                    <a class="nav-link" href="${root}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="dropdown04"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                    >Catalog</a
-                    >
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="${root}shop">Shop</a>
-                        <a class="dropdown-item" href="product-single.html"
-                        >Single Product</a
-                        >
-                        <a class="dropdown-item" href="cart.html">Cart</a>
-                        <a class="dropdown-item" href="checkout.html">Checkout</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Action
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </li>
-                <li class="nav-item cta cta-colored">
-                    <a href="cart.html" class="nav-link"
-                    ><span class="icon-shopping_cart"></span>[0]</a
-                    >
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="userDropdown"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                    ><span class="icon-user"></span> </a
-                    > <div class="dropdown-menu" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="/user/joinForm">Join</a>
-                    <a class="dropdown-item" href="/user/loginForm">Login</a>
                 </div>
-                </li>
+
             </ul>
         </div>
     </div>
 </nav>
-<!-- END nav -->
