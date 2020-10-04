@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:29:26</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-03.23:49:39</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-10-03.23:49:40</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-10-04.23:11:30</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-10-04.23:11:57</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -134,10 +134,10 @@
       <ModifiedTimestamp>2020-10-03.23:49:39</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <table id="42" parent="18" name="MEMBER">
+    <table id="42" parent="18" name="TBL_USER">
       <ObjectId>79970</ObjectId>
       <CreatedTimestamp>2020-10-03.23:29:26</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-03.23:47:38</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-10-04.23:10:45</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <synonym id="43" parent="29" name="ABSPATH">
@@ -34146,22 +34146,22 @@
       <TargetSchemaName>SYS</TargetSchemaName>
       <TargetObjectName>_USER_COMPARISON_ROW_DIF</TargetObjectName>
     </synonym>
-    <column id="4901" parent="42" name="MNO">
+    <column id="4901" parent="42" name="USER_NO">
       <Position>1</Position>
       <DataType>NUMBER(10 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4902" parent="42" name="MID">
+    <column id="4902" parent="42" name="USER_ID">
       <Position>2</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4903" parent="42" name="MPW">
+    <column id="4903" parent="42" name="USER_PW">
       <Position>3</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4904" parent="42" name="MNAME">
+    <column id="4904" parent="42" name="USER_NAME">
       <Position>4</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
@@ -34176,7 +34176,7 @@
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4907" parent="42" name="MPW2">
+    <column id="4907" parent="42" name="USER_PW2">
       <Position>7</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
@@ -34189,9 +34189,9 @@
       <ColNames>MNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4909" parent="42" name="PK_MNO">
+    <key id="4909" parent="42" name="PK_USER_NO">
       <ModifiedTimestamp>2020-10-03.23:31:03</ModifiedTimestamp>
-      <ColNames>MNO</ColNames>
+      <ColNames>USER_NO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_MNO</UnderlyingIndexName>
       <Primary>1</Primary>

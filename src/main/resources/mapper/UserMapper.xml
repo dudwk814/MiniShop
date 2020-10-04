@@ -7,33 +7,33 @@
     <!-- 단일 회원 조회 -->
     <select id="get" resultType="domain.UserVO">
         <![CDATA[
-            select * from member where mNo = #{mNo}
+            select * from tbl_user where user_no = #{user_no}
         ]]>
     </select>
 
     <!-- 전체 회원 조회 -->
     <select id="getList" resultType="domain.UserVO">
         <![CDATA[
-            select * from member where mNo > 0
+            select * from tbl_user where user_no > 0
         ]]>
     </select>
 
     <insert id="register">
         <![CDATA[
-            insert into member (mNo, mId, mPw, mPw2, mName, address, regDate)
-            values (seq_member.nextval, #{mId}, #{mPw}, #{mPw2}, #{mName}, #{address}, sysdate)
+            insert into tbl_user (user_no, user_id, user_pw, user_pw2, user_name, address, regDate)
+            values (seq_member.nextval, #{user_id}, #{user_pw}, #{user_pw2}, #{user_name}, #{address}, sysdate)
         ]]>
     </insert>
 
     <update id="update">
         <![CDATA[
-            update member set mPw = #{mPw}, mPw2 = #{mPw2}, address = #{address} where mNo = #{mNo}
+            update tbl_user set user_pw = #{user_pw}, user_pw2 = #{user_pw2}, address = #{address} where user_no = #{user_no}
         ]]>
     </update>
 
     <delete id="delete">
         <![CDATA[
-            delete from member where mNo = #{mNo}
+            delete from tbl_user where user_no = #{user_no}
         ]]>
     </delete>
 </mapper>

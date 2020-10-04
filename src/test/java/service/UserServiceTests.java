@@ -46,10 +46,10 @@ public class UserServiceTests {
     public void testRegister() {
 
         UserVO vo = new UserVO();
-        vo.setMId("Ralo");
-        vo.setMName("김찬호");
-        vo.setMPw("1234");
-        vo.setMPw2("1234");
+        vo.setUser_id("Ralo");
+        vo.setUser_name("김찬호");
+        vo.setUser_pw("1234");
+        vo.setUser_pw2("1234");
         vo.setAddress("트위치");
 
 
@@ -62,10 +62,10 @@ public class UserServiceTests {
     public void testModify() {
 
         // 13L
-        UserVO vo = userService.getUser(13L);
+        UserVO vo = userService.getUser(14L);
 
-        vo.setMPw("8103");
-        vo.setMPw2("8103");
+        vo.setUser_pw("8103");
+        vo.setUser_pw2("8103");
         vo.setAddress("카팟");
 
         boolean count = userService.modifyUser(vo);
@@ -78,7 +78,7 @@ public class UserServiceTests {
     public void testRemove() {
 
         // 13L
-        boolean count = userService.removeUser(13L);
+        boolean count = userService.removeUser(14L);
 
         log.info("REMOVED COUNT : " + count);
     }

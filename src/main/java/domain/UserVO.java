@@ -7,11 +7,11 @@ import java.util.Date;
 @Data
 public class UserVO {
 
-    private String mNo;
-    private String mName;
-    private String mId;
-    private String mPw;
-    private String mPw2;
+    private String user_no;
+    private String user_name;
+    private String user_id;
+    private String user_pw;
+    private String user_pw2;
     private String address;
     private Date regDate;
 }

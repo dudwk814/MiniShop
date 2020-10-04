@@ -57,10 +57,10 @@ public class UserMapperTests {
 
         for (int i = 0; i < 10; i++) {
             UserVO vo = new UserVO();
-            vo.setMId("aaa" + i);
-            vo.setMName("son" + i);
-            vo.setMPw("son" + i);
-            vo.setMPw2("son" + i);
+            vo.setUser_id("aaa" + i);
+            vo.setUser_name("son" + i);
+            vo.setUser_pw("son" + i);
+            vo.setUser_pw2("son" + i);
             vo.setAddress("Jeju" + i);
 
             mapper.register(vo);
@@ -78,8 +78,8 @@ public class UserMapperTests {
 
         vo.setAddress("busan");
 
-        vo.setMPw("5678");
-        vo.setMPw2("5678");
+        vo.setUser_pw("5678");
+        vo.setUser_pw2("5678");
 
         log.info(vo);
 
