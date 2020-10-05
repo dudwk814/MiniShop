@@ -49,7 +49,7 @@ public class BoardController {
 
         log.info("registerForm.....");
 
-        return "board/register";
+        return "board/registerForm";
     }
 
     @PostMapping("/register")
