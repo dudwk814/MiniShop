@@ -70,4 +70,6 @@ public class BoardServiceTests {
 
         boardService.remove(12L);
     }
+
+
 }

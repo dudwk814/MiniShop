@@ -11,7 +11,7 @@
 
     <select id="getList" resultType="domain.BoardVO">
         <![CDATA[
-            select * from tbl_board where bno > 0
+            select * from tbl_board where bno > 0 order by bno desc
         ]]>
     </select>
 
