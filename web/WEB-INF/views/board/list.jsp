@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <%--<%@ include file="../includes/header.jsp"%>--%>
 <!DOCTYPE html>
@@ -85,17 +86,19 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="board" items="${board}">
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
+                        <td><c:out value="${board.bno}"/></td>
+                        <td><c:out value="${board.title}"/></td>
+                        <td><c:out value="${board.writer}"/></td>
+                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
+                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <button id="listBtn" type="button" class="btn btn-primary float-left">List</button>
-                <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button>
+                <a href="/board/registerForm"> <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button></a>
             </div>
         </div>
     </div>
@@ -104,7 +107,15 @@
 <!-- /.container-fluid -->
 </div>
 
-</body>
-</html>
 <%--
-<%@ include file="../includes/footer.jsp"%>--%>
+<script type="text/javascript">
+    $(document).ready(function () {
+       $("#regBtn").on("click", function () {
+          self.location = "/board/registerForm";
+       });
+    });
+</script>
+--%>
+
+
+<%@ include file="../includes/footer.jsp"%>
