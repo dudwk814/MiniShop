@@ -152,4 +152,6 @@
 </div>
 <!-- /.container -->
 
+<%@ include file="includes/footer.jsp"%>
+
 

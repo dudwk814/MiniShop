@@ -45,16 +45,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="${root}">Home
+                    <a class="nav-link" href="${root}">shop
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${root}board/list">Board</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
@@ -75,7 +73,7 @@
 
         <div class="col-lg-3">
 
-            <h1 class="my-4">Shop Name</h1>
+            <h1 class="my-4">Mini Shop</h1>
             <div class="list-group">
                 <a href="#" class="list-group-item">Category 1</a>
                 <a href="#" class="list-group-item">Category 2</a>
