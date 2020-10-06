@@ -65,9 +65,13 @@ public class BoardController {
     }
 
     @GetMapping("/modifyForm")
-    public String modifyForm() {
+    public String modifyForm(@RequestParam("bno") Long bno, Model model) {
 
         log.info("Go To ModifyForm");
+
+        BoardVO vo = boardService.read(bno);
+
+        model.addAttribute("board", vo);
 
         return "board/modifyForm";
     }

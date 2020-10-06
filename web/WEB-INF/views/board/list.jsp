@@ -64,14 +64,30 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Board</h1>
+    <h1 class="h3 mb-2 text-gray-800">게시판</h1><br/>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Board</h6>
         </div>
+        <br/>
+
+        <div class="col-lg-auto">
+        <form>
+        <!-- Search form -->
+            <div class="form-group">
+            <input class="form-control col-lg-3" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-info">검색</button>
+                <a href="/board/registerForm"> <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button></a> <br/>
+            </div>
+        </form>
+        </div>
+        <%--<div class="col-lg-auto">
+
+        </div>--%>
         <div class="card-body">
+
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -96,7 +112,7 @@
                     </tbody>
                 </table>
                 <button id="listBtn" type="button" class="btn btn-primary float-left">List</button>
-                <a href="/board/registerForm"> <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button></a>
+
             </div>
         </div>
     </div>
