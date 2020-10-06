@@ -104,7 +104,12 @@
 <div class="container">
     <h1>Board Modify</h1>
     <form action="/board/modify" method="post">
-        <input type="hidden" name="bno" value="<c:out value='${board.bno}'/>">
+
+        <div class="form-group">
+            <label for="bno">bno</label>
+            <input type="text" class="form-control" id="bno" placeholder="bno" name="bno" value="<c:out value='${board.bno}'/>" readonly>
+        </div>
+
         <div class="form-group">
             <label for="title">title</label>
             <input type="text" class="form-control" id="title" placeholder="title" name="title" value="<c:out value='${board.title}'/>">

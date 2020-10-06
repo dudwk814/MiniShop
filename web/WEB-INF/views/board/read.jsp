@@ -81,6 +81,10 @@
 <div class="col-lg-auto">
     <form action="/board/register" method="post">
         <div class="form-group">
+            <label for="bno">bno</label>
+            <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
+        </div>
+        <div class="form-group">
             <label for="title">title</label>
             <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" value="<c:out value='${board.title}'/>" readonly>
         </div>
@@ -107,9 +111,10 @@
     $(document).ready(function () {
         var formObj = $("form");
 
+        var bnoValue = '${board.bno}';
+
         $("#removeBtn").on("click", function () {
             formObj.attr("action", "/board/remove");
-            formObj.
 
             formObj.submit();
         });

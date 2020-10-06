@@ -93,6 +93,6 @@ public class BoardController {
 
         boardService.remove(bno);
 
-        return "board/list";
+        return "redirect:/board/list";
     }
 }
