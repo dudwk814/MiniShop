@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.BoardVO;
+import domain.Criteria;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
@@ -70,6 +71,16 @@ public class BoardMapperTests {
         }
     }
 
+    // 게시글 페이징 테스트
+    @Test
+    public void testPaging() {
+
+        Criteria cri = new Criteria(5, 10);
+
+        List<BoardVO> list = boardMapper.getListWithPaging(cri);
+
+        list.forEach(board -> log.info(board));
+    }
     // 게시글 수정 테스트
     @Test
     public void testUpdate() {
