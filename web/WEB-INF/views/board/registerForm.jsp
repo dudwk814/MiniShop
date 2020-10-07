@@ -124,6 +124,8 @@
 
 <script type="text/javascript">
 
+
+
     $(document).ready(function () {
        $("#listBtn").on("click", function () {
            self.location = "/board/list";

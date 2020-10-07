@@ -21,7 +21,7 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/list")
-    public String list(Model model) {
+    public void list(Model model) {
 
         log.info("Board List Page");
 
@@ -29,7 +29,6 @@ public class BoardController {
 
         model.addAttribute("board", list);
 
-        return "board/list";
     }
 
     @GetMapping("/read")
@@ -60,6 +59,7 @@ public class BoardController {
         boardService.register(board);
 
         rttr.addFlashAttribute("writer", board.getWriter());
+        rttr.addFlashAttribute("result", board.getBno());
 
         return "redirect:/board/list";
     }

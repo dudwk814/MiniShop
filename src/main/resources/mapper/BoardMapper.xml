@@ -22,6 +22,16 @@
         ]]>
     </insert>
 
+    <insert id="insertSelectKey">
+        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+            select seq_board.nextval from dual
+        </selectKey>
+        <![CDATA[
+            insert into tbl_board(bno, title, content, writer)
+            values (#{bno}, #{title}, #{content}, #{writer})
+        ]]>
+    </insert>
+
     <update id="update">
         <![CDATA[
             update tbl_board set title = #{title}, content = #{content}, updateDate = sysdate where bno = #{bno}

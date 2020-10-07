@@ -39,6 +39,17 @@ public class BoardMapperTests {
         }
     }
 
+    // 게시글 추가 테스트2
+    @Test
+    public void testInsert2() {
+        BoardVO vo = new BoardVO();
+        vo.setTitle("ㅎㅎㅎㅋㅋㅋ");
+        vo.setContent("헤헿");
+        vo.setWriter("후후후");
+
+        boardMapper.insertSelectKey(vo);
+    }
+
     // 게시글 조회 테스트
     @Test
     public void testGet() {
