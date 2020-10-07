@@ -40,7 +40,7 @@ public class BoardControllerTests {
         log.info(resultPage);
     }
 
-    // 단일 게시물 조회 테스트
+    // 단일 게시물 조회 테스트b
     @Test
     public void testBoard() throws Exception {
 

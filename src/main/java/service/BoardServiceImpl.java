@@ -38,7 +38,7 @@ public class BoardServiceImpl implements BoardService{
     public void register(BoardVO vo) {
         log.info("Registered Board...." + vo);
 
-        boardMapper.insert(vo);
+        boardMapper.insertSelectKey(vo);
     }
 
     // 게시글 수정
