@@ -1,6 +1,7 @@
 package service;
 
 import domain.BoardVO;
+import domain.Criteria;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.BoardMapper;
@@ -27,10 +28,10 @@ public class BoardServiceImpl implements BoardService{
 
     // 전체 게시글 조회
     @Override
-    public List<BoardVO> list() {
+    public List<BoardVO> getList(Criteria cri) {
 
         log.info("Get List.....");
-        return boardMapper.getList();
+        return boardMapper.getListWithPaging(cri);
     }
 
     // 게시글 등록

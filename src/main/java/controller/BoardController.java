@@ -1,6 +1,8 @@
 package controller;
 
 import domain.BoardVO;
+import domain.Criteria;
+import domain.PageDTO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,14 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/list")
-    public void list(Model model) {
+    public void list(@ModelAttribute("cri") Criteria cri, Model model) {
 
         log.info("Board List Page");
 
-        List<BoardVO> list = boardService.list();
+        List<BoardVO> list = boardService.getList(cri);
 
         model.addAttribute("board", list);
+        model.addAttribute("pageMaker", new PageDTO(cri, 123));
 
     }
 

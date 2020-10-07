@@ -34,10 +34,10 @@ public class BoardControllerTests {
     @Test
     public void testBoardList() throws Exception {
 
-        String resultPage = mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
-            .andReturn().getModelAndView().getViewName();
-
-        log.info(resultPage);
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+            .param("pageNum", "5")
+            .param("amount", "10"))
+            .andReturn().getModelAndView().getModelMap());
     }
 
     // 단일 게시물 조회 테스트b

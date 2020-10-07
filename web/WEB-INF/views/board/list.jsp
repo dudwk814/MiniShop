@@ -116,6 +116,22 @@
                         </tbody>
                     </table>
 
+                    <div class="float-right">
+                        <ul class="pagination">
+                            <c:if test="${pageMaker.prev}">
+                                <a href="${root}board/list?pageNum=${pageMaker.startPage - 1}&amount=10"><button class="btn btn-info">Previous</button> </a>
+                            </c:if>
+                            &nbsp;
+                            <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                                <a href="${root}board/list?pageNum=${num}&amount=10"><button class="btn btn-outline-secondary ${pageMaker.cri.pageNum == num ? "active" : ""}">${num}</button> </a>
+                            </c:forEach>
+                            &nbsp;
+                            <c:if test="${pageMaker.next}">
+                                <a href="${root}board/list?pageNum=${pageMaker.endPage + 1}&amount=10"><button class="btn btn-info">Next</button> </a>
+                            </c:if>
+                        </ul>
+                    </div>
+
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
