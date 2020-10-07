@@ -155,9 +155,10 @@
 
         checkModal(result);
 
+        history.replaceState({}, null, null);
         function checkModal(result) {
 
-            if (result === '') {
+            if (result === '' || history.state) {
                 return;
             }
 

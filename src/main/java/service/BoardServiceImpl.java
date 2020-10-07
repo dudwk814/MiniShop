@@ -43,19 +43,19 @@ public class BoardServiceImpl implements BoardService{
 
     // 게시글 수정
     @Override
-    public void modify(BoardVO vo) {
+    public boolean modify(BoardVO vo) {
 
         log.info("Modified Board........" + vo);
 
-        boardMapper.update(vo);
+        return boardMapper.update(vo);
     }
 
     // 게시글 삭제
     @Override
-    public void remove(Long bno) {
+    public boolean remove(Long bno) {
 
         log.info("Removed Board......" + bno);
 
-        boardMapper.delete(bno);
+        return boardMapper.delete(bno);
     }
 }

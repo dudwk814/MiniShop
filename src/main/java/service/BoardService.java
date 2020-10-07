@@ -12,7 +12,7 @@ public interface BoardService {
 
     public void register(BoardVO vo);
 
-    public void modify(BoardVO vo);
+    public boolean modify(BoardVO vo);
 
-    public void remove(Long bno);
+    public boolean remove(Long bno);
 }
