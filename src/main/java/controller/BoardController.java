@@ -93,13 +93,15 @@ public class BoardController {
     }
 
     @PostMapping("/remove")
-    public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+    public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
 
         log.info("Remove Board......." + bno);
 
         boardService.remove(bno);
 
         rttr.addFlashAttribute("result", "success");
+
+        rttr.addFlashAttribute("cri", cri);
 
         return "redirect:/board/list";
     }

@@ -80,6 +80,8 @@
 
 <div class="col-lg-auto">
     <form action="/board/register" method="post">
+        <input type="hidden" name="pageNum" value="${cri.pageNum}">
+        <input type="hidden" name="amount" value="${cri.amount}">
         <div class="form-group">
             <label for="bno">bno</label>
             <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
