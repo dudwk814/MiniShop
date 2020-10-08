@@ -100,8 +100,8 @@
             <label for="writer">writer</label>
             <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
         </div>
-        <a href="/board/list"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
-        <a href="/board/modifyForm?bno=${board.bno}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
+        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
+        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
         <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
     </form>
 </div>

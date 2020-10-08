@@ -35,7 +35,7 @@ public class BoardController {
     }
 
     @GetMapping("/read")
-    public String read(Long bno, Model model) {
+    public String read(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
         log.info("Get Board......" + bno);
 

@@ -106,7 +106,7 @@
                         <c:forEach var="board" items="${board}">
                             <tr>
                                 <td><c:out value="${board.bno}"/></td>
-                                <td><a href="${root}board/read?bno=<c:out value='${board.bno}'/>"><c:out
+                                <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}'/>"><c:out
                                         value="${board.title}"/></a></td>
                                 <td><c:out value="${board.writer}"/></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
