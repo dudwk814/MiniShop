@@ -68,7 +68,7 @@ public class BoardController {
     }
 
     @GetMapping("/modifyForm")
-    public String modifyForm(@RequestParam("bno") Long bno, Model model) {
+    public String modifyForm(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
         log.info("Go To ModifyForm");
 
@@ -80,13 +80,14 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modify(@ModelAttribute("board") BoardVO board, RedirectAttributes rttr) {
+    public String modify(@ModelAttribute("board") BoardVO board, Criteria cri, RedirectAttributes rttr) {
 
         log.info("Modify Board....." + board.getBno());
 
         boardService.modify(board);
 
         rttr.addFlashAttribute("result", "success");
+        rttr.addFlashAttribute("cri", cri);
 
         return "redirect:/board/list";
     }
