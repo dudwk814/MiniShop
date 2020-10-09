@@ -80,7 +80,7 @@
                 <form>
                     <!-- Search form -->
                     <div class="form-group">
-                        <input class="form-control col-lg-3" type="text" placeholder="Search" aria-label="Search">
+                        <input class="form-control col-lg-3" type="text" placeholder="제목으로 검색" aria-label="Search">
                         <button class="btn btn-info">검색</button>
                         <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button>
                     </div>

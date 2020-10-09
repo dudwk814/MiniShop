@@ -103,5 +103,18 @@ public class BoardMapperTests {
         boardMapper.delete(11L);
     }
 
+    // 게시글 검색 테스트
+    @Test
+    public void testSearch() {
+
+        Criteria cri = new Criteria();
+        cri.setType("TC");
+        cri.setKeyword("ㅋㅋㄹㅃㅃ");
+
+        List<BoardVO> list = boardMapper.getListWithPaging(cri);
+
+        list.forEach(board -> log.info(board));
+    }
+
 
 }
