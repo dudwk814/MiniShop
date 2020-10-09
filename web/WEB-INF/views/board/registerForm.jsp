@@ -130,6 +130,7 @@
        $("#listBtn").on("click", function () {
            self.location = "/board/list";
        });
+
     });
 </script>
 

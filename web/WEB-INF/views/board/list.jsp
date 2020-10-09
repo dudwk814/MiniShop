@@ -76,15 +76,29 @@
             </div>
             <br/>
 
-            <div class="col-lg-auto">
-                <form>
-                    <!-- Search form -->
-                    <div class="form-group">
-                        <input class="form-control col-lg-3" type="text" placeholder="제목으로 검색" aria-label="Search">
-                        <button class="btn btn-info">검색</button>
-                        <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button>
-                    </div>
-                </form>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="searchForm" action="/board/list" method="get">
+                        <!-- Search form -->
+                        <div class="form-group">
+                            <select name="type">
+                                <option value="">--</option>
+                                    <option value="T">제목</option>
+                                    <option value="C">내용</option>
+                                    <option value="W">작성자</option>
+                                    <option value="TC">제목 OR 내용</option>
+                                    <option value="TW">제목 OR 작성자</option>
+                                    <option value="TWC">제목 OR 내용 OR 작성자</option>
+                            </select>
+                            <input type="text" name="keyword" placeholder="검색" />
+                            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                            <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                            <button id="searchBtn" class="btn btn-info">검색</button>
+                            <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
             <%--<div class="col-lg-auto">
 
@@ -169,6 +183,9 @@
         var result = '<c:out value="${result}"/>';
         var writerValue = '<c:out value="${writer}"/>';
 
+        var pageNum = '<c:out value="${pageMaker.cri.pageNum}"/>';
+        var amount = '<c:out value="${pageMaker.cri.amount}"/>';
+
         checkModal(result);
 
         history.replaceState({}, null, null);
@@ -187,7 +204,29 @@
         $("#regBtn").on("click", function () {
             self.location = "/board/registerForm";
         });
+
+        var searchForm = $("#searchForm");
+
+        $("#searchForm #searchBtn").on("click", function (e) {
+
+            if (!searchForm.find("option:selected").val()) {
+                alert("검색 조건을 선택하세요.");
+                return false;
+            }
+
+            if (!searchForm.find("input[name='keyword']").val()) {
+                alert("키워드를 입력하세요.");
+                return false;
+            }
+
+            searchForm.find("input[name='pageNum']").val("1");
+            e.preventDefault();
+
+            searchForm.submit();
+        });
     });
+
+
 </script>
 
 
