@@ -116,5 +116,11 @@ public class BoardMapperTests {
         list.forEach(board -> log.info(board));
     }
 
+    // 전체 게시글 갯수 테스트
+    @Test
+    public void testTotal() {
+
+        log.info(boardMapper.getTotalCount());
+    }
 
 }
