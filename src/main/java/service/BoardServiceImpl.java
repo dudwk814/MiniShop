@@ -26,6 +26,11 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.get(bno);
     }
 
+    @Override
+    public int getTotalCount() {
+        return boardMapper.getTotalCount();
+    }
+
     // 전체 게시글 조회
     @Override
     public List<BoardVO> getList(Criteria cri) {

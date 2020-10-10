@@ -13,6 +13,8 @@ public interface BoardService {
 
     public List<BoardVO> getList(Criteria cri);
 
+    public int getTotalCount();
+
     public void register(BoardVO vo);
 
     public boolean modify(BoardVO vo);
