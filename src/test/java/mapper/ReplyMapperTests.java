@@ -51,6 +51,13 @@ public class ReplyMapperTests {
         log.info(mapper.read(2L));
     }
 
+    // 전체 댓글 조회 테스트
+    @Test
+    public void testList() {
+
+        log.info(mapper.list(1037L));
+    }
+
     // 댓글 삭제 테스트
     @Test
     public void testDelete() {
