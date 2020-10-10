@@ -1,6 +1,8 @@
 package mapper;
 
+import domain.Criteria;
 import domain.ReplyVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public interface ReplyMapper {
 
     public ReplyVO read(Long rno);
 
-    public List<ReplyVO> list(Long bno);
+    public List<ReplyVO> getListWithPaging(@Param("bno") Long bno, @Param("cri")Criteria cri);
 
     public int delete(Long rno);
 

@@ -18,9 +18,9 @@
         ]]>
     </select>
 
-    <select id="list" resultType="domain.ReplyVO">
+    <select id="getListWithPaging" resultType="domain.ReplyVO">
         <![CDATA[
-            select * from tbl_reply where bno = #{bno}
+            select * from tbl_reply where bno = #{bno} order by rno asc
         ]]>
     </select>
 

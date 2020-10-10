@@ -1,5 +1,6 @@
 package mapper;
 
+import domain.Criteria;
 import domain.ReplyVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -55,7 +57,11 @@ public class ReplyMapperTests {
     @Test
     public void testList() {
 
-        log.info(mapper.list(1037L));
+        Criteria cri = new Criteria();
+
+        List<ReplyVO> replies = mapper.getListWithPaging(1038L, cri);
+
+        replies.forEach(reply -> log.info(reply));
     }
 
     // 댓글 삭제 테스트
