@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:29:26</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-11.01:42:47</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-10-11.01:42:47</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-10-11.02:24:11</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-10-11.02:24:12</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -155,7 +155,7 @@
     <table id="45" parent="18" name="TBL_REPLY">
       <ObjectId>80220</ObjectId>
       <CreatedTimestamp>2020-10-11.01:41:44</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-11.01:42:47</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-10-11.02:24:11</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="46" parent="18" name="TBL_USER">
@@ -34225,7 +34225,7 @@
       <DataType>NUMBER(10 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4915" parent="45" name="RELY">
+    <column id="4915" parent="45" name="REPLY">
       <Position>3</Position>
       <DataType>VARCHAR2(1000 byte)|0s</DataType>
       <NotNull>1</NotNull>
