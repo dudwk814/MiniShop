@@ -72,34 +72,12 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Board</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Board <button id="regBtn" type="button" class="btn btn-link float-right">Register New Board</button></h6>
+
             </div>
             <br/>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <form id="searchForm" action="/board/list" method="get">
-                        <!-- Search form -->
-                        <div class="form-group"> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <select name="type">
-                                <option value="">--</option>
-                                    <option value="T">제목</option>
-                                    <option value="C">내용</option>
-                                    <option value="W">작성자</option>
-                                    <option value="TC">제목 OR 내용</option>
-                                    <option value="TW">제목 OR 작성자</option>
-                                    <option value="TWC">제목 OR 내용 OR 작성자</option>
-                            </select>
-                            <input type="text" name="keyword" placeholder="검색" />
-                            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-                            <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-                            <button id="searchBtn" class="btn btn-info">검색</button>
-                            <button id="regBtn" type="button" class="btn btn-info float-right">Register New Board</button>
-                        </div>
-                    </form>
-                </div>
 
-            </div>
             <%--<div class="col-lg-auto">
 
             </div>--%>
@@ -129,6 +107,31 @@
                         </c:forEach>
                         </tbody>
                     </table>
+
+                    <div class="row">
+                        <div class="col-lg-auto">
+                            <form id="searchForm" action="/board/list" method="get">
+                                <!-- Search form -->
+                                <div class="form-group"> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <select name="type">
+                                        <option value="">--</option>
+                                        <option value="T">제목</option>
+                                        <option value="C">내용</option>
+                                        <option value="W">작성자</option>
+                                        <option value="TC">제목 OR 내용</option>
+                                        <option value="TW">제목 OR 작성자</option>
+                                        <option value="TWC">제목 OR 내용 OR 작성자</option>
+                                    </select>
+                                    <input type="text" name="keyword" placeholder="검색" />
+                                    <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                                    <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                                    <button id="searchBtn" class="btn btn-info">검색</button>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
 
                     <div class="float-right">
                         <nav aria-label="page navigation">

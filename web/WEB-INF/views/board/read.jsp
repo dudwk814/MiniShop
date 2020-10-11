@@ -67,49 +67,69 @@
         </div>
     </div>
 </nav>
+<br/><Br/>
 
 <div class="container">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                Board
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <form action="/board/register" method="post">
+                        <input type="hidden" name="pageNum" value="${cri.pageNum}">
+                        <input type="hidden" name="amount" value="${cri.amount}">
+                        <div class="form-group">
+                            <label for="bno">bno</label>
+                            <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">title</label>
+                            <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" value="<c:out value='${board.title}'/>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="regDate">date</label>
+                            <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">content</label>
+                            <textarea class="form-control" name="content" id="content" readonly><c:out value="${board.content}"/></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="writer">writer</label>
+                            <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
+                        </div>
+                    </form>
 
-
+                    <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
+                    <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
+                    <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="col-lg-auto">
-    <form action="/board/register" method="post">
-        <input type="hidden" name="pageNum" value="${cri.pageNum}">
-        <input type="hidden" name="amount" value="${cri.amount}">
-        <div class="form-group">
-            <label for="bno">bno</label>
-            <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
-        </div>
-        <div class="form-group">
-            <label for="title">title</label>
-            <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" value="<c:out value='${board.title}'/>" readonly>
-        </div>
-        <div class="form-group">
-            <label for="regDate">date</label>
-            <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
-        </div>
-        <div class="form-group">
-            <label for="content">content</label>
-            <textarea class="form-control" name="content" id="content" readonly><c:out value="${board.content}"/></textarea>
-        </div>
-        <div class="form-group">
-            <label for="writer">writer</label>
-            <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
-        </div>
-    </form>
 
-    <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
-    <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
-    <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+<br/><Br/>
 
 
-</div>
-</div>
+<%--</div>--%>
 
 <div class="container">
-    <div class="col-lg-">
-        <div class="card-header">Comments </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <span class="lnr lnr-bubble"> Comments</span>
+                <button class="btn btn-link float-right" id="regBtn">New</button>
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
