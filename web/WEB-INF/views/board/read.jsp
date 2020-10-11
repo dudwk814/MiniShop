@@ -69,11 +69,6 @@
 </nav>
 
 <div class="container">
-    <div class="col-lg-9">
-        <div class="d-flex p-2 bd-highlight">
-            <h4>Board Register</h4>
-        </div>
-    </div>
 
 
 </div>
@@ -102,13 +97,57 @@
             <label for="writer">writer</label>
             <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
         </div>
-        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
-        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
-        <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
     </form>
+
+    <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
+    <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
+    <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+
+
 </div>
 </div>
 
+<div class="container">
+    <div class="col-lg-">
+        <div class="card-header">Comments </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/resources/reply.js"></script>
+<script>
+    var bnoValue = '<c:out value="${board.bno}"/>';
+
+    // replyService.add({reply:"testGood",replyer:"tester",bno:bnoValue},
+    //         function (result) {
+    //             alert("Result : " + result);
+    //         })
+
+    // replyService.getList({bno:bnoValue, page:1}, function (list) {
+    //     for(var i = 0, len = list.length || 0; i < len; i++) {
+    //         console.log(list[i]);
+    //     }
+    // })
+
+    // replyService.remove(15, function (count) {
+    //
+    //     console.log(count);
+    //
+    //     if (count == "success") {
+    //         alert("Removed");
+    //     }
+    // }, function (err) {
+    //     alert('ERROR');
+    // });
+
+    // replyService.update({
+    //     rno: 13,
+    //     bno: 1038,
+    //     reply: "Modified Reply",
+    // }, function (result) {
+    //     alert("수정완료");
+    // });
+</script>
 <script>
     $(document).ready(function () {
         var formObj = $("form");

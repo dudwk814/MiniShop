@@ -131,19 +131,21 @@
                     </table>
 
                     <div class="float-right">
-                        <ul class="pagination">
-                            <c:if test="${pageMaker.prev}">
-                                <a href="${root}board/list?pageNum=${pageMaker.startPage - 1}&amount=10"><button class="btn btn-info">Previous</button> </a>
-                            </c:if>
-                            &nbsp;
-                            <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                                <a href="${root}board/list?pageNum=${num}&amount=10"><button class="btn btn-outline-secondary ${pageMaker.cri.pageNum == num ? "active" : ""}">${num}</button> </a>
-                            </c:forEach>
-                            &nbsp;
-                            <c:if test="${pageMaker.next}">
-                                <a href="${root}board/list?pageNum=${pageMaker.endPage + 1}&amount=10"><button class="btn btn-info">Next</button> </a>
-                            </c:if>
-                        </ul>
+                        <nav aria-label="page navigation">
+                            <ul class="pagination">
+                                <c:if test="${pageMaker.prev}">
+                                    <li class="page-item"> <a class="page-link" href="${root}board/list?pageNum=${pageMaker.startPage - 1}&amount=10">Previous</a></li>
+                                </c:if>
+                                &nbsp;
+                                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}"> <a class="page-link" href="${root}board/list?pageNum=${num}&amount=10">${num}</a>
+                                </c:forEach>
+                                &nbsp;
+                                <c:if test="${pageMaker.next}">
+                                    <li class="page-item"> <a class="page-link" href="${root}board/list?pageNum=${pageMaker.endPage + 1}&amount=10">Next</a></li>
+                                </c:if>
+                            </ul>
+                        </nav>
                     </div>
 
                     <!-- Modal -->
