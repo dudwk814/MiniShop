@@ -80,7 +80,7 @@
                 <div class="col-lg-12">
                     <form id="searchForm" action="/board/list" method="get">
                         <!-- Search form -->
-                        <div class="form-group">
+                        <div class="form-group"> &nbsp;&nbsp;&nbsp;&nbsp;
                             <select name="type">
                                 <option value="">--</option>
                                     <option value="T">제목</option>
