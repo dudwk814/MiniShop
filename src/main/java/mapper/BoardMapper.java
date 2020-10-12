@@ -22,4 +22,6 @@ public interface BoardMapper {
     public boolean update(BoardVO vo);
 
     public boolean delete(Long bno);
+
+
 }

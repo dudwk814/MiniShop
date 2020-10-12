@@ -123,4 +123,11 @@ public class BoardMapperTests {
         log.info(boardMapper.getTotalCount());
     }
 
+   /* // 게시글 당 전체 댓글 테스트
+    @Test
+    public void testReplyCnt() {
+
+        log.info(boardMapper.getTotalReply(1038L));
+    }*/
+
 }

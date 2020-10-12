@@ -32,6 +32,10 @@
     <!-- icomoon.io icon -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
+    <style>
+        li {list-style: none}
+    </style>
+
 </head>
 
 <body>
@@ -70,41 +74,43 @@
 <br/><Br/>
 
 <div class="container">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                Board
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <form action="/board/register" method="post">
-                        <input type="hidden" name="pageNum" value="${cri.pageNum}">
-                        <input type="hidden" name="amount" value="${cri.amount}">
-                        <div class="form-group">
-                            <label for="bno">bno</label>
-                            <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">title</label>
-                            <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" value="<c:out value='${board.title}'/>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="regDate">date</label>
-                            <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="content">content</label>
-                            <textarea class="form-control" name="content" id="content" readonly><c:out value="${board.content}"/></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="writer">writer</label>
-                            <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
-                        </div>
-                    </form>
+    <div class="row">
+        <div class="col align-content-center">
+            <div class="card">
+                <div class="card-header">
+                    Board
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <form action="/board/register" method="post">
+                            <input type="hidden" name="pageNum" value="${cri.pageNum}">
+                            <input type="hidden" name="amount" value="${cri.amount}">
+                            <div class="form-group">
+                                <label for="bno">bno</label>
+                                <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">title</label>
+                                <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" value="<c:out value='${board.title}'/>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="regDate">date</label>
+                                <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">content</label>
+                                <textarea class="form-control" name="content" id="content" readonly><c:out value="${board.content}"/></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="writer">writer</label>
+                                <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
+                            </div>
+                        </form>
 
-                    <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
-                    <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
-                    <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
+                        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
+                        <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,9 +131,17 @@
                 <button class="btn btn-link float-right" id="regBtn">New</button>
             </div>
             <div class="card-body">
-                <div class="card-title">
-
-                </div>
+                    <ul class="chat">
+                        <li class="left clearfix" data-rno='12'>
+                            <div>
+                                <div class="header">
+                                    <strong class="font-weight-bold">user00</strong>
+                                    <small class="float-right text-muted">2020-10-12</small>
+                                </div>
+                                <p>Good Job</p>
+                            </div>
+                        </li>
+                    </ul>
             </div>
         </div>
 
@@ -173,6 +187,30 @@
         var formObj = $("form");
 
         var bnoValue = '${board.bno}';
+        var replyUL = $(".chat");
+
+        showList(1);
+
+        function showList(page) {
+
+            replyService.getList({bno:bnoValue, page:page||1}, function (list) {
+
+                var str = "";
+                if (list == null || list.length == 0) {
+                    replyUL.html("");
+
+                    return ;
+                }
+                for (var i = 0, len = list.length || 0; i < len; i++) {
+                    str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
+                    str += "   <hr> <div><div class='header'><strong class='font-weight-bold'>" + list[i].replyer+"</strong>";
+                    str += "    <small class='float-right text-muted'>" + list[i].replyDate + "</small></div>";
+                    str += "    <p>" + list[i].reply + "</p></div><hr></li>";
+                }
+
+                replyUL.html(str);
+            })
+        }
 
         $("#removeBtn").on("click", function () {
             formObj.attr("action", "/board/remove");

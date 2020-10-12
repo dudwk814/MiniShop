@@ -100,7 +100,7 @@
 </div>
 </div>--%>
 
-
+<br/><Br/>
 <div class="container">
     <h1>Board Register</h1>
     <form action="/board/register" method="post">
@@ -110,17 +110,18 @@
         </div>
         <div class="form-group">
             <label for="content">content</label>
-            <input type="content" class="form-control" name="content" id="content" placeholder="content">
+            <textarea name="content" id="content" class="form-control" placeholder="content"></textarea>
         </div>
         <div class="form-group">
             <label for="writer">writer</label>
             <input type="writer" class="form-control" name="writer" id="writer" placeholder="writer">
         </div>
 
-        <button type="button" id="listBtn" class="btn btn-primary">List</button>
+
         <button type="submit" class="btn btn-info float-right">Submit Information</button>
     </form>
 </div>
+<br/><br/><br/><br/>
 
 <script type="text/javascript">
 
