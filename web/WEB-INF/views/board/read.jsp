@@ -24,7 +24,8 @@
 
     <!-- Bootstrap core CSS -->
     <%--<link href="/resources/shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="/resources/shop/css/shop-homepage.css" rel="stylesheet">
@@ -33,7 +34,9 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
     <style>
-        li {list-style: none}
+        li {
+            list-style: none
+        }
     </style>
 
 </head>
@@ -45,7 +48,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="${root}">Mini Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -87,28 +91,38 @@
                             <input type="hidden" name="amount" value="${cri.amount}">
                             <div class="form-group">
                                 <label for="bno">bno</label>
-                                <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno" value="<c:out value='${board.bno}'/>" readonly>
+                                <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno"
+                                       value="<c:out value='${board.bno}'/>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="title">title</label>
-                                <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" value="<c:out value='${board.title}'/>" readonly>
+                                <input type="text" class="form-control" placeholder="Enter title" name="title"
+                                       id="title" value="<c:out value='${board.title}'/>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="regDate">date</label>
-                                <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
+                                <input type="text" class="form-control" name="regDate" id="regDate"
+                                       value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="content">content</label>
-                                <textarea class="form-control" name="content" id="content" readonly><c:out value="${board.content}"/></textarea>
+                                <textarea class="form-control" name="content" id="content" readonly><c:out
+                                        value="${board.content}"/></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="writer">writer</label>
-                                <input type="text" class="form-control" placeholder="Enter writer" name="writer" id="writer" value="<c:out value='${board.writer}'/>" readonly>
+                                <input type="text" class="form-control" placeholder="Enter writer" name="writer"
+                                       id="writer" value="<c:out value='${board.writer}'/>" readonly>
                             </div>
                         </form>
 
-                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}"><button id="listBtn" type="button" class="btn btn-info">목록</button></a>
-                        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}" class="float-right"><button id="modBtn" type="button" class="btn btn-danger">수정</button></a>&nbsp; &nbsp; &nbsp;
+                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}">
+                            <button id="listBtn" type="button" class="btn btn-info">목록</button>
+                        </a>
+                        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
+                           class="float-right">
+                            <button id="modBtn" type="button" class="btn btn-danger">수정</button>
+                        </a>&nbsp; &nbsp; &nbsp;
                         <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
                     </div>
                 </div>
@@ -131,20 +145,51 @@
                 <button class="btn btn-link float-right" id="regBtn">New</button>
             </div>
             <div class="card-body">
-                    <ul class="chat">
-                        <li class="left clearfix" data-rno='12'>
-                            <div>
-                                <div class="header">
-                                    <strong class="font-weight-bold">user00</strong>
-                                    <small class="float-right text-muted">2020-10-12</small>
-                                </div>
-                                <p>Good Job</p>
-                            </div>
-                        </li>
-                    </ul>
+                <ul class="chat">
+                    <%--                        <li class="left clearfix" data-rno='12'>--%>
+                    <%--                            <div>--%>
+                    <%--                                <div class="header">--%>
+                    <%--                                    <strong class="font-weight-bold">user00</strong>--%>
+                    <%--                                    <small class="float-right text-muted">2020-10-12</small>--%>
+                    <%--                                </div>--%>
+                    <%--                                <p>Good Job</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </li>--%>
+                </ul>
             </div>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Comments MODAL</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Reply</label>
+                    <input class="form-control" name="reply" value="New Reply!!">
+                </div>
+                <div class="form-group">
+                    <label>Replyer</label>
+                    <input class="form-control" name="replyer" value="replyer">
+                </div>
+                <div class="form-group">
+                    <label>ReplyDate</label>
+                    <input class="form-control" name="replyDate" value="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+                <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+                <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
+                <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -184,6 +229,13 @@
 </script>
 <script>
     $(document).ready(function () {
+
+        $("#removeBtn").on("click", function () {
+            formObj.attr("action", "/board/remove");
+
+            formObj.submit();
+        });
+
         var formObj = $("form");
 
         var bnoValue = '${board.bno}';
@@ -193,32 +245,48 @@
 
         function showList(page) {
 
-            replyService.getList({bno:bnoValue, page:page||1}, function (list) {
+            replyService.getList({bno: bnoValue, page: page || 1}, function (list) {
 
                 var str = "";
                 if (list == null || list.length == 0) {
                     replyUL.html("");
 
-                    return ;
+                    return;
                 }
                 for (var i = 0, len = list.length || 0; i < len; i++) {
                     str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
-                    str += "   <hr> <div><div class='header'><strong class='font-weight-bold'>" + list[i].replyer+"</strong>";
-                    str += "    <small class='float-right text-muted'>" + list[i].replyDate + "</small></div>";
+                    str += "   <hr> <div><div class='header'><strong class='font-weight-bold'>" + list[i].replyer + "</strong>";
+                    str += "    <small class='float-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
                     str += "    <p>" + list[i].reply + "</p></div><hr></li>";
                 }
 
                 replyUL.html(str);
-            })
+            });
         }
 
-        $("#removeBtn").on("click", function () {
-            formObj.attr("action", "/board/remove");
+        var modal = $(".modal");
+        var modalInputReply = modal.find("input[name='reply']");
+        var modalInputReplyer = modal.find("input[name='replyer']");
+        var modalInputReplyDate = modal.find("input[name='replyDate']");
 
-            formObj.submit();
+        var modalModBtn = $("#modalModBtn");
+        var modalRemoveBtn = $("#modalRemoveBtn");
+        var modalRegisterBtn = $("#modalRegisterBtn");
+
+
+
+        $("#regBtn").on("click", function (e) {
+
+            modal.find("input").val("");
+            modalInputReplyDate.closest("div").hide();
+            modal.find("button[id != 'modalCloseBtn']").hide();
+
+            modalRegisterBtn.show();
+
+            $(".modal").modal("show");
         });
     });
 </script>
 
 
-<%@ include file="../includes/footer.jsp"%>
+</body><%@ include file="../includes/footer.jsp"%>
