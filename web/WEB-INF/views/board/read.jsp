@@ -146,15 +146,15 @@
             </div>
             <div class="card-body">
                 <ul class="chat">
-                    <%--                        <li class="left clearfix" data-rno='12'>--%>
-                    <%--                            <div>--%>
-                    <%--                                <div class="header">--%>
-                    <%--                                    <strong class="font-weight-bold">user00</strong>--%>
-                    <%--                                    <small class="float-right text-muted">2020-10-12</small>--%>
-                    <%--                                </div>--%>
-                    <%--                                <p>Good Job</p>--%>
-                    <%--                            </div>--%>
-                    <%--                        </li>--%>
+                    <li class="left clearfix" data-rno='12'>
+                        <div>
+                            <div class="header">
+                                <strong class="font-weight-bold">user00</strong>
+                                <small class="float-right text-muted">2020-10-12</small>
+                            </div>
+                            <p>Good Job</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -285,6 +285,69 @@
 
             $(".modal").modal("show");
         });
+
+        modalRegisterBtn.on("click", function (e) {
+
+            reply = {
+                reply : modalInputReply.val(),
+                replyer : modalInputReplyer.val(),
+                bno : bnoValue
+            };
+
+            replyService.add(reply, function (result) {
+                alert(result);
+
+                modal.find("input").val("");
+                modal.modal("hide");
+
+                showList(1);
+            });
+        });
+
+        $(".chat").on("click", "li", function (e) {
+
+            var rno = $(this).data("rno");
+
+            replyService.get(rno, function (reply) {
+
+                modalInputReply.val(reply.reply);
+                modalInputReplyer.val(reply.replyer);
+                modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+                modal.data("rno", reply.rno);
+
+                modal.find("button[id != 'modalCloseBtn']").hide();
+                modalModBtn.show();
+                modalRemoveBtn.show();
+
+                $(".modal").modal("show");
+            });
+        });
+
+        modalModBtn.on("click", function (e) {
+
+            var reply = {
+                rno: modal.data("rno"),
+                reply: modalInputReply.val()};
+
+            replyService.update(reply, function (result) {
+
+                alert(result);
+                modal.modal("hide");
+                showList(1);
+            });
+        });
+
+        modalRemoveBtn.on("click", function (e) {
+            var rno = modal.data("rno");
+
+            replyService.remove(rno, function (result) {
+                alert(result);
+                modal.modal("hide");
+                showList(1);
+
+            });
+        });
+
     });
 </script>
 
