@@ -53,11 +53,12 @@ public class ReplyController {
     }
 
     @DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<String> remove(@PathVariable("rno") Long rno) {
+    public ResponseEntity<String> remove(@PathVariable("rno") Long rno, @RequestParam("bno") Long bno) {
 
         log.info("rno : " + rno);
+        log.info("bno : " + bno);
 
-        return service.remove(rno) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return service.remove(rno, bno) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT}, value = "/{rno}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})

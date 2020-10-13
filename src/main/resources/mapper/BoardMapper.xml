@@ -87,5 +87,11 @@
         delete from tbl_board where bno = #{bno}
     </delete>
 
+    <update id="plusReplyCnt">
+        update tbl_board set replyCnt = replyCnt + 1 where bno = #{bno}
+    </update>
 
+    <update id="minusReplyCnt">
+        update tbl_board set replyCnt = replyCnt - 1 where bno = #{bno}
+    </update>
 </mapper>

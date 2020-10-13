@@ -23,5 +23,7 @@ public interface BoardMapper {
 
     public boolean delete(Long bno);
 
+    public void plusReplyCnt(Long bno);
 
+    public void minusReplyCnt(Long bno);
 }

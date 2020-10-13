@@ -36,7 +36,6 @@ public class BoardController {
 
         model.addAttribute("board", list);
         model.addAttribute("pageMaker", new PageDTO(cri, totalCount));
-        model.addAttribute("replyCnt", null);
 
     }
 

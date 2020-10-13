@@ -5,9 +5,11 @@ import domain.ReplyPageDTO;
 import domain.ReplyVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import mapper.BoardMapper;
 import mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,11 +20,18 @@ public class ReplyServiceImpl implements ReplyService{
     @Setter(onMethod_ = {@Autowired})
     private ReplyMapper replyMapper;
 
+    @Setter(onMethod_ = {@Autowired})
+    private BoardMapper boardMapper;
 
+
+    @Transactional
     @Override
     public int insert(ReplyVO vo) {
 
         log.info("insert Reply : " + vo.getRno());
+
+        boardMapper.plusReplyCnt(vo.getBno());
+
         return replyMapper.insert(vo);
     }
 
@@ -41,11 +50,13 @@ public class ReplyServiceImpl implements ReplyService{
         return new ReplyPageDTO(replyMapper.getCountByBno(bno), replyMapper.getListWithPaging(bno, cri));
     }
 
-
+    @Transactional
     @Override
-    public int remove(Long rno) {
+    public int remove(Long rno, Long bno) {
 
         log.info("REMOVED REPLY : " + rno);
+
+        boardMapper.minusReplyCnt(bno);
         return replyMapper.delete(rno);
     }
 

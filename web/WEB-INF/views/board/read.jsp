@@ -354,10 +354,12 @@
         modalRemoveBtn.on("click", function (e) {
             var rno = modal.data("rno");
 
-            replyService.remove(rno, function (result) {
+            var bno = '<c:out value="${board.bno}"/>';
+
+            replyService.remove(rno, bno, function (result) {
                 alert(result);
                 modal.modal("hide");
-                showList(1);
+                showList(-1);
 
             });
         });

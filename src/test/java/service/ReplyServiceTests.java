@@ -37,7 +37,7 @@ public class ReplyServiceTests {
     @Test
     public void testRemove() {
 
-        log.info(replyService.remove(12L));
+        log.info(replyService.remove(12L, 1038L));
     }
 
     // 댓글 수정 테스트

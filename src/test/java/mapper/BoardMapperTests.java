@@ -130,4 +130,26 @@ public class BoardMapperTests {
         log.info(boardMapper.getTotalReply(1038L));
     }*/
 
+    // 댓글 개수 업데이트 테스트 (플러스)
+    @Test
+    public void testUpdateReplyPlus() {
+
+        boardMapper.plusReplyCnt(1038L);
+
+        BoardVO vo = boardMapper.get(1038L);
+
+        log.info(vo.getReplyCnt());
+    }
+
+    // 댓글 개수 업데이트 테스트 (마이너스)
+    @Test
+    public void testUpdateReplyCntMinus() {
+
+        boardMapper.minusReplyCnt(1038L);
+
+        BoardVO vo = boardMapper.get(1038L);
+
+        log.info(vo.getReplyCnt());
+    }
+
 }

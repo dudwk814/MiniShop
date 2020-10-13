@@ -49,7 +49,7 @@
                                 <td><c:out value="${board.bno}"/></td>
                                 <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}'/>"><c:out
                                         value="${board.title}"/>
-                                    <span class="badge badge-info float-right">${board.replyCnt}</span>
+                                    <span class="badge badge-info float-right"><c:out value="${board.replyCnt}"/></span>
                                 </a></td>
                                 <td><c:out value="${board.writer}"/></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
