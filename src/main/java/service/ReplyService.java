@@ -1,6 +1,7 @@
 package service;
 
 import domain.Criteria;
+import domain.ReplyPageDTO;
 import domain.ReplyVO;
 
 import java.util.List;
@@ -14,7 +15,8 @@ public interface ReplyService {
     public ReplyVO get(Long rno);
 
     // 전체 댓글 조회
-    public List<ReplyVO> getList(Long bno, Criteria cri);
+    public ReplyPageDTO getList(Long bno, Criteria cri);
+
 
     // 댓글 삭제
     public int remove(Long rno);

@@ -10,7 +10,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<!DOCTYPE html>
+<%@ include file="../includes/header.jsp" %>
+<%--<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,7 +24,7 @@
     <title>Shop Homepage - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <%--<link href="/resources/shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
+    &lt;%&ndash;<link href="/resources/shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">&ndash;%&gt;
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -75,9 +76,9 @@
         </div>
     </div>
 </nav>
-<br/><Br/>
+<br/><Br/>--%>
 
-<div class="container">
+<div class="col-lg-9">
     <div class="row">
         <div class="col align-content-center">
             <div class="card">
@@ -129,37 +130,42 @@
             </div>
         </div>
     </div>
-</div>
 
 
-<br/><Br/>
+    <br/><Br/>
 
 
-<%--</div>--%>
+    <%--</div>--%>
 
-<div class="container">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <span class="lnr lnr-bubble"> Comments</span>
-                <button class="btn btn-link float-right" id="regBtn">New</button>
-            </div>
-            <div class="card-body">
-                <ul class="chat">
-                    <li class="left clearfix" data-rno='12'>
-                        <div>
-                            <div class="header">
-                                <strong class="font-weight-bold">user00</strong>
-                                <small class="float-right text-muted">2020-10-12</small>
+    <div class="col-lg-auto">
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span class="badge badge-info">${board.replyCnt}</span>
+                    <button class="btn btn-link float-right" id="regBtn">New</button>
+                </div>
+                <div class="card-body">
+                    <ul class="chat list-group-flush">
+                        <li class="left clearfix" data-rno='12'>
+                            <div>
+                                <div class="header">
+                                    <strong class="font-weight-bold">user00</strong>
+                                    <small class="float-right text-muted">2020-10-12</small>
+                                </div>
+                                <p>Good Job</p>
                             </div>
-                            <p>Good Job</p>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
+        </div>
+            <div class="float-right">
+
+            </div>
     </div>
+</div>
+</div>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -245,19 +251,27 @@
 
         function showList(page) {
 
-            replyService.getList({bno: bnoValue, page: page || 1}, function (list) {
+            replyService.getList({bno: bnoValue, page: page || 1}, function (replyCnt, list) {
+
+                console.log("replyCnt : " + replyCnt);
+                console.log("list :" + list);
+                console.log(list);
+
+                if (page == -1) {
+                    var pageNum = Math.ceil(replyCnt / 10.0);
+                    showList(pageNum);
+                    return;
+                }
 
                 var str = "";
                 if (list == null || list.length == 0) {
-                    replyUL.html("");
-
                     return;
                 }
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
-                    str += "   <hr> <div><div class='header'><strong class='font-weight-bold'>" + list[i].replyer + "</strong>";
+                    str += "<li class='list-group-item' data-rno='" + list[i].rno + "'>";
+                    str += "  <div><div class='header'><strong class='font-weight-bold'>" + list[i].replyer + "</strong>";
                     str += "    <small class='float-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
-                    str += "    <p>" + list[i].reply + "</p></div><hr></li>";
+                    str += "    <p>" + list[i].reply + "</p></div></li>";
                 }
 
                 replyUL.html(str);
@@ -274,7 +288,6 @@
         var modalRegisterBtn = $("#modalRegisterBtn");
 
 
-
         $("#regBtn").on("click", function (e) {
 
             modal.find("input").val("");
@@ -289,9 +302,9 @@
         modalRegisterBtn.on("click", function (e) {
 
             reply = {
-                reply : modalInputReply.val(),
-                replyer : modalInputReplyer.val(),
-                bno : bnoValue
+                reply: modalInputReply.val(),
+                replyer: modalInputReplyer.val(),
+                bno: bnoValue
             };
 
             replyService.add(reply, function (result) {
@@ -300,7 +313,7 @@
                 modal.find("input").val("");
                 modal.modal("hide");
 
-                showList(1);
+                showList(-1);
             });
         });
 
@@ -327,7 +340,8 @@
 
             var reply = {
                 rno: modal.data("rno"),
-                reply: modalInputReply.val()};
+                reply: modalInputReply.val()
+            };
 
             replyService.update(reply, function (result) {
 
@@ -352,4 +366,4 @@
 </script>
 
 
-</body><%@ include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp" %>

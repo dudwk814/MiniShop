@@ -1,6 +1,7 @@
 package service;
 
 import domain.Criteria;
+import domain.ReplyPageDTO;
 import domain.ReplyVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -34,11 +35,12 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public List<ReplyVO> getList(Long bno, Criteria cri) {
+    public ReplyPageDTO getList(Long bno, Criteria cri) {
 
         log.info("Reply GetList : " + bno);
-        return replyMapper.getListWithPaging(bno, cri);
+        return new ReplyPageDTO(replyMapper.getCountByBno(bno), replyMapper.getListWithPaging(bno, cri));
     }
+
 
     @Override
     public int remove(Long rno) {

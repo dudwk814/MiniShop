@@ -1,6 +1,7 @@
 package service;
 
 import domain.Criteria;
+import domain.ReplyPageDTO;
 import domain.ReplyVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -63,9 +64,9 @@ public class ReplyServiceTests {
 
         Criteria cri = new Criteria();
 
-        List<ReplyVO> replies = replyService.getList(1038L, cri);
+        ReplyPageDTO list = replyService.getList(1038L, cri);
 
-        replies.forEach(reply -> log.info(reply));
+        list.getList().forEach(reply -> log.info(reply));
 
     }
 }

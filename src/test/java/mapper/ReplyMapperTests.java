@@ -57,11 +57,18 @@ public class ReplyMapperTests {
     @Test
     public void testList() {
 
-        Criteria cri = new Criteria();
+        Criteria cri = new Criteria(1, 10);
 
         List<ReplyVO> replies = mapper.getListWithPaging(1038L, cri);
 
         replies.forEach(reply -> log.info(reply));
+    }
+
+    // 전체 댓글 숫자 파악 테스트
+    @Test
+    public void testTotalCountByBno() {
+
+        log.info(mapper.getCountByBno(1038L));
     }
 
     // 댓글 삭제 테스트

@@ -8,64 +8,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <%@ include file="../includes/header.jsp"%>
-<%--
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Shop Homepage - Start Bootstrap Template</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <!-- icomoon.io icon -->
-    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-</head>
-<body>
-<script src="/resources/shop/vendor/jquery/jquery.min.js"></script>
-<div>
-
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="${root}">Mini Shop</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="${root}">Shop
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="${root}board/list">Board</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown" href="/user/loginForm">
-                            <span class="lnr lnr-user"></span></a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>--%>
 
 
     <!-- Begin Page Content -->
     <div class="col-lg-9">
+        <br/>
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">게시판</h1><br/>
@@ -100,7 +48,9 @@
                             <tr>
                                 <td><c:out value="${board.bno}"/></td>
                                 <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}'/>"><c:out
-                                        value="${board.title}"/></a></td>
+                                        value="${board.title}"/>
+                                    <span class="badge badge-info float-right">${board.replyCnt}</span>
+                                </a></td>
                                 <td><c:out value="${board.writer}"/></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
@@ -142,7 +92,7 @@
                                 </c:if>
                                 &nbsp;
                                 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}"> <a class="page-link" href="${root}board/list?pageNum=${num}&amount=10">${num}</a>
+                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}"> <a class="page-link" href="${root}board/list?pageNum=${num}&amount=10&keyword=${pageMaker.cri.keyword}&type=${pageMaker.cri.type}">${num}</a>
                                 </c:forEach>
                                 &nbsp;
                                 <c:if test="${pageMaker.next}">
@@ -172,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id="listBtn" type="button" class="btn btn-primary float-left">List</button>
+                    <button id="regBtn2" type="button" class="btn btn-primary float-left">글 쓰기</button>
 
                 </div>
             </div>
@@ -208,7 +158,13 @@
 
             $("#myModal").modal('show');
         }
+
+
         $("#regBtn").on("click", function () {
+            self.location = "/board/registerForm";
+        });
+
+        $("#regBtn2").on("click", function () {
             self.location = "/board/registerForm";
         });
 

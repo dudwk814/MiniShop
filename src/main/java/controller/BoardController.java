@@ -5,6 +5,7 @@ import domain.Criteria;
 import domain.PageDTO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class BoardController {
     @Setter(onMethod_ = {@Autowired})
     private BoardService boardService;
 
+    @Setter(onMethod_ = {@Autowired})
+    private ReplyMapper replyMapper;
+
     @GetMapping("/list")
     public void list(@ModelAttribute("cri") Criteria cri, Model model) {
 
@@ -32,6 +36,7 @@ public class BoardController {
 
         model.addAttribute("board", list);
         model.addAttribute("pageMaker", new PageDTO(cri, totalCount));
+        model.addAttribute("replyCnt", null);
 
     }
 

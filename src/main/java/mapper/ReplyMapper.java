@@ -15,6 +15,10 @@ public interface ReplyMapper {
 
     public List<ReplyVO> getListWithPaging(@Param("bno") Long bno, @Param("cri")Criteria cri);
 
+    // 전체 댓글 숫자 파악
+    public int getCountByBno(Long bno);
+
+
     public int delete(Long rno);
 
     public int update(ReplyVO vo);
