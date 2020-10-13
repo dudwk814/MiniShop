@@ -1,15 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
+<%--  Created by IntelliJ IDEA.
   User: PCY
   Date: 2020-10-05
   Time: 오전 10:34
-  To change this template use File | Settings | File Templates.
---%>
+  To change this template use File | Settings | File Templates.--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<%--<%@ include file="../includes/header.jsp"%>--%>
+<%@ include file="../includes/header.jsp"%>
+<%--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,9 +61,11 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>--%>
+
+
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="col-lg-9">
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">게시판</h1><br/>
@@ -179,6 +180,7 @@
 
     </div>
     <!-- /.container-fluid -->
+</div>
 </div>
 
 <script type="text/javascript">

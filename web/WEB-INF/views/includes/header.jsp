@@ -35,7 +35,7 @@
 </head>
 
 <body>
-
+<script src="/resources/shop/vendor/jquery/jquery.min.js"></script>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -50,16 +50,27 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="${root}board/list">Board</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link dropdown" href="/user/loginForm">
-                        <span class="lnr lnr-user"></span></a>
+                <li class="nav-item active">
+                    <div class="dropdown nav-link">
+                        <span class="lnr lnr-user dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        </span>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/user/joinForm">회원가입</a>
+                            <a class="dropdown-item" href="/user/loginForm">로그인</a>
+                            <a class="dropdown-item" href="/user/logout">로그아웃</a>
+                            <a class="dropdown-item" href="/user/modifyForm">회원 설정</a>
+                        </div>
+                    </div>
+                    <%--<a class="nav-link dropdown" href="/user/loginForm">
+                        <span class="lnr lnr-user"></span></a>--%>
                 </li>
 
             </ul>
