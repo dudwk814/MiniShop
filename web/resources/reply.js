@@ -45,7 +45,7 @@ var replyService = (function () {
     }
 
     function getReplyCnt(bno, callback, error) {
-        $.get("/replies/" + bno + ".json",
+        $.get("/replies/replyCnt/" + bno + ".json",
             function (data) {
                 if(callback) {
                     callback(data);
@@ -146,6 +146,7 @@ var replyService = (function () {
         remove:remove,
         update:update,
         displayTime:displayTime,
-        get:get
+        get:get,
+        getReplyCnt:getReplyCnt
     };
 })();

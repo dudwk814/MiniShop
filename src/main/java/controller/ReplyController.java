@@ -52,14 +52,14 @@ public class ReplyController {
         return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
     }
 
-    /*// bno당 댓글 개수
-    @GetMapping(value = "/{bno}", produces = {MediaType.TEXT_PLAIN_VALUE})
+    // bno당 댓글 개수
+    @GetMapping(value = "/replyCnt/{bno}")
     public ResponseEntity<Integer> getReplyCnt(@PathVariable("bno") Long bno) {
 
         log.info("bno : " + bno);
 
-        return new ResponseEntity<Integer>();
-    }*/
+        return new ResponseEntity<>(service.getReplyCnt(bno), HttpStatus.OK);
+    }
 
     @DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> remove(@PathVariable("rno") Long rno) {

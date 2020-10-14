@@ -117,7 +117,7 @@
                             </div>
                         </form>
 
-                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}">
+                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
                             <button id="listBtn" type="button" class="btn btn-info">목록</button>
                         </a>
                         <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
@@ -141,7 +141,7 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span class="badge badge-info">${board.replyCnt}</span>
+                    <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt" class="badge badge-info">${board.replyCnt}</span>
                     <button class="btn btn-link float-right" id="regBtn">New</button>
                 </div>
                 <div class="card-body">
@@ -314,6 +314,10 @@
                 modal.modal("hide");
 
                 showList(-1);
+            });
+
+            replyService.getReplyCnt(bnoValue, function (result) {
+                $("#replyCnt").html(result);
             });
         });
 

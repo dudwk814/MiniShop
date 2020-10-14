@@ -47,7 +47,7 @@
                         <c:forEach var="board" items="${board}">
                             <tr>
                                 <td><c:out value="${board.bno}"/></td>
-                                <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}'/>"><c:out
+                                <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"><c:out
                                         value="${board.title}"/>
                                     <span class="badge badge-info float-right"><c:out value="${board.replyCnt}"/></span>
                                 </a></td>
