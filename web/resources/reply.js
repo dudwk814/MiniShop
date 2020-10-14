@@ -44,11 +44,23 @@ var replyService = (function () {
         });
     }
 
-    function remove(rno, bno, callback, error) {
+    function getReplyCnt(bno, callback, error) {
+        $.get("/replies/" + bno + ".json",
+            function (data) {
+                if(callback) {
+                    callback(data);
+                }
+            }).fail(function (xhr, status, err) {
+            if (error) {
+                error();
+            }
+        })
+    }
+
+    function remove(rno, callback, error) {
         $.ajax({
             type: 'delete',
             url: '/replies/' + rno,
-            data: bno,
             success : function (deleteResult, status, xhr) {
                 if (callback) {
                     callback(deleteResult);

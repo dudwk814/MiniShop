@@ -36,6 +36,8 @@
         select count(rno) from tbl_reply where bno = #{bno}
     </select>
 
+
+
     <delete id="delete">
         <![CDATA[
             delete from tbl_reply where rno = #{rno}

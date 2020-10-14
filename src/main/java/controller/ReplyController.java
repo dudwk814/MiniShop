@@ -52,13 +52,24 @@ public class ReplyController {
         return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<String> remove(@PathVariable("rno") Long rno, @RequestParam("bno") Long bno) {
+    /*// bno당 댓글 개수
+    @GetMapping(value = "/{bno}", produces = {MediaType.TEXT_PLAIN_VALUE})
+    public ResponseEntity<Integer> getReplyCnt(@PathVariable("bno") Long bno) {
 
-        log.info("rno : " + rno);
         log.info("bno : " + bno);
 
-        return service.remove(rno, bno) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<Integer>();
+    }*/
+
+    @DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
+    public ResponseEntity<String> remove(@PathVariable("rno") Long rno) {
+
+        log.info("rno : " + rno);
+
+        ReplyVO vo = service.get(rno);
+        log.info("bno : " + vo.getBno());
+
+        return service.remove(rno, vo.getBno()) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT}, value = "/{rno}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})

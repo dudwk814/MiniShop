@@ -17,6 +17,8 @@ public interface ReplyService {
     // 전체 댓글 조회
     public ReplyPageDTO getList(Long bno, Criteria cri);
 
+    // bno 당 댓글 개수 조회
+    public int getReplyCnt(Long bno);
 
     // 댓글 삭제
     public int remove(Long rno, Long bno);

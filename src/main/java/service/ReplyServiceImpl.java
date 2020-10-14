@@ -50,6 +50,11 @@ public class ReplyServiceImpl implements ReplyService{
         return new ReplyPageDTO(replyMapper.getCountByBno(bno), replyMapper.getListWithPaging(bno, cri));
     }
 
+    @Override
+    public int getReplyCnt(Long bno) {
+        return replyMapper.getCountByBno(bno);
+    }
+
     @Transactional
     @Override
     public int remove(Long rno, Long bno) {

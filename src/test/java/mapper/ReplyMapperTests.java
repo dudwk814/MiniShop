@@ -71,6 +71,7 @@ public class ReplyMapperTests {
         log.info(mapper.getCountByBno(1038L));
     }
 
+
     // 댓글 삭제 테스트
     @Test
     public void testDelete() {

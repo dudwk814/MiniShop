@@ -18,6 +18,8 @@ public interface ReplyMapper {
     // 전체 댓글 숫자 파악
     public int getCountByBno(Long bno);
 
+    // bno 당 댓글 개수 파악
+    public int getReplyCnt(Long bno);
 
     public int delete(Long rno);
 

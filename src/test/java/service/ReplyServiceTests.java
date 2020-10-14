@@ -69,4 +69,11 @@ public class ReplyServiceTests {
         list.getList().forEach(reply -> log.info(reply));
 
     }
+
+    // bno 당 댓글 개수 파악 테스트
+    @Test
+    public void testGetReplyCnt() {
+
+        log.info(replyService.getReplyCnt(1038L));
+    }
 }

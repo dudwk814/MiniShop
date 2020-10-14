@@ -354,9 +354,8 @@
         modalRemoveBtn.on("click", function (e) {
             var rno = modal.data("rno");
 
-            var bno = '<c:out value="${board.bno}"/>';
 
-            replyService.remove(rno, bno, function (result) {
+            replyService.remove(rno, function (result) {
                 alert(result);
                 modal.modal("hide");
                 showList(-1);
