@@ -1,10 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-03
-  Time: 오후 2:55
+  Date: 2020-10-14
+  Time: 오후 8:38
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
@@ -48,6 +49,8 @@
 
 <div class="main">
 
+    <h1> <span class="lnr lnr-warning">접근권한이 없습니다.</span></h1>
+
 
     <!-- Sing in  Form -->
     <section class="sign-in">
@@ -71,7 +74,7 @@
 
                 <div class="signin-form">
                     <h2 class="form-title">Sign up</h2>
-                    <form action="/login" method="POST" class="register-form" id="login-form">
+                    <form action="/user/login" method="POST" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="user_id"><i class="zmdi zmdi-account material-icons-name"></i></label>
                             <input type="text" name="user_id" id="user_id" placeholder="Your ID"/>
@@ -87,8 +90,6 @@
                         <div class="form-group form-button">
                             <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
                         </div>
-
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
                     <div class="social-login">
                         <span class="social-label">Or login with</span>
@@ -110,3 +111,5 @@
 <script src="/resources/userForm/js/main.js"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
+
+

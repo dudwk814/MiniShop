@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-03
-  Time: 오후 2:55
+  Date: 2020-10-14
+  Time: 오후 7:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -46,11 +46,12 @@
 </head>
 <body>
 
+
 <div class="main">
 
 
-    <!-- Sing in  Form -->
-    <section class="sign-in">
+    <!-- Sign up form -->
+    <section class="signup">
         <div class="container">
             <a class="navbar-brand" href="${root}">Minishop</a>
             <button
@@ -63,17 +64,16 @@
                     aria-label="Toggle navigation"
             >
             </button>
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure><img src="/resources/userForm/images/signin-image.jpg" alt="sing up image"></figure>
-                    <a href="/user/joinForm" class="signup-image-link">Create an account</a>
-                </div>
-
-                <div class="signin-form">
+            <div class="signup-content">
+                <div class="signup-form">
                     <h2 class="form-title">Sign up</h2>
-                    <form action="/login" method="POST" class="register-form" id="login-form">
+                    <form action="${root}user/join" method="POST" class="register-form" id="register-form">
                         <div class="form-group">
-                            <label for="user_id"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <label for="user_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="user_name" id="user_name" placeholder="Your Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id"><i class="zmdi zmdi-account-circle"></i></label>
                             <input type="text" name="user_id" id="user_id" placeholder="Your ID"/>
                         </div>
                         <div class="form-group">
@@ -81,29 +81,34 @@
                             <input type="password" name="user_pw" id="user_pw" placeholder="Password"/>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            <label for="user_pw2"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" name="user_pw2" id="user_pw2" placeholder="Repeat your password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="address"><i class="zmdi zmdi-truck"></i></label>
+                            <input type="text" name="address" id="address" placeholder="Your address"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                         </div>
-
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
-                    <div class="social-login">
-                        <span class="social-label">Or login with</span>
-                        <ul class="socials">
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                        </ul>
-                    </div>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="/resources/userForm/images/signup-image.jpg" alt="sing up image"></figure>
+                    <a href="/user/loginForm" class="signup-image-link">I am already member</a>
                 </div>
             </div>
         </div>
     </section>
 
+
 </div>
+
+
 
 <!-- JS -->
 <script src="/resources/userForm/vendor/jquery/jquery.min.js"></script>

@@ -56,4 +56,25 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/modifyForm")
+    public String modify(@ModelAttribute("user") UserVO user) {
+
+        log.info("UserModifyForm");
+
+        return "user/modifyForm";
+    }
+
+    @PostMapping("/modify")
+    public String modify(UserVO user, RedirectAttributes rttr) {
+
+        log.info("modify......" + user.getUser_name());
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/";
+    }
 }
