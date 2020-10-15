@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService{
         log.info("Register : " + vo);
 
         if (vo.getUser_pw().equals(vo.getUser_pw2())) {
-            int result = userMapper.register(vo);
-            return true;
+            /*int result = userMapper.register(vo);*/
+            return userMapper.register(vo) == 1;
         } else {
             return false;
         }
