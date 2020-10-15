@@ -17,11 +17,16 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
     @Override
-    public void register(UserVO vo) {
+    public boolean register(UserVO vo) {
 
         log.info("Register : " + vo);
 
-        userMapper.register(vo);
+        if (vo.getUser_pw().equals(vo.getUser_pw2())) {
+            int result = userMapper.register(vo);
+            return true;
+        } else {
+            return false;
+        }
 
     }
 

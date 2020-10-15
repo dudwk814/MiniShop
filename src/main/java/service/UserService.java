@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    public void register(UserVO vo);
+    public boolean register(UserVO vo);
 
     public boolean removeUser(Long mno);
 
