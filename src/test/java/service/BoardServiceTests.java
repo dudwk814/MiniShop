@@ -2,7 +2,7 @@ package service;
 
 import domain.BoardVO;
 import domain.Criteria;
-import domain.UserVO;
+
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;

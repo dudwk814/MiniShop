@@ -73,12 +73,12 @@
                     <h2 class="form-title">Sign up</h2>
                     <form action="/login" method="POST" class="register-form" id="login-form">
                         <div class="form-group">
-                            <label for="user_id"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="user_id" id="user_id" placeholder="Your ID"/>
+                            <label for="userid"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="userid" id="userid" placeholder="Your ID"/>
                         </div>
                         <div class="form-group">
-                            <label for="user_pw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="user_pw" id="user_pw" placeholder="Password"/>
+                            <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="userpw" id="userpw" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
