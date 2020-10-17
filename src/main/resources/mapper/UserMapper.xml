@@ -5,9 +5,9 @@
 <mapper namespace="mapper.UserMapper">
 
     <!-- 단일 회원 조회 -->
-    <select id="get" resultType="domain.UserVO">
+    <select id="get" resultType="domain.UserVO" parameterType="domain.UserVO">
         <![CDATA[
-            select * from tbl_user where user_no = #{user_no}
+            select * from tbl_user where user_id = #{user_id} and user_pw = #{user_pw}
         ]]>
     </select>
 

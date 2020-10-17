@@ -45,6 +45,14 @@ public class UserControllerTests {
         log.info(resultPage);
     }
 
+    // 단일 회원 조회 테스트
+    @Test
+    public void TestGetUser() throws Exception {
+
+        String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/login")
+            .param("user_id", "admin").param("user_pw", "admin")).andReturn().getModelAndView().getViewName();
+    }
+
 
 
 

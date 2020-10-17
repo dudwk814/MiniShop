@@ -46,10 +46,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserVO getUser(Long mno) {
+    public UserVO getUser(UserVO vo) {
 
-        log.info("get User Info : " + mno);
-        return userMapper.get(mno);
+        log.info("get User Info : " + vo.getUser_name());
+        return userMapper.get(vo);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserMapper {
 
-    public UserVO get(Long mNo);
+    public UserVO get(UserVO vo);
 
     public List<UserVO> getList();
 
@@ -14,5 +14,5 @@ public interface UserMapper {
 
     public int update(UserVO vo);
 
-    public int delete(Long mNo);
+    public int delete(Long user_no);
 }

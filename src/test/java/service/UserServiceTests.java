@@ -25,9 +25,14 @@ public class UserServiceTests {
     @Test
     public void testGet() {
 
-        UserVO vo = userService.getUser(2L);
+        UserVO vo = new UserVO();
 
-        log.info(vo);
+        vo.setUser_id("admin");
+        vo.setUser_pw("admin");
+
+        UserVO user = userService.getUser(vo);
+
+        log.info("User = " + user);
     }
 
     // 전체 회원 조회 테스트
@@ -61,7 +66,7 @@ public class UserServiceTests {
     @Test
     public void testModify() {
 
-        // 13L
+        /*// 13L
         UserVO vo = userService.getUser(14L);
 
         vo.setUser_pw("8103");
@@ -70,7 +75,7 @@ public class UserServiceTests {
 
         boolean count = userService.modifyUser(vo);
 
-        log.info("MODIFIED COUNT : " + count);
+        log.info("MODIFIED COUNT : " + count);*/
     }
 
     // 회원 삭제 테스트

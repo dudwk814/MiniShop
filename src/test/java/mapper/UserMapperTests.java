@@ -22,9 +22,14 @@ public class UserMapperTests {
     // 단일 회원 조회 테스트
     @Test
     public void testGet() {
-        UserVO vo = mapper.get(2L);
 
-        log.info(vo);
+        UserVO vo = new UserVO();
+        vo.setUser_id("admin");
+        vo.setUser_pw("admin");
+
+        UserVO userVO = mapper.get(vo);
+
+        log.info(userVO);
     }
 
     // 전체 회원 조회 테스트
@@ -74,20 +79,7 @@ public class UserMapperTests {
     @Test
     public void testUpdate() {
 
-        UserVO vo = mapper.get(2L);
 
-        vo.setAddress("busan");
-
-        vo.setUser_pw("5678");
-        vo.setUser_pw2("5678");
-
-        log.info(vo);
-
-        int modify = mapper.update(vo);
-
-        log.info("MODIFIED COUNT : " + modify);
-
-        log.info(vo);
     }
 
     // 회원 삭제 테스트

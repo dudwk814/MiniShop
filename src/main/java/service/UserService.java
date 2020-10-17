@@ -12,7 +12,7 @@ public interface UserService {
 
     public boolean modifyUser(UserVO vo);
 
-    public UserVO getUser(Long mno);
+    public UserVO getUser(UserVO vo);
 
     public List<UserVO> getUserList();
 }
