@@ -54,9 +54,9 @@
     </schema>
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
-      <CreatedTimestamp>2020-10-03.23:29:26</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-15.06:22:38</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-10-15.06:22:39</IntrospectionTimestamp>
+      <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
+      <ModifiedTimestamp>2020-10-18.07:44:25</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-10-18.07:44:30</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -155,22 +155,22 @@
       <ModifiedTimestamp>2020-10-14.04:25:05</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="46" parent="18" name="TBL_REPLY">
+    <table id="46" parent="18" name="TBL_MEMBER">
+      <ObjectId>80533</ObjectId>
+      <CreatedTimestamp>2020-10-18.07:34:46</CreatedTimestamp>
+      <ModifiedTimestamp>2020-10-18.07:44:25</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="47" parent="18" name="TBL_MEMBER_AUTH">
+      <ObjectId>80535</ObjectId>
+      <CreatedTimestamp>2020-10-18.07:35:59</CreatedTimestamp>
+      <ModifiedTimestamp>2020-10-18.07:35:59</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="48" parent="18" name="TBL_REPLY">
       <ObjectId>80220</ObjectId>
       <CreatedTimestamp>2020-10-11.01:41:44</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-11.02:24:11</ModifiedTimestamp>
-      <TemporaryPreserve>1</TemporaryPreserve>
-    </table>
-    <table id="47" parent="18" name="TBL_USER">
-      <ObjectId>79970</ObjectId>
-      <CreatedTimestamp>2020-10-03.23:29:26</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-15.06:19:02</ModifiedTimestamp>
-      <TemporaryPreserve>1</TemporaryPreserve>
-    </table>
-    <table id="48" parent="18" name="TBL_USER_AUTH">
-      <ObjectId>80426</ObjectId>
-      <CreatedTimestamp>2020-10-15.06:22:38</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-15.06:22:38</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <synonym id="49" parent="29" name="ABSPATH">
@@ -34229,37 +34229,106 @@
       <UnderlyingIndexName>PK_BOARD</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="4916" parent="46" name="RNO">
+    <column id="4916" parent="46" name="USERID">
       <Position>1</Position>
-      <DataType>NUMBER(10 digit)|0s</DataType>
+      <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4917" parent="46" name="BNO">
+    <column id="4917" parent="46" name="USERPW">
       <Position>2</Position>
-      <DataType>NUMBER(10 digit)|0s</DataType>
+      <DataType>VARCHAR2(100 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4918" parent="46" name="REPLY">
+    <column id="4918" parent="46" name="USERNAME">
       <Position>3</Position>
-      <DataType>VARCHAR2(1000 byte)|0s</DataType>
+      <DataType>VARCHAR2(100 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4919" parent="46" name="REPLYER">
+    <column id="4919" parent="46" name="REGDATE">
       <Position>4</Position>
-      <DataType>VARCHAR2(1000 byte)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>DATE|0s</DataType>
+      <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4920" parent="46" name="REPLYDATE">
+    <column id="4920" parent="46" name="UPDATEDATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4921" parent="46" name="UPDATEDATE">
+    <column id="4921" parent="46" name="ENABLED">
+      <Position>6</Position>
+      <DataType>CHAR(1 byte)|0s</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="4922" parent="46" name="ADDRESS">
+      <Position>7</Position>
+      <DataType>VARCHAR2(200 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="4923" parent="46" name="SYS_C0014827">
+      <ObjectId>80534</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-10-18.07:34:46</CreatedTimestamp>
+      <ModifiedTimestamp>2020-10-18.07:34:46</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>USERID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="4924" parent="46" name="SYS_C0014827">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2020-10-18.07:34:46</ModifiedTimestamp>
+      <ColNames>USERID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0014827</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="4925" parent="47" name="USERID">
+      <Position>1</Position>
+      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="4926" parent="47" name="AUTH">
+      <Position>2</Position>
+      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <foreign-key id="4927" parent="47" name="FK_MEMBER_AUTH">
+      <ModifiedTimestamp>2020-10-18.07:35:59</ModifiedTimestamp>
+      <ColNames>USERID</ColNames>
+      <RefTableName>TBL_MEMBER</RefTableName>
+      <RefKeyName>SYS_C0014827</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="4928" parent="48" name="RNO">
+      <Position>1</Position>
+      <DataType>NUMBER(10 digit)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="4929" parent="48" name="BNO">
+      <Position>2</Position>
+      <DataType>NUMBER(10 digit)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="4930" parent="48" name="REPLY">
+      <Position>3</Position>
+      <DataType>VARCHAR2(1000 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="4931" parent="48" name="REPLYER">
+      <Position>4</Position>
+      <DataType>VARCHAR2(1000 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="4932" parent="48" name="REPLYDATE">
+      <Position>5</Position>
+      <DataType>DATE|0s</DataType>
+      <DefaultExpression>sysdate</DefaultExpression>
+    </column>
+    <column id="4933" parent="48" name="UPDATEDATE">
       <Position>6</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <index id="4922" parent="46" name="PK_REPLY">
+    <index id="4934" parent="48" name="PK_REPLY">
       <ObjectId>80222</ObjectId>
       <CreatedTimestamp>2020-10-11.01:42:13</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-11.01:42:13</ModifiedTimestamp>
@@ -34267,90 +34336,18 @@
       <ColNames>RNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4923" parent="46" name="PK_REPLY">
+    <key id="4935" parent="48" name="PK_REPLY">
       <ModifiedTimestamp>2020-10-11.01:42:13</ModifiedTimestamp>
       <ColNames>RNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_REPLY</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="4924" parent="46" name="FK_REPLY_BOARD">
+    <foreign-key id="4936" parent="48" name="FK_REPLY_BOARD">
       <ModifiedTimestamp>2020-10-11.01:42:47</ModifiedTimestamp>
       <ColNames>BNO</ColNames>
       <RefTableName>TBL_BOARD</RefTableName>
       <RefKeyName>PK_BOARD</RefKeyName>
-      <OnDelete>restrict</OnDelete>
-    </foreign-key>
-    <column id="4925" parent="47" name="USER_NO">
-      <Position>1</Position>
-      <DataType>NUMBER(10 digit)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4926" parent="47" name="USER_ID">
-      <Position>2</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4927" parent="47" name="USER_PW">
-      <Position>3</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4928" parent="47" name="USER_NAME">
-      <Position>4</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4929" parent="47" name="ADDRESS">
-      <Position>5</Position>
-      <DataType>VARCHAR2(500 byte)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4930" parent="47" name="REGDATE">
-      <Position>6</Position>
-      <DataType>DATE|0s</DataType>
-      <DefaultExpression>sysdate</DefaultExpression>
-    </column>
-    <column id="4931" parent="47" name="USER_PW2">
-      <Position>7</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4932" parent="47" name="ENABLED">
-      <Position>8</Position>
-      <DataType>CHAR(1 byte)|0s</DataType>
-      <DefaultExpression>&apos;1&apos;</DefaultExpression>
-    </column>
-    <index id="4933" parent="47" name="PK_MNO">
-      <ObjectId>79971</ObjectId>
-      <CreatedTimestamp>2020-10-03.23:31:03</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-03.23:31:03</ModifiedTimestamp>
-      <TablespaceName>USERS</TablespaceName>
-      <ColNames>MNO</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="4934" parent="47" name="PK_USER_NO">
-      <ModifiedTimestamp>2020-10-03.23:31:03</ModifiedTimestamp>
-      <ColNames>USER_NO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>PK_USER_NO</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="4935" parent="48" name="USER_NO">
-      <Position>1</Position>
-      <DataType>NUMBER(10 digit)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="4936" parent="48" name="AUTH">
-      <Position>2</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <foreign-key id="4937" parent="48" name="FK_USER_AUTH">
-      <ModifiedTimestamp>2020-10-15.06:22:38</ModifiedTimestamp>
-      <ColNames>USER_NO</ColNames>
-      <RefTableName>TBL_USER</RefTableName>
-      <RefKeyName>PK_USER_NO</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
   </database-model>

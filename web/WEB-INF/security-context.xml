@@ -5,35 +5,38 @@
        xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="customAccessDenied" class="security.CustomAccessDeniedHandler"/>
+    <bean id="customLoginSuccess" class="security.LoginSuccessHandler"/>
+
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
-    <bean id="customAccessDenied" class="security.CustomAccessDeniedHandler"/>
-    <security:http>
+    <security:http pattern="/resources/**" security="none"/>
 
-        <security:intercept-url pattern="/user/login" access="permitAll"/>
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
 
-        <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')"/>
-
-        <!--<security:form-login />-->
-        <security:form-login login-page="/user/loginForm" />
-
-        <security:logout logout-url="/user/logout" invalidate-session="true"/>
+        <security:intercept-url pattern="/user/joinForm" access="permitAll()"/>
+        <security:intercept-url pattern="user/loginForm" access="permitAll()"/>
 
         <security:access-denied-handler ref="customAccessDenied"/>
+        <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess"/>
+
+        <security:session-management>
+            <security:concurrency-control max-sessions="1"/>
+        </security:session-management>
     </security:http>
 
     <security:authentication-manager>
-
         <security:authentication-provider>
+            <security:jdbc-user-service data-source-ref="dataSource"/>
 
-            <security:jdbc-user-service data-source-ref="dataSource"
-                                        users-by-username-query="select user_no, user_id, user_pw, enabled from tbl_user where user_no = ?"
-                                        authorities-by-username-query="select user_no, auth from tbl_user_auth where user_no = ?"/>
             <security:password-encoder ref="bcryptPasswordEncoder"/>
 
         </security:authentication-provider>
-
     </security:authentication-manager>
+
+
+
 
 
 </beans>
