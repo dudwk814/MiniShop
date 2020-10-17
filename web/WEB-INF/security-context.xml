@@ -6,6 +6,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <bean id="customAccessDenied" class="security.CustomAccessDeniedHandler"/>
     <security:http>
 
         <security:intercept-url pattern="/user/login" access="permitAll"/>
@@ -13,11 +15,11 @@
         <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')"/>
 
         <!--<security:form-login />-->
-        <security:form-login login-page="/user/loginForm"/>
+        <security:form-login login-page="/user/loginForm" />
 
         <security:logout logout-url="/user/logout" invalidate-session="true"/>
 
-        <security:access-denied-handler error-page="/accessError"/>
+        <security:access-denied-handler ref="customAccessDenied"/>
     </security:http>
 
     <security:authentication-manager>
