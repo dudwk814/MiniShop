@@ -28,7 +28,7 @@ public class UserTests {
     @Test
     public void testInsertUser() {
 
-        String sql = "insert into tbl_user (user_no, user_id, user_pw, user_pw2, user_name, address) values (?, ?, ?, ?, ?, ?)";
+        String sql = "insert into tbl_member (userid, userpw, username, address) values (?, ?, ?, ?)";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -38,15 +38,48 @@ public class UserTests {
 
             pstmt = con.prepareStatement(sql);
 
-            pstmt.setInt(1, 1);
-            pstmt.setString(2, "admin");
+            pstmt.setString(1, "admin");
+            pstmt.setString(2, encoder.encode("admin"));
             pstmt.setString(3, "admin");
-            pstmt.setString(4, "admin");
-            pstmt.setString(5, "admin");
-            pstmt.setString(6, "seoul");
-
+            pstmt.setString(4, "seoul");
             pstmt.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (Exception e) {
+
+                }
+            }
+
+            if(con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testInsertAuth() {
+
+        String sql = "insert into tbl_member_auth (userid, auth) values (?, ?)";
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, "admin");
+            pstmt.setString(2, "ROLE_ADMIN");
+            pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

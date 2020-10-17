@@ -2,7 +2,7 @@ package persistence;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import mapper.UserMapper;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
