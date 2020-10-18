@@ -68,6 +68,7 @@
                                 <a class="dropdown-item" href="/user/loginForm">로그인</a>
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
+                                <h6 class="dropdown-header"><sec:authentication property="principal.member.userName"/></h6>
                                 <a id="logoutBtn" class="dropdown-item" href="/user/logout">로그아웃</a>
                                 <a class="dropdown-item" href="/user/checkMemberForm">회원 설정</a>
                             </sec:authorize>

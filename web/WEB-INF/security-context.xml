@@ -18,7 +18,7 @@
         <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
 
         <security:intercept-url pattern="/user/joinForm" access="permitAll()"/>
-        <security:intercept-url pattern="user/loginForm" access="permitAll()"/>
+        <security:intercept-url pattern="/user/loginForm" access="permitAll()"/>
 
         <security:access-denied-handler ref="customAccessDenied"/>
         <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" username-parameter="userid" password-parameter="userpw"/>

@@ -4,6 +4,9 @@ import domain.MemberVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.MemberService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/user/")
@@ -62,17 +68,13 @@ public class MemberController {
 
         log.info("Move to checkMemberForm");
 
-        return "user/checkMemberForm";
+        return "/user/checkMemberForm";
     }
 
-    @GetMapping("/modifyForm")
-    public String modifyForm(String userid, Model model) {
+    @PostMapping ("/modifyForm")
+    public String modifyForm() {
 
-        log.info("modifyForm " + userid);
-
-        MemberVO memberVO = memberService.read(userid);
-
-        model.addAttribute("member", memberVO);
+        log.info("Move to ModifyFrom");
 
         return "/user/modifyForm";
     }
@@ -82,8 +84,30 @@ public class MemberController {
 
         int modify = memberService.modify(vo);
 
-        return "redirect:/";
+        return "user/modifyForm";
     }
+
+    @PostMapping("/remove")
+    public String remove(String userid) {
+
+        log.info("Removed Member for " + userid);
+
+        memberService.remove(userid);
+
+        return "redirect:/user/logout";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/user/loginForm";
+    }
+
+
+
 
 
 }

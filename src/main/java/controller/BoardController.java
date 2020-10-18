@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ public class BoardController {
         return "board/read";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @GetMapping("/registerForm")
     public String registerForm() {
 
@@ -59,6 +61,7 @@ public class BoardController {
         return "board/registerForm";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/register")
     public String register(@ModelAttribute("board") BoardVO board, RedirectAttributes rttr) {
 
@@ -72,6 +75,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @GetMapping("/modifyForm")
     public String modifyForm(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
@@ -84,6 +88,7 @@ public class BoardController {
         return "board/modifyForm";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/modify")
     public String modify(@ModelAttribute("board") BoardVO board, Criteria cri, RedirectAttributes rttr) {
 
@@ -97,6 +102,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/remove")
     public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
 

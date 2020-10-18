@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
@@ -114,8 +114,9 @@
         </div>
         <div class="form-group">
             <label for="writer">writer</label>
-            <input type="writer" class="form-control" name="writer" id="writer" placeholder="writer">
+            <input type="writer" class="form-control" name="writer" id="writer" placeholder="writer" value="<sec:authentication property="principal.member.userid"/>">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 
         <button type="submit" class="btn btn-info float-right">Submit Information</button>

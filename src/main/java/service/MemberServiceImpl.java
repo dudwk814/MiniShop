@@ -41,14 +41,17 @@ public class MemberServiceImpl implements MemberService{
         return memberMapper.modify(memberVO);
     }
 
+    @Transactional
     @Override
     public int remove(String userid) {
 
         log.info("removed member : " + userid);
 
+        memberMapper.removeAuth(userid);
+
         int removeMember = memberMapper.removeMember(userid);
 
-        memberMapper.removeAuth(userid);
+
 
         return removeMember;
     }
