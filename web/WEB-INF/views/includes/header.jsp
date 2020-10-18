@@ -63,10 +63,14 @@
 
                         </span>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/user/joinForm">회원가입</a>
-                            <a class="dropdown-item" href="/user/loginForm">로그인</a>
-                            <a class="dropdown-item" href="/user/logout">로그아웃</a>
-                            <a class="dropdown-item" href="/user/modifyForm">회원 설정</a>
+                            <sec:authorize access="isAnonymous()">
+                                <a class="dropdown-item" href="/user/joinForm">회원가입</a>
+                                <a class="dropdown-item" href="/user/loginForm">로그인</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                                <a id="logoutBtn" class="dropdown-item" href="/user/logout">로그아웃</a>
+                                <a class="dropdown-item" href="/user/modifyForm">회원 설정</a>
+                            </sec:authorize>
                         </div>
                     </div>
                     <%--<a class="nav-link dropdown" href="/user/loginForm">
@@ -77,6 +81,28 @@
         </div>
     </div>
 </nav>
+
+<script>
+    $(document).ready(function (e) {
+        var logoutBtn = $("#logoutBtn");
+
+        logoutBtn.on("click", function (e) {
+            e.preventDefault();
+
+            var newForm = $('<form></form>');
+            newForm.attr("action", "/user/logout");
+            newForm.attr("method", "post");
+            newForm.appendTo('body');
+
+            var input = $('<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>');
+
+            newForm.append(input);
+
+            newForm.submit();
+
+        });
+    }) ;
+</script>
 
 <!-- Page Content -->
 <div class="container">

@@ -21,6 +21,7 @@
 
         <security:access-denied-handler ref="customAccessDenied"/>
         <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" username-parameter="userid" password-parameter="userpw"/>
+        <security:logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/"/>
 
         <security:session-management>
             <security:concurrency-control max-sessions="1"/>

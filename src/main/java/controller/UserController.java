@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Log4j
 public class UserController {
 
+
     @GetMapping("/loginForm")
     public String loginForm(String error, String logout, Model model) {
 
