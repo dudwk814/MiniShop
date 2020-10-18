@@ -69,7 +69,7 @@
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                                 <a id="logoutBtn" class="dropdown-item" href="/user/logout">로그아웃</a>
-                                <a class="dropdown-item" href="/user/modifyForm">회원 설정</a>
+                                <a class="dropdown-item" href="/user/checkMemberForm">회원 설정</a>
                             </sec:authorize>
                         </div>
                     </div>

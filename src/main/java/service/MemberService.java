@@ -1,13 +1,12 @@
-package mapper;
+package service;
 
 import domain.MemberVO;
 
-public interface MemberMapper {
+public interface MemberService {
 
-    public MemberVO get(String userid);
+    public MemberVO read(String userid);
 
     public int register(MemberVO memberVO);
-    public void authRegister(String userid);
 
     public int modify(MemberVO memberVO);
 

@@ -26,4 +26,14 @@
         FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth ON mem.userid = auth.userid
         WHERE mem.userid = #{userid}
     </select>
+
+    <!-- 회원 가입 -->
+    <insert id="register">
+        insert into tbl_member(userid, userpw, userName, address) values (#{userid}, #{userpw}, #{userName}, #{address})
+    </insert>
+
+    <!-- 회원 가입시 권한 설정 -->
+    <insert id="authRegister">
+        insert into tbl_member_auth (userid, auth) values (#{userid}, 'ROLE_MEMBER')
+    </insert>
 </mapper>

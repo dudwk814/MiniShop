@@ -1,12 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-18
-  Time: 오후 5:42
+  Date: 2020-10-14
+  Time: 오후 7:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
 <!DOCTYPE html>
@@ -46,11 +47,12 @@
 </head>
 <body>
 
+
 <div class="main">
 
 
-    <!-- Sing in  Form -->
-    <section class="sign-in">
+    <!-- Sign up form -->
+    <section class="signup">
         <div class="container">
             <a class="navbar-brand" href="${root}">Minishop</a>
             <button
@@ -63,48 +65,31 @@
                     aria-label="Toggle navigation"
             >
             </button>
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure><img src="/resources/userForm/images/signin-image.jpg" alt="sing up image"></figure>
-                    <a href="/user/joinForm" class="signup-image-link">Create an account</a>
-                </div>
-
-                <div class="signin-form">
-                    <h2 class="form-title">Modify Member</h2>
-                    <form action="/user/modify" method="POST" class="register-form" id="login-form">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Check Member Account</h2>
+                    <form action="${root}user/modifyForm" method="get" class="register-form" id="register-form">
                         <div class="form-group">
-                            <label for="userid"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="userid" id="userid" placeholder="Your ID" value="${member.userid}" readonly/>
+                            <label for="userid"><i class="zmdi zmdi-account-circle"></i></label>
+                            <input type="text" name="userid" id="userid" placeholder="Your ID" value="<sec:authentication property="principal.member.userid"/>"/>
                         </div>
                         <div class="form-group">
                             <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" name="userpw" id="userpw" placeholder="Password"/>
                         </div>
-                        <div class="form-group">
-                            <label for="userName"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="text" name="userName" id="userName" readonly/>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="OK"/>
                         </div>
-                        <div class="form-group">
-                            <label for="address"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="text" name="address" id="address"/>
-                        </div>
-
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
-                    <div class="social-login">
-                        <span class="social-label">Or login with</span>
-                        <ul class="socials">
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+
 </div>
+
+
 
 <!-- JS -->
 <script src="/resources/userForm/vendor/jquery/jquery.min.js"></script>

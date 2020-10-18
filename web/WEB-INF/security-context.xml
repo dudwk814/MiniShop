@@ -14,6 +14,7 @@
     <security:http pattern="/resources/**" security="none"/>
 
     <security:http auto-config="true">
+        <security:intercept-url pattern="/user/checkMemberForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
         <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
 
         <security:intercept-url pattern="/user/joinForm" access="permitAll()"/>
@@ -21,7 +22,7 @@
 
         <security:access-denied-handler ref="customAccessDenied"/>
         <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" username-parameter="userid" password-parameter="userpw"/>
-        <security:logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/"/>
+        <security:logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/" delete-cookies="remember,JSESSION_ID"/>
         <security:remember-me data-source-ref="dataSource"/>
 
         <security:session-management>
