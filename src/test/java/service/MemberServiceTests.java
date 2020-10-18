@@ -36,9 +36,9 @@ public class MemberServiceTests {
     public void testRegister() {
 
         MemberVO vo = new MemberVO();
-        vo.setUserid("member");
-        vo.setUserpw(encoder.encode("member"));
-        vo.setUserName("member");
+        vo.setUserid("member2");
+        vo.setUserpw(encoder.encode("member2"));
+        vo.setUserName("member2");
         vo.setAddress("busan");
 
         memberMapper.register(vo);
@@ -47,5 +47,28 @@ public class MemberServiceTests {
 
 
     }
+
+    @Test
+    public void testModifyMember() {
+
+        MemberVO vo = new MemberVO();
+        vo.setUserid("member");
+        vo.setUserpw(encoder.encode("1234"));
+        vo.setAddress("Jeju");
+
+        memberMapper.modify(vo);
+
+    }
+
+    @Test
+    public void testRemovedMember() {
+
+
+        memberMapper.removeAuth("member2");
+        memberMapper.removeMember("member2");
+
+    }
+
+
 
 }

@@ -25,19 +25,32 @@ public class MemberServiceImpl implements MemberService{
 
         memberVO.setUserpw(encoder.encode(memberVO.getUserpw()));
 
+
+        int register = memberMapper.register(memberVO);
+
         memberMapper.authRegister(memberVO.getUserid());
 
-        return memberMapper.register(memberVO);
+        return register;
     }
 
     @Override
     public int modify(MemberVO memberVO) {
-        return 0;
+
+        memberVO.setUserpw(encoder.encode(memberVO.getUserpw()));
+
+        return memberMapper.modify(memberVO);
     }
 
     @Override
     public int remove(String userid) {
-        return 0;
+
+        log.info("removed member : " + userid);
+
+        int removeMember = memberMapper.removeMember(userid);
+
+        memberMapper.removeAuth(userid);
+
+        return removeMember;
     }
 
     @Override

@@ -11,5 +11,6 @@ public interface MemberMapper {
 
     public int modify(MemberVO memberVO);
 
-    public int remove(String userid);
+    public int removeMember(String userid);
+    public void removeAuth(String userid);
 }

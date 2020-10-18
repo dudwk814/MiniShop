@@ -36,4 +36,19 @@
     <insert id="authRegister">
         insert into tbl_member_auth (userid, auth) values (#{userid}, 'ROLE_MEMBER')
     </insert>
+
+    <!-- 회원 정보 변경 -->
+    <update id="modify">
+        update tbl_member set userpw = #{userpw}, address = #{address}, updateDate = sysdate where userid = #{userid}
+    </update>
+
+    <!-- 회원 탈퇴 -->
+    <delete id="removeMember">
+        delete from tbl_member where userid = #{user_id}
+    </delete>
+
+    <!-- 회원 탈퇴 시 회원 권한 삭제 -->
+    <delete id="removeAuth">
+        delete from tbl_member_auth where userid = #{userid}
+    </delete>
 </mapper>

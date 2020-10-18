@@ -69,32 +69,25 @@
                     <h2 class="form-title">Sign up</h2>
                     <form action="${root}user/join" method="POST" class="register-form" id="register-form">
                         <div class="form-group">
-                            <label for="user_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="user_name" id="user_name" placeholder="Your Name"/>
+                            <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="userName" id="userName" placeholder="Your Name"/>
                         </div>
                         <div class="form-group">
-                            <label for="user_id"><i class="zmdi zmdi-account-circle"></i></label>
-                            <input type="text" name="user_id" id="user_id" placeholder="Your ID"/>
+                            <label for="userid"><i class="zmdi zmdi-account-circle"></i></label>
+                            <input type="text" name="userid" id="userid" placeholder="Your ID"/>
                         </div>
                         <div class="form-group">
-                            <label for="user_pw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="user_pw" id="user_pw" placeholder="Password"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_pw2"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="password" name="user_pw2" id="user_pw2" placeholder="Repeat your password"/>
+                            <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="userpw" id="userpw" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <label for="address"><i class="zmdi zmdi-truck"></i></label>
                             <input type="text" name="address" id="address" placeholder="Your address"/>
                         </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                        </div>
                         <div class="form-group form-button">
                             <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
                 </div>
                 <div class="signup-image">
