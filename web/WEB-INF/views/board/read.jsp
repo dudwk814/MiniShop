@@ -182,7 +182,7 @@
                 </div>
                 <div class="form-group">
                     <label>Replyer</label>
-                    <input class="form-control" name="replyer" value="replyer">
+                    <input class="form-control" name="replyer" value="replyer" readonly>
                 </div>
                 <div class="form-group">
                     <label>ReplyDate</label>
@@ -290,13 +290,20 @@
 
         $("#regBtn").on("click", function (e) {
 
+            <sec:authorize access="isAuthenticated()">
             modal.find("input").val("");
+            modal.find(modalInputReplyer).val("<sec:authentication property='principal.member.userid'/>");
             modalInputReplyDate.closest("div").hide();
             modal.find("button[id != 'modalCloseBtn']").hide();
 
             modalRegisterBtn.show();
 
             $(".modal").modal("show");
+
+            return ;
+            </sec:authorize>
+
+            alert("로그인 해주세요");
         });
 
         modalRegisterBtn.on("click", function (e) {
@@ -304,7 +311,7 @@
             reply = {
                 reply: modalInputReply.val(),
                 replyer: modalInputReplyer.val(),
-                bno: bnoValue
+                bno: bnoValue,
             };
 
             replyService.add(reply, function (result) {
