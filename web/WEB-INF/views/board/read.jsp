@@ -287,6 +287,14 @@
         var modalRemoveBtn = $("#modalRemoveBtn");
         var modalRegisterBtn = $("#modalRegisterBtn");
 
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+
+        // Ajax spring security header.
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        });
 
         $("#regBtn").on("click", function (e) {
 
@@ -305,6 +313,8 @@
 
             alert("로그인 해주세요");
         });
+
+
 
         modalRegisterBtn.on("click", function (e) {
 
