@@ -287,6 +287,12 @@
         var modalRemoveBtn = $("#modalRemoveBtn");
         var modalRegisterBtn = $("#modalRegisterBtn");
 
+        var replyer = null;
+
+        <sec:authorize access="isAuthenticated()">
+            replyer = <sec:authentication property="principal.username"/>;
+        </sec:authorize>
+
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
@@ -375,8 +381,26 @@
         modalRemoveBtn.on("click", function (e) {
             var rno = modal.data("rno");
 
+            console.log(rno);
+            console.log(replyer);
 
-            replyService.remove(rno, function (result) {
+            if (!replyer) {
+                alert("로그인 후 시도해주세요.");
+                modal.modal("hide");
+                return ;
+            }
+
+            var originalReplyer = modalInputReplyer.val();
+
+            console.log("Original Replyer : " + originalReplyer);  // 댓글 원 작성자
+
+            if (replyer != originalReplyer) {
+                alert("권한이 없습니다.");
+                modal.modal("hide");
+                return ;
+            }
+
+            replyService.remove(rno, originalReplyer, function (result) {
                 alert(result);
                 modal.modal("hide");
                 showList(-1);

@@ -63,13 +63,13 @@ public class ReplyController {
         return new ResponseEntity<>(service.getReplyCnt(bno), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<String> remove(@PathVariable("rno") Long rno) {
+    @PreAuthorize("principal.username == #vo.replyer")
+    @DeleteMapping(value = "/{rno}")
+    public ResponseEntity<String> remove(@PathVariable("rno") Long rno, @RequestBody ReplyVO vo) {
 
         log.info("rno : " + rno);
 
-        ReplyVO vo = service.get(rno);
-        log.info("bno : " + vo.getBno());
+
 
         return service.remove(rno, vo.getBno()) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
