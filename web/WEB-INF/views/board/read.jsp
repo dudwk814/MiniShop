@@ -290,7 +290,7 @@
         var replyer = null;
 
         <sec:authorize access="isAuthenticated()">
-            replyer = <sec:authentication property="principal.username"/>;
+            replyer = '<sec:authentication property="principal.member.userid"/>';
         </sec:authorize>
 
         var csrfHeaderName = "${_csrf.headerName}";
