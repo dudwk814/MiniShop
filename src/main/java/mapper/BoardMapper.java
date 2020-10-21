@@ -2,6 +2,7 @@ package mapper;
 
 import domain.BoardVO;
 import domain.Criteria;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface BoardMapper {
 
     public BoardVO get(Long bno);
 
-    public List<BoardVO> getList();
+    public List<BoardVO> getList(int boardIdx);
 
     public List<BoardVO> getListWithPaging(Criteria cri);
 

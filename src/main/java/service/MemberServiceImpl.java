@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +17,8 @@ public class MemberServiceImpl implements MemberService{
     @Setter(onMethod_ = {@Autowired})
     private MemberMapper memberMapper;
 
-    @Setter(onMethod_ = {@Autowired})
-    private PasswordEncoder encoder;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Transactional
     @Override

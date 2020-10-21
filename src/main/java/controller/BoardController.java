@@ -2,9 +2,11 @@ package controller;
 
 import domain.BoardVO;
 import domain.Criteria;
+import domain.NoticeVO;
 import domain.PageDTO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import mapper.NoticeMapper;
 import mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.BoardService;
+import service.NoticeService;
 
 import java.util.List;
 
@@ -27,29 +30,49 @@ public class BoardController {
     @Setter(onMethod_ = {@Autowired})
     private ReplyMapper replyMapper;
 
+    @Setter(onMethod_ = @Autowired)
+    private NoticeService noticeService;
+
     @GetMapping("/list")
-    public void list(@ModelAttribute("cri") Criteria cri, Model model) {
+    public void list(@ModelAttribute("cri") Criteria cri,  Model model) {
 
         log.info("Board List Page");
 
         List<BoardVO> list = boardService.getList(cri);
+        List<NoticeVO> noticeList = noticeService.list();
         int totalCount = boardService.getTotalCount();
 
         model.addAttribute("board", list);
         model.addAttribute("pageMaker", new PageDTO(cri, totalCount));
-
+        model.addAttribute("noticeList", noticeList);
     }
 
     @GetMapping("/read")
-    public String read(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+    public String read(@RequestParam(value = "bno", required = false) Long bno,
+                       @RequestParam(value = "nno", required = false) Long nno,
+                       @ModelAttribute("cri") Criteria cri, Model model) {
 
-        log.info("Get Board......" + bno);
 
-        BoardVO read = boardService.read(bno);
+        if (bno != null) {
+            log.info("Get Board......" + bno);
 
-        model.addAttribute("board", read);
+            BoardVO read = boardService.read(bno);
 
-        return "board/read";
+            model.addAttribute("board", read);
+
+            return "board/read";
+        } else if (nno != null) {
+            log.info("Get Notice : " + nno);
+
+            NoticeVO notice = noticeService.read(nno);
+
+            model.addAttribute("notice", notice);
+
+            return "board/notice/read";
+        } else {
+            return "redirect:/";
+        }
+
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")

@@ -44,6 +44,15 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="notice" items="${noticeList}">
+                            <tr style="color: darkslategrey">
+                                <td><c:out value="${notice.nno}"/></td>
+                                <td><a href="/board/read?nno=<c:out value='${notice.title}'/>"></a></td>
+                                <td><c:out value="${notice.writer}"/></td>
+                                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/></td>
+                                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.updateDate}"/></td>
+                            </tr>
+                        </c:forEach>
                         <c:forEach var="board" items="${board}">
                             <tr>
                                 <td><c:out value="${board.bno}"/></td>

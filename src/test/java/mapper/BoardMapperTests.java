@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:web/WEB-INF/applicationContext.xml")
+@ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
 public class BoardMapperTests {
 
@@ -64,7 +64,7 @@ public class BoardMapperTests {
     @Test
     public void testGetList() {
 
-        List<BoardVO> list = boardMapper.getList();
+        List<BoardVO> list = boardMapper.getList(1);
 
         for (BoardVO board : list) {
             log.info(board);
@@ -76,6 +76,8 @@ public class BoardMapperTests {
     public void testPaging() {
 
         Criteria cri = new Criteria(5, 10);
+
+        int boardIdx = 1;
 
         List<BoardVO> list = boardMapper.getListWithPaging(cri);
 
@@ -110,6 +112,8 @@ public class BoardMapperTests {
         Criteria cri = new Criteria();
         cri.setType("TC");
         cri.setKeyword("ㅋㅋㄹㅃㅃ");
+
+        int boardIdx = 2;
 
         List<BoardVO> list = boardMapper.getListWithPaging(cri);
 

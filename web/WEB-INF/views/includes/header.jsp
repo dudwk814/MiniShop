@@ -50,13 +50,15 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+
                 <li class="nav-item active">
-                    <a class="nav-link" href="${root}board/list">Board</a>
+                    <a class="nav-link" href="/board/notice">notice</a>
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="/board/list?boardIdx=2">자유게시판</a>
                 </li>
+
                 <li class="nav-item active">
                     <div class="dropdown nav-link">
                         <span class="lnr lnr-user dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
