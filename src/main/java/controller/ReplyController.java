@@ -63,7 +63,7 @@ public class ReplyController {
         return new ResponseEntity<>(service.getReplyCnt(bno), HttpStatus.OK);
     }
 
-    @PreAuthorize("isAuthenticated()")
+
     @DeleteMapping(value = "/{rno}")
     public ResponseEntity<String> remove(@PathVariable("rno") Long rno, @RequestBody ReplyVO vo) {
 

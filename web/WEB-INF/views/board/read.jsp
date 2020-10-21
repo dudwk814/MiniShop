@@ -365,10 +365,25 @@
 
         modalModBtn.on("click", function (e) {
 
+
             var reply = {
                 rno: modal.data("rno"),
                 reply: modalInputReply.val()
             };
+
+            if (!replyer) {
+                alert("로그인 후 다시 시도해주세요.");
+                modal.modal("hide");
+                return ;
+            }
+
+            var originalReplyer = modalInputReplyer.val();
+
+            if (replyer != 'admin' && replyer != originalReplyer ) {
+                alert("권한이 없습니다.");
+                modal.modal("hide");
+                return ;
+            }
 
             replyService.update(reply, function (result) {
 
