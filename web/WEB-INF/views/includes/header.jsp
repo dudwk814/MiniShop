@@ -64,13 +64,14 @@
                         </span>
                         <div class="dropdown-menu">
                             <sec:authorize access="isAnonymous()">
-                                <a class="dropdown-item" href="/user/joinForm">회원가입</a>
-                                <a class="dropdown-item" href="/user/loginForm">로그인</a>
+                                <a class="dropdown-item lnr lnr-users" href="/user/joinForm"> 회원가입</a>
+                                <a class="dropdown-item lnr lnr-user" href="/user/loginForm"> 로그인</a>
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
-                                <h6 class="dropdown-header"><sec:authentication property="principal.member.userName"/></h6>
-                                <a id="logoutBtn" class="dropdown-item" href="/user/logout">로그아웃</a>
-                                <a class="dropdown-item" href="/user/checkMemberForm">회원 설정</a>
+                                <h6 class="dropdown-header"><i class="lnr lnr-license"></i>&nbsp; <sec:authentication property="principal.member.userName"/></h6>
+                                <div class="dropdown-divider"></div>
+                                <a id="logoutBtn" class="dropdown-item lnr lnr-exit" href="/user/logout"> 로그아웃</a>
+                                <a class="dropdown-item lnr lnr-users" href="/user/checkMemberForm"> 회원 설정</a>
                             </sec:authorize>
                         </div>
                     </div>
