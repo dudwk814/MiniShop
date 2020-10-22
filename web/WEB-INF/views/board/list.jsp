@@ -35,7 +35,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th>#번호</th>
                             <th>제목</th>
                             <th>작성자</th>
@@ -46,25 +46,25 @@
                         <tbody>
 
                         <c:forEach var="notice" items="${noticeList}">
-                            <tr class="table-primary">
-                                <td><c:out value="${notice.nno}"/></td>
+                            <tr class="table-success">
+                                <td align="center"><c:out value="${notice.nno}"/></td>
                                 <td><a href="/board/read?nno=<c:out value='${notice.nno}'/>"><c:out value="${notice.title}"/></a></td>
-                                <td><c:out value="${notice.writer}"/></td>
-                                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/></td>
-                                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.updateDate}"/></td>
+                                <td align="center"><c:out value="${notice.writer}"/></td>
+                                <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/></td>
+                                <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.updateDate}"/></td>
                             </tr>
                         </c:forEach>
 
                         <c:forEach var="board" items="${board}">
                             <tr>
-                                <td><c:out value="${board.bno}"/></td>
+                                <td align="center"><c:out value="${board.bno}"/></td>
                                 <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"><c:out
                                         value="${board.title}"/>
                                     <span class="badge badge-info float-right"><c:out value="${board.replyCnt}"/></span>
                                 </a></td>
-                                <td><c:out value="${board.writer}"/></td>
-                                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
-                                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
+                                <td align="center"><c:out value="${board.writer}"/></td>
+                                <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
+                                <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>
