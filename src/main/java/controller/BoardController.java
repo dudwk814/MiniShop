@@ -53,25 +53,13 @@ public class BoardController {
                        @ModelAttribute("cri") Criteria cri, Model model) {
 
 
-        if (bno != null) {
-            log.info("Get Board......" + bno);
+        log.info("Get Board......" + bno);
 
-            BoardVO read = boardService.read(bno);
+        BoardVO read = boardService.read(bno);
 
-            model.addAttribute("board", read);
+        model.addAttribute("board", read);
 
-            return "board/read";
-        } else if (nno != null) {
-            log.info("Get Notice : " + nno);
-
-            NoticeVO notice = noticeService.read(nno);
-
-            model.addAttribute("notice", notice);
-
-            return "board/notice/read";
-        } else {
-            return "redirect:/";
-        }
+        return "board/read";
 
     }
 

@@ -48,7 +48,7 @@
                         <c:forEach var="notice" items="${noticeList}">
                             <tr class="table-success">
                                 <td align="center"><c:out value="${notice.nno}"/></td>
-                                <td><a href="/board/read?nno=<c:out value='${notice.nno}'/>"><c:out value="${notice.title}"/></a></td>
+                                <td><a href="/notice/read?nno=<c:out value='${notice.nno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"><c:out value="${notice.title}"/></a></td>
                                 <td align="center"><c:out value="${notice.writer}"/></td>
                                 <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/></td>
                                 <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.updateDate}"/></td>
