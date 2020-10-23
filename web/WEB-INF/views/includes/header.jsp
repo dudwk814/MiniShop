@@ -53,7 +53,7 @@
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/board/list">자유게시판</a>
+                    <a class="nav-link" href="/board/list">Board</a>
                 </li>
 
                 <li class="nav-item active">

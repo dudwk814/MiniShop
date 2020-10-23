@@ -6,6 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <%@ include file="../includes/header.jsp"%>
 
@@ -21,7 +22,11 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Board <button id="regBtn" type="button" class="btn btn-link float-right">Register New Board</button></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Board
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                         <button id="noticeRegBtn" type="button" class="btn btn-danger float-right">Register New Notice </button> &nbsp;
+                    </sec:authorize>
+                    <button id="regBtn" type="button" class="btn btn-link float-right">Register New Board</button></h6>
 
             </div>
             <br/>
