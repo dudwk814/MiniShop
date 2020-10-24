@@ -23,11 +23,11 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <form action="/board/register" method="post">
+                        <form action="/board/register" method="post" id="form">
                             <input type="hidden" name="pageNum" value="${cri.pageNum}">
                             <input type="hidden" name="amount" value="${cri.amount}">
                             <div class="form-group">
-                                <label for="nno">bno</label>
+                                <label for="nno">nno</label>
                                 <input type="text" class="form-control" placeholder="Enter title" name="nno" id="nno"
                                        value="<c:out value='${notice.nno}'/>" readonly>
                             </div>
@@ -51,17 +51,19 @@
                                 <input type="text" class="form-control" placeholder="Enter writer" name="writer"
                                        id="writer" value="<c:out value='${notice.writer}'/>" readonly>
                             </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         </form>
 
                         <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
                             <button id="listBtn" type="button" class="btn btn-info">목록</button>
                         </a>
-                        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
-                           class="float-right">
-                            <button id="modBtn" type="button" class="btn btn-danger">수정</button>
-                        </a>&nbsp; &nbsp; &nbsp;
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+                            <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
+                               class="float-right">
+                                <button id="modBtn" type="button" class="btn btn-danger">수정</button>
+                            </a>&nbsp; &nbsp; &nbsp;
+
+                            <button id="removeBtn" type="button" class="btn btn-warning float-right">삭제</button>
                         </sec:authorize>
                     </div>
                 </div>
@@ -72,5 +74,17 @@
 </div>
 </div>
 </div>
+
+<script>
+    $(document).ready(function (e) {
+        var form = $("#form");
+        var removeBtn = $("#removeBtn");
+        
+        removeBtn.on("click", function (e) {
+            form.attr("action", "/notice/remove");
+            form.submit();
+        })
+    })
+</script>
 
 <%@ include file="../../includes/footer.jsp" %>
