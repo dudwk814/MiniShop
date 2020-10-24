@@ -7,7 +7,7 @@
       <remarks>minishopDB</remarks>
       <auto-commit>false</auto-commit>
       <jdbc-driver>oracle.jdbc.driver.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc-url>
+      <jdbc-url>jdbc:oracle:thin:@localhost:1522:orcl</jdbc-url>
     </data-source>
   </component>
 </project>

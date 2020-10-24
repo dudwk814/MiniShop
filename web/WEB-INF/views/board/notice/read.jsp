@@ -60,7 +60,9 @@
                            class="float-right">
                             <button id="modBtn" type="button" class="btn btn-danger">수정</button>
                         </a>&nbsp; &nbsp; &nbsp;
-                        <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+                        </sec:authorize>
                     </div>
                 </div>
             </div>
