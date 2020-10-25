@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-24
-  Time: 오후 6:16
+  Date: 2020-10-25
+  Time: 오후 7:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,11 +22,11 @@
     <form action="/notice/modify" method="post">
         <div class="form-group">
             <label for="title">title</label>
-            <input type="text" class="form-control" id="title" placeholder="title" name="title">
+            <input type="text" class="form-control" id="title" placeholder="title" name="title" value="${notice.title}">
         </div>
         <div class="form-group">
             <label for="content">content</label>
-            <textarea name="content" id="content" class="form-control" placeholder="content"></textarea>
+            <textarea name="content" id="content" class="form-control" placeholder="content">${notice.content}</textarea>
         </div>
         <div class="form-group">
             <label for="writer">writer</label>
@@ -34,7 +34,13 @@
         </div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-        <button type="button" class="btn btn-outline-primary float-left" id="listBtn">List</button>
+        <input type="hidden" name="amount" value="${cri.amount}"/>
+        <input type="hidden" name="pageNum" value="${cri.pageNum}"/>
+        <input type="hidden" name="type" value="${cri.type}"/>
+        <input type="hidden" name="keyword" value="${cri.keyword}"/>
+        <input type="hidden" name="nno" value="${notice.nno}">
+
+        <button type="button" class="btn btn-outline-primary float-left" id="cancelBtn">Cancel</button>
         <button type="submit" class="btn btn-info float-right">Submit Information</button>
     </form>
 
@@ -50,10 +56,10 @@
 
 
     $(document).ready(function () {
+        $("#cancelBtn").on("click", function () {
+            self.location = "/notice/read?nno=${notice.nno}&pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}";
+        });
 
-        $("#listBtn").on("click", function () {
-            location.href = "/board/list";
-        })
 
     });
 </script>

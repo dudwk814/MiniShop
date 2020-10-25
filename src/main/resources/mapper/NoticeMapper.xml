@@ -23,7 +23,7 @@
 
     <!-- 공지 수정 -->
     <update id="update">
-        update tbl_notice set title = #{title}, content = #{content} where nno = #{nno}
+        update tbl_notice set title = #{title}, content = #{content}, updateDate = sysdate where nno = #{nno}
     </update>
 
     <!-- 공지 삭제 -->

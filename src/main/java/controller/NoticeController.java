@@ -56,6 +56,33 @@ public class NoticeController {
         return "redirect:/board/list";
     }
 
+    // 공지 수정 폼 이동
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/modifyForm")
+    public String modifyForm(@ModelAttribute("cri") Criteria cri, Long nno, Model model) {
+
+        log.info("Move to Notice ModifyForm");
+
+        NoticeVO vo = noticeService.read(nno);
+
+        model.addAttribute("notice", vo);
+
+        return "board/notice/modifyForm";
+    }
+
+    // 공지 수정
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("modify")
+    public String modify(@ModelAttribute("cri") Criteria cri, NoticeVO vo) {
+
+        log.info("Modified Notice for : " + vo.getNno());
+
+        noticeService.modify(vo);
+
+        return "redirect:/board/list?pageNum=" + cri.getPageNum() + "&amount=" + cri.getAmount() +
+                "&type=" + cri.getType() + "&keyword=" + cri.getKeyword();
+    }
+
     // 공지 삭제
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/remove")
@@ -65,6 +92,6 @@ public class NoticeController {
 
         int remove = noticeService.remove(nno);
 
-        return "redirect:/";
+        return "redirect:/board/list";
     }
 }
