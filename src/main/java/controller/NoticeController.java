@@ -5,6 +5,7 @@ import domain.NoticeVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,9 @@ public class NoticeController {
         return "board/notice/read";
     }
 
+
     // 공지 작성 폼 이동
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registerFrom")
     public String registerForm() {
 
@@ -41,7 +44,20 @@ public class NoticeController {
         return "board/notice/registerFrom";
     }
 
+    // 공지 작성
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/register")
+    public String register(@ModelAttribute("notice") NoticeVO noticeVO) {
+
+        log.info("Register Notice : " + noticeVO.getNno());
+
+        noticeService.register(noticeVO);
+
+        return "redirect:/board/list";
+    }
+
     // 공지 삭제
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/remove")
     public String removeNotice(Long nno, @ModelAttribute("cri") Criteria cri) {
 

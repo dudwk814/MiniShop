@@ -104,7 +104,7 @@
 <br/><Br/>
 <div class="container">
     <h1>Board Register</h1>
-    <form action="/board/register" method="post">
+    <form action="/notice/register" method="post">
         <div class="form-group">
             <label for="title">title</label>
             <input type="text" class="form-control" id="title" placeholder="title" name="title">
