@@ -152,6 +152,13 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        // 관리자 공지 글 작성
+        var noticeRegBtn = $("#noticeRegBtn");
+
+        noticeRegBtn.on("click", function () {
+            location.href = "/notice/registerFrom";
+        })
+
         // 게시글을 등록할 때의 bno값 (register 메서드의 bno값)
         var result = '<c:out value="${result}"/>';
         var writerValue = '<c:out value="${writer}"/>';
