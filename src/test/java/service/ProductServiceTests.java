@@ -1,4 +1,4 @@
-package mapper;
+package service;
 
 import domain.ProductVO;
 import lombok.Setter;
@@ -14,24 +14,25 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
-public class ProductMapperTests {
+public class ProductServiceTests {
 
     @Setter(onMethod_ = @Autowired)
-    private ProductMapper productMapper;
+    private ProductService productService;
 
-    // 전체 상품 조회
+    // 전체 상품 조회 테스트
     @Test
     public void testGetList() {
 
-        List<ProductVO> productList = productMapper.getProductList();
+        List<ProductVO> productList = productService.getProductList();
 
         productList.forEach(productVO -> log.info(productVO));
     }
 
-    // 단일 상품 조회
+    // 단일 상품 조회 테스트
     @Test
     public void testGet() {
 
-        log.info(productMapper.getProduct(2));
+        log.info(productService.getProduct(2));
     }
+
 }
