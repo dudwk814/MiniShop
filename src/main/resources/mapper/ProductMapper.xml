@@ -5,6 +5,16 @@
 
 <mapper namespace="mapper.ProductMapper">
 
+    <!-- 홈 화면 신 상품 -->
+    <select id="getHomeProductList" resultType="domain.ProductVO">
+        <![CDATA[[
+            select rownum rn, product_id, product_name, product_price, product_desc, product_url
+            from tbl_product
+            where rownum <= 6
+            order by product_id desc
+        ]]>
+    </select>
+
     <!-- 전체 상품 목록 조회 -->
     <select id="getProductList" resultType="domain.ProductVO">
         select * from tbl_product where product_id > 0

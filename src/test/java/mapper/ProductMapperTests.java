@@ -19,6 +19,14 @@ public class ProductMapperTests {
     @Setter(onMethod_ = @Autowired)
     private ProductMapper productMapper;
 
+    // 홈 화면 상품 조회
+    @Test
+    public void testGetHomeList() {
+
+        List<ProductVO> homeProductList = productMapper.getHomeProductList();
+        homeProductList.forEach(productVO -> log.info(productVO));
+    }
+
     // 전체 상품 조회
     @Test
     public void testGetList() {

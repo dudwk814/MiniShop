@@ -43,15 +43,20 @@
                 </a>
             </div>
 
+            <hr/>
+
+
             <div class="row">
+
+
 
                 <c:forEach var="pList" items="${pList}">
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="/resources/shop/image/product/${pList.product_url}" alt=""></a>
+                            <a href="/product/read?product_id=${pList.product_id}"><img class="card-img-top" src="/resources/shop/image/product/${pList.product_url}" alt=""></a>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="#">${pList.product_name}</a>
+                                    <a href="/product/read?product_id=${pList.product_id}">${pList.product_name}</a>
                                 </h5>
                                 <h5><fmt:formatNumber type="currency" value="${pList.product_price}" currencySymbol="₩"/></h5>
                             </div>

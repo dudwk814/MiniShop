@@ -11,5 +11,6 @@ public class ProductVO {
     private int product_price;
     private String product_desc;
     private String product_url;
+    private String brand;
     private MultipartFile productPhoto;
 }
