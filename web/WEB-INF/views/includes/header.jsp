@@ -114,9 +114,10 @@
 
             <h1 class="my-4">Mini Shop</h1>
             <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+                <a href="#" class="list-group-item">Nike</a>
+                <a href="#" class="list-group-item">Adidas</a>
+                <a href="#" class="list-group-item">Reebok</a>
+                <a href="#" class="list-group-item">Brooks</a>
             </div>
 
         </div>
