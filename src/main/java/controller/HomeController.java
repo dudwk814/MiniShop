@@ -21,7 +21,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
 
-        List<ProductVO> list = productService.getProductList();
+        List<ProductVO> list = productService.getHomeProductList();
 
         model.addAttribute("pList", list);
 

@@ -17,6 +17,14 @@ public class ProductServiceImpl implements ProductService{
     private ProductMapper productMapper;
 
     @Override
+    public List<ProductVO> getHomeProductList() {
+
+        log.info("Get New Product");
+
+        return productMapper.getHomeProductList();
+    }
+
+    @Override
     public List<ProductVO> getProductList() {
 
         log.info("Get All ProductList");
