@@ -84,6 +84,8 @@
     </div>
 </nav>
 
+<br/>
+
 <script>
     $(document).ready(function (e) {
         var logoutBtn = $("#logoutBtn");
@@ -122,5 +124,7 @@
             </div>
 
         </div>
+
+
 
         <!-- /.col-lg-3 -->

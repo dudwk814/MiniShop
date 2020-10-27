@@ -8,16 +8,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/header2.jsp"%>
+
+    <br/><br/><br/><br/>
+
+    <section id="home-section" class="d-flex justify-content-center col-lg-12">
 
 
-
-    <!-- Begin Page Content -->
-    <div class="col-lg-9">
-        <br/>
-
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">게시판</h1><br/>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -40,7 +37,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr class="table-primary">
+                        <tr class="table-primary table-borderless">
                             <th>#번호</th>
                             <th>제목</th>
                             <th>작성자</th>
@@ -146,8 +143,25 @@
 
     </div>
     <!-- /.container-fluid -->
-</div>
-</div>
+
+    </section>
+
+<script src="/resources/shop/js/jquery.min.js"></script>
+<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/resources/shop/js/popper.min.js"></script>
+<script src="/resources/shop/js/bootstrap.min.js"></script>
+<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
+<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
+<script src="/resources/shop/js/jquery.stellar.min.js"></script>
+<script src="/resources/shop/js/owl.carousel.min.js"></script>
+<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/shop/js/aos.js"></script>
+<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
+<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
+<script src="/resources/shop/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/resources/shop/js/google-map.js"></script>
+<script src="/resources/shop/js/main.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

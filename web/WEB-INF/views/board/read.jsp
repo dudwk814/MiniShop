@@ -10,73 +10,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<%@ include file="../includes/header.jsp" %>
-<%--<!DOCTYPE html>
-<html lang="en">
+<%@ include file="../includes/header2.jsp" %>
 
-<head>
+<br/><br/><br/><br/>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Shop Homepage - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    &lt;%&ndash;<link href="/resources/shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">&ndash;%&gt;
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="/resources/shop/css/shop-homepage.css" rel="stylesheet">
-
-    <!-- icomoon.io icon -->
-    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-
-    <style>
-        li {
-            list-style: none
-        }
-    </style>
-
-</head>
-
-<body>
-
-<script src="/resources/shop/vendor/jquery/jquery.min.js"></script>
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="${root}">Mini Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="${root}">shop
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${root}board/list">Board</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link dropdown" href="/user/loginForm">
-                        <span class="lnr lnr-user"></span></a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
-<br/><Br/>--%>
+<section id="home-section" class="d-flex justify-content-center col-lg-12">
 
 <div class="col-lg-9">
     <div class="row">
@@ -130,14 +68,16 @@
             </div>
         </div>
     </div>
+</div>
+</section>
 
 
     <br/><Br/>
 
 
-    <%--</div>--%>
+<section id="home-section" class="d-flex justify-content-center col-lg-12">
 
-    <div class="col-lg-auto">
+    <div class="col-lg-9">
         <div>
             <div class="card">
                 <div class="card-header">
@@ -167,6 +107,7 @@
 </div>
 </div>
 </div>
+</section>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -198,40 +139,28 @@
         </div>
     </div>
 </div>
+<br/>
 
+<script src="/resources/shop/js/jquery.min.js"></script>
+<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/resources/shop/js/popper.min.js"></script>
+<script src="/resources/shop/js/bootstrap.min.js"></script>
+<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
+<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
+<script src="/resources/shop/js/jquery.stellar.min.js"></script>
+<script src="/resources/shop/js/owl.carousel.min.js"></script>
+<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/shop/js/aos.js"></script>
+<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
+<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
+<script src="/resources/shop/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/resources/shop/js/google-map.js"></script>
+<script src="/resources/shop/js/main.js"></script>
 <script type="text/javascript" src="/resources/reply.js"></script>
 <script>
     var bnoValue = '<c:out value="${board.bno}"/>';
 
-    // replyService.add({reply:"testGood",replyer:"tester",bno:bnoValue},
-    //         function (result) {
-    //             alert("Result : " + result);
-    //         })
-
-    // replyService.getList({bno:bnoValue, page:1}, function (list) {
-    //     for(var i = 0, len = list.length || 0; i < len; i++) {
-    //         console.log(list[i]);
-    //     }
-    // })
-
-    // replyService.remove(15, function (count) {
-    //
-    //     console.log(count);
-    //
-    //     if (count == "success") {
-    //         alert("Removed");
-    //     }
-    // }, function (err) {
-    //     alert('ERROR');
-    // });
-
-    // replyService.update({
-    //     rno: 13,
-    //     bno: 1038,
-    //     reply: "Modified Reply",
-    // }, function (result) {
-    //     alert("수정완료");
-    // });
 </script>
 <script>
     $(document).ready(function () {
