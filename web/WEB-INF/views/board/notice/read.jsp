@@ -75,6 +75,7 @@
 
 </div>
 </section>
+<br/><br/>
 
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>

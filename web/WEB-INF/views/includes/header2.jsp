@@ -55,7 +55,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="shop.html">Shop</a>
                         <a class="dropdown-item" href="product-single.html">Single Product</a>
-                        <a class="dropdown-item" href="cart.html">Cart</a>
+                        <a class="dropdown-item" href="/cart/">Cart</a>
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                     </div>
                 </li>
@@ -66,6 +66,13 @@
                     <li class="nav-item"><a href="/user/loginForm" class="nav-link">Login</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USER</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="/user/checkMemberForm">Modify</a>
+                            <a class="dropdown-item" href="/user/checkMemberForm">My Page</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="/user/logout" class="nav-link" id="logoutBtn">Logout</a></li>
                 </sec:authorize>
             </ul>

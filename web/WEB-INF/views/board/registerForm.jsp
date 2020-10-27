@@ -16,7 +16,6 @@
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
 
-<br/><Br/>
 <div class="container">
     <h1>Board Register</h1>
     <form action="/board/register" method="post">
@@ -38,6 +37,7 @@
         <button type="submit" class="btn btn-info float-right">Submit Information</button>
     </form>
 </div>
+</section>
 <br/><br/><br/><br/>
 
     <script src="/resources/shop/js/jquery.min.js"></script>
