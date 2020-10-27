@@ -69,8 +69,9 @@
                             <sec:authorize access="isAuthenticated()">
                                 <h6 class="dropdown-header"><i class="lnr lnr-license"></i>&nbsp; <sec:authentication property="principal.member.userName"/></h6>
                                 <div class="dropdown-divider"></div>
-                                <a id="logoutBtn" class="dropdown-item lnr lnr-exit" href="/user/logout"> 로그아웃</a>
-                                <a class="dropdown-item lnr lnr-users" href="/user/checkMemberForm"> 회원 설정</a>
+                                <a href="#" class="dropdown-item lnr lnr-cart">  장바구니</a>
+                                <a id="logoutBtn" class="dropdown-item lnr lnr-exit" href="/user/logout">  로그아웃</a>
+                                <a class="dropdown-item lnr lnr-users" href="/user/checkMemberForm">  회원 설정</a>
                             </sec:authorize>
                         </div>
                     </div>
