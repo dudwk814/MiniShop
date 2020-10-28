@@ -11,7 +11,7 @@
             select /*+ INDEX_DESC(tbl_product sys_c0015045)*/
                 rownum rn, product_id, product_name, product_price, product_desc, product_url, brand
             from tbl_product
-            where rownum <= 6
+            where rownum <= 8
         ]]>
 
     </select>
