@@ -65,4 +65,11 @@ public class CartMapperTests {
 
         cartMapper.deleteCart(2);
     }
+
+    // 동일한 상품 로우 확인
+    @Test
+    public void testCount() {
+
+        log.info(cartMapper.countCart(2, "admin"));
+    }
 }
