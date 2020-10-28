@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Log4j
-public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication auth) throws IOException, ServletException {

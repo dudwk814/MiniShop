@@ -27,49 +27,44 @@
                             <th>Total</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr class="text-center">
-                            <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                        <c:choose>
+                            <c:when test="${cart.cartCount == 0}">
+                                <tbody>
+                                    <tr class="text-center">
+                                        <h1>장바구니가 비었습니다.</h1>
+                                    </tr>
+                                </tbody>
+                            </c:when>
+                            <c:when test="${cart.cartCount} >= 1">
+                                <c:forEach var="cart" items="${cart.cart}">
+                                    <tbody>
+                                    <tr class="text-center">
+                                        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 
-                            <td class="image-prod"><div class="img" style="background-image:url(/resources/shop/images/product-3.jpg);"></div></td>
+                                        <td class="image-prod"><div class="img" style="background-image:url(/resources/shop/images/${cart.product_url});"></div></td>
 
-                            <td class="product-name">
-                                <h3>Nike Free RN 2019 iD</h3>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                            </td>
+                                        <td class="product-name">
+                                            <h3>${cart.product_name}</h3>
+                                            <%--<p>${cart.product_desc}</p>--%>
+                                        </td>
 
-                            <td class="price">$4.90</td>
+                                        <td class="price">${cart.product_price}</td>
 
-                            <td class="quantity">
-                                <div class="input-group mb-3">
-                                    <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                                </div>
-                            </td>
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                                            </div>
+                                        </td>
 
-                            <td class="total">$4.90</td>
-                        </tr><!-- END TR-->
+                                        <td class="total">$4.90</td>
+                                    </tr><!-- END TR-->
 
-                        <%--<tr class="text-center">
-                            <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 
-                            <td class="image-prod"><div class="img" style="background-image:url(/resources/images/product-4.jpg);"></div></td>
+                                    </tbody>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
 
-                            <td class="product-name">
-                                <h3>Nike Free RN 2019 iD</h3>
-                                <p>Far far away, behind the word mountains, far from the countries</p>
-                            </td>
-
-                            <td class="price">$15.70</td>
-
-                            <td class="quantity">
-                                <div class="input-group mb-3">
-                                    <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                                </div>
-                            </td>
-
-                            <td class="total">$15.70</td>
-                        </tr><!-- END TR-->--%>
-                        </tbody>
                     </table>
                 </div>
             </div>

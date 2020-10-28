@@ -17,6 +17,8 @@
         <security:intercept-url pattern="/user/checkMemberForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
         <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
 
+        <security:intercept-url pattern="/cart/cart" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
+
         <security:intercept-url pattern="/user/joinForm" access="permitAll()"/>
         <security:intercept-url pattern="/user/loginForm" access="permitAll()"/>
 
