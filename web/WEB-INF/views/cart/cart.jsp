@@ -36,7 +36,7 @@
                                 </tbody>
                             </c:when>
                             <c:when test="${cart.cartCount} >= 1">
-                                <c:forEach var="cart" items="${cart.cart}">
+                                <c:forEach var="cart" items="${cart}">
                                     <tbody>
                                     <tr class="text-center">
                                         <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
