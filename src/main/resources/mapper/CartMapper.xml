@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CartMapper">
+
+    <!-- 장바구니 추가 -->
+    <insert id="insertCart">
+        insert into tbl_cart(cart_id, userid, product_id, amount) values (seq_cart.nextval, #{userid}, #{product_id}, #{amount})
+    </insert>
+
+    <!-- 장바구니 목록 -->
+    <select id="cartList" resultType="domain.CartVO">
+        select c.cart_id, c.userid, p.product_id, m.username, p.product_name, c.amount, p.product_price, (product_price * amount) money
+        from tbl_member m, tbl_cart c, tbl_product p
+        where m.userid = c.userid and p.product_id = c.product_id and c.userid = #{userid}
+        order by c.cart_id
+    </select>
+
+    <!-- 장바구니 전체 금액 -->
+    <select id="sumMoney" resultType="int">
+        select nvl(sum(product_price * amount), 0) money
+        from tbl_cart c, tbl_product p
+        where c.product_id = p.product_id and c.userid = #{userid}
+    </select>
+
+    <!-- 장바구니 수정 -->
+    <update id="modifyCart">
+        update tbl_cart set amount = #{amount} where userid = #{userid} and product_id = #{product_id}
+    </update>
+
+    <!-- 장바구니 삭제 -->
+    <delete id="deleteCart">
+        delete from tbl_cart where cart_id = #{cart_id}
+    </delete>
+
+    <!--  -->
+</mapper>
