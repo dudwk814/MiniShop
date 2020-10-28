@@ -72,6 +72,9 @@
                             <a class="dropdown-item" href="/user/checkMemberForm">My Page</a>
                         </div>
                     </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item"><a href="#" class="nav-link">Admin Page</a></li>
+                    </sec:authorize>
                     <li class="nav-item"><a href="/user/logout" class="nav-link" id="logoutBtn">Logout</a></li>
                 </sec:authorize>
             </ul>
