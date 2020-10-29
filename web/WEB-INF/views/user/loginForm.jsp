@@ -95,7 +95,10 @@
                         <ul class="socials">
                             <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
                             <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            <li><a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=1010191238926-lrpdmem4p8pfi2vug3hjr3hll19itc95.apps.googleusercontent.com&redirect_uri=http://localhost:8080/login/google/auth&response_type=code
+                                            &scope=email%20profile%20openid
+                                            &access_type=offline"
+                                   id="googleLoginBtn"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                         </ul>
                     </div>
                 </div>
