@@ -28,14 +28,14 @@
                         </tr>
                         </thead>
                         <c:choose>
-                            <c:when test="${cart.cartCount == 0}">
+                            <c:when test="${cartCount == 0}">
                                 <tbody>
                                     <tr class="text-center">
                                         <h1>장바구니가 비었습니다.</h1>
                                     </tr>
                                 </tbody>
                             </c:when>
-                            <c:when test="${cart.cartCount} >= 1">
+                            <c:when test="${cartCount} >= 1">
                                 <c:forEach var="cart" items="${cart}">
                                     <tbody>
                                     <tr class="text-center">

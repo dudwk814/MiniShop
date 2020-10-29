@@ -49,6 +49,9 @@ public class CartController {
         model.addAttribute("fee", fee);
         model.addAttribute("AllSumMoney", sumMoney + fee);
 
+        log.info(cartCount);
+        log.info("배송비 : " + fee);
+        log.info("금액 : " + sumMoney);
 
         log.info("CartPage");
 
