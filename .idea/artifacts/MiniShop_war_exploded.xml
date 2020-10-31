@@ -46,6 +46,11 @@
           <element id="library" level="project" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.3" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
           <element id="library" level="project" name="Maven: org.codehaus.woodstox:stax2-api:3.1.4" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-config:1.1.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-core:1.1.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-google:1.0.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-web:1.1.0.RELEASE" />
         </element>
       </element>
     </root>

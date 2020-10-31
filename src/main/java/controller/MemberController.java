@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +29,12 @@ public class MemberController {
 
     @Setter(onMethod_ = {@Autowired})
     private MemberService memberService;
+
+    @Setter(onMethod_ = @Autowired)
+    private GoogleConnectionFactory googleConnectionFactory;
+
+    @Setter(onMethod_ = @Autowired)
+    private OAuth2Parameters googleOAuth2Parameters;
 
     @GetMapping("/joinForm")
     public String joinForm() {
@@ -49,6 +59,15 @@ public class MemberController {
 
         log.info("error : " + error);
         log.info("logout : " + logout);
+
+        // 구글 code 발행
+        OAuth2Operations authOperations = googleConnectionFactory.getOAuthOperations();
+
+        // 로그인 페이지 이동 url 생성
+        String url = authOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
+        model.addAttribute("google_url", url);
+
 
         if (error != null) {
             model.addAttribute("error", "Login Error Check Your Account");
