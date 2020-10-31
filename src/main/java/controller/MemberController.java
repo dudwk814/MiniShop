@@ -14,6 +14,7 @@ import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,9 +38,17 @@ public class MemberController {
     private OAuth2Parameters googleOAuth2Parameters;
 
     @GetMapping("/joinForm")
-    public String joinForm() {
+    public String joinForm(Model model, @ModelAttribute("member") MemberVO memberVO) {
 
         log.info("Move to JoinForm");
+
+        // 구글 code 발행
+        OAuth2Operations authOperations = googleConnectionFactory.getOAuthOperations();
+
+        // 로그인 페이지 이동 url 생성
+        String url = authOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
+        model.addAttribute("google_url", url);
 
         return "user/joinForm";
     }
@@ -59,14 +68,6 @@ public class MemberController {
 
         log.info("error : " + error);
         log.info("logout : " + logout);
-
-        // 구글 code 발행
-        OAuth2Operations authOperations = googleConnectionFactory.getOAuthOperations();
-
-        // 로그인 페이지 이동 url 생성
-        String url = authOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-
-        model.addAttribute("google_url", url);
 
 
         if (error != null) {

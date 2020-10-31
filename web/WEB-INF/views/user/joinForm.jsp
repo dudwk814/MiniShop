@@ -66,11 +66,11 @@
             </button>
             <div class="signup-content">
                 <div class="signup-form">
-                    <h2 class="form-title">Sign up</h2>
+                    <h2 class="form-title">회원 가입</h2>
                     <form action="${root}user/join" method="POST" class="register-form" id="register-form">
                         <div class="form-group">
                             <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="userName" id="userName" placeholder="Your Name"/>
+                            <input type="text" name="userName" id="userName" placeholder="Your Name" value="${member.userName}"/>
                         </div>
                         <div class="form-group">
                             <label for="userid"><i class="zmdi zmdi-account-circle"></i></label>
@@ -89,6 +89,16 @@
                         </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
+
+                    <div class="social-login">
+                        <span class="social-label">Or SignUp with</span>
+                        <ul class="socials">
+                            <%--<li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>--%>
+                            <li><a href="${google_url}"
+                                   id="googleLoginBtn"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="signup-image">
                     <figure><img src="/resources/userForm/images/signup-image.jpg" alt="sing up image"></figure>
