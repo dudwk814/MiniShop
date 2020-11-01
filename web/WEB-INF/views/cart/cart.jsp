@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contentType}/"/>
 
 <%@ include file="../includes/header2.jsp"%>
@@ -35,7 +37,7 @@
                                     </tr>
                                 </tbody>
                             </c:when>
-                            <c:when test="${cartCount} >= 1">
+                            <c:when test="${cartCount >= 1}">
                                 <c:forEach var="cart" items="${cart}">
                                     <tbody>
                                     <tr class="text-center">
@@ -48,15 +50,15 @@
                                             <%--<p>${cart.product_desc}</p>--%>
                                         </td>
 
-                                        <td class="price">${cart.product_price}</td>
+                                        <td class="price"><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${cart.product_price}" maxFractionDigits="0"/>원</td>
 
                                         <td class="quantity">
                                             <div class="input-group mb-3">
-                                                <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                                                <input type="text" name="quantity" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100" readonly>
                                             </div>
                                         </td>
 
-                                        <td class="total">$4.90</td>
+                                        <td class="total"><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${cart.product_price * cart.amount}" maxFractionDigits="0"/>원</td>
                                     </tr><!-- END TR-->
 
 
@@ -75,20 +77,20 @@
                     <h3>Cart Totals</h3>
                     <p class="d-flex">
                         <span>Subtotal</span>
-                        <span>$20.60</span>
+                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${sumMoney}" maxFractionDigits="0"/>원</span>
                     </p>
                     <p class="d-flex">
                         <span>Delivery</span>
-                        <span>$0.00</span>
+                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${fee}" maxFractionDigits="0"/>원</span>
                     </p>
-                    <p class="d-flex">
+                    <%--<p class="d-flex">
                         <span>Discount</span>
                         <span>$3.00</span>
-                    </p>
+                    </p>--%>
                     <hr>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                        <span>$17.60</span>
+                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${AllSumMoney}" maxFractionDigits="0"/>원</span>
                     </p>
                 </div>
                 <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
