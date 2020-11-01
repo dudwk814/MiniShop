@@ -89,7 +89,7 @@ public class CartController {
 
         rttr.addFlashAttribute("userid", userid);
 
-        return "redirect:/cart/cart";
+        return "redirect:/cart/cart?userid=" + userid;
     }
 
 }
