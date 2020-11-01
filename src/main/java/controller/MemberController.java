@@ -4,6 +4,7 @@ import domain.MemberVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -83,6 +84,7 @@ public class MemberController {
         return "user/loginForm";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @GetMapping("/checkMemberForm")
     public String checkMemberForm() {
 
@@ -91,6 +93,7 @@ public class MemberController {
         return "/user/checkMemberForm";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping ("/modifyForm")
     public String modifyForm() {
 
@@ -99,6 +102,7 @@ public class MemberController {
         return "/user/modifyForm";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping("/modify")
     public String modify(MemberVO vo) {
 
@@ -107,6 +111,7 @@ public class MemberController {
         return "user/modifyForm";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping("/remove")
     public String remove(String userid) {
 
@@ -117,6 +122,7 @@ public class MemberController {
         return "redirect:/user/logout";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -4,10 +4,14 @@ import domain.CartVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.CartService;
 import service.ProductService;
 
@@ -26,6 +30,7 @@ public class CartController {
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
 
+    /* 장바구니 목록 조회 */
     @GetMapping("/cart")
     public String cart(String userid, Model model) {
 
@@ -48,6 +53,7 @@ public class CartController {
         model.addAttribute("sumMoney", sumMoney);
         model.addAttribute("fee", fee);
         model.addAttribute("AllSumMoney", sumMoney + fee);
+        model.addAttribute("userid", userid);
 
         log.info(cartCount);
         log.info("배송비 : " + fee);
@@ -57,4 +63,33 @@ public class CartController {
 
         return "cart/cart";
     }
+
+    /* 장바구니 등록 */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
+    @PostMapping("/add")
+    public String addCart(CartVO cartVO) {
+
+        log.info("Add Cart : " + cartVO.getProduct_name());
+
+        cartService.insertCart(cartVO);
+
+
+
+        return "redirect:/cart/cart";
+    }
+
+    /* 장바구니 삭제 */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
+    @PostMapping("/remove")
+    public String removeCart(@RequestParam("cart_id") int cart_id, @RequestParam("userid") String userid, RedirectAttributes rttr) {
+
+        log.info("remo Cart : " + cart_id);
+
+        cartService.deleteCart(cart_id);
+
+        rttr.addFlashAttribute("userid", userid);
+
+        return "redirect:/cart/cart";
+    }
+
 }

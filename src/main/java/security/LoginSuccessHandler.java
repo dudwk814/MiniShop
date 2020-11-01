@@ -2,7 +2,9 @@ package security;
 
 import lombok.extern.log4j.Log4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.ui.Model;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,12 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         log.warn("Login Success");
 
+        Object principal = (Object)auth.getPrincipal();
+
+        UserDetails user = (UserDetails) principal;
+        String userId = user.getUsername();
+
+        httpServletRequest.setAttribute("userId", userId);
         httpServletResponse.sendRedirect("/");
     }
 }

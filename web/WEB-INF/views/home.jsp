@@ -124,7 +124,7 @@
                                 <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${pList.product_price}" maxFractionDigits="0"/>원 </span></p>
                             </div>
                             <p class="bottom-area d-flex px-3">
-                                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                                <a href="#" class="add-to-cart text-center py-2 mr-1" id="addCartBtn"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
                                 <a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
                             </p>
                         </div>
@@ -429,6 +429,8 @@
     $(document).ready(function (e) {
         var logoutBtn = $("#logoutBtn");
 
+        var addCartBtn = $("#addCartBtn");
+
         logoutBtn.on("click", function (e) {
             e.preventDefault();
 
@@ -444,7 +446,40 @@
             newForm.submit();
 
         });
-    }) ;
+
+
+           addCartBtn.on("click", function (e) {
+                e.preventDefault();
+
+                var newForm = $('<form></form>');
+                newForm.attr("action", "/cart/add");
+                newForm.attr("method", "post");
+                newForm.appendTo('body');
+
+                var InputUserid = $('<input type="text" name="userid" value="${userId}"/>');
+
+                var product_id = $("#productId").find("href").val();
+
+                console.log(product_id);
+                var InputProductId = $('<input type="text" name="product_id" value="product_id" />');
+
+                var inputToken = $('<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>');
+                var inputAmount = $('<input type="text" name="amount" value="1"/>');
+                newForm.append(InputUserid);
+                newForm.append(InputProductId);
+                newForm.append(inputToken);
+                newForm.append(inputAmount);
+
+                if (confirm('장바구니에 추가하시겠습니까?') == true) {
+                    newForm.submit();
+                } else {
+                    return;
+                }
+            });
+
+
+
+    });
 </script>
 
 <%@ include file="includes/footer.jsp"%>

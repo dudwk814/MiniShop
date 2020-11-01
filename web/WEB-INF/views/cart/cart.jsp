@@ -41,7 +41,14 @@
                                 <c:forEach var="cart" items="${cart}">
                                     <tbody>
                                     <tr class="text-center">
-                                        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                        <td class="product-remove">
+                                            <form action="/cart/remove" method="post">
+                                                <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                <input type="hidden" name="userId" value="${userid}"/>
+                                                <button type="submit" class="btn btn-outline-primary">  X  </button>
+                                            </form>
+                                        </td>
 
                                         <td class="image-prod"><div class="img" style="background-image:url(/resources/shop/images/${cart.product_url});"></div></td>
 
@@ -54,7 +61,7 @@
 
                                         <td class="quantity">
                                             <div class="input-group mb-3">
-                                                <input type="text" name="quantity" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100" readonly>
+                                                <input type="text" name="quantity" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100">
                                             </div>
                                         </td>
 
@@ -93,7 +100,7 @@
                         <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${AllSumMoney}" maxFractionDigits="0"/>원</span>
                     </p>
                 </div>
-                <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">주문하기</a></p>
             </div>
         </div>
     </div>
@@ -115,5 +122,16 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
+
+<script>
+    $(document).ready(function (e) {
+
+        var cart_id = $("#removeBtn").
+
+
+
+        console.log(cart_id);
+    });
+</script>
 
 <%@ include file="../includes/footer.jsp"%>

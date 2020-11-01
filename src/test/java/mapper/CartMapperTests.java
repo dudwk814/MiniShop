@@ -25,8 +25,8 @@ public class CartMapperTests {
 
         CartVO vo = new CartVO();
         vo.setUserid("admin");
-        vo.setAmount(1);
-        vo.setProduct_id(2);
+        vo.setAmount(3);
+        vo.setProduct_id(3);
 
         cartMapper.insertCart(vo);
     }

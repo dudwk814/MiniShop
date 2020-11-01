@@ -10,55 +10,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
-<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/header2.jsp"%>
 
 
 
-<div class="col-lg-9">
-
-    <div class="col-lg-6" style="width: 22rem;">
-        <img class="card-img-top" src="/resources/shop/image/product/${product.product_url}">
-    </div>
-
-    <p>제품 명 : ${product.product_name}</p>
-    <p>가격 : ₩ ${product.product_price}원</p>
-    ${product.product_desc}
-</div>
 
 
-
-    <hr/>
-
-
-    <div class="row">
-
-
-
-        <c:forEach var="pList" items="${pList}">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="/product/read?product_id=${pList.product_id}"><img class="card-img-top" src="/resources/shop/image/product/${pList.product_url}" alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/product/read?product_id=${pList.product_id}">${pList.product_name}</a>
-                        </h5>
-                        <h5><fmt:formatNumber type="currency" value="${pList.product_price}" currencySymbol="₩"/></h5>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
-
-
-    </div>
-    <!-- /.row -->
-
-</div>
-<!-- /.col-lg-9 -->
-
-</div>
-<!-- /.row -->
-
-</div>
-<!-- /.container -->
+<script src="/resources/shop/js/jquery.min.js"></script>
+<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/resources/shop/js/popper.min.js"></script>
+<script src="/resources/shop/js/bootstrap.min.js"></script>
+<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
+<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
+<script src="/resources/shop/js/jquery.stellar.min.js"></script>
+<script src="/resources/shop/js/owl.carousel.min.js"></script>
+<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/shop/js/aos.js"></script>
+<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
+<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
+<script src="/resources/shop/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/resources/shop/js/google-map.js"></script>
+<script src="/resources/shop/js/main.js"></script>
 
 <%@ include file="../includes/footer.jsp"%>
