@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j;
 import mapper.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,10 +17,14 @@ public class NoticeServiceImpl implements NoticeService {
     @Setter(onMethod_ = @Autowired)
     private NoticeMapper noticeMapper;
 
+    @Transactional
     @Override
     public NoticeVO read(Long nno) {
 
         log.info("Get Notice By : " + nno);
+
+        noticeMapper.UpHit(nno);
+
         return noticeMapper.get(nno);
     }
 

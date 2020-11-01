@@ -55,6 +55,7 @@
                                 <td align="center"><c:out value="${notice.writer}"/></td>
                                 <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/></td>
                                 <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.updateDate}"/></td>
+                                <td align="center"><c:out value="${notice.hit}"/></td>
                             </tr>
                         </c:forEach>
 
