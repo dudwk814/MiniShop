@@ -20,4 +20,7 @@ public interface NoticeMapper {
 
     // 공지 삭제
     public int delete(Long nno);
+
+    // 조회수 증가
+    public int UpHit(Long nno);
 }

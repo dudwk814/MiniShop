@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j;
 import mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.ws.Action;
 import java.util.List;
@@ -19,10 +20,14 @@ public class BoardServiceImpl implements BoardService{
     private BoardMapper boardMapper;
 
     // 단일 게시글 조회
+    @Transactional
     @Override
     public BoardVO read(Long bno) {
 
         log.info("read......." + bno);
+
+        boardMapper.UpHit(bno);
+
         return boardMapper.get(bno);
     }
 

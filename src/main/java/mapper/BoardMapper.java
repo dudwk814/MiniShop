@@ -27,4 +27,6 @@ public interface BoardMapper {
     public void plusReplyCnt(Long bno);
 
     public void minusReplyCnt(Long bno);
+
+    public int UpHit(Long bno);
 }

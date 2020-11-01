@@ -37,10 +37,10 @@
 
     <select id="getListWithPaging" resultType="domain.BoardVO">
         <![CDATA[
-            select bno, title, content, writer, regdate, updateDate, replyCnt
+            select bno, title, content, writer, regdate, updateDate, replyCnt, hit
             from (
                 select /*+INDEX_DESC(tbl_board pk_board) */
-                    rownum rn, bno, title, content, writer, regdate, updateDate, replyCnt
+                    rownum rn, bno, title, content, writer, regdate, updateDate, replyCnt, hit
                 from
                     tbl_board
                 where
@@ -59,6 +59,11 @@
     <select id="getTotalCount" resultType="int">
         select count(*) from tbl_board
     </select>
+
+    <!-- 조회수 증가 -->
+    <update id="UpHit">
+        update tbl_board set hit = hit + 1 where bno = #{bno}
+    </update>
 
     <insert id="insert">
         <![CDATA[

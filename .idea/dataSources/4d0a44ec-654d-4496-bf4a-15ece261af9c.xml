@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-28.04:48:09</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-10-28.04:48:15</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-11-01.18:59:21</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-11-01.18:59:22</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -176,7 +176,7 @@
     <table id="49" parent="18" name="TBL_BOARD">
       <ObjectId>79990</ObjectId>
       <CreatedTimestamp>2020-10-04.23:39:36</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-22.06:55:42</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-11-01.18:49:48</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="50" parent="18" name="TBL_CART">
@@ -200,7 +200,7 @@
     <table id="53" parent="18" name="TBL_NOTICE">
       <ObjectId>80726</ObjectId>
       <CreatedTimestamp>2020-10-22.06:46:53</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-22.06:49:58</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-11-01.18:59:21</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="54" parent="18" name="TBL_PRODUCT">
@@ -34293,7 +34293,12 @@
       <DataType>NUMBER(10 digit)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="4927" parent="49" name="PK_BOARD">
+    <column id="4927" parent="49" name="HIT">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="4928" parent="49" name="PK_BOARD">
       <ObjectId>79992</ObjectId>
       <CreatedTimestamp>2020-10-04.23:40:17</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-04.23:40:17</ModifiedTimestamp>
@@ -34301,34 +34306,34 @@
       <ColNames>BNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4928" parent="49" name="PK_BOARD">
+    <key id="4929" parent="49" name="PK_BOARD">
       <ModifiedTimestamp>2020-10-04.23:40:17</ModifiedTimestamp>
       <ColNames>BNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_BOARD</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="4929" parent="50" name="CART_ID">
+    <column id="4930" parent="50" name="CART_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4930" parent="50" name="USERID">
+    <column id="4931" parent="50" name="USERID">
       <Position>2</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4931" parent="50" name="PRODUCT_ID">
+    <column id="4932" parent="50" name="PRODUCT_ID">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4932" parent="50" name="AMOUNT">
+    <column id="4933" parent="50" name="AMOUNT">
       <Position>4</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="4933" parent="50" name="SYS_C0015068">
+    <index id="4934" parent="50" name="SYS_C0015068">
       <ObjectId>80955</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-10-28.04:45:00</CreatedTimestamp>
@@ -34337,7 +34342,7 @@
       <ColNames>CART_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4934" parent="50" name="SYS_C0015068">
+    <key id="4935" parent="50" name="SYS_C0015068">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2020-10-28.04:45:00</ModifiedTimestamp>
       <ColNames>CART_ID</ColNames>
@@ -34345,56 +34350,56 @@
       <UnderlyingIndexName>SYS_C0015068</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="4935" parent="50" name="CART_USERID_FK">
+    <foreign-key id="4936" parent="50" name="CART_USERID_FK">
       <ModifiedTimestamp>2020-10-28.04:47:31</ModifiedTimestamp>
       <ColNames>USERID</ColNames>
       <RefTableName>TBL_MEMBER</RefTableName>
       <RefKeyName>SYS_C0014827</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="4936" parent="50" name="CART_PRODUCT_FK">
+    <foreign-key id="4937" parent="50" name="CART_PRODUCT_FK">
       <ModifiedTimestamp>2020-10-28.04:48:09</ModifiedTimestamp>
       <ColNames>PRODUCT_ID</ColNames>
       <RefTableName>TBL_PRODUCT</RefTableName>
       <RefKeyName>SYS_C0015045</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="4937" parent="51" name="USERID">
+    <column id="4938" parent="51" name="USERID">
       <Position>1</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4938" parent="51" name="USERPW">
+    <column id="4939" parent="51" name="USERPW">
       <Position>2</Position>
       <DataType>VARCHAR2(100 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4939" parent="51" name="USERNAME">
+    <column id="4940" parent="51" name="USERNAME">
       <Position>3</Position>
       <DataType>VARCHAR2(100 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4940" parent="51" name="REGDATE">
+    <column id="4941" parent="51" name="REGDATE">
       <Position>4</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4941" parent="51" name="UPDATEDATE">
+    <column id="4942" parent="51" name="UPDATEDATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4942" parent="51" name="ENABLED">
+    <column id="4943" parent="51" name="ENABLED">
       <Position>6</Position>
       <DataType>CHAR(1 byte)|0s</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="4943" parent="51" name="ADDRESS">
+    <column id="4944" parent="51" name="ADDRESS">
       <Position>7</Position>
       <DataType>VARCHAR2(200 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="4944" parent="51" name="SYS_C0014827">
+    <index id="4945" parent="51" name="SYS_C0014827">
       <ObjectId>80534</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-10-18.07:34:46</CreatedTimestamp>
@@ -34403,7 +34408,7 @@
       <ColNames>USERID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4945" parent="51" name="SYS_C0014827">
+    <key id="4946" parent="51" name="SYS_C0014827">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2020-10-18.07:34:46</ModifiedTimestamp>
       <ColNames>USERID</ColNames>
@@ -34411,54 +34416,59 @@
       <UnderlyingIndexName>SYS_C0014827</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="4946" parent="52" name="USERID">
+    <column id="4947" parent="52" name="USERID">
       <Position>1</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4947" parent="52" name="AUTH">
+    <column id="4948" parent="52" name="AUTH">
       <Position>2</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <foreign-key id="4948" parent="52" name="FK_MEMBER_AUTH">
+    <foreign-key id="4949" parent="52" name="FK_MEMBER_AUTH">
       <ModifiedTimestamp>2020-10-18.07:35:59</ModifiedTimestamp>
       <ColNames>USERID</ColNames>
       <RefTableName>TBL_MEMBER</RefTableName>
       <RefKeyName>SYS_C0014827</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="4949" parent="53" name="NNO">
+    <column id="4950" parent="53" name="NNO">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4950" parent="53" name="TITLE">
+    <column id="4951" parent="53" name="TITLE">
       <Position>2</Position>
       <DataType>VARCHAR2(2000 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4951" parent="53" name="CONTENT">
+    <column id="4952" parent="53" name="CONTENT">
       <Position>3</Position>
       <DataType>VARCHAR2(1000 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4952" parent="53" name="WRITER">
+    <column id="4953" parent="53" name="WRITER">
       <Position>4</Position>
       <DataType>VARCHAR2(200 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4953" parent="53" name="REGDATE">
+    <column id="4954" parent="53" name="REGDATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4954" parent="53" name="UPDATEDATE">
+    <column id="4955" parent="53" name="UPDATEDATE">
       <Position>6</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <index id="4955" parent="53" name="PK_NOTICE">
+    <column id="4956" parent="53" name="HIT">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="4957" parent="53" name="PK_NOTICE">
       <ObjectId>80728</ObjectId>
       <CreatedTimestamp>2020-10-22.06:49:58</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-22.06:49:58</ModifiedTimestamp>
@@ -34466,40 +34476,40 @@
       <ColNames>NNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4956" parent="53" name="PK_NOTICE">
+    <key id="4958" parent="53" name="PK_NOTICE">
       <ModifiedTimestamp>2020-10-22.06:49:58</ModifiedTimestamp>
       <ColNames>NNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_NOTICE</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="4957" parent="54" name="PRODUCT_ID">
+    <column id="4959" parent="54" name="PRODUCT_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4958" parent="54" name="PRODUCT_NAME">
+    <column id="4960" parent="54" name="PRODUCT_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(100 byte)|0s</DataType>
     </column>
-    <column id="4959" parent="54" name="PRODUCT_PRICE">
+    <column id="4961" parent="54" name="PRODUCT_PRICE">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="4960" parent="54" name="PRODUCT_DESC">
+    <column id="4962" parent="54" name="PRODUCT_DESC">
       <Position>4</Position>
       <DataType>VARCHAR2(1500 byte)|0s</DataType>
     </column>
-    <column id="4961" parent="54" name="PRODUCT_URL">
+    <column id="4963" parent="54" name="PRODUCT_URL">
       <Position>5</Position>
       <DataType>VARCHAR2(500 byte)|0s</DataType>
     </column>
-    <column id="4962" parent="54" name="BRAND">
+    <column id="4964" parent="54" name="BRAND">
       <Position>6</Position>
       <DataType>VARCHAR2(100 byte)|0s</DataType>
     </column>
-    <index id="4963" parent="54" name="SYS_C0015045">
+    <index id="4965" parent="54" name="SYS_C0015045">
       <ObjectId>80865</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-10-27.00:50:23</CreatedTimestamp>
@@ -34508,7 +34518,7 @@
       <ColNames>PRODUCT_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4964" parent="54" name="SYS_C0015045">
+    <key id="4966" parent="54" name="SYS_C0015045">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2020-10-27.00:50:23</ModifiedTimestamp>
       <ColNames>PRODUCT_ID</ColNames>
@@ -34516,37 +34526,37 @@
       <UnderlyingIndexName>SYS_C0015045</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="4965" parent="55" name="RNO">
+    <column id="4967" parent="55" name="RNO">
       <Position>1</Position>
       <DataType>NUMBER(10 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4966" parent="55" name="BNO">
+    <column id="4968" parent="55" name="BNO">
       <Position>2</Position>
       <DataType>NUMBER(10 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4967" parent="55" name="REPLY">
+    <column id="4969" parent="55" name="REPLY">
       <Position>3</Position>
       <DataType>VARCHAR2(1000 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4968" parent="55" name="REPLYER">
+    <column id="4970" parent="55" name="REPLYER">
       <Position>4</Position>
       <DataType>VARCHAR2(1000 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4969" parent="55" name="REPLYDATE">
+    <column id="4971" parent="55" name="REPLYDATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4970" parent="55" name="UPDATEDATE">
+    <column id="4972" parent="55" name="UPDATEDATE">
       <Position>6</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <index id="4971" parent="55" name="PK_REPLY">
+    <index id="4973" parent="55" name="PK_REPLY">
       <ObjectId>80222</ObjectId>
       <CreatedTimestamp>2020-10-11.01:42:13</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-11.01:42:13</ModifiedTimestamp>
@@ -34554,14 +34564,14 @@
       <ColNames>RNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4972" parent="55" name="PK_REPLY">
+    <key id="4974" parent="55" name="PK_REPLY">
       <ModifiedTimestamp>2020-10-11.01:42:13</ModifiedTimestamp>
       <ColNames>RNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_REPLY</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="4973" parent="55" name="FK_REPLY_BOARD">
+    <foreign-key id="4975" parent="55" name="FK_REPLY_BOARD">
       <ModifiedTimestamp>2020-10-11.01:42:47</ModifiedTimestamp>
       <ColNames>BNO</ColNames>
       <RefTableName>TBL_BOARD</RefTableName>
