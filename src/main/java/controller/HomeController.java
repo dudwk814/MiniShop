@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import service.CartService;
 import service.ProductService;
 import sun.plugin.liveconnect.SecurityContextHelper;
 
@@ -22,6 +23,9 @@ public class HomeController {
 
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
+
+    @Setter(onMethod_ = @Autowired)
+    private CartService cartService;
 
     @GetMapping("/")
     public String home(Model model) {

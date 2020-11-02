@@ -131,7 +131,7 @@
                                         <input type="hidden" name="product_id" value="${pList.product_id}">
 
                                    <%-- <a class="add-to-cart text-center py-2 mr-1" id="addCartBtn"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>--%>
-                                    <button type="submit" class="btn btn-success" id="addCartBtn">장바구니에 담기</button>
+                                    <button type="submit" class="btn btn-primary" id="addCartBtn">장바구니에 담기</button>
 
                                     <button type="button" class="btn btn-info">바로 구매</button>
                                 </form>
@@ -468,7 +468,7 @@
 
 
                 if (confirm('장바구니에 추가하시겠습니까?') == true) {
-                    addCartForm.submit();
+                    addCartForm .submit();
                 } else {
                     return;
                 }
