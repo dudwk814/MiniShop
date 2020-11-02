@@ -123,10 +123,19 @@
                             <div class="pricing">
                                 <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${pList.product_price}" maxFractionDigits="0"/>원 </span></p>
                             </div>
-                            <p class="bottom-area d-flex px-3">
-                                <a href="#" class="add-to-cart text-center py-2 mr-1" id="addCartBtn"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                                <a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
-                            </p>
+                            <div class="bottom-area d-flex px-3" id="addCartDiv">
+                                <form method="post" action="/cart/add" id="addCartForm">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <input type="hidden" name="userid" value="${userid}"/>
+                                        <input type="hidden" name="amount" value="1"/>
+                                        <input type="hidden" name="product_id" value="${pList.product_id}">
+
+                                   <%-- <a class="add-to-cart text-center py-2 mr-1" id="addCartBtn"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>--%>
+                                    <button type="submit" class="btn btn-success" id="addCartBtn">장바구니에 담기</button>
+
+                                    <button type="button" class="btn btn-info">바로 구매</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -431,6 +440,11 @@
 
         var addCartBtn = $("#addCartBtn");
 
+        var addCartForm = $("#addCartForm");
+
+
+
+
         logoutBtn.on("click", function (e) {
             e.preventDefault();
 
@@ -451,27 +465,10 @@
            addCartBtn.on("click", function (e) {
                 e.preventDefault();
 
-                var newForm = $('<form></form>');
-                newForm.attr("action", "/cart/add");
-                newForm.attr("method", "post");
-                newForm.appendTo('body');
 
-                var InputUserid = $('<input type="text" name="userid" value="${userId}"/>');
-
-                var product_id = $("#productId").find("href").val();
-
-                console.log(product_id);
-                var InputProductId = $('<input type="text" name="product_id" value="product_id" />');
-
-                var inputToken = $('<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>');
-                var inputAmount = $('<input type="text" name="amount" value="1"/>');
-                newForm.append(InputUserid);
-                newForm.append(InputProductId);
-                newForm.append(inputToken);
-                newForm.append(inputAmount);
 
                 if (confirm('장바구니에 추가하시겠습니까?') == true) {
-                    newForm.submit();
+                    addCartForm.submit();
                 } else {
                     return;
                 }

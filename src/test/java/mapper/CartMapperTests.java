@@ -70,6 +70,6 @@ public class CartMapperTests {
     @Test
     public void testCount() {
 
-        log.info(cartMapper.countCart(2, "admin"));
+        log.info(cartMapper.countCart(8, "admin"));
     }
 }

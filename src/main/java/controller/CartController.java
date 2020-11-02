@@ -40,11 +40,12 @@ public class CartController {
         // 장바구니에 있는 상품 개수 (amount x)
         int cartCount;
 
-        for (cartCount = 1; cartCount <= list.size(); cartCount++) {
+        for (cartCount = 0; cartCount < list.size(); cartCount++) {
             cartCount += cartCount;
         }
 
         int sumMoney = cartService.sumMoney(userid);
+
 
         int fee = sumMoney >= 50000 ? 0 : 2500;
 
@@ -69,13 +70,23 @@ public class CartController {
     @PostMapping("/add")
     public String addCart(CartVO cartVO) {
 
-        log.info("Add Cart : " + cartVO.getProduct_name());
+        int cartCount = cartService.countCart(cartVO.getProduct_id(), cartVO.getUserid());
+
+        if(cartCount >= 1) {
+
+            log.info("이미 장바구니에 제품이 존재합니다.");
+            cartService.updateCart(cartVO);
+
+            return "redirect:/cart/cart?userid=" + cartVO.getUserid();
+        }
+
+        log.info("Add Cart : " + cartVO.getUserid());
 
         cartService.insertCart(cartVO);
 
 
 
-        return "redirect:/cart/cart";
+        return "redirect:/cart/cart?userid=" + cartVO.getUserid();
     }
 
     /* 장바구니 삭제 */
@@ -96,6 +107,10 @@ public class CartController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/amountModify")
     public String amountModify(CartVO vo) {
+
+        if (vo.getAmount() <= 0) {
+            return "redirect:/cart/cart?userid=" + vo.getUserid();
+        }
 
         log.info("Modify Amount : " + vo.getAmount());
         cartService.modifyCart(vo);

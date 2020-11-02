@@ -30,13 +30,11 @@
                         </tr>
                         </thead>
                         <c:choose>
-                            <c:when test="${cartCount == 0}">
+                            <%--<c:when test="${cartCount == 0}">
                                 <tbody>
-                                    <tr class="text-center">
-                                        <h1>장바구니가 비었습니다.</h1>
-                                    </tr>
+                                 <h1>장바구니가 비었습니다.</h1>
                                 </tbody>
-                            </c:when>
+                            </c:when>--%>
                             <c:when test="${cartCount >= 1}">
                                 <c:forEach var="cart" items="${cart}">
                                     <tbody>
@@ -135,12 +133,29 @@
 <script>
     $(document).ready(function (e) {
 
+        if(${cartCount == 0}) {
+            alert("장바구니가 비었습니다.");
+            location.href = "/";
+        }
 
 
-            if($("input[name='amount']").val() <= 0 || $("input[name='amount']").val() == null) {
+        var amountModifyForm = $("#amountModifyForm");
+        var amountModifyBtn = $("#amountModifyBtn");
+
+        amountModifyBtn.on("click", function (e) {
+
+            e.preventDefault();
+
+            if($("input[name='amount']").val() <= 0) {
                 alert("주문 수량을 0보다 크게 해주세요.");
                 return;
             }
+
+            amountModifyForm.submit();
+
+        });
+
+
 
 
     });
