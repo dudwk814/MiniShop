@@ -92,4 +92,16 @@ public class CartController {
         return "redirect:/cart/cart?userid=" + userid;
     }
 
+    /* 장바구니 상품 수량 변경 */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
+    @PostMapping("/amountModify")
+    public String amountModify(CartVO vo) {
+
+        log.info("Modify Amount : " + vo.getAmount());
+        cartService.modifyCart(vo);
+
+        return "redirect:/cart/cart?userid=" + vo.getUserid();
+
+    }
+
 }

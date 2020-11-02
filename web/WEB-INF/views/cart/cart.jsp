@@ -45,7 +45,7 @@
                                             <form action="/cart/remove" method="post">
                                                 <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                                <input type="hidden" name="userId" value="${userid}"/>
+                                                <input type="hidden" name="userid" value="${userid}"/>
                                                 <button type="submit" class="btn btn-outline-primary">  X  </button>
                                             </form>
                                         </td>
@@ -60,9 +60,18 @@
                                         <td class="price"><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${cart.product_price}" maxFractionDigits="0"/>원</td>
 
                                         <td class="quantity">
+                                            <form id="amountModifyForm" action="/cart/amountModify" method="post">
                                             <div class="input-group mb-3">
-                                                <input type="text" name="quantity" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100">
+                                                <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                <input type="hidden" name="userid" value="${userid}"/>
+                                                <input type="hidden" name="product_id" value="${cart.product_id}"/>
+                                                <input type="text" name="amount" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100">
                                             </div>
+                                            <div>
+                                                <input type="submit" class="btn btn-outline-primary" value="변경" id="amountModifyBtn"/>
+                                            </div>
+                                            </form>
                                         </td>
 
                                         <td class="total"><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${cart.product_price * cart.amount}" maxFractionDigits="0"/>원</td>
@@ -126,11 +135,14 @@
 <script>
     $(document).ready(function (e) {
 
-        var cart_id = $("#removeBtn").
 
 
+            if($("input[name='amount']").val() <= 0 || $("input[name='amount']").val() == null) {
+                alert("주문 수량을 0보다 크게 해주세요.");
+                return;
+            }
 
-        console.log(cart_id);
+
     });
 </script>
 
