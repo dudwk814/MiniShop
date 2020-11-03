@@ -42,7 +42,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="postcode">우편번호</label>
-                               <input type="text" id="sample4_postcode" class="form-control" placeholder="우편번호">
+                               <input type="text" id="sample4_postcode" class="form-control text-body" placeholder="우편번호">
                             </div>
                         </div>
 

@@ -12,9 +12,80 @@
 
 <%@ include file="../includes/header2.jsp"%>
 
+<Br/><br/><Br/><br/>
+<section>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <img src="/resources/shop/images/${product.product_url}" width="350px"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="w-100"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="w-100"></div>
+
+                <div class="col-md-12">
+                    &nbsp;
+                </div>
+                <div class="col-md-12">
+                    &nbsp;
+                </div>
+
+                <div class="col-md-12">
+                    <h1>${product.product_name}</h1>
+                </div>
+            </div>
+            <div class="row">
 
 
+                <div class="col-md-12">
+                    <span class="badge badge-primary">Shose</span>&nbsp;
+                    <span class="monospaced">No. ${product.product_id}</span>
+                </div>
+                <br/>
+                <div class="col-md-12">
+                   <h4> <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원 </span></p></h4>
+                </div>
+            </div><!-- end row -->
 
+            <div class="row add-to-cart">
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Active</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
 
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>

@@ -122,7 +122,7 @@ public class MemberController {
         return "redirect:/user/logout";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')") 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
