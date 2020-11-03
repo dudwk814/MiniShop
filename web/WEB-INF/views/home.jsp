@@ -146,7 +146,7 @@
 
 
 
-<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+<%--<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
     <div class="container">
         <div class="row no-gutters">
             <div class="col-lg-4">
@@ -358,16 +358,16 @@
             </div>
         </div>
     </div>
-</section>
+</section>--%>
 
 <section class="ftco-gallery">
     <div class="container">
-        <div class="row justify-content-center">
+        <%--<div class="row justify-content-center">
             <div class="col-md-8 heading-section text-center mb-4 ftco-animate">
                 <h2 class="mb-4">Follow Us On Instagram</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
             </div>
-        </div>
+        </div>--%>
     </div>
     <div class="container-fluid px-0">
         <div class="row no-gutters">
