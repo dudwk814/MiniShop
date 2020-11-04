@@ -49,6 +49,9 @@
                     <span class="monospaced">No. ${product.product_id}</span>
                 </div>
                 <br/>
+                    <div class="col-md-12">
+                        <p>${product.product_desc}</p>
+                    </div>
                 <div class="col-md-12">
                    <h4> <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원 </span></p></h4>
                 </div>
@@ -57,28 +60,7 @@
             <div class="row add-to-cart">
 
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">Active</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
-                                </li>
 
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
