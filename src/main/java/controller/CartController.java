@@ -47,7 +47,7 @@ public class CartController {
         int sumMoney = cartService.sumMoney(userid);
 
 
-        int fee = sumMoney >= 50000 ? 0 : 2500;
+        int fee = sumMoney >= 50000 ? 0 : 3000;
 
         model.addAttribute("cart", list);
         model.addAttribute("cartCount", cartCount);

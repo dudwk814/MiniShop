@@ -49,18 +49,40 @@
                     <span class="monospaced">No. ${product.product_id}</span>
                 </div>
                 <br/>
-                    <div class="col-md-12">
+                    <%--<div class="col-md-12">
                         <p>${product.product_desc}</p>
-                    </div>
+                    </div>--%>
                 <div class="col-md-12">
-                   <h4> <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원 </span></p></h4>
+                   <h4> <p class="price">
+                   <span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원 </span></p></h4>
                 </div>
+                <span class="col-md-12">배송비 : 3,000원 (5만원 이상 주문 시 배송비 무료) </span>
             </div><!-- end row -->
 
-            <div class="row add-to-cart">
+            <div class="col-md-12">
+                <form method="post" action="/cart/add">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name="product_id" value="${product.product_id}">
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')">
+                        <input type="hidden" name="userid" value='<sec:authentication property="principal.member.userid"/>'/>
+                    </sec:authorize>
+                    <div class="input-group h-25 d-inline-block">
+                        <label style="color: black">수량</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="number" name="amount" value="1" style="width: 60px; color: black; text-align: center" >
+                    </div >
 
+                    <div>
+                        &nbsp;
+                    </div>
+                    <div>
+                        &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-lg btn-primary"><span class="icon-shopping_cart"><span>장바구니에 담기  </button> &nbsp;&nbsp;
+                        <button type="button" class="btn-lg btn-info">바로 구매</button>
+                    </div>
+                </form>
             </div>
-
         </div>
     </div>
 
