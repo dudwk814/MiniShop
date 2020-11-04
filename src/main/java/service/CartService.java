@@ -24,6 +24,9 @@ public interface CartService {
     // 동일한 상품 합계(동일 상품 존재 시 장바구니 업데이트)
     public int countCart(int product_id, String userid);
 
+    // 장바구니의 상품 수(amount x)
+    public int countCartForMember(String userid);
+
     // 동일 상품 확인 후 장바구니 업데이트
     public void updateCart(CartVO vo);
 }

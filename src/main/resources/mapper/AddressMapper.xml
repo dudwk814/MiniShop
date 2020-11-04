@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.AddressMapper">
+
+    <!-- 회원 주소 가져오기 -->
+    <select id="get" resultType="domain.AddressVO">
+        select * from tbl_address where userid = #{userid}
+    </select>
+
+    <!-- 회원 주소 등록 -->
+    <insert id="insert">
+        insert into tbl_address (address_id, userid, post_code, street_address, address, detail_address, note)
+        values (seq_address.nextval, #{userid}, #{post_code}, #{street_address}, #{address}, #{detail_address}, #{note})
+    </insert>
+
+    <!-- 회원 주소 수정 -->
+    <update id="modify">
+        update tbl_address set post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address}, note = #{note} where userid = #{userid}
+    </update>
+
+    <!-- 회원 주소 삭제 -->
+    <delete id="delete">
+        delete from tbl_address where userid = #{userid}
+    </delete>
+</mapper>

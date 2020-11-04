@@ -70,7 +70,7 @@
 
                 <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link"><span class="icon-shopping_cart"></span><span class="badge badge-success">${cartForMember}</span> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">

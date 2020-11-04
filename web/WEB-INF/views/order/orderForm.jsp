@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ include file="../includes/header2.jsp"%>
 
 
@@ -32,6 +35,13 @@
 
                     <div class="row align-items-end">
 
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>받는 분 성함</label>
+                                <input type="text" class="form-control" value="<sec:authentication property="principal.member.userName"/>">
+                            </div>
+                        </div>
+
                         <div class="w-100"></div>
 
                         <div class="col-lg-12">
@@ -39,10 +49,11 @@
                         </div>
 
                         <div class="w-100"></div>
+
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="postcode">우편번호</label>
-                               <input type="text" id="sample4_postcode" class="form-control text-body" placeholder="우편번호">
+                               <input type="text" id="sample4_postcode" class="form-control text-body" placeholder="우편번호" value="${address.post_code}">
                             </div>
                         </div>
 
@@ -51,7 +62,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country">도로명주소</label>
-                                    <input type="text" id="sample4_roadAddress" class="form-control" placeholder="도로명주소">
+                                    <input type="text" id="sample4_roadAddress" class="form-control" placeholder="도로명주소" value="${address.street_address}">
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -59,20 +70,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="streetaddress">지번주소</label>
-                                <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소">
+                                <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" value="${address.address}">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소">
+                                <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소" value="${address.detail_address}">
                             </div>
                         </div>
                         <div class="w-100"></div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="towncity">참고항목</label>
-                                <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목">
+                                <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" value="${address.note}">
                             </div>
                         </div>
 
@@ -88,51 +99,40 @@
                             <h3 class="billing-heading mb-4">Cart Total</h3>
                             <p class="d-flex">
                                 <span>Subtotal</span>
-                                <span>$20.60</span>
+                                <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${sumMoney}" maxFractionDigits="0"/>원</span>
                             </p>
                             <p class="d-flex">
                                 <span>Delivery</span>
-                                <span>$0.00</span>
-                            </p>
-                            <p class="d-flex">
-                                <span>Discount</span>
-                                <span>$3.00</span>
-                            </p>
+                                <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${fee}" maxFractionDigits="0"/>원</span>
+                            </p><span>${fee}</span>
                             <hr>
                             <p class="d-flex total-price">
                                 <span>Total</span>
-                                <span>$17.60</span>
+                                <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${AllSumMoney}" maxFractionDigits="0"/>원</span>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cart-detail bg-light p-3 p-md-4">
-                            <h3 class="billing-heading mb-4">Payment Method</h3>
+                            <h3 class="billing-heading mb-4">결제 방법</h3>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
+                                        <label><input type="radio" name="optradio" class="mr-2"> 계좌이체</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio" class="mr-2"> Check Payment</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
+                                        <label><input type="radio" name="optradio" class="mr-2"> 신용카드</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
+                                        <label><input type="checkbox" value="" class="mr-2"> 동의합니다. (전자상거래법 제 8조 제2항)</label>
                                     </div>
                                 </div>
                             </div>

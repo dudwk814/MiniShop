@@ -38,11 +38,15 @@ public class HomeController {
 
         String userid = auth.getName();
 
+        int cartForMember = cartService.countCartForMember(userid);
+
         log.info(userid);
 
 
 
         model.addAttribute("userid", userid);
+        model.addAttribute("cartForMember", cartForMember);
+
 
 
         log.info("Main Page");

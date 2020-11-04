@@ -25,6 +25,9 @@ public interface CartMapper {
     // 동일한 상품 합계(동일 상품 존재 시 장바구니 업데이트)
     public int countCart(@Param("product_id") int product_id, @Param("userid") String userid);
 
+    // 장바구니에 있는 상품의 수 (amount x)
+    public int countCartForMember(String userid);
+
     // 동일 상품 확인 후 장바구니 업데이트
     public void updateCart(CartVO vo);
 }

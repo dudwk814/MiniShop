@@ -67,6 +67,11 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
+    public int countCartForMember(String userid) {
+        return cartMapper.countCartForMember(userid);
+    }
+
+    @Override
     public void updateCart(CartVO vo) {
 
         log.info("updateCart : " + vo);

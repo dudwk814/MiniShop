@@ -42,6 +42,11 @@
         where userid = #{userid} and product_id = #{product_id}
     </select>
 
+    <!-- 장바구니 상품의 수 조회 -->
+    <select id="countCartForMember" resultType="int">
+        select count (*) from tbl_cart where userid = #{userid}
+    </select>
+
     <!-- 동일 상품이 존재하면 합침 -->
     <update id="updateCart">
         update tbl_cart

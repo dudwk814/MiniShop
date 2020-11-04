@@ -72,4 +72,11 @@ public class CartMapperTests {
 
         log.info(cartMapper.countCart(8, "admin"));
     }
+
+    // 장바구니의 상품 수
+    @Test
+    public void testCountProduct() {
+
+        log.info(cartMapper.countCartForMember("admin"));
+    }
 }
