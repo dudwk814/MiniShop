@@ -9,7 +9,6 @@
         <result property="userid" column="userid"/>
         <result property="userpw" column="userpw"/>
         <result property="userName" column="userName"/>
-        <result property="address" column="address"/>
         <result property="regDate" column="regDate"/>
         <result property="updateDate" column="updateDate"/>
         <collection property="authList" resultMap="authMap"/>
@@ -22,14 +21,14 @@
 
     <!-- 로그인 -->
     <select id="get" resultMap="memberMap">
-        SELECT mem.userid, userpw, username, address, enabled, regdate, updatedate, auth
+        SELECT mem.userid, userpw, username,  enabled, regdate, updatedate, auth
         FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth ON mem.userid = auth.userid
         WHERE mem.userid = #{userid}
     </select>
 
     <!-- 회원 가입 -->
     <insert id="register">
-        insert into tbl_member(userid, userpw, userName, address) values (#{userid}, #{userpw}, #{userName}, #{address})
+        insert into tbl_member(userid, userpw, userName) values (#{userid}, #{userpw}, #{userName})
     </insert>
 
     <!-- 회원 가입시 권한 설정 -->
@@ -39,7 +38,7 @@
 
     <!-- 회원 정보 변경 -->
     <update id="modify">
-        update tbl_member set userpw = #{userpw}, address = #{address}, updateDate = sysdate where userid = #{userid}
+        update tbl_member set userpw = #{userpw}, updateDate = sysdate where userid = #{userid}
     </update>
 
     <!-- 회원 탈퇴 -->

@@ -39,7 +39,6 @@ public class MemberServiceTests {
         vo.setUserid("member2");
         vo.setUserpw(encoder.encode("member2"));
         vo.setUserName("member2");
-        vo.setAddress("busan");
 
         memberMapper.register(vo);
 
@@ -54,7 +53,6 @@ public class MemberServiceTests {
         MemberVO vo = new MemberVO();
         vo.setUserid("member");
         vo.setUserpw(encoder.encode("1234"));
-        vo.setAddress("Jeju");
 
         memberMapper.modify(vo);
 

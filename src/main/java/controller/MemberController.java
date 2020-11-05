@@ -1,5 +1,6 @@
 package controller;
 
+import domain.AddressVO;
 import domain.MemberVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -46,10 +47,10 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(MemberVO vo) {
+    public String join(MemberVO vo, AddressVO addressVO) {
 
         log.info("Joined  " + vo.getUserid());
-        int register = memberService.register(vo);
+        int register = memberService.register(vo, addressVO);
 
         return "user/loginForm";
     }

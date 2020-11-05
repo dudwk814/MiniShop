@@ -1,5 +1,6 @@
 package service;
 
+import domain.AddressVO;
 import domain.MemberVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -17,17 +18,22 @@ public class MemberServiceImpl implements MemberService{
     @Setter(onMethod_ = {@Autowired})
     private MemberMapper memberMapper;
 
-    @Autowired
+    @Setter(onMethod_ = {@Autowired})
+    private AddressService addressService;
+
+    @Setter(onMethod_ = @Autowired)
     private BCryptPasswordEncoder encoder;
 
     @Transactional
     @Override
-    public int register(MemberVO memberVO) {
+    public int register(MemberVO memberVO, AddressVO addressVO) {
 
         memberVO.setUserpw(encoder.encode(memberVO.getUserpw()));
 
 
         int register = memberMapper.register(memberVO);
+
+        addressService.insert(addressVO);
 
         memberMapper.authRegister(memberVO.getUserid());
 
