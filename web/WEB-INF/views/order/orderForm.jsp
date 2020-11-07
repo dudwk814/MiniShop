@@ -27,7 +27,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 ftco-animate">
-                <form action="#" class="billing-form">
+                <form action="/order/order" id="orderForm" class="billing-form" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name="userid" value="<sec:authentication property="principal.member.userid"/>"/>
                     <h3 class="mb-4 billing-heading">Billing Details</h3>
 
 
@@ -53,7 +55,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="postcode">우편번호</label>
-                               <input type="text" id="sample4_postcode" class="form-control text-body" placeholder="우편번호" value="${address.post_code}">
+                               <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" placeholder="우편번호">
                             </div>
                         </div>
 
@@ -62,7 +64,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country">도로명주소</label>
-                                    <input type="text" id="sample4_roadAddress" class="form-control" placeholder="도로명주소" value="${address.street_address}">
+                                    <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" placeholder="도로명주소">
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -70,26 +72,26 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="streetaddress">지번주소</label>
-                                <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" value="${address.address}">
+                                <input type="text" id="sample4_jibunAddress" name="address" class="form-control" placeholder="지번주소">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소" value="${address.detail_address}">
+                                <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" placeholder="상세주소">
                             </div>
                         </div>
                         <div class="w-100"></div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="towncity">참고항목</label>
-                                <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" value="${address.note}">
+                                <input type="text" id="sample4_extraAddress" name="note" class="form-control" placeholder="참고항목">
                             </div>
                         </div>
 
                         <div class="w-100"></div>
                     </div>
-                </form><!-- END -->
+
 
 
 
@@ -118,25 +120,26 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio" class="mr-2"> 계좌이체</label>
+                                        <label><input type="radio" name="payment_option" class="mr-2" value="1"> 계좌이체</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio" class="mr-2"> 신용카드</label>
+                                        <label><input type="radio" name="payment_option" class="mr-2" value="2"> 신용카드</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="" class="mr-2"> 동의합니다. (전자상거래법 제 8조 제2항)</label>
+                                        <label><input type="checkbox" name="chkAgreement" value="" id="chkAgreement" class="mr-2"> 동의합니다. (전자상거래법 제 8조 제2항)</label>
                                     </div>
                                 </div>
                             </div>
-                            <p><a href="#"class="btn btn-primary py-3 px-4">Place an order</a></p>
+                            <p><button id="orderBtn" type="submit" class="btn btn-primary py-3 px-4">Place an order</button></p>
+                </form><!-- END -->
                         </div>
                     </div>
                 </div>
@@ -218,6 +221,30 @@
             }
         }).open();
     }
+</script>
+<script>
+    $(document).ready(function (e) {
+
+        var chkAgreement = $("#chkAgreement");
+
+        var orderBtn = $("#orderBtn");
+
+        var orderForm = $("#orderForm");
+
+        orderBtn.on("click", function (e) {
+            e.preventDefault();
+
+            if($("input:checkbox[name=chkAgreement]").is(":checked") != true) {
+
+                alert("동의항목을 체크하여 주세요.");
+                return ;
+            }
+
+            orderForm.submit();
+        });
+
+
+    });
 </script>
 
 <%@ include file="../includes/footer.jsp"%>
