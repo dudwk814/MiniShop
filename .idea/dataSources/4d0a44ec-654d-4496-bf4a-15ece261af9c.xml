@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-08.03:17:27</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-11-08.03:17:28</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-11-08.19:37:02</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-11-08.19:37:03</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -224,7 +224,7 @@
     <table id="57" parent="18" name="TBL_ORDER">
       <ObjectId>81426</ObjectId>
       <CreatedTimestamp>2020-11-08.03:11:41</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-08.03:17:27</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-11-08.19:37:02</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="58" parent="18" name="TBL_PRODUCT">
@@ -34582,7 +34582,12 @@
       <DataType>NUMBER(*)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="4977" parent="57" name="SYS_C0015405">
+    <column id="4977" parent="57" name="ORDER_DATE">
+      <Position>7</Position>
+      <DataType>DATE|0s</DataType>
+      <DefaultExpression>sysdate</DefaultExpression>
+    </column>
+    <index id="4978" parent="57" name="SYS_C0015405">
       <ObjectId>81427</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-11-08.03:11:41</CreatedTimestamp>
@@ -34591,7 +34596,7 @@
       <ColNames>ORDER_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4978" parent="57" name="SYS_C0015405">
+    <key id="4979" parent="57" name="SYS_C0015405">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2020-11-08.03:11:41</ModifiedTimestamp>
       <ColNames>ORDER_ID</ColNames>
@@ -34599,54 +34604,54 @@
       <UnderlyingIndexName>SYS_C0015405</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="4979" parent="57" name="TBL_MEMBER_FK">
+    <foreign-key id="4980" parent="57" name="TBL_MEMBER_FK">
       <ModifiedTimestamp>2020-11-08.03:12:20</ModifiedTimestamp>
       <ColNames>USERID</ColNames>
       <RefTableName>TBL_MEMBER</RefTableName>
       <RefKeyName>SYS_C0014827</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="4980" parent="57" name="TBL_ADDRESS_FK">
+    <foreign-key id="4981" parent="57" name="TBL_ADDRESS_FK">
       <ModifiedTimestamp>2020-11-08.03:13:18</ModifiedTimestamp>
       <ColNames>ADDRESS_ID</ColNames>
       <RefTableName>TBL_ADDRESS</RefTableName>
       <RefKeyName>SYS_C0015277</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="4981" parent="57" name="TBL_ORDER_FK">
+    <foreign-key id="4982" parent="57" name="TBL_ORDER_FK">
       <ModifiedTimestamp>2020-11-08.03:14:03</ModifiedTimestamp>
       <ColNames>PRODUCT_ID</ColNames>
       <RefTableName>TBL_PRODUCT</RefTableName>
       <RefKeyName>SYS_C0015045</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="4982" parent="58" name="PRODUCT_ID">
+    <column id="4983" parent="58" name="PRODUCT_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4983" parent="58" name="PRODUCT_NAME">
+    <column id="4984" parent="58" name="PRODUCT_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(100 byte)|0s</DataType>
     </column>
-    <column id="4984" parent="58" name="PRODUCT_PRICE">
+    <column id="4985" parent="58" name="PRODUCT_PRICE">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="4985" parent="58" name="PRODUCT_DESC">
+    <column id="4986" parent="58" name="PRODUCT_DESC">
       <Position>4</Position>
       <DataType>VARCHAR2(1500 byte)|0s</DataType>
     </column>
-    <column id="4986" parent="58" name="PRODUCT_URL">
+    <column id="4987" parent="58" name="PRODUCT_URL">
       <Position>5</Position>
       <DataType>VARCHAR2(500 byte)|0s</DataType>
     </column>
-    <column id="4987" parent="58" name="BRAND">
+    <column id="4988" parent="58" name="BRAND">
       <Position>6</Position>
       <DataType>VARCHAR2(100 byte)|0s</DataType>
     </column>
-    <index id="4988" parent="58" name="SYS_C0015045">
+    <index id="4989" parent="58" name="SYS_C0015045">
       <ObjectId>80865</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-10-27.00:50:23</CreatedTimestamp>
@@ -34655,7 +34660,7 @@
       <ColNames>PRODUCT_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4989" parent="58" name="SYS_C0015045">
+    <key id="4990" parent="58" name="SYS_C0015045">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2020-10-27.00:50:23</ModifiedTimestamp>
       <ColNames>PRODUCT_ID</ColNames>
@@ -34663,37 +34668,37 @@
       <UnderlyingIndexName>SYS_C0015045</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="4990" parent="59" name="RNO">
+    <column id="4991" parent="59" name="RNO">
       <Position>1</Position>
       <DataType>NUMBER(10 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4991" parent="59" name="BNO">
+    <column id="4992" parent="59" name="BNO">
       <Position>2</Position>
       <DataType>NUMBER(10 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4992" parent="59" name="REPLY">
+    <column id="4993" parent="59" name="REPLY">
       <Position>3</Position>
       <DataType>VARCHAR2(1000 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4993" parent="59" name="REPLYER">
+    <column id="4994" parent="59" name="REPLYER">
       <Position>4</Position>
       <DataType>VARCHAR2(1000 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="4994" parent="59" name="REPLYDATE">
+    <column id="4995" parent="59" name="REPLYDATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <column id="4995" parent="59" name="UPDATEDATE">
+    <column id="4996" parent="59" name="UPDATEDATE">
       <Position>6</Position>
       <DataType>DATE|0s</DataType>
       <DefaultExpression>sysdate</DefaultExpression>
     </column>
-    <index id="4996" parent="59" name="PK_REPLY">
+    <index id="4997" parent="59" name="PK_REPLY">
       <ObjectId>80222</ObjectId>
       <CreatedTimestamp>2020-10-11.01:42:13</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-11.01:42:13</ModifiedTimestamp>
@@ -34701,14 +34706,14 @@
       <ColNames>RNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="4997" parent="59" name="PK_REPLY">
+    <key id="4998" parent="59" name="PK_REPLY">
       <ModifiedTimestamp>2020-10-11.01:42:13</ModifiedTimestamp>
       <ColNames>RNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_REPLY</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="4998" parent="59" name="FK_REPLY_BOARD">
+    <foreign-key id="4999" parent="59" name="FK_REPLY_BOARD">
       <ModifiedTimestamp>2020-10-11.01:42:47</ModifiedTimestamp>
       <ColNames>BNO</ColNames>
       <RefTableName>TBL_BOARD</RefTableName>

@@ -60,7 +60,7 @@
             </div><!-- end row -->
 
             <div class="col-md-12">
-                <form method="post" action="/cart/add">
+                <form method="post" action="/cart/add" id="productForm">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="product_id" value="${product.product_id}">
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn-lg btn-primary"><span class="icon-shopping_cart"><span>장바구니에 담기  </button> &nbsp;&nbsp;
-                        <button type="button" class="btn-lg btn-info">바로 구매</button>
+                       <%-- <button type="button" id="orderBtn" class="btn-lg btn-info">바로 구매</button>--%>
                     </div>
                 </form>
             </div>
@@ -105,5 +105,21 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
+
+<script>
+    $(document).ready(function (e) {
+        var form = $("#productForm");
+
+        var orderBtn = $("#orderBtn");
+
+        orderBtn.on("click", function (e) {
+
+            form.attr("action", "/order/orderForm");
+            form.attr("method", "get");
+
+            form.submit();
+        })
+    })
+</script>
 
 <%@ include file="../includes/footer.jsp"%>

@@ -104,7 +104,6 @@
                     <hr>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${AllSumMoney}" maxFractionDigits="0"/>원</span>
                     </p>
                 </div>
                 <p class="text-center"><a href="/order/orderForm?userid=<sec:authentication property="principal.member.userid"/>" class="btn btn-primary py-3 px-4">주문하기</a></p>

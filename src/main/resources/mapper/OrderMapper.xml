@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.OrderMapper">
+
+    <insert id="insert">
+        insert into tbl_order(order_id, userid, address_id, product_id, order_state, payment_option, order_date)
+        values (seq_order.nextval, #{userid}, #{address_id}, #{product_id}, #{order_state}, #{payment_option}, #{order_date})
+    </insert>
+
+    <delete id="delete">
+        delete from tbl_order where order_id = #{order_id}
+    </delete>
+
+    <select id="get" resultType="domain.OrderVO">
+        select * from tbl_order where order_id = #{order_id}
+    </select>
+
+    <select id="getList" resultType="domain.OrderVO">
+        select * from tbl_order where userid = #{userid}
+    </select>
+
+    <select id="getAllList" resultType="domain.OrderVO">
+        select * from tbl_order where order_id > 0
+    </select>
+</mapper>

@@ -31,6 +31,7 @@ public class CartController {
     private ProductService productService;
 
     /* 장바구니 목록 조회 */
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @GetMapping("/cart")
     public String cart(String userid, Model model) {
 

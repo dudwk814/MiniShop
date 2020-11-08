@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import service.AddressService;
 import service.CartService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 @RequestMapping("/order/")
 @Log4j
-public class OderController {
+public class OrderController {
 
     @Setter(onMethod_ = @Autowired)
     private AddressService addressService;
@@ -31,6 +32,8 @@ public class OderController {
 
     @GetMapping("/orderForm")
     public String orderForm(@RequestParam("userid") String userid, Model model) {
+
+
 
 
         // 장바구니 목록 불러오기
@@ -60,15 +63,9 @@ public class OderController {
     }
 
     @PostMapping("order")
-    public String order(OrderVO vo, Model model) {
+    public String order(OrderVO orderVO, AddressVO addressVO, Model model) {
 
-        AddressVO addressVO = vo.getAddressVO();
 
-        addressService.insert(addressVO);
-
-        addressVO = addressService.get(vo.getUserid());
-
-        vo.setAddressVO(addressVO);
 
 
 
