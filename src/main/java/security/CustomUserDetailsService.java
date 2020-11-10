@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import security.domain.CustomUser;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Log4j
 public class CustomUserDetailsService implements UserDetailsService {
 

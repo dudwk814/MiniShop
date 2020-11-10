@@ -67,6 +67,11 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
+    public void deleteAfterOrder(String userid) {
+        cartMapper.deleteAfterOrder(userid);
+    }
+
+    @Override
     public int countCartForMember(String userid) {
         return cartMapper.countCartForMember(userid);
     }

@@ -6,8 +6,13 @@
 <mapper namespace="mapper.OrderMapper">
 
     <insert id="insert">
-        insert into tbl_order(order_id, userid, address_id, product_id, order_state, payment_option, order_date)
-        values (seq_order.nextval, #{userid}, #{address_id}, #{product_id}, #{order_state}, #{payment_option}, #{order_date})
+        insert into tbl_order (order_id, userid, post_code, street_address, address, detail_address, sum_price, payment_option)
+        values (#{order_id}, #{userid}, #{post_code}, #{street_address}, #{address}, #{detail_address}, #{sum_price}, #{payment_option})
+    </insert>
+
+    <insert id="insertDetail">
+        insert into TBL_ORDER_DETAILS (ORDER_DETAILS_NUM, ORDER_ID, PRODUCT_ID, amount, USERID)
+        SELECT SEQ_ORDER_DETAILS.nextval, #{order_id}, PRODUCT_ID, amount, userid from TBL_CART where USERID = #{userid}
     </insert>
 
     <delete id="delete">
@@ -18,11 +23,19 @@
         select * from tbl_order where order_id = #{order_id}
     </select>
 
+    <select id="getOrderDetails" resultType="domain.OrderDetailsVO">
+        select * from tbl_order_details where order_id = #{order_id}
+    </select>
+
     <select id="getList" resultType="domain.OrderVO">
         select * from tbl_order where userid = #{userid}
     </select>
 
     <select id="getAllList" resultType="domain.OrderVO">
         select * from tbl_order where order_id > 0
+    </select>
+
+    <select id="getOrderResult" resultType="domain.OrderVO">
+        select * from tbl_order where order_id = #{order_id}
     </select>
 </mapper>

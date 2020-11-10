@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:web/WEB-INF/applicationContext.xml")
+@ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
 public class MemberMapperTests {
 
@@ -25,5 +25,13 @@ public class MemberMapperTests {
         log.info(vo);
 
         vo.getAuthList().forEach(authVO -> log.info(authVO));
+    }
+
+    @Test
+    public void testFindUser() {
+
+        String userid = "admin";
+
+        log.info(memberMapper.findUser(userid));
     }
 }

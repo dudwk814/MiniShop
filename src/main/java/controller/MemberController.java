@@ -2,9 +2,13 @@ package controller;
 
 import domain.AddressVO;
 import domain.MemberVO;
+import domain.ReplyVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -47,10 +51,10 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(MemberVO vo, AddressVO addressVO) {
+    public String join(MemberVO vo) {
 
         log.info("Joined  " + vo.getUserid());
-        int register = memberService.register(vo, addressVO);
+        int register = memberService.register(vo);
 
         return "user/loginForm";
     }
@@ -133,8 +137,22 @@ public class MemberController {
         return "redirect:/user/loginForm";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/ID_Check", produces="text/plane")
+    public String ID_Check(@RequestBody String paramData) {
+        //클라이언트가 보낸 ID값
+        String ID = paramData.trim();
+        System.out.println(ID);
 
+        int findUser = memberService.findUser(ID);
 
+        if(findUser == 1) {//결과 값이 있으면 아이디 존재
+            return "-1";
+        } else {		//없으면 아이디 존재 X
+            System.out.println("null");
+            return "0";
+        }
+    }
 
 
 }

@@ -11,6 +11,10 @@
         <result property="userName" column="userName"/>
         <result property="regDate" column="regDate"/>
         <result property="updateDate" column="updateDate"/>
+        <result property="post_code" column="post_code"/>
+        <result property="street_address" column="street_address"/>
+        <result property="address" column="address"/>
+        <result property="detail_address" column="detail_address"/>
         <collection property="authList" resultMap="authMap"/>
     </resultMap>
 
@@ -19,16 +23,22 @@
         <result property="auth" column="auth"/>
     </resultMap>
 
+    <!-- 회원가입시 중복 유저 찾기 -->
+    <select id="findUser" resultType="int">
+        select count(*) from tbl_member where userid = #{userid}
+    </select>
+
     <!-- 로그인 -->
     <select id="get" resultMap="memberMap">
-        SELECT mem.userid, userpw, username,  enabled, regdate, updatedate, auth
+        SELECT mem.userid, userpw, username,  enabled, regdate, updatedate, auth, post_code, street_address, address, detail_address
         FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth ON mem.userid = auth.userid
         WHERE mem.userid = #{userid}
     </select>
 
     <!-- 회원 가입 -->
     <insert id="register">
-        insert into tbl_member(userid, userpw, userName) values (#{userid}, #{userpw}, #{userName})
+        insert into tbl_member(userid, userpw, userName, post_code, street_address, address, detail_address)
+        values (#{userid}, #{userpw}, #{userName}, #{post_code}, #{street_address}, #{address}, #{detail_address})
     </insert>
 
     <!-- 회원 가입시 권한 설정 -->

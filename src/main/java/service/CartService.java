@@ -15,6 +15,9 @@ public interface CartService {
     // 장바구니 삭제
     public void deleteCart(int cart_id);
 
+    // 구매 후 장바구니 삭제
+    public void deleteAfterOrder(String userid);
+
     // 장바구니 수정
     public void modifyCart(CartVO vo);
 

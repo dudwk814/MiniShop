@@ -16,6 +16,10 @@ public class MemberVO {
     private Date regDate;
     private Date updateDate;
 
+    private String post_code;
+    private String street_address;
+    private String address;
+    private String detail_address;
 
     private List<authVO> authList;
 }

@@ -30,6 +30,7 @@
                 <form action="/order/order" id="orderForm" class="billing-form" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="userid" value="<sec:authentication property="principal.member.userid"/>"/>
+                    <input type="hidden" name="sum_price" value="${AllSumMoney}"/>
                     <h3 class="mb-4 billing-heading">Billing Details</h3>
 
 
@@ -46,8 +47,13 @@
 
                         <div class="w-100"></div>
 
+                        <hr/>
+
                         <div class="col-lg-12">
-                            <button type="button" onclick="sample4_execDaumPostcode()" class="btn btn-primary float-right" value="우편번호 찾기">우편번호 찾기</button><br>
+                            <div class="form-check">
+
+                                <button type="button" onclick="sample4_execDaumPostcode()" class="btn btn-primary float-right" value="우편번호 찾기">우편번호 찾기</button><br>
+                            </div>
                         </div>
 
                         <div class="w-100"></div>
@@ -55,7 +61,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="postcode">우편번호</label>
-                               <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" placeholder="우편번호">
+                               <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" placeholder="우편번호" value="${user.post_code}" />
                             </div>
                         </div>
 
@@ -64,7 +70,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country">도로명주소</label>
-                                    <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" placeholder="도로명주소">
+                                    <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" placeholder="도로명주소" value="${user.street_address}">
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -72,13 +78,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="streetaddress">지번주소</label>
-                                <input type="text" id="sample4_jibunAddress" name="address" class="form-control" placeholder="지번주소">
+                                <input type="text" id="sample4_jibunAddress" name="address" class="form-control" placeholder="지번주소" value="${user.address}">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" placeholder="상세주소">
+                                <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" placeholder="상세주소" value="${user.detail_address}">
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -230,6 +236,13 @@
         var orderBtn = $("#orderBtn");
 
         var orderForm = $("#orderForm");
+
+        var post_code_value = $("input[name=post_code]").val();
+        var street_address_value = $("input[name=street_address]").val();
+        var address_value = $("#input[name=address]").val();
+        var detail_address_value = $("#input[name=detail_address]").val();
+
+
 
         orderBtn.on("click", function (e) {
             e.preventDefault();

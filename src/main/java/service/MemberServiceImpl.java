@@ -26,14 +26,13 @@ public class MemberServiceImpl implements MemberService{
 
     @Transactional
     @Override
-    public int register(MemberVO memberVO, AddressVO addressVO) {
+    public int register(MemberVO memberVO) {
 
         memberVO.setUserpw(encoder.encode(memberVO.getUserpw()));
 
 
         int register = memberMapper.register(memberVO);
 
-        addressService.insert(addressVO);
 
         memberMapper.authRegister(memberVO.getUserid());
 
@@ -69,5 +68,10 @@ public class MemberServiceImpl implements MemberService{
         log.info("get member info " + userid);
 
         return memberMapper.get(userid);
+    }
+
+    @Override
+    public int findUser(String userid) {
+        return memberMapper.findUser(userid);
     }
 }

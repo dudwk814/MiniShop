@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/board/list.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views/board" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/board/read.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views/board" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/home.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views" />
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/order/orderForm.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views/order" />
       </map>
     </option>
   </component>

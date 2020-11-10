@@ -13,4 +13,6 @@ public interface MemberMapper {
 
     public int removeMember(String userid);
     public void removeAuth(String userid);
+
+    public int findUser(String userid);
 }

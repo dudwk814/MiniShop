@@ -1,5 +1,6 @@
 package service;
 
+import domain.OrderDetailsVO;
 import domain.OrderVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -25,7 +26,17 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public OrderVO get(int order_id) {
+    public List<OrderDetailsVO> getOrderDetails(String order_id) {
+        return orderMapper.getOrderDetails(order_id);
+    }
+
+    @Override
+    public void insertDetail(OrderDetailsVO vo) {
+        orderMapper.insertDetail(vo);
+    }
+
+    @Override
+    public OrderVO get(String order_id) {
 
         log.info("get Order : " + order_id);
 
