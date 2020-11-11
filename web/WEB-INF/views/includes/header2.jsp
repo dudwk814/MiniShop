@@ -81,7 +81,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USER</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="/user/checkMemberForm">Modify</a>
-                            <a class="dropdown-item" href="/user/checkMemberForm">My Page</a>
+                            <a class="dropdown-item" href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>">My Order</a>
                         </div>
                     </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -30,12 +30,14 @@
                     <hr>
                     <p class="d-flex total-price">
                         <span>결제수단</span>
-                        <span>${payment_option}</span>
+                        <span>${order.payment_option}</span>
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+
 </section>
 
 <script src="/resources/shop/js/jquery.min.js"></script>

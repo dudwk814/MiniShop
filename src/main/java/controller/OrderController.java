@@ -10,10 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import service.AddressService;
 import service.CartService;
 import service.MemberService;
@@ -21,6 +18,7 @@ import service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -72,6 +70,7 @@ public class OrderController {
     }
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @PostMapping("order")
     public String order(OrderVO orderVO, OrderDetailsVO orderDetailsVO, Model model) {
 
@@ -106,20 +105,35 @@ public class OrderController {
         model.addAttribute("order", getOrderVO);
         model.addAttribute("orderDetails", getOrderDetailsVO);
 
-        if (orderVO.getPayment_option() == 1) {
-            model.addAttribute("payment_option", "계좌이체");
-        } else if (orderVO.getPayment_option() == 2) {
-            model.addAttribute("payment_option", "신용카드");
-        }
 
 
         return "order/orderResult";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
-    @GetMapping("/get")
-    public String getOrder(String order_id, Model model) {
+    @GetMapping("/getOrderList")
+    public String getOrder(String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 
-        return "order/get";
+
+        List<OrderVO> orderVOList = orderService.getList(userid, cri);
+
+        int orderTotalCount = orderService.getTotalOrderCount(userid);
+
+        int orderCount = 0;
+
+        if(orderVOList == null) {
+            model.addAttribute("orderCount", orderCount);
+        } else if(orderVOList != null) {
+            orderCount = 1;
+            model.addAttribute("orderCount", orderCount);
+        }
+
+        log.info(orderCount);
+
+        model.addAttribute("orderList", orderVOList);
+        model.addAttribute("pageMaker", new PageDTO(cri, orderTotalCount));
+
+
+        return "order/orderList";
     }
 }

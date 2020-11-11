@@ -1,7 +1,9 @@
 package mapper;
 
+import domain.Criteria;
 import domain.OrderDetailsVO;
 import domain.OrderVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,7 +22,10 @@ public interface OrderMapper {
     public List<OrderDetailsVO> getOrderDetails(String order_id);
 
     // 회원에 대한 전체 오더 조회
-    public List<OrderVO> getList(String userid);
+    public List<OrderVO> getList(@Param("userid") String userid,  @Param("cri") Criteria cri);
+
+    // 회원에 대한 전체 오더 개수
+    public int getTotalOrderCount(String userid);
 
     // 전체 오더 조회
     public List<OrderVO> getAllList();

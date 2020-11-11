@@ -14,6 +14,7 @@ import service.CartService;
 import service.ProductService;
 import sun.plugin.liveconnect.SecurityContextHelper;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class HomeController {
     private CartService cartService;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
 
         List<ProductVO> list = productService.getHomeProductList();
 
@@ -47,7 +48,7 @@ public class HomeController {
         model.addAttribute("userid", userid);
         model.addAttribute("cartForMember", cartForMember);
 
-
+        session.setAttribute("userid", userid);
 
         log.info("Main Page");
         return "home";

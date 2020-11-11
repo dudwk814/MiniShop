@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-11.04:01:31</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-11-11.04:01:34</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-11-12.04:01:07</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-11-12.04:01:18</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -230,7 +230,7 @@
     <table id="58" parent="18" name="TBL_ORDER">
       <ObjectId>81541</ObjectId>
       <CreatedTimestamp>2020-11-11.00:04:06</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-11.04:01:31</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-11-12.04:01:07</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="59" parent="18" name="TBL_ORDER_DETAILS">
@@ -34622,9 +34622,7 @@
     </column>
     <column id="4985" parent="58" name="PAYMENT_OPTION">
       <Position>9</Position>
-      <DataType>NUMBER(*)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>0</DefaultExpression>
+      <DataType>VARCHAR2(10 byte)|0s</DataType>
     </column>
     <index id="4986" parent="58" name="SYS_C0015467">
       <ObjectId>81542</ObjectId>

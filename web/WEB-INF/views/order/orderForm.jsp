@@ -126,14 +126,14 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
-                                        <label><input type="radio" name="payment_option" class="mr-2" value="1"> 계좌이체</label>
+                                        <label><input type="radio" name="payment_option" class="mr-2" value="계좌이체"> 계좌이체</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
-                                        <label><input type="radio" name="payment_option" class="mr-2" value="2"> 신용카드</label>
+                                        <label><input type="radio" name="payment_option" class="mr-2" value="신용카드"> 신용카드</label>
                                     </div>
                                 </div>
                             </div>

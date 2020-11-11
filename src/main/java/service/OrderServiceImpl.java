@@ -1,5 +1,6 @@
 package service;
 
+import domain.Criteria;
 import domain.OrderDetailsVO;
 import domain.OrderVO;
 import lombok.Setter;
@@ -31,6 +32,11 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public int getTotalOrderCount(String userid) {
+        return orderMapper.getTotalOrderCount(userid);
+    }
+
+    @Override
     public void insertDetail(OrderDetailsVO vo) {
         orderMapper.insertDetail(vo);
     }
@@ -44,9 +50,9 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<OrderVO> getList(String userid) {
+    public List<OrderVO> getList(String userid, Criteria cri) {
 
-        return orderMapper.getList(userid);
+        return orderMapper.getList(userid, cri);
     }
 
     @Override

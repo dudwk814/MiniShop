@@ -1,5 +1,6 @@
 package service;
 
+import domain.Criteria;
 import domain.OrderDetailsVO;
 import domain.OrderVO;
 
@@ -15,7 +16,10 @@ public interface OrderService {
 
     public List<OrderDetailsVO> getOrderDetails(String order_id);
 
-    public List<OrderVO> getList(String userid);
+    public List<OrderVO> getList(String userid, Criteria cri);
+
+    // 회원에 대한 전체 오더 개수
+    public int getTotalOrderCount(String userid);
 
     public List<OrderVO> getAllList();
 
