@@ -29,10 +29,10 @@
 
     <select id="getList" resultType="domain.OrderVO">
         <![CDATA[
-            select order_id, userid, post_code, street_address, detail_address, order_date, payment_option
+            select order_id, userid, post_code, street_address, detail_address, order_date, payment_option, sum_price
             from (
                 select /*+INDEX_DESC(tbl_order sys_c0015467) */
-                    rownum rn, order_id, userid, post_code, street_address, detail_address, order_date, payment_option
+                    rownum rn, order_id, userid, post_code, street_address, detail_address, order_date, payment_option, sum_price
                 from
                     tbl_order
                where userid = #{userid} and rownum <= #{cri.pageNum} * #{cri.amount}
