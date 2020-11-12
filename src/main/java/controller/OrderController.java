@@ -110,7 +110,7 @@ public class OrderController {
         return "order/orderResult";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
+    @PreAuthorize("isAuthenticated() and ((#userid == principal.member.userid) or hasAnyRole('ROLE_ADMIN'))")
     @GetMapping("/getOrderList")
     public String getOrder(String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 
