@@ -27,6 +27,7 @@
     </beans:bean>
 
     <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="exception"/>
 
     <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 
