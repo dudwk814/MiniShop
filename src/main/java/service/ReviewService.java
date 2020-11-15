@@ -1,0 +1,19 @@
+package service;
+
+import domain.Criteria;
+import domain.ReviewVO;
+
+import java.util.List;
+
+public interface ReviewService {
+
+    public int register(ReviewVO vo);
+
+    public ReviewVO get(int review_no);
+
+    public List<ReviewVO> getList(Criteria cri, int product_id);
+
+    public int modify(ReviewVO vo);
+
+    public int remove(int review_no);
+}

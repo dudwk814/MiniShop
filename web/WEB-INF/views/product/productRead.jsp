@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
 <%@ include file="../includes/header2.jsp"%>
@@ -78,7 +79,7 @@
                         &nbsp;
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn-lg btn-primary"><span class="icon-shopping_cart"><span>장바구니에 담기  </button> &nbsp;&nbsp;
+                        <button type="submit" class="btn-lg btn-primary"><span class="icon-shopping_cart"></span>장바구니에 담기</button> &nbsp;&nbsp;
                        <%-- <button type="button" id="orderBtn" class="btn-lg btn-info">바로 구매</button>--%>
                     </div>
                 </form>
@@ -87,6 +88,21 @@
     </div>
 
 </div>
+</section>
+
+<div class="w-100"/>
+<section>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <span class="font-weight-bold">리뷰</span>
+                <span class="float-right"><a href="#" class="active">최신순</a>&nbsp; | &nbsp;<a href="#">추천순</a></span>
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
 </section>
 
 <script src="/resources/shop/js/jquery.min.js"></script>
@@ -105,7 +121,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
-
+<script src="/resources/review.js"></script>
 <script>
     $(document).ready(function (e) {
         var form = $("#productForm");
@@ -118,8 +134,29 @@
             form.attr("method", "get");
 
             form.submit();
-        })
-    })
+        });
+
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        // Ajax spring security header.
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        });
+
+        var product_id_value = '<c:out value="${product.product_id}"/>';
+
+        /*reviewServie.add({
+            review_title:"리뷰", review_content:"리뷰", userid:"qwer", product_id:product_id_value
+        },
+        function (result) {
+            alert(result);
+        });*/
+    });
 </script>
+<script>
+</script>
+
 
 <%@ include file="../includes/footer.jsp"%>

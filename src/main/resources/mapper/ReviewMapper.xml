@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.ReviewMapper">
+
+    <!-- 리뷰 작성 -->
+    <insert id="insert">
+        <![CDATA[
+            insert into tbl_review(review_no, product_id, userid, review_title, review_content)
+            values (seq_review.nextval, #{product_id}, #{userid}, #{review_title}, #{review_content})
+        ]]>
+    </insert>
+
+    <!-- 리뷰 조회 -->
+    <select id="read" resultType="domain.ReviewVO">
+        <![CDATA[
+            select * from tbl_review where review_no = #{review_no}
+        ]]>
+    </select>
+
+    <!-- product_id에 해당하는 리뷰 리스트 조회 -->
+    <select id="getList" resultType="domain.ReviewVO">
+        <![CDATA[
+            select * from tbl_review where product_id = #{product_id}
+        ]]>
+    </select>
+
+    <!-- product_id에 해당하는 리뷰 리스트 조회(페이징 처리) -->
+    <select id="getListWithPaging" resultType="domain.ReviewVO">
+        <![CDATA[
+            select * from tbl_review
+            where product_id = #{product_id}
+            order by review_no desc
+        ]]>
+    </select>
+
+    <!-- 리뷰 수정 -->
+    <update id="modify">
+        <![CDATA[
+            update tbl_review set review_title = #{review_title}, review_content = #{review_content}, review_updateDate = sysdate where review_no = #{review_no}
+        ]]>
+    </update>
+
+    <!-- 리뷰 삭제 -->
+    <delete id="delete">
+        <![CDATA[
+            delete from tbl_review where review_no = #{review_no}
+        ]]>
+    </delete>
+</mapper>
