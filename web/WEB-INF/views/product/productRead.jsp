@@ -95,10 +95,21 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <span class="font-weight-bold">리뷰</span>
+                <i class="fa fa-comments fa -fw"></i> Review
                 <span class="float-right"><a href="#" class="active">최신순</a>&nbsp; | &nbsp;<a href="#">추천순</a></span>
             </div>
+            <%-- /.card - header --%>
             <div class="card-body">
+                <ul class="chat">
+                    <%-- start review --%>
+                    <li class="left clearfix" data-rview_no="4">
+                        <div>
+                            <div class="header">
+                                <strong class="primary-font">user00</strong>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
 
             </div>
         </div>
@@ -147,12 +158,34 @@
 
         var product_id_value = '<c:out value="${product.product_id}"/>';
 
-        /*reviewServie.add({
-            review_title:"리뷰", review_content:"리뷰", userid:"qwer", product_id:product_id_value
-        },
-        function (result) {
-            alert(result);
+        reviewServie.getList({product_id:product_id_value, page:1}, function (list) {
+            for (var i = 0, len = list.length || 0; i < len; i++) {
+                console.log(list[i]);
+            }
+        });
+
+        /*reviewServie.remove(3, function (count) {
+
+            console.log(count);
+
+            if(count === "success") {
+                alert("REMOVED");
+            }
+        }, function (err) {
+            alert('ERROR...');
         });*/
+
+        /*reviewServie.update({
+            review_no : 4,
+            review_title : "review",
+            review_content: "review"
+        }, function (result) {
+            alert("수정 완료");
+        });*/
+
+        reviewServie.get(4, function (data) {
+            console.log(data);
+        })
     });
 </script>
 <script>
