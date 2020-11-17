@@ -126,6 +126,41 @@
     </div>
 </section>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Review MODAL</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>리뷰 제목</label>
+                    <input class="form-control" name="review_title" value="New Reply!!">
+                </div>
+                <div class="form-group">
+                    <label>리뷰 본문</label>
+                    <input class="form-control" name="review_content" value="New Reply!!">
+                </div>
+                <div class="form-group">
+                    <label>작성자</label>
+                    <input class="form-control" name="userid" value="replyer" readonly>
+                </div>
+                <div class="form-group">
+                    <label>작성날짜</label>
+                    <input class="form-control" name="review_date" value="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+                <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+                <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
+                <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/resources/shop/js/popper.min.js"></script>
@@ -184,7 +219,7 @@
                 }
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<li class='left clearfix' data-review_no='"+list[i].review_no + "'>";
+                    str += "<li class='left clearfix list-group-item' data-review_no='"+list[i].review_no + "'>";
                     str += "    <div><div class='header'><small class='font-weight-bolder'>" + list[i].userid + "</small> &nbsp; <small class='font-weight-bolder'>" + list[i].review_title + "</small>";
                     str += "    <small class='float-right text-muted'>"+ reviewService.displayTime(list[i].review_date)+ "</small></div>";
                     str += "    <p>"+list[i].review_content+"</p></div></li>";
@@ -192,8 +227,56 @@
 
                 reviewUL.html(str);
             });
-        }
+        } //end showList
 
+        var modal = $(".modal");
+        var modalInputReview_title = modal.find("input[name='review_title']");
+        var modalInputReview_content = modal.find("input[name='review_content']");
+        var modalInputUserId = modal.find("input[name='userid']");
+        var modalInputReview_Date = modal.find("input[name='review_date']");
+
+        var modalModBtn = $("#modalModBtn");
+        var modalRemoveBtn = $("#modalRemoveBtn");
+        var modalRegisterBtn = $("#modalRegisterBtn");
+
+        $("#regBtn").on("click", function (e) {
+
+            <sec:authorize access="isAuthenticated()">
+            modal.find("input").val("");
+            modal.find(modalInputUserId).val("<sec:authentication property='principal.member.userid'/>");
+            modalInputReview_Date.closest("div").hide();
+            modal.find("button[id != 'modalCloseBtn']").hide();
+
+            modalRegisterBtn.show();
+
+            $(".modal").modal("show");
+
+            return ;
+            </sec:authorize>
+
+            alert("로그인 해주세요");
+        });
+
+        modalRegisterBtn.on("click", function (e) {
+
+            review = {
+                review_title: modalInputReview_title.val(),
+                review_content: modalInputReview_content.val(),
+                userid : modalInputUserId.val(),
+                product_id: product_id_value,
+            };
+
+            reviewService.add(review, function (result) {
+                alert(result);
+
+                modal.find("input").val("");
+                modal.modal("hide");
+
+                showList(1);
+
+            });
+
+        });
 
 
     });
