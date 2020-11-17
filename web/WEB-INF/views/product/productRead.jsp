@@ -98,7 +98,7 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    <span class="lnr lnr-bubble"> Review</span>&nbsp;<span id="replyCnt" class="badge badge-info">${board.replyCnt}</span>
+                    <span class="lnr lnr-bubble"> Review</span>&nbsp;<span id="replyCnt" class="badge badge-info">${reviewCount}</span>
                     <button class="btn btn-link float-right" id="regBtn">New</button>
                 </div>
                 <div class="card-body">

@@ -90,4 +90,11 @@ public class ReviewMapperTests {
 
         reviewMapper.delete(review_no);
     }
+
+    // product_id당 리뷰 수 조회
+    @Test
+    public void testCount() {
+
+        log.info(reviewMapper.countReview(6));
+    }
 }

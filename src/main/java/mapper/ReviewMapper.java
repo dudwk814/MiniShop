@@ -19,4 +19,6 @@ public interface ReviewMapper {
     public int modify(ReviewVO vo);
 
     public int delete(int review_no);
+
+    public int countReview(int product_id);
 }

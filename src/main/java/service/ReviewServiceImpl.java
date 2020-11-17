@@ -54,4 +54,9 @@ public class ReviewServiceImpl implements ReviewService{
         
         return reviewMapper.delete(review_no);
     }
+
+    @Override
+    public int countReview(int product_id) {
+        return reviewMapper.countReview(product_id);
+    }
 }

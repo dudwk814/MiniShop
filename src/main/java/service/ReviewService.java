@@ -16,4 +16,6 @@ public interface ReviewService {
     public int modify(ReviewVO vo);
 
     public int remove(int review_no);
+
+    public int countReview(int product_id);
 }
