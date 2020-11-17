@@ -126,8 +126,7 @@ var replyService = (function () {
             return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/',
                 (dd > 9 ? '' : '0') + dd ].join('');
         }
-    }
-    ;
+    };
 
     function get(rno, callback, error) {
 

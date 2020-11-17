@@ -1,6 +1,6 @@
 console.log("Review Module......");
 
-var reviewServie = (function (){
+var reviewService = (function (){
 
     function add(review, callback, error) {
         console.log("add review");
@@ -20,8 +20,8 @@ var reviewServie = (function (){
                     error(er);
                 }
             }
-        })
-    }
+        });
+    };
 
     function getList(param, callback, error) {
 
@@ -40,7 +40,7 @@ var reviewServie = (function (){
             }
         });
 
-        }
+        };
 
     function remove(review_no, callback, error) {
         $.ajax({
@@ -57,7 +57,7 @@ var reviewServie = (function (){
                 }
             }
         });
-    }
+    };
 
     function update(review, callback, error) {
 
@@ -79,7 +79,35 @@ var reviewServie = (function (){
                 }
             }
         });
-    }
+    };
+
+    function displayTime(timeValue) {
+
+        var today = new Date();
+
+        var gap = today.getTime() - timeValue;
+
+        var dateObj = new Date(timeValue);
+        var str = "";
+
+        if (gap < (1000 * 60 * 60 * 24)) {
+
+            var hh = dateObj.getHours();
+            var mi = dateObj.getMinutes();
+            var ss = dateObj.getSeconds();
+
+            return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
+                ':', (ss > 9 ? '' : '0') + ss ].join('');
+
+        } else {
+            var yy = dateObj.getFullYear();
+            var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+            var dd = dateObj.getDate();
+
+            return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/',
+                (dd > 9 ? '' : '0') + dd ].join('');
+        }
+    };
 
     function get(review_no, callback, error) {
         $.get("/review/" + review_no + ".json", function (result) {
@@ -91,13 +119,16 @@ var reviewServie = (function (){
                 error();
             }
         });
-    }
+    };
+
+
 
     return {
         add:add,
         getList : getList,
         remove : remove,
         update : update,
-        get : get
+        get : get,
+        displayTime : displayTime
     };
 })();

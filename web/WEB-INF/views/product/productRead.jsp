@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
 <%@ include file="../includes/header2.jsp"%>
@@ -91,28 +92,37 @@
 </section>
 
 <div class="w-100"/>
-<section>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <i class="fa fa-comments fa -fw"></i> Review
-                <span class="float-right"><a href="#" class="active">최신순</a>&nbsp; | &nbsp;<a href="#">추천순</a></span>
-            </div>
-            <%-- /.card - header --%>
-            <div class="card-body">
-                <ul class="chat">
-                    <%-- start review --%>
-                    <li class="left clearfix" data-rview_no="4">
-                        <div>
-                            <div class="header">
-                                <strong class="primary-font">user00</strong>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+<section id="home-section" class="d-flex justify-content-center col-lg-12">
 
+    <div class="col-lg-9">
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="lnr lnr-bubble"> Review</span>&nbsp;<span id="replyCnt" class="badge badge-info">${board.replyCnt}</span>
+                    <button class="btn btn-link float-right" id="regBtn">New</button>
+                </div>
+                <div class="card-body">
+                    <ul class="chat list-group-flush">
+                        <li class="left clearfix" data-review_no='12'>
+                            <div>
+                                <div class="header">
+                                    <strong class="font-weight-bold">user00</strong>
+                                    <small class="float-right text-muted">2020-10-12</small>
+                                </div>
+                                <p>Good Job</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
         </div>
+        <div class="float-right">
+
+        </div>
+    </div>
+    </div>
+    </div>
     </div>
 </section>
 
@@ -158,34 +168,34 @@
 
         var product_id_value = '<c:out value="${product.product_id}"/>';
 
-        reviewServie.getList({product_id:product_id_value, page:1}, function (list) {
-            for (var i = 0, len = list.length || 0; i < len; i++) {
-                console.log(list[i]);
-            }
-        });
+        var reviewUL = $(".chat");
 
-        /*reviewServie.remove(3, function (count) {
+        showList(1);
 
-            console.log(count);
+        function showList(page) {
 
-            if(count === "success") {
-                alert("REMOVED");
-            }
-        }, function (err) {
-            alert('ERROR...');
-        });*/
+            reviewService.getList({product_id:product_id_value, page: page || 1}, function (list) {
 
-        /*reviewServie.update({
-            review_no : 4,
-            review_title : "review",
-            review_content: "review"
-        }, function (result) {
-            alert("수정 완료");
-        });*/
+                var str = "";
 
-        reviewServie.get(4, function (data) {
-            console.log(data);
-        })
+                if (list == null || list.length == 0) {
+                    reviewUL.html("");
+                    return ;
+                }
+
+                for (var i = 0, len = list.length || 0; i < len; i++) {
+                    str += "<li class='left clearfix' data-review_no='"+list[i].review_no + "'>";
+                    str += "    <div><div class='header'><small class='font-weight-bolder'>" + list[i].userid + "</small> &nbsp; <small class='font-weight-bolder'>" + list[i].review_title + "</small>";
+                    str += "    <small class='float-right text-muted'>"+ reviewService.displayTime(list[i].review_date)+ "</small></div>";
+                    str += "    <p>"+list[i].review_content+"</p></div></li>";
+                }
+
+                reviewUL.html(str);
+            });
+        }
+
+
+
     });
 </script>
 <script>
