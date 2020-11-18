@@ -98,7 +98,7 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    <span class="lnr lnr-bubble"> Review</span>&nbsp;<span id="replyCnt" class="badge badge-info">${reviewCount}</span>
+                    <span class="lnr lnr-bubble"> Review</span>&nbsp;<span id="replyCnt" class="badge badge-info">${reviewCountK}</span>
                     <button class="btn btn-link float-right" id="regBtn">New</button>
                 </div>
                 <div class="card-body">
@@ -220,9 +220,9 @@
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
                     str += "<li class='left clearfix list-group-item' data-review_no='"+list[i].review_no + "'>";
-                    str += "    <div><div class='header'><small class='font-weight-bolder'>" + list[i].userid + "</small> &nbsp; <small class='font-weight-bolder'>" + list[i].review_title + "</small>";
+                    str += "    <div><div class='header'><strong class='font-weight-bolder'>" + list[i].review_title + "</strong>";
                     str += "    <small class='float-right text-muted'>"+ reviewService.displayTime(list[i].review_date)+ "</small></div>";
-                    str += "    <p>"+list[i].review_content+"</p></div></li>";
+                    str += "    <p>"+list[i].review_content+" <strong class='font-weight-bolder float-right'>" + list[i].userid + "</strong> &nbsp; </p> </div></li>";
                 }
 
                 reviewUL.html(str);
@@ -273,11 +273,48 @@
                 modal.modal("hide");
 
                 showList(1);
-
             });
-
         });
 
+        // 리뷰 조회 클릭 이벤트
+        $(".chat").on("click", "li", function (e) {
+
+            var review_no = $(this).data("review_no");
+
+            reviewService.get(review_no, function (review) {
+
+                modalInputReview_content.val(review.review_content);
+                modalInputReview_title.val(review.review_title);
+                modalInputUserId.val(review.userid);
+                modalInputReview_Date.val(reviewService.displayTime(review.review_date)).attr("readonly", "readonly");
+                modal.data("review_no", review.review_no);
+
+                modal.find("button[id != 'modalCloseBtn']").hide();
+                <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
+                        modalModBtn.show();
+                        modalRemoveBtn.show();
+                </sec:authorize>
+
+                $(".modal").modal("show");
+            });
+        });
+
+        // 리뷰 수정
+        modalModBtn.on("click", function (e) {
+
+            var review = {
+                review_no : modal.data("review_no"),
+                review_title : modalInputReview_title.val(),
+                review_content : modalInputReview_content.val()
+            };
+
+            reviewService.update(review, function (result) {
+
+                alert(result);
+                modal.modal("hide");
+                showList(1);
+            })
+        })
 
     });
 </script>
