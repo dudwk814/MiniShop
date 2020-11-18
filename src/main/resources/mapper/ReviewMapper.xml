@@ -30,9 +30,16 @@
     <!-- product_id에 해당하는 리뷰 리스트 조회(페이징 처리) -->
     <select id="getListWithPaging" resultType="domain.ReviewVO">
         <![CDATA[
-            select * from tbl_review
-            where product_id = #{product_id}
-            order by review_no desc
+            select *
+            from
+            (
+                select /*+ INDEX(tbl_review SYS_C0015606) */
+                    rownum rn, review_no, product_id, review_title, review_content, review_date, review_updateDate, userid
+                    from tbl_review
+                    where product_id = #{product_id}
+                    and review_no > 0
+                    and rownum <= #{cri.pageNum} * #{cri.amount}
+            ) where rn > (#{cri.pageNum} -1) * #{cri.amount}
         ]]>
     </select>
 
@@ -52,6 +59,6 @@
 
     <!-- product_id 당 리뷰 수 조회 -->
     <select id="countReview" resultType="int">
-        select count(*) from tbl_review where product_id = #{product_id}
+        select count(review_no) from tbl_review where product_id = #{product_id}
     </select>
 </mapper>

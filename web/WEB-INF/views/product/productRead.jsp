@@ -103,16 +103,10 @@
                 </div>
                 <div class="card-body">
                     <ul class="chat list-group-flush">
-                        <li class="left clearfix" data-review_no='12'>
-                            <div>
-                                <div class="header">
-                                    <strong class="font-weight-bold">user00</strong>
-                                    <small class="float-right text-muted">2020-10-12</small>
-                                </div>
-                                <p>Good Job</p>
-                            </div>
-                        </li>
                     </ul>
+                </div>
+                <div class="card-footer">
+
                 </div>
             </div>
 
@@ -209,8 +203,16 @@
 
         function showList(page) {
 
-            reviewService.getList({product_id:product_id_value, page: page || 1}, function (list) {
+            reviewService.getList({product_id:product_id_value, page: page || 1}, function (reviewCnt, list) {
 
+                console.log("reviewCnt : " + reviewCnt);
+                console.log("list : " + list);
+
+                if (page == -1) {
+                    pageNum = Math.ceil(reviewCnt/10.0);
+                    showList(pageNum);
+                    return ;
+                }
                 var str = "";
 
                 if (list == null || list.length == 0) {
@@ -226,6 +228,8 @@
                 }
 
                 reviewUL.html(str);
+
+                showReviewPage(reviewCnt);
             });
         } //end showList
 
@@ -272,7 +276,7 @@
                 modal.find("input").val("");
                 modal.modal("hide");
 
-                showList(1);
+                showList(-1);
             });
         });
 
@@ -313,13 +317,82 @@
                 alert(result);
                 modal.modal("hide");
                 showList(1);
-            })
-        })
+            });
+        });
+
+        // 리뷰 삭제
+        modalRemoveBtn.on("click", function (e) {
+
+            var review_no = modal.data("review_no");
+
+           reviewService.remove(review_no, function (result) {
+              alert(result);
+              modal.modal("hide");
+              showList(1);
+           });
+        });
+
+        var pageNum = 1;
+        var reviewPageFooter = $(".card-footer");
+
+        function showReviewPage(reviewCnt) {
+
+            var endNum = Math.ceil(pageNum / 5.0) * 10;
+            var startNum = endNum - 9;
+
+            var prev = startNum != 1;
+            var next = false;
+
+            if (endNum * 5 >= reviewCnt) {
+                endNum = Math.ceil(reviewCnt / 5.0);
+            }
+
+            if (endNum * 5 < reviewCnt) {
+                next = true;
+            }
+
+            var str = "<ul class='pagination float-right'>";
+
+            if (prev) {
+                str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1)+"'>Previous</a></li>";
+            }
+
+            for (var i = startNum; i <= endNum; i++) {
+
+                var active = pageNum == i ? "active" : "";
+
+                str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+            }
+
+            if (next) {
+                str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+            }
+
+            str += "</ul></div>";
+
+            console.log(str);
+
+            reviewPageFooter.html(str);
+        }
+
+        reviewPageFooter.on("click", "li a", function (e) {
+            e.preventDefault();
+
+            var targetNum = $(this).attr("href");
+
+            console.log("targetPageNum = " + targetNum);
+
+            pageNum = targetNum;
+
+            showList(pageNum);
+        });
 
     });
 </script>
 <script>
 </script>
 
+
+<br/><br/>
 
 <%@ include file="../includes/footer.jsp"%>

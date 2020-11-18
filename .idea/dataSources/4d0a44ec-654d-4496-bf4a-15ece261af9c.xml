@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-16.01:45:49</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-11-16.01:45:59</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-11-19.05:40:10</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-11-19.05:40:10</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -260,7 +260,7 @@
     <table id="63" parent="18" name="TBL_REVIEW">
       <ObjectId>81759</ObjectId>
       <CreatedTimestamp>2020-11-16.01:43:58</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-16.01:45:49</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-11-19.05:40:10</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <synonym id="64" parent="29" name="ABSPATH">
@@ -34841,7 +34841,11 @@
       <NotNull>1</NotNull>
       <DefaultExpression>SYSDATE</DefaultExpression>
     </column>
-    <index id="5023" parent="63" name="SYS_C0015606">
+    <column id="5023" parent="63" name="REVIEW_STAR">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+    </column>
+    <index id="5024" parent="63" name="SYS_C0015606">
       <ObjectId>81760</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-11-16.01:43:58</CreatedTimestamp>
@@ -34851,7 +34855,7 @@
 REVIEW_NO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="5024" parent="63" name="SYS_C0015606">
+    <key id="5025" parent="63" name="SYS_C0015606">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2020-11-16.01:43:58</ModifiedTimestamp>
       <ColNames>PRODUCT_ID
@@ -34860,14 +34864,14 @@ REVIEW_NO</ColNames>
       <UnderlyingIndexName>SYS_C0015606</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="5025" parent="63" name="FK_PRODUCT_ID">
+    <foreign-key id="5026" parent="63" name="FK_PRODUCT_ID">
       <ModifiedTimestamp>2020-11-16.01:45:19</ModifiedTimestamp>
       <ColNames>PRODUCT_ID</ColNames>
       <RefTableName>TBL_PRODUCT</RefTableName>
       <RefKeyName>SYS_C0015045</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="5026" parent="63" name="FK_USERID">
+    <foreign-key id="5027" parent="63" name="FK_USERID">
       <ModifiedTimestamp>2020-11-16.01:45:49</ModifiedTimestamp>
       <ColNames>USERID</ColNames>
       <RefTableName>TBL_MEMBER</RefTableName>

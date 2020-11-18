@@ -1,6 +1,7 @@
 package service;
 
 import domain.Criteria;
+import domain.ReviewPageDTO;
 import domain.ReviewVO;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface ReviewService {
 
     public ReviewVO get(int review_no);
 
-    public List<ReviewVO> getList(Criteria cri, int product_id);
+    public ReviewPageDTO getList(Criteria cri, int product_id);
 
     public int modify(ReviewVO vo);
 

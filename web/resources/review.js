@@ -32,7 +32,8 @@ var reviewService = (function (){
         $.getJSON("/review/pages/" + product_id + "/" + page + ".json",
             function (data) {
                 if(callback) {
-                    callback(data);
+                   // callback(data);
+                    callback(data.reviewCnt, data.list);
                 }
             }).fail(function (xhr, status, err) {
             if(error) {

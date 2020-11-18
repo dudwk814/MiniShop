@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Criteria;
+import domain.ReviewPageDTO;
 import domain.ReviewVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -38,17 +39,16 @@ public class ReviewController {
     }
 
     @GetMapping(value = "/pages/{product_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ReviewVO>> getList(@PathVariable("product_id") int product_id, @PathVariable("page") int page, Model model) {
+    public ResponseEntity<ReviewPageDTO> getList(@PathVariable("product_id") int product_id, @PathVariable("page") int page, Model model) {
 
         log.info("getList : " + product_id);
 
-        Criteria cri = new Criteria(page, 10);
+        Criteria cri = new Criteria(page, 5);
 
-        model.addAttribute("reviewCount", reviewService.countReview(product_id));
 
         log.info(cri);
 
-        return new ResponseEntity<>(reviewService.getList(cri, product_id), HttpStatus.OK);
+        return new ResponseEntity<ReviewPageDTO>(reviewService.getList(cri, product_id), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{review_no}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})

@@ -97,4 +97,14 @@ public class ReviewMapperTests {
 
         log.info(reviewMapper.countReview(6));
     }
+
+    @Test
+    public void testList() {
+
+        Criteria cri = new Criteria(1, 10);
+
+        List<ReviewVO> listWithPaging = reviewMapper.getListWithPaging(cri, 6);
+
+        listWithPaging.forEach(vo -> log.info(vo));
+    }
 }

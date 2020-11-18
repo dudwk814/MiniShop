@@ -97,6 +97,9 @@
                         </li>
                     </ul>
                 </div>
+                <div class="card-footer">
+
+                </div>
             </div>
 
         </div>
@@ -204,6 +207,8 @@
                 }
 
                 replyUL.html(str);
+
+                showReplyPage(replyCnt);
             });
         }
 
@@ -352,8 +357,65 @@
             });
         });
 
+        var pageNum = 1;
+        var replyPageFooter = $(".card-footer");
+
+        function showReplyPage(replyCnt) {
+
+            var endNum = Math.ceil(pageNum / 10.0) * 10;
+            var startNum = endNum - 9;
+
+            var prev = startNum != 1;
+            var next = false;
+
+            if (endNum * 10 >= replyCnt) {
+                endNum = Math.ceil(replyCnt / 10.0);
+            }
+
+            if (endNum * 10 < replyCnt) {
+                next = true;
+            }
+
+            var str = "<ul class='pagination float-right'>";
+
+            if (prev) {
+                str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1)+"'>Previous</a></li>";
+            }
+
+            for (var i = startNum; i <= endNum; i++) {
+
+                var active = pageNum == i ? "active" : "";
+
+                str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+            }
+
+            if (next) {
+                str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+            }
+
+            str += "</ul></div>";
+
+            console.log(str);
+
+            replyPageFooter.html(str);
+        }
+
+        replyPageFooter.on("click", "li a", function (e) {
+            e.preventDefault();
+
+            var targetNum = $(this).attr("href");
+
+            console.log("targetPageNum = " + targetNum);
+
+            pageNum = targetNum;
+
+            showList(pageNum);
+        });
+
     });
 </script>
 
+
+<br/><br/>
 
 <%@ include file="../includes/footer.jsp" %>
