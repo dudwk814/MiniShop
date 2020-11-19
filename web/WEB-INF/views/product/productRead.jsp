@@ -129,6 +129,10 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <label>별점</label>
+                    <input id = "input-id" name = "input-name" type = "number" class = "rating" min = 1 max = 10 step = 2 data-size = "lg" data-rtl = "true" >
+                </div>
+                <div class="form-group">
                     <label>리뷰 제목</label>
                     <input class="form-control" name="review_title" value="New Reply!!">
                 </div>
@@ -172,6 +176,7 @@
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
+<script src="/resources/shop/js/star-rating.js"></script>
 <script>
     $(document).ready(function (e) {
         var form = $("#productForm");

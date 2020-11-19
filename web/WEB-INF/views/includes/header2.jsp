@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="/resources/shop/css/icomoon.css">
     <link rel="stylesheet" href="/resources/shop/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" type="text/css" media="all" href="/resources/shop/css/star-rating.css">
 </head>
 <body class="goto-here">
 
