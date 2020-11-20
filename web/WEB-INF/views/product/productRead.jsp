@@ -148,6 +148,10 @@
                     <label>작성날짜</label>
                     <input class="form-control" name="review_date" value="">
                 </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">사진 첨부</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" multiple>
+                </div>
             </div>
             <div class="modal-footer">
                 <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
