@@ -26,7 +26,7 @@ public class ProductController {
 
         model.addAttribute("product", product);
 
-        return "product/productRead";
+        return "product/productRead2";
     }
     
 
