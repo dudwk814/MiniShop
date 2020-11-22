@@ -115,34 +115,37 @@
                     </div>
                     <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
                         <div class="row p-4">
-                            <div class="col-md-7">
+                            <div class="col-md-12">
                                 <h3 class="mb-4">23 Reviews</h3>
-                                <div class="review">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                    <div class="desc">
-                                        <h4>
-                                            <span class="text-left">Jacob Webb</span>
-                                            <span class="text-right">14 March 2018</span>
-                                        </h4>
-                                        <p class="star">
-								   				<span>
-								   					<i class="ion-ios-star-outline"></i>
-								   					<i class="ion-ios-star-outline"></i>
-								   					<i class="ion-ios-star-outline"></i>
-								   					<i class="ion-ios-star-outline"></i>
-								   					<i class="ion-ios-star-outline"></i>
-							   					</span>
-                                            <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-                                        </p>
-                                        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                                <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성</button>
+                                <div class="review_wrapper">
+                                    <div class="review">
+                                        <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                                        <div class="desc">
+                                            <h4>
+                                                <span class="text-left">Jacob Webb</span>
+                                                <span class="text-right">14 March 2018</span>
+                                            </h4>
+                                            <p class="star">
+                                                    <span>
+                                                        <i class="ion-ios-star-outline"></i>
+                                                        <i class="ion-ios-star-outline"></i>
+                                                        <i class="ion-ios-star-outline"></i>
+                                                        <i class="ion-ios-star-outline"></i>
+                                                        <i class="ion-ios-star-outline"></i>
+                                                    </span>
+                                               <%-- <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>--%>
+                                            </p>
+                                            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <%--<div class="col-md-4">
                                 <div class="rating-wrap">
                                     <button class="btn btn-link" id="regBtn">New</button>
                                 </div>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                 </div>
@@ -234,7 +237,9 @@
 
         var product_id_value = '<c:out value="${product.product_id}"/>';
 
-        var reviewUL = $(".chat");
+        console.log(product_id_value);
+
+        var reviewDIV = $(".review_wrapper");
 
         showList(1);
 
@@ -253,18 +258,24 @@
                 var str = "";
 
                 if (list == null || list.length == 0) {
-                    reviewUL.html("");
+                    reviewDIV.html("");
                     return ;
                 }
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<li class='left clearfix list-group-item' data-review_no='"+list[i].review_no + "'>";
-                    str += "    <div><div class='header'><strong class='font-weight-bolder'>" + list[i].review_title + "</strong>";
-                    str += "    <small class='float-right text-muted'>"+ reviewService.displayTime(list[i].review_date)+ "</small></div>";
-                    str += "    <p>"+list[i].review_content+" <strong class='font-weight-bolder float-right'>" + list[i].userid + "</strong> &nbsp; </p> </div></li>";
+                    str += "<div class='review'><div class='user-img' style='background-image: url(/resources/shop/images/person_1.jpg)'></div>";
+                    str += "    <div class='desc'>";
+                    str += "    <h4><span class='text-left'>이름 : " + list[i].userid + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 제목 : " + list[i].review_title + "</span>";
+                    str += "        <span class='text-right'>" + reviewService.displayTime(list[i].review_date) + "</span></h4>";
+                    str += "    <p class='star'><span>";
+                    str += "            <i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i>";
+                    str += "    </span> </p>";
+                    str += "<p>" + list[i].review_content + "</p>";
+                    str += "</div></div>";
+
                 }
 
-                reviewUL.html(str);
+                reviewDIV.html(str);
 
                 showReviewPage(reviewCnt);
             });
