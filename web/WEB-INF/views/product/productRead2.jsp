@@ -155,6 +155,49 @@
 </section>
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Review MODAL</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>별점</label>
+                    <input id = "input-id" name = "input-name" type = "number" class = "rating" min = 1 max = 10 step = 2 data-size = "lg" data-rtl = "true" >
+                </div>
+                <div class="form-group">
+                    <label>리뷰 제목</label>
+                    <input class="form-control" name="review_title" value="New Reply!!">
+                </div>
+                <div class="form-group">
+                    <label>리뷰 본문</label>
+                    <input class="form-control" name="review_content" value="New Reply!!">
+                </div>
+                <div class="form-group">
+                    <label>작성자</label>
+                    <input class="form-control" name="userid" value="replyer" readonly>
+                </div>
+                <div class="form-group">
+                    <label>작성날짜</label>
+                    <input class="form-control" name="review_date" value="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">사진 첨부</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" multiple>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+                <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+                <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
+                <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
