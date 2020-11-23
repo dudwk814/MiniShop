@@ -95,7 +95,7 @@
                     </p>
                     <p class="d-flex">
                         <span>Delivery</span>
-                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${fee}" maxFractionDigits="0"/>원</span>
+                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${fee}" maxFractionDigits="0"/>원 (50,000원 이상 배송비 무료)</span>
                     </p>
                     <%--<p class="d-flex">
                         <span>Discount</span>

@@ -60,25 +60,21 @@
                         </div>
                     </div>
                     <div class="w-100"></div>
-                    <div class="input-group col-md-6 d-flex mb-3">
-	             	<span class="input-group-btn mr-2">
-	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-	                   <i class="ion-ios-remove"></i>
-	                	</button>
-	            		</span>
-                        <input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                        <span class="input-group-btn ml-2">
-	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-	                     <i class="ion-ios-add"></i>
-	                 </button>
-	             	</span>
-                    </div>
+                </div>
                     <div class="w-100"></div>
-                    <div class="col-md-12">
-                        <p style="color: #000;">80 piece available</p>
+                    <div class="form-group">
+                        <form action="/cart/add" method="post" id="addCartForm">
+                            <div class="input-group col-md-6 d-flex mb-3">
+                                <input type="number" id="quantity" name="amount" class="quantity form-control input-number" value="1" min="1" max="100">
+                                <input type="hidden" name="product_id" value="${product.product_id}">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                <input type="hidden" name="userid" value="${userid}">
+                            </div>
+                            <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
+                        </form>
                     </div>
                 </div>
-                <p><a href="cart.html" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a></p>
+
             </div>
         </div>
 
@@ -146,6 +142,9 @@
                                     <button class="btn btn-link" id="regBtn">New</button>
                                 </div>
                             </div>--%>
+                            <div class="review_paging">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,7 +164,9 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>별점</label>
-                    <input id = "input-id" name = "input-name" type = "number" class = "rating" min = 1 max = 10 step = 2 data-size = "lg" data-rtl = "true" >
+                    <input id="input-21b" value="4" type="text" class="rating" data-min=0 data-max=5 data-step=0.5 data-size="lg"
+                           required title="">
+                    <div class="clearfix"></div>
                 </div>
                 <div class="form-group">
                     <label>리뷰 제목</label>
@@ -217,9 +218,16 @@
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
 <script src="/resources/shop/js/star-rating.js"></script>
+<script src="/resources/shop/js/theme.js"></script>
 
 <script>
     $(document).ready(function(){
+
+        // initialize with defaults
+        $("#input-id").rating();
+
+// with plugin options
+        $("#input-id").rating({min:1, max:10, step:2, size:'lg'});
 
         var quantitiy=0;
         $('.quantity-right-plus').click(function(e){
@@ -257,17 +265,31 @@
 
 <script>
     $(document).ready(function (e) {
-        var form = $("#productForm");
 
-        var orderBtn = $("#orderBtn");
+        var addBtn = $("#addCartBtn");
+        var addCartForm = $("#addCartForm");
+        var userid = '${userid}';
+        var product_id_value = '<c:out value="${product.product_id}"/>';
 
-        orderBtn.on("click", function (e) {
 
-            form.attr("action", "/order/orderForm");
-            form.attr("method", "get");
 
-            form.submit();
+        console.log("userid : " + userid);
+
+
+        addBtn.on("click", function (e) {
+            e.preventDefault();
+
+            if (userid == 'anonymousUser') {
+                alert("로그인 후 이용가능합니다.");
+                return;
+            }
+
+            addCartForm.submit();
         });
+
+
+        console.log(product_id_value);
+
 
 
         var csrfHeaderName = "${_csrf.headerName}";
@@ -278,9 +300,7 @@
             xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
         });
 
-        var product_id_value = '<c:out value="${product.product_id}"/>';
 
-        console.log(product_id_value);
 
         var reviewDIV = $(".review_wrapper");
 
@@ -306,7 +326,7 @@
                 }
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<div class='review'><div class='user-img' style='background-image: url(/resources/shop/images/person_1.jpg)'></div>";
+                    str += "<div class='review' data-review_no='" + list[i].review_no + "'><div class='user-img' style='background-image: url(/resources/shop/images/person_1.jpg)'></div>";
                     str += "    <div class='desc'>";
                     str += "    <h4><span class='text-left'>이름 : " + list[i].userid + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 제목 : " + list[i].review_title + "</span>";
                     str += "        <span class='text-right'>" + reviewService.displayTime(list[i].review_date) + "</span></h4>";
@@ -338,7 +358,7 @@
 
             <sec:authorize access="isAuthenticated()">
             modal.find("input").val("");
-            modal.find(modalInputUserId).val("<sec:authentication property='principal.member.userid'/>");
+            modal.find(modalInputUserId).val(userid);
             modalInputReview_Date.closest("div").hide();
             modal.find("button[id != 'modalCloseBtn']").hide();
 
@@ -372,7 +392,7 @@
         });
 
         // 리뷰 조회 클릭 이벤트
-        $(".chat").on("click", "li", function (e) {
+        $(".review_wrapper").on("click", "div", function (e) {
 
             var review_no = $(this).data("review_no");
 
@@ -424,7 +444,7 @@
         });
 
         var pageNum = 1;
-        var reviewPageFooter = $(".card-footer");
+        var reviewPageFooter = $(".review_paging");
 
         function showReviewPage(reviewCnt) {
 

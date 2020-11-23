@@ -20,11 +20,12 @@ public class ProductController {
 
     // 상품 조회
     @GetMapping("/read")
-    public String read(int product_id, Model model) {
+    public String read(int product_id, String userid, Model model) {
 
         ProductVO product = productService.getProduct(product_id);
 
         model.addAttribute("product", product);
+        model.addAttribute("userid", userid);
 
         return "product/productRead2";
     }
