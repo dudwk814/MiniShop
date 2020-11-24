@@ -62,7 +62,6 @@
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="/board/list" class="nav-link">Board</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 페이지로 이동 --%>
@@ -87,7 +86,7 @@
                         </div>
                     </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <li class="nav-item"><a href="#" class="nav-link">Admin Page</a></li>
+                        <li class="nav-item"><a href="/admin/page" class="nav-link">Admin Page</a></li>
                     </sec:authorize>
                     <li class="nav-item"><a href="/user/logout" class="nav-link" id="logoutBtn">Logout</a></li>
                 </sec:authorize>

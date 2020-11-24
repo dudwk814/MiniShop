@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Log4j
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -68,6 +70,11 @@ public class MemberServiceImpl implements MemberService{
         log.info("get member info " + userid);
 
         return memberMapper.get(userid);
+    }
+
+    @Override
+    public List<MemberVO> getList() {
+        return memberMapper.getList();
     }
 
     @Override

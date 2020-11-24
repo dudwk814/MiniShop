@@ -2,9 +2,13 @@ package mapper;
 
 import domain.MemberVO;
 
+import java.util.List;
+
 public interface MemberMapper {
 
     public MemberVO get(String userid);
+
+    public List<MemberVO> getList();
 
     public int register(MemberVO memberVO);
     public void authRegister(String userid);

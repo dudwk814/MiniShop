@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
@@ -33,5 +35,13 @@ public class MemberMapperTests {
         String userid = "admin";
 
         log.info(memberMapper.findUser(userid));
+    }
+
+    @Test
+    public void testGetList() {
+
+        List<MemberVO> list = memberMapper.getList();
+
+        list.forEach(memberVO -> log.info(memberVO));
     }
 }

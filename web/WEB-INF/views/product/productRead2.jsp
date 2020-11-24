@@ -331,7 +331,8 @@
                     str += "    <h4><span class='text-left'>이름 : " + list[i].userid + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 제목 : " + list[i].review_title + "</span>";
                     str += "        <span class='text-right'>" + reviewService.displayTime(list[i].review_date) + "</span></h4>";
                     str += "    <p class='star'><span>";
-                    str += "            <i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i>";
+                    /*str += "            <i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i>";*/
+                    str += "<input type='text' class='rating rating-loading' data-size='xs' value='5'>";
                     str += "    </span> </p>";
                     str += "<p>" + list[i].review_content + "</p>";
                     str += "</div></div>";

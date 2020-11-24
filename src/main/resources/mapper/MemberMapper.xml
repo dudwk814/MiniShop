@@ -35,6 +35,13 @@
         WHERE mem.userid = #{userid}
     </select>
 
+    <!-- 전체 회원 조회(admin) -->
+    <select id="getList" resultMap="memberMap">
+        SELECT mem.userid, userpw, username,  enabled, regdate, updatedate, auth, post_code, street_address, address, detail_address
+        FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth ON mem.userid = auth.userid
+        WHERE mem.userid = auth.userid
+    </select>
+
     <!-- 회원 가입 -->
     <insert id="register">
         insert into tbl_member(userid, userpw, userName, post_code, street_address, address, detail_address)
