@@ -94,16 +94,29 @@
                             <th scope="col">상품 이름</th>
                             <th scope="col">상품 가격</th>
                             <th scope="col">브랜드</th>
+                            <th scope="col">제품 삭제</th>
                         </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${productList}" var="product" varStatus="idx">
                                 <tr>
-                                    <td><img</td>
+                                    <td><img src="/resources/shop/images/${product.product_url}" class="img-thumbnail" style="width: 150px; height: 200px;"/></td>
+                                    <td>${product.product_id}</td>
+                                    <td><a href="/product/read?product_id=${product.product_id}">${product.product_name}</a></td>
+                                    <td><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</td>
+                                    <td>${product.brand}</td>
+                                    <td>
+                                        <form action="/admin/product/remove" method="post">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                            <input type="hidden" name="product_id" value="${product.product_id}">
+                                            <input type="submit" class="btn btn-outline-danger" value="제품 삭제">
+                                        </form>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
+                    <a href="#" class="btn btn-primary btn-lg">제품등록</a>
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
