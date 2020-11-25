@@ -2,6 +2,7 @@ package service;
 
 import domain.AddressVO;
 import domain.MemberVO;
+import domain.authVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.MemberMapper;
@@ -80,5 +81,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public int findUser(String userid) {
         return memberMapper.findUser(userid);
+    }
+
+    @Override
+    public void updateAuth(authVO vo) {
+        memberMapper.updateAuth(vo);
     }
 }

@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.MemberVO;
+import domain.authVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
@@ -44,4 +45,18 @@ public class MemberMapperTests {
 
         list.forEach(memberVO -> log.info(memberVO));
     }
+
+
+    // 멤버 권한 변경 테스트 (어드민 전용)
+    @Test
+    public void testUpdateAuth() {
+
+        authVO vo = new authVO();
+
+        vo.setAuth("ROLE_ADMIN");
+        vo.setUserid("qwer");
+
+        memberMapper.updateAuth(vo);
+    }
+
 }

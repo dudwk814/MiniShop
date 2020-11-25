@@ -50,6 +50,7 @@
                             <th scope="col">회원 아이디</th>
                             <th scope="col">가입 일</th>
                             <th scope="col">회원 등급</th>
+                            <th scope="col">회원 등급 변경</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,7 +60,23 @@
                             <td>${member.userName}</td>
                             <td>${member.userid}</td>
                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.regDate}"/></td>
-                            <td>${member.authList}</td>
+                            <td>${member.authList[0].auth}</td>
+                            <td>
+                                <form action="/admin/member/authModify" method="post" id="memberAuthModifyForm">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <input type="hidden" name="userid" value="${member.userid}">
+                                    <div class="input-group mb-3">
+                                        <select name="auth" class="custom-select" >
+                                            <option name="auth" value="${member.authList[0].auth}" selected>Choose...</option>
+                                            <option name="auth" value="ROLE_ADMIN">ADMIN</option>
+                                            <option name="auth" value="ROLE_MEMBER">MEMBER</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button id="memberAuthModifyBtn" class="btn btn-success authBtn" type="submit">권환 변경</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         </c:forEach>
                         </tbody>
@@ -69,8 +86,24 @@
 
             <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
                 <div class="p-4">
-                    <h3 class="mb-4">Manufactured By Nike</h3>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">상품 번호</th>
+                            <th scope="col">상품 이름</th>
+                            <th scope="col">상품 가격</th>
+                            <th scope="col">브랜드</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${productList}" var="product" varStatus="idx">
+                                <tr>
+                                    <td><img</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
@@ -167,5 +200,26 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        var memberAuthModifyBtn = $(".authBtn");
+        var memberAuthModifyForm = $("#memberAuthModifyForm")
+
+
+        memberAuthModifyBtn.on("click", function (e) {
+
+            e.preventDefault();
+
+            if(confirm("회원권한을 변경하시겠습니까?") == true) {
+                memberAuthModifyForm.submit();
+            } else {
+                return;
+            }
+        });
+    });
+</script>
 
 <%@ include file="../includes/footer.jsp"%>

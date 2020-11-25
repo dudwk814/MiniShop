@@ -67,4 +67,9 @@
     <delete id="removeAuth">
         delete from tbl_member_auth where userid = #{userid}
     </delete>
+
+    <!-- 회원 권한(Auth) 변경 -->
+    <update id="updateAuth">
+        update tbl_member_auth set auth = #{auth} where userid = #{userid}
+    </update>
 </mapper>

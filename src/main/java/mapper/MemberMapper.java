@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.MemberVO;
+import domain.authVO;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface MemberMapper {
     public void removeAuth(String userid);
 
     public int findUser(String userid);
+
+    public void updateAuth(authVO vo);
 }

@@ -2,6 +2,7 @@ package service;
 
 import domain.AddressVO;
 import domain.MemberVO;
+import domain.authVO;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface MemberService {
     public int remove(String userid);
 
     public int findUser(String userid);
+
+    public void updateAuth(authVO vo);
 }

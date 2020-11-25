@@ -16,6 +16,7 @@ public class ProductServiceImpl implements ProductService{
     @Setter(onMethod_ = @Autowired)
     private ProductMapper productMapper;
 
+    // 홈 화면 상품 조회
     @Override
     public List<ProductVO> getHomeProductList() {
 
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getHomeProductList();
     }
 
+    // 전체 상품 조회
     @Override
     public List<ProductVO> getProductList() {
 
@@ -32,10 +34,29 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getProductList();
     }
 
+    // 단일 상품 조회
     @Override
     public ProductVO getProduct(int product_id) {
 
         log.info("get Product for : " + product_id);
         return productMapper.getProduct(product_id);
+    }
+
+    // 상품 등록
+    @Override
+    public void insertProduct(ProductVO vo) {
+        productMapper.insertProduct(vo);
+    }
+
+    // 상품 수정
+    @Override
+    public void updateProduct(ProductVO vo) {
+        productMapper.updateProduct(vo);
+    }
+
+    // 상품 삭제
+    @Override
+    public void deleteProduct(int product_id) {
+        productMapper.deleteProduct(product_id);
     }
 }
