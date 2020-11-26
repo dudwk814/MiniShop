@@ -102,7 +102,7 @@
                                 <tr>
                                     <td><img src="/resources/shop/images/${product.product_url}" class="img-thumbnail" style="width: 150px; height: 200px;"/></td>
                                     <td>${product.product_id}</td>
-                                    <td><a href="/product/read?product_id=${product.product_id}">${product.product_name}</a></td>
+                                    <td><a href="/product/read?product_id=${product.product_id}"> ${product.product_name}</a></td>
                                     <td><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</td>
                                     <td>${product.brand}</td>
                                     <td>
