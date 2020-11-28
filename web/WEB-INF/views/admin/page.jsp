@@ -106,17 +106,18 @@
                                     <td><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</td>
                                     <td>${product.brand}</td>
                                     <td>
-                                        <form action="/admin/product/remove" method="post">
+                                        <form action="/admin/product/remove" id="productRemoveForm" method="post">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                             <input type="hidden" name="product_id" value="${product.product_id}">
-                                            <input type="submit" class="btn btn-outline-danger" value="제품 삭제">
+                                            <input type="submit" class="btn btn-outline-danger productRemoveBtn" value="제품 삭제">
                                         </form>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
-                    <a href="#" class="btn btn-primary btn-lg">제품등록</a>
+                    <a href="/admin/product/insertProduct" class="btn btn-primary">상품</a>
+                    <button type="button" class="btn btn-outline-info btn-lg" id="productRegBtn">상품등록</button>
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
@@ -158,42 +159,43 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Review MODAL</h4>
+                <h4 class="modal-title" id="myModalLabel">Product MODAL</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>별점</label>
-                    <input id="input-21b" value="4" type="text" class="rating" data-min=0 data-max=5 data-step=0.5 data-size="lg"
-                           required title="">
-                    <div class="clearfix"></div>
+            <form action="/admin/product/insertProduct" id="productRegisterForm" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>제품명</label>
+                        <input class="form-control" name="product_name" placeholder="제품명">
+                    </div>
+                    <div class="form-group">
+                        <label>제품가격</label>
+                        <input class="form-control" name="product_price" placeholder="제품가격">
+                    </div>
+                    <div class="form-group">
+                        <label>브랜드</label>
+                        <input class="form-control" name="brand" placeholder="브랜드">
+                    </div>
+                    <div class="form-group">
+                        <label>제품설명</label>
+                        <textarea class="form-control" name="product_desc" placeholder="제품설명"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product_img">사진 첨부</label>
+                        <input type="file" class="form-control-file" name="product_photo" id="product_img">
+                        <div class="select-img"><img src=""/></div>
+                    </div>
+
+                    <%=request.getRealPath("/") %>
                 </div>
-                <div class="form-group">
-                    <label>리뷰 제목</label>
-                    <input class="form-control" name="review_title" value="New Reply!!">
+
+                <div class="modal-footer">
+                    <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+                    <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+                    <button id="modalRegisterBtn" type="submit" class="btn btn-primary">Register</button>
+                    <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
                 </div>
-                <div class="form-group">
-                    <label>리뷰 본문</label>
-                    <input class="form-control" name="review_content" value="New Reply!!">
-                </div>
-                <div class="form-group">
-                    <label>작성자</label>
-                    <input class="form-control" name="userid" value="replyer" readonly>
-                </div>
-                <div class="form-group">
-                    <label>작성날짜</label>
-                    <input class="form-control" name="review_date" value="">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">사진 첨부</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" multiple>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
-                <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-                <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
-                <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -215,12 +217,19 @@
 <script src="/resources/shop/js/main.js"></script>
 
 <script>
+
+</script>
+<script>
     $(document).ready(function () {
 
 
         var memberAuthModifyBtn = $(".authBtn");
-        var memberAuthModifyForm = $("#memberAuthModifyForm")
+        var memberAuthModifyForm = $("#memberAuthModifyForm");
 
+        var productRemoveBtn = $(".productRemoveBtn");
+        var productRemoveForm = $("#productRemoveForm");
+
+        var productRegisterForm = $("#productRegisterForm");
 
         memberAuthModifyBtn.on("click", function (e) {
 
@@ -232,6 +241,88 @@
                 return;
             }
         });
+
+        productRemoveBtn.on("click", function (e) {
+            e.preventDefault();
+
+            if (confirm("제품을 삭제하시겠습니까?") == true) {
+                productRemoveForm.submit();
+            } else {
+                return;
+            }
+        });
+
+        var regex = new RegExp("(.*?)\.(JPG|jpg|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$"); // 파일 확장자 정규식
+        var maxSize = 20971520; // 20MB
+
+        // 업로드 파일 검사 함수
+        function checkExtension(fileName, fileSize) {
+
+            if (fileSize >= maxSize) {
+                alert("파일 사이즈 초과입니다.");
+                return false;
+            }
+
+            if (!regex.test(fileName)) {
+                alert("이미지 파일만 업로드가 가능합니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // 모달 창에서 이미지 선택 시 이미지 조회 함수
+        $("#product_img").change(function () {
+            if (this.files && this.files[0]) {
+
+                if (!checkExtension(this.files[0].name, this.files[0].size)) {
+                    return;
+                };
+                var reader = new FileReader();
+                reader.onload = function (data) {
+                    $(".select-img img").attr("src", data.target.result).width(250);
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        var modal = $(".modal");
+        var modalInputReview_title = modal.find("input[name='review_title']");
+        var modalInputReview_content = modal.find("input[name='review_content']");
+        var modalInputUserId = modal.find("input[name='userid']");
+        var modalInputReview_Date = modal.find("input[name='review_date']");
+
+        var modalModBtn = $("#modalModBtn");
+        var modalRemoveBtn = $("#modalRemoveBtn");
+        var modalRegisterBtn = $("#modalRegisterBtn");
+        var modalCloseBtn = $("#modalCloseBtn");
+
+        $("#productRegBtn").on("click", function (e) {
+
+
+            modal.find("input").val("");
+            modal.find(modalInputUserId).val();
+            modalInputReview_Date.closest("div").hide();
+            modal.find("button[id != 'modalCloseBtn']").hide();
+
+            modalRegisterBtn.show();
+
+            $(".modal").modal("show");
+        });
+
+
+        // 모달창에서 close 버튼 누를 경우 모달창을 닫음
+        modalCloseBtn.on("click", function (e) {
+
+            modal.modal("hide");
+        });
+
+       /* // 모달창에서 register 버튼을 누를 경우 상품 등록을 수행
+        modalRegisterBtn.on("click", function () {
+
+            productRegisterForm.submit();
+
+        });*/
     });
 </script>
 

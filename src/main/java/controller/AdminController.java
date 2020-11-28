@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import service.MemberService;
 import service.ProductService;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -55,8 +57,49 @@ public class AdminController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/product/insertProduct")
+    public String insertProductPage() {
+
+        return "/admin/insertProduct";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/product/insertProduct")
-    public String insertProduct(ProductVO vo) {
+    public String insertProduct(ProductVO vo, MultipartFile product_photo) {
+
+        System.out.println("제품 등록");
+
+        // 사진 저장 경로(프로젝트 파일의 리소스 폴더)
+        String uploadFolder = "C:\\Users\\PCY\\IdeaProjects\\MiniShop\\out\\artifacts\\MiniShop_war_exploded\\resources\\shop\\images";
+
+        if(product_photo.isEmpty() != true || product_photo.getSize() != 0) {
+            // 사진 이름
+            String product_url = product_photo.getOriginalFilename();
+
+            vo.setProduct_url(product_url);
+
+            File saveImg = new File(uploadFolder, product_photo.getOriginalFilename());
+
+            try {
+                product_photo.transferTo(saveImg);
+
+                productService.insertProduct(vo);
+
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
+
+
+
+        return "redirect:/admin/page";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/product/remove")
+    public String removeProduct(int product_id) {
+
+        productService.deleteProduct(product_id);
 
         return "redirect:/admin/page";
     }

@@ -3,6 +3,8 @@ package domain;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Data
 public class ProductVO {
 
@@ -12,5 +14,5 @@ public class ProductVO {
     private String product_desc;
     private String product_url;
     private String brand;
-    private MultipartFile productPhoto;
+    /*private List<ProductAttachVO> attachList;*/
 }

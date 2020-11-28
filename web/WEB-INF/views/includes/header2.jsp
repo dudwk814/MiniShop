@@ -39,6 +39,10 @@
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="all" href="/resources/shop/css/star-rating.css">
     <link rel="stylesheet" href="/resources/shop/css/theme.css">
+
+    <style>
+        .select-img img { margin: 20px 100px 0;}
+    </style>
 </head>
 <body class="goto-here">
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.ProductAttachMapper">
+
+    <insert id="insert">
+        insert into tbl_product_attach (uuid, uploadPath, fileName, fileType, product_id)
+        values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{product_id})
+    </insert>
+
+    <delete id="delete">
+        delete from tbl_product_attach where uuid = #{uuid}
+    </delete>
+
+    <select id="findByProductId" resultType="domain.ProductAttachVO">
+        select * from tbl_product_attach where product_id = #{product_id}
+    </select>
+</mapper>
