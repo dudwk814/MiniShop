@@ -227,9 +227,6 @@
             replyer = '<sec:authentication property="principal.member.userid"/>';
         </sec:authorize>
 
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-
 
         // Ajax spring security header.
         $(document).ajaxSend(function (e, xhr, options) {

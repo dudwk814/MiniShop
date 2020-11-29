@@ -62,17 +62,17 @@
                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.regDate}"/></td>
                             <td>${member.authList[0].auth}</td>
                             <td>
-                                <form action="/admin/member/authModify" method="post" id="memberAuthModifyForm">
+                                <form action="/admin/member/authModify" method="post" id="memberAuthModifyForm${member.userid}">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <input type="hidden" name="userid" value="${member.userid}">
                                     <div class="input-group mb-3">
-                                        <select name="auth" class="custom-select" >
-                                            <option name="auth" value="${member.authList[0].auth}" selected>Choose...</option>
+                                        <select name="auth" class="custom-select" id="authSelect${member.userid}">
+                                            <option name="auth" value="" selected>Choose...</option>
                                             <option name="auth" value="ROLE_ADMIN">ADMIN</option>
                                             <option name="auth" value="ROLE_MEMBER">MEMBER</option>
                                         </select>
                                         <div class="input-group-append">
-                                            <button id="memberAuthModifyBtn" class="btn btn-success authBtn" type="submit">권환 변경</button>
+                                            <button id="memberAuthModifyBtn" class="btn btn-success authBtn" data-user-id="${member.userid}" type="submit">권환 변경</button>
                                         </div>
                                     </div>
                                 </form>
@@ -97,57 +97,52 @@
                             <th scope="col">제품 삭제</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="product_tbody">
                             <c:forEach items="${productList}" var="product" varStatus="idx">
-                                <tr>
+                                <tr data-product-id="${product.product_id}" >
                                     <td><img src="/resources/shop/images/${product.product_url}" class="img-thumbnail" style="width: 150px; height: 200px;"/></td>
                                     <td>${product.product_id}</td>
                                     <td><a href="/product/read?product_id=${product.product_id}"> ${product.product_name}</a></td>
                                     <td><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</td>
                                     <td>${product.brand}</td>
                                     <td>
-                                        <form action="/admin/product/remove" id="productRemoveForm" method="post">
+                                        <form action="/admin/product/remove" id="productRemoveForm${product.product_id}" method="post">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                             <input type="hidden" name="product_id" value="${product.product_id}">
-                                            <input type="submit" class="btn btn-outline-danger productRemoveBtn" value="제품 삭제">
+                                            <input type="submit" class="btn btn-outline-danger productRemoveBtn" data-product-id="${product.product_id}" value="제품 삭제">
                                         </form>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
-                    <a href="/admin/product/insertProduct" class="btn btn-primary">상품</a>
-                    <button type="button" class="btn btn-outline-info btn-lg" id="productRegBtn">상품등록</button>
+                    <a href="/admin/product/insertProduct" class="btn btn-primary">상품등록</a>
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
                 <div class="row p-4">
-                    <div class="col-md-12">
-                        <h3 class="mb-4">23 Reviews</h3>
-                        <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성</button>
-                        <div class="review_wrapper">
-                            <div class="review">
-                                <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                <div class="desc">
-                                    <h4>
-                                        <span class="text-left">Jacob Webb</span>
-                                        <span class="text-right">14 March 2018</span>
-                                    </h4>
-                                    <p class="star">
-                                                        <span>
-                                                            <i class="ion-ios-star-outline"></i>
-                                                            <i class="ion-ios-star-outline"></i>
-                                                            <i class="ion-ios-star-outline"></i>
-                                                            <i class="ion-ios-star-outline"></i>
-                                                            <i class="ion-ios-star-outline"></i>
-                                                        </span>
-                                        <%-- <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>--%>
-                                    </p>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">주문 ID</th>
+                            <th scope="col">주문자 ID</th>
+                            <th scope="col">주문날짜</th>
+                            <th scope="col">결제방법</th>
+                            <th scope="col">제품 삭제</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order_tbody">
+                            <c:forEach var="order" items="${orderList}" varStatus="idx">
+                                <tr data-order-id = "${order.order_id}">
+                                    <td>${idx.count}</td>
+                                    <td>${order.order_id}</td>
+                                    <td><fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd"/></td>
+                                    <td>${order.payment_option}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -231,12 +226,25 @@
 
         var productRegisterForm = $("#productRegisterForm");
 
+        var product_tbody = $("#product_tbody");
+
+
+
         memberAuthModifyBtn.on("click", function (e) {
 
             e.preventDefault();
 
+            var user_id = $(this).data("user-id");
+
+            console.log(user_id);
+
+            if ($("#authSelect" + user_id + " option:selected").val() == "") {
+                alert("옵션을 선택해주세요.");
+                return;
+            }
+
             if(confirm("회원권한을 변경하시겠습니까?") == true) {
-                memberAuthModifyForm.submit();
+                $("#memberAuthModifyForm" + user_id).submit();
             } else {
                 return;
             }
@@ -245,8 +253,12 @@
         productRemoveBtn.on("click", function (e) {
             e.preventDefault();
 
+            var product_id = $(this).data("product-id");
+
+            console.log(product_id)
+
             if (confirm("제품을 삭제하시겠습니까?") == true) {
-                productRemoveForm.submit();
+                $("#productRemoveForm" + product_id).submit();
             } else {
                 return;
             }
@@ -323,7 +335,19 @@
             productRegisterForm.submit();
 
         });*/
+
+       /* $("tr").on("click", function () {
+            modal.modal("show");
+        })*/
+
+        function productDelete() {
+            if (confirm("상품을 삭제하시겠습니까?") == true) {
+
+            }
+        }
     });
+
+
 </script>
 
 <%@ include file="../includes/footer.jsp"%>
