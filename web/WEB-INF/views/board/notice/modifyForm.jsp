@@ -21,15 +21,15 @@
 
 <br/><Br/>
 <div class="col-lg-9">
-    <h1>Board Register</h1>
+    <h1>Notice Register</h1>
     <form action="/notice/modify" method="post">
         <div class="form-group">
             <label for="title">title</label>
             <input type="text" class="form-control" id="title" placeholder="title" name="title" value="${notice.title}">
         </div>
         <div class="form-group">
-            <label for="content">content</label>
-            <textarea name="content" id="content" class="form-control" placeholder="content">${notice.content}</textarea>
+            <label for="editor1">content</label>
+            <textarea name="content" id="editor1" rows="50" cols="80">${notice.content}</textarea>
         </div>
         <div class="form-group">
             <label for="writer">writer</label>
@@ -65,13 +65,11 @@
 <script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
 <script src="/resources/shop/js/bootstrap-datepicker.js"></script>
 <script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
-
-
 
     $(document).ready(function () {
         $("#cancelBtn").on("click", function () {
@@ -80,6 +78,16 @@
 
 
     });
+
+    var ckeditor_config = {
+        resize_enaleb: false,
+        enterMode: CKEDITOR.ENTER_BR,
+        shiftEnterMode: CKEDITOR.ENTER_P,
+        filebrowserUploadUrl: "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
+
+    };
+
+    CKEDITOR.replace("content", ckeditor_config);
 </script>
 
 

@@ -12,46 +12,51 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
-<%@ include file="../includes/header2.jsp"%>
+<%@ include file="../includes/header2.jsp" %>
 
 <br/><br/><br/><br/>
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
 
-<div class="col-lg-9">
-    <h1>Board Modify</h1>
-    <form action="/board/modify" method="post">
+    <div class="col-lg-9">
+        <h1>Board Modify</h1>
+        <form action="/board/modify" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <input type="hidden" name="pageNum" value="${cri.pageNum}">
+            <input type="hidden" name="amount" value="${cri.amount}">
+            <div class="form-group">
+                <label for="bno">bno</label>
+                <input type="text" class="form-control" id="bno" placeholder="bno" name="bno"
+                       value="<c:out value='${board.bno}'/>" readonly>
+            </div>
 
-        <input type="hidden" name="pageNum" value="${cri.pageNum}">
-        <input type="hidden" name="amount" value="${cri.amount}">
-        <div class="form-group">
-            <label for="bno">bno</label>
-            <input type="text" class="form-control" id="bno" placeholder="bno" name="bno" value="<c:out value='${board.bno}'/>" readonly>
-        </div>
+            <div class="form-group">
+                <label for="title">title</label>
+                <input type="text" class="form-control" id="title" placeholder="title" name="title"
+                       value="<c:out value='${board.title}'/>">
+            </div>
+            <%--<div class="form-group">
+                <label for="regDate">date</label>
+                <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
+            </div>--%>
+            <div class="form-group">
+                <label for="editor1">content</label>
+                <textarea name="content" id="editor1" rows="20" cols="80">${board.content}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="writer">writer</label>
+                <input type="text" class="form-control" name="writer" id="writer" placeholder="writer"
+                       value="<c:out value='${board.writer}'/>" readonly>
+            </div>
 
-        <div class="form-group">
-            <label for="title">title</label>
-            <input type="text" class="form-control" id="title" placeholder="title" name="title" value="<c:out value='${board.title}'/>">
-        </div>
-        <%--<div class="form-group">
-            <label for="regDate">date</label>
-            <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
-        </div>--%>
-        <div class="form-group">
-            <label for="content">content</label>
-            <input type="content" class="form-control" name="content" id="content" placeholder="content" value="<c:out value='${board.content}'/>">
-        </div>
-        <div class="form-group">
-            <label for="writer">writer</label>
-            <input type="text" class="form-control" name="writer" id="writer" placeholder="writer" value="<c:out value='${board.writer}'/>" readonly>
-        </div>
-
-        <a href="/board/list"><button type="button" id="listBtn" class="btn btn-primary">List</button></a>
-        <button type="submit" class="btn btn-info float-right">Submit Information</button>
-    </form>
-</div>
-</div>
-</div>
+            <a href="/board/list">
+                <button type="button" id="listBtn" class="btn btn-primary">List</button>
+            </a>
+            <button type="submit" class="btn btn-info float-right">Submit Information</button>
+        </form>
+    </div>
+    </div>
+    </div>
 </section>
 <br/><br/><br/><br/>
 
@@ -68,9 +73,9 @@
 <script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
 <script src="/resources/shop/js/bootstrap-datepicker.js"></script>
 <script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
 
@@ -79,8 +84,16 @@
             self.location = "/board/list";
         });
     });
+
+    var ckeditor_config = {
+        resize_enaleb: false,
+        enterMode: CKEDITOR.ENTER_BR,
+        shiftEnterMode: CKEDITOR.ENTER_P,
+        filebrowserUploadUrl: "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
+    };
+
+    CKEDITOR.replace("content", ckeditor_config);
 </script>
 
 
-
-<%@ include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp" %>

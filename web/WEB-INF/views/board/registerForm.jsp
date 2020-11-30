@@ -24,9 +24,10 @@
             <input type="text" class="form-control" id="title" placeholder="title" name="title">
         </div>
         <div class="form-group">
-            <label for="content">content</label>
-            <textarea rows="10" name="content" id="content" class="form-control" placeholder="content"></textarea>
+            <label for="editor1">content</label>
+            <textarea name="content" id="editor1" rows="20" cols="80"></textarea>
         </div>
+
         <div class="form-group">
             <label for="writer">writer</label>
             <input type="writer" class="form-control" name="writer" id="writer" placeholder="writer" value="<sec:authentication property="principal.member.userid"/>">
@@ -53,19 +54,35 @@
     <script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
     <script src="/resources/shop/js/bootstrap-datepicker.js"></script>
     <script src="/resources/shop/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="/resources/shop/js/google-map.js"></script>
     <script src="/resources/shop/js/main.js"></script>
+    <script src="/resources/ckeditor/ckeditor.js"></script>
+
+<script>
+    var ckeditor_config = {
+        resize_enaleb : false,
+        enterMode : CKEDITOR.ENTER_BR,
+        shiftEnterMode : CKEDITOR.ENTER_P,
+        filebrowserUploadUrl : "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
+    };
+
+    CKEDITOR.replace("content", ckeditor_config);
+</script>
 
 <script type="text/javascript">
-
-
-
     $(document).ready(function () {
        $("#listBtn").on("click", function () {
            self.location = "/board/list";
        });
 
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+
+        // Ajax spring security header.
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        });
     });
 </script>
 

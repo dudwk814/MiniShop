@@ -19,42 +19,26 @@
 <div class="col-lg-9">
     <div class="row">
         <div class="col align-content-center">
-            <div class="card">
-                <div class="card-header">
-                    Notice
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
+
+            <div class="col-lg-auto">
+                    <strong><h1>${notice.title}</h1></strong>
+                    <span>${notice.writer}</span> | <span><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/> </span>
+            </div>
+
+            <hr/>
+
                         <form action="/board/register" method="post" id="form">
                             <input type="hidden" name="pageNum" value="${cri.pageNum}">
                             <input type="hidden" name="amount" value="${cri.amount}">
-                            <div class="form-group">
-                                <label for="nno">nno</label>
-                                <input type="text" class="form-control" placeholder="Enter title" name="nno" id="nno"
-                                       value="<c:out value='${notice.nno}'/>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="title">title</label>
-                                <input type="text" class="form-control" placeholder="Enter title" name="title"
-                                       id="title" value="<c:out value='${notice.title}'/>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="regDate">date</label>
-                                <input type="text" class="form-control" name="regDate" id="regDate"
-                                       value="<fmt:formatDate pattern="yyyy-MM-dd" value='${notice.regDate}'/>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="content">content</label>
-                                <textarea class="form-control" name="content" id="content" readonly><c:out
-                                        value="${notice.content}"/></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="writer">writer</label>
-                                <input type="text" class="form-control" placeholder="Enter writer" name="writer"
-                                       id="writer" value="<c:out value='${notice.writer}'/>" readonly>
+                            <input type="hidden" name="nno" value="${notice.nno}">
+                            <div class="form-group" style="margin-bottom: 20px">
+                                <p>${notice.content}</p>
+
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         </form>
+
+            <hr/>
 
                         <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
                             <button id="listBtn" type="button" class="btn btn-info">목록</button>
@@ -65,11 +49,9 @@
                                 <button id="modBtn" type="button" class="btn btn-danger">수정</button>
                             </a>&nbsp; &nbsp; &nbsp;
 
-                            <button id="removeBtn" type="button" class="btn btn-warning float-right">삭제</button>
+                            <button id="removeBtn" type="button" class="btn btn-warning float-right" style="margin-right: 10px;">삭제</button>
                         </sec:authorize>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -90,20 +72,26 @@
 <script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
 <script src="/resources/shop/js/bootstrap-datepicker.js"></script>
 <script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
-
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <script>
     $(document).ready(function (e) {
         var form = $("#form");
         var removeBtn = $("#removeBtn");
         
         removeBtn.on("click", function (e) {
-            form.attr("action", "/notice/remove");
-            form.submit();
-        })
-    })
+
+            if(confirm("글을 삭제하시겠습니까?") == true){
+                form.attr("action", "/notice/remove");
+                form.submit();
+            } else {
+                return;
+            }
+        });
+    });
+
+    CKEDITOR.replace( 'editor1' );
 </script>
 
 <%@ include file="../../includes/footer.jsp" %>

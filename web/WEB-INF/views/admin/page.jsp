@@ -133,14 +133,14 @@
                         </tr>
                         </thead>
                         <tbody id="order_tbody">
-                            <c:forEach var="order" items="${orderList}" varStatus="idx">
+                            <%--<c:forEach var="order" items="${orderList}" varStatus="idx">
                                 <tr data-order-id = "${order.order_id}">
                                     <td>${idx.count}</td>
                                     <td>${order.order_id}</td>
                                     <td><fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd"/></td>
                                     <td>${order.payment_option}</td>
                                 </tr>
-                            </c:forEach>
+                            </c:forEach>--%>
                         </tbody>
                     </table>
                 </div>

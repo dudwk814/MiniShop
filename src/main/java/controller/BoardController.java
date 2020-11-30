@@ -13,11 +13,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.BoardService;
 import service.NoticeService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/board/")
@@ -84,6 +89,59 @@ public class BoardController {
         rttr.addFlashAttribute("result", board.getBno());
 
         return "redirect:/board/list";
+    }
+
+    // ck 에디터에서 파일 업로드
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
+    @PostMapping("/uploadImg")
+    public void postCKEditorImgUpload(HttpServletRequest req,
+                                      HttpServletResponse res,
+                                      @RequestParam MultipartFile upload) throws Exception {
+        log.info("Image Upload");
+
+        // 랜덤 문자 생성
+        UUID uid = UUID.randomUUID();
+
+        OutputStream out = null;
+        PrintWriter printWriter = null;
+
+        // 인코딩
+        res.setCharacterEncoding("utf-8");
+        res.setContentType("text/html;charset=utf-8");
+
+        try {
+
+            String fileName = upload.getOriginalFilename();  // 파일 이름 가져오기
+            byte[] bytes = upload.getBytes();
+
+            // 업로드 경로
+            String defaultPath = req.getSession().getServletContext().getRealPath("/");
+
+            String ckUploadPath = defaultPath + "resources" + File.separator + "ckUpload" + File.separator + uid + "_" + fileName;
+
+            out = new FileOutputStream(new File(ckUploadPath));
+            out.write(bytes);
+            out.flush();  // out에 저장된 데이터를 전송하고 초기화
+
+            String callback = req.getParameter("CKEditorFuncNum");
+            printWriter = res.getWriter();
+            String fileUrl = "/resources/ckUpload/" + uid + "_" + fileName;  // 작성화면
+
+
+            // 업로드시 메시지 출력
+            printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+
+            printWriter.flush();
+
+        } catch (IOException e) { e.printStackTrace();
+        } finally {
+            try {
+                if(out != null) { out.close(); }
+                if(printWriter != null) { printWriter.close(); }
+            } catch(IOException e) { e.printStackTrace(); }
+        }
+
+        return;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")

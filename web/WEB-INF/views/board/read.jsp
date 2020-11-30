@@ -16,63 +16,93 @@
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
 
-<div class="col-lg-9">
-    <div class="row">
-        <div class="col align-content-center">
-            <div class="card">
-                <div class="card-header">
-                    Board
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <form action="/board/register" method="post">
-                            <input type="hidden" name="pageNum" value="${cri.pageNum}">
-                            <input type="hidden" name="amount" value="${cri.amount}">
-                            <div class="form-group">
-                                <label for="bno">bno</label>
-                                <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno"
-                                       value="<c:out value='${board.bno}'/>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="title">title</label>
-                                <input type="text" class="form-control" placeholder="Enter title" name="title"
-                                       id="title" value="<c:out value='${board.title}'/>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="regDate">date</label>
-                                <input type="text" class="form-control" name="regDate" id="regDate"
-                                       value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="content">content</label>
-                                <textarea class="form-control" name="content" id="content" readonly><c:out
-                                        value="${board.content}"/></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="writer">writer</label>
-                                <input type="text" class="form-control" placeholder="Enter writer" name="writer"
-                                       id="writer" value="<c:out value='${board.writer}'/>" readonly>
-                            </div>
-                        </form>
-
-                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
-                            <button id="listBtn" type="button" class="btn btn-info">목록</button>
-                        </a>
-                        <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
-                           class="float-right">
-                            <button id="modBtn" type="button" class="btn btn-danger">수정</button>
-                        </a>&nbsp; &nbsp; &nbsp;
-                        <button id="removeBtn" type="button" class="btn btn-warning">삭제</button>
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col align-content-center">
+                <%--<div class="card">
+                    <div class="card-header">
+                        <div class="form-group">
+                            &lt;%&ndash;<label for="bno">bno</label>
+                            <input type="text" class="form-control" placeholder="Enter title" name="bno" id="bno"
+                                   value="<c:out value='${board.bno}'/>" readonly>&ndash;%&gt;
+                            <span>글번호 : ${board.bno} </span> &nbsp;&nbsp;&nbsp; <span>작성자 : ${board.writer}</span>&nbsp;&nbsp; | &nbsp;&nbsp;<span>작성일 : <fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
+                        </div>
                     </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <form action="/board/register" method="post">
+                                <input type="hidden" name="pageNum" value="${cri.pageNum}">
+                                <input type="hidden" name="amount" value="${cri.amount}">
+
+                                <div class="form-group">
+                                    &lt;%&ndash;<label for="title">title</label>&ndash;%&gt;
+                                    &lt;%&ndash;<input type="text" class="form-control" placeholder="Enter title" name="title"
+                                           id="title" value="<c:out value='${board.title}'/>" readonly>&ndash;%&gt;
+                                    <p><h1>${board.title}</h1></p>
+                                </div>
+                                <hr/>
+                                &lt;%&ndash;<div class="form-group">
+                                    <label for="regDate">date</label>
+                                    <input type="text" class="form-control" name="regDate" id="regDate"
+                                           value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
+                                </div>&ndash;%&gt;
+
+                                &lt;%&ndash;<div class="form-group">
+                                    <label for="editor1">content</label>
+                                    <textarea name="content" id="editor1" rows="10" cols="80" readonly><c:out value="${board.content}"/></textarea>
+                                </div>&ndash;%&gt;
+                                <div style="margin-top: 50px;">
+                                <p>${board.content}</p>
+                                </div>
+                                <hr/>
+                                &lt;%&ndash;<div class="form-group">
+                                    <label for="writer">writer</label>
+                                    <input type="text" class="form-control" placeholder="Enter writer" name="writer"
+                                           id="writer" value="<c:out value='${board.writer}'/>" readonly>
+                                </div>&ndash;%&gt;
+                            </form>--%>
+
+                <div class="col-lg-auto">
+                    <strong><h1>${board.title}</h1></strong>
+                    <span>${board.writer}</span> | <span><fmt:formatDate value="${board.regDate}"
+                                                                         pattern="yyyy-MM-dd"/> </span>
                 </div>
+
+                <hr/>
+
+                <form action="/board/register" method="post" id="form">
+                    <input type="hidden" name="pageNum" value="${cri.pageNum}">
+                    <input type="hidden" name="amount" value="${cri.amount}">
+                    <div class="form-group" style="margin-bottom: 20px">
+                        <p>${board.content}</p>
+
+                    </div>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <input type="hidden" name="bno" value="${board.bno}">
+                </form>
+
+                <hr/>
+
+                <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
+                    <button id="listBtn" type="button" class="btn btn-info">목록</button>
+                </a>
+                <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
+                   class="float-right">
+                    <button id="modBtn" type="button" class="btn btn-danger">수정</button>
+                </a>&nbsp; &nbsp; &nbsp;
+                <button id="removeBtn" type="button" class="btn btn-warning float-right" style="margin-right: 10px;">
+                    삭제
+                </button>
             </div>
         </div>
     </div>
-</div>
+    </div>
+    </div>
+    </div>
 </section>
 
 
-    <br/><Br/>
+<br/><Br/>
 
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
@@ -81,7 +111,8 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt" class="badge badge-info">${board.replyCnt}</span>
+                    <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt"
+                                                                             class="badge badge-info">${board.replyCnt}</span>
                     <button class="btn btn-link float-right" id="regBtn">New</button>
                 </div>
                 <div class="card-body">
@@ -103,13 +134,13 @@
             </div>
 
         </div>
-            <div class="float-right">
+        <div class="float-right">
 
-            </div>
+        </div>
     </div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
+    </div>
 </section>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -161,6 +192,7 @@
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
 <script type="text/javascript" src="/resources/reply.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <script>
     var bnoValue = '<c:out value="${board.bno}"/>';
 
@@ -169,9 +201,13 @@
     $(document).ready(function () {
 
         $("#removeBtn").on("click", function () {
-            formObj.attr("action", "/board/remove");
+            if (confirm("글을 삭제하시겠습니까?") == true) {
+                formObj.attr("action", "/board/remove");
 
-            formObj.submit();
+                formObj.submit();
+            } else {
+                return;
+            }
         });
 
         var formObj = $("form");
@@ -224,8 +260,11 @@
         var replyer = null;
 
         <sec:authorize access="isAuthenticated()">
-            replyer = '<sec:authentication property="principal.member.userid"/>';
+        replyer = '<sec:authentication property="principal.member.userid"/>';
         </sec:authorize>
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
 
 
         // Ajax spring security header.
@@ -245,12 +284,11 @@
 
             $(".modal").modal("show");
 
-            return ;
+            return;
             </sec:authorize>
 
             alert("로그인 해주세요");
         });
-
 
 
         modalRegisterBtn.on("click", function (e) {
@@ -305,15 +343,15 @@
             if (!replyer) {
                 alert("로그인 후 다시 시도해주세요.");
                 modal.modal("hide");
-                return ;
+                return;
             }
 
             var originalReplyer = modalInputReplyer.val();
 
-            if (replyer != 'admin' && replyer != originalReplyer ) {
+            if (replyer != 'admin' && replyer != originalReplyer) {
                 alert("권한이 없습니다.");
                 modal.modal("hide");
-                return ;
+                return;
             }
 
             replyService.update(reply, function (result) {
@@ -333,7 +371,7 @@
             if (!replyer) {
                 alert("로그인 후 시도해주세요.");
                 modal.modal("hide");
-                return ;
+                return;
             }
 
             var originalReplyer = modalInputReplyer.val();
@@ -343,7 +381,7 @@
             if (replyer != originalReplyer) {
                 alert("권한이 없습니다.");
                 modal.modal("hide");
-                return ;
+                return;
             }
 
             replyService.remove(rno, originalReplyer, function (result) {
@@ -376,7 +414,7 @@
             var str = "<ul class='pagination float-right'>";
 
             if (prev) {
-                str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1)+"'>Previous</a></li>";
+                str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
             }
 
             for (var i = startNum; i <= endNum; i++) {

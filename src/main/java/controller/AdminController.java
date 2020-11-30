@@ -47,12 +47,12 @@ public class AdminController {
 
         List<ProductVO> productList = productService.getProductList();
 
-        List<OrderVO> orderList = orderService.getAllList();
+        /*List<OrderVO> orderList = orderService.getAllList();*/
 
 
         model.addAttribute("memberList", memberList);
         model.addAttribute("productList", productList);
-        model.addAttribute("orderList", orderList);
+        /*model.addAttribute("orderList", orderList);*/
 
         return "/admin/page";
     }
