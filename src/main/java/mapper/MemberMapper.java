@@ -21,5 +21,5 @@ public interface MemberMapper {
 
     public int findUser(String userid);
 
-    public void updateAuth(authVO vo);
+    public int updateAuth(authVO vo);
 }

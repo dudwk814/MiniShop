@@ -19,8 +19,8 @@ public interface ProductService {
     public void insertProduct(ProductVO vo);
 
     // 상품 수정
-    public void updateProduct(ProductVO vo);
+    public boolean updateProduct(ProductVO vo);
 
     // 상품 삭제
-    public void deleteProduct(int product_id);
+    public boolean deleteProduct(int product_id);
 }

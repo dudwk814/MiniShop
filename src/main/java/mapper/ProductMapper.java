@@ -13,10 +13,10 @@ public interface ProductMapper {
     public void insertProduct(ProductVO vo);
 
     // 상품 수정
-    public void updateProduct(ProductVO vo);
+    public int updateProduct(ProductVO vo);
 
     // 상품 삭제
-    public void deleteProduct(int product_id);
+    public int deleteProduct(int product_id);
 
     // 전체 상품 목록 조회
     public List<ProductVO> getProductList();

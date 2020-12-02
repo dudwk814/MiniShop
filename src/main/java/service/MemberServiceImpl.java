@@ -84,7 +84,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void updateAuth(authVO vo) {
-        memberMapper.updateAuth(vo);
+    public boolean updateAuth(authVO vo) {
+        return memberMapper.updateAuth(vo) == 1;
     }
 }

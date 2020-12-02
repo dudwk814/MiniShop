@@ -50,13 +50,13 @@ public class ProductServiceImpl implements ProductService{
 
     // 상품 수정
     @Override
-    public void updateProduct(ProductVO vo) {
-        productMapper.updateProduct(vo);
+    public boolean updateProduct(ProductVO vo) {
+        return productMapper.updateProduct(vo) == 1;
     }
 
     // 상품 삭제
     @Override
-    public void deleteProduct(int product_id) {
-        productMapper.deleteProduct(product_id);
+    public boolean deleteProduct(int product_id) {
+        return productMapper.deleteProduct(product_id) == 1;
     }
 }

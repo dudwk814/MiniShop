@@ -15,8 +15,13 @@
         SELECT SEQ_ORDER_DETAILS.nextval, #{order_id}, PRODUCT_ID, amount, userid from TBL_CART where USERID = #{userid}
     </insert>
 
+    <!-- 주문 취소 -->
     <delete id="delete">
         delete from tbl_order where order_id = #{order_id}
+    </delete>
+
+    <delete id="detailDelete">
+        delete from tbl_order_details where order_id = #{order_id}
     </delete>
 
     <select id="get" resultType="domain.OrderVO">
@@ -48,7 +53,7 @@
     </select>
 
     <select id="getAllList" resultType="domain.OrderVO">
-        select * from tbl_order where order_id > 0
+        select * from tbl_order order by order_date desc
     </select>
 
     <select id="getOrderResult" resultType="domain.OrderVO">

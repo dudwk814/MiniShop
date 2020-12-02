@@ -30,21 +30,16 @@
                         </tr>
                         </thead>
                         <c:choose>
-                            <%--<c:when test="${cartCount == 0}">
-                                <tbody>
-                                 <h1>장바구니가 비었습니다.</h1>
-                                </tbody>
-                            </c:when>--%>
                             <c:when test="${cartCount >= 1}">
                                 <c:forEach var="cart" items="${cart}">
                                     <tbody>
                                     <tr class="text-center">
                                         <td class="product-remove">
-                                            <form action="/cart/remove" method="post">
+                                            <form action="/cart/remove" method="post" id="removeForm${cart.cart_id}">
                                                 <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                 <input type="hidden" name="userid" value="${userid}"/>
-                                                <button type="submit" class="btn btn-outline-primary">  X  </button>
+                                                <button type="submit" class="btn btn-outline-primary removeBtn" data-cart-id="${cart.cart_id}">  X  </button>
                                             </form>
                                         </td>
 
@@ -52,7 +47,6 @@
 
                                         <td class="product-name">
                                             <h3>${cart.product_name}</h3>
-                                            <%--<p>${cart.product_desc}</p>--%>
                                         </td>
 
                                         <td class="price"><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${cart.product_price}" maxFractionDigits="0"/>원</td>
@@ -140,6 +134,22 @@
 
         var amountModifyForm = $("#amountModifyForm");
         var amountModifyBtn = $("#amountModifyBtn");
+
+        var removeBtn = $(".removeBtn");
+
+        removeBtn.on("click", function (e) {
+            e.preventDefault();
+
+            var cart_id = $(this).data("cart-id");
+
+            console.log(cart_id);
+
+            if (confirm("장바구니에 상품을 삭제하시겠습니까?") == true) {
+                $("#removeForm" + cart_id).submit();
+            } else {
+                return;
+            }
+        });
 
         amountModifyBtn.on("click", function (e) {
 

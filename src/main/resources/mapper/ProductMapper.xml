@@ -33,7 +33,7 @@
 
     <!-- 상품 수정 -->
     <update id="updateProduct">
-        update tbl_product set product_price = #{product_price}, prodcut_name = #{product_name}, product_desc = #{product_desc}, product_url = #{product_url}, brand = #{brand} where product_id = #{product_id}
+        update tbl_product set product_price = #{product_price}, product_name = #{product_name}, product_desc = #{product_desc}, product_url = #{product_url}, brand = #{brand} where product_id = #{product_id}
     </update>
 
     <!-- 상품 삭제 -->

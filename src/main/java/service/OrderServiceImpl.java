@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j;
 import mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -61,11 +62,14 @@ public class OrderServiceImpl implements OrderService{
         return orderMapper.getAllList();
     }
 
+    @Transactional
     @Override
-    public void delete(int order_id) {
+    public boolean delete(String order_id) {
 
         log.info("delete order : " + order_id);
 
-        orderMapper.delete(order_id);
+        orderMapper.detailDelete(order_id);
+
+        return orderMapper.delete(order_id) == 1;
     }
 }

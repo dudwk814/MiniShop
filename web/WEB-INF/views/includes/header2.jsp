@@ -57,25 +57,17 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="shop.html">Shop</a>
-                        <a class="dropdown-item" href="product-single.html">Single Product</a>
-                        <a class="dropdown-item" href="/cart/">Cart</a>
-                        <a class="dropdown-item" href="checkout.html">Checkout</a>
-                    </div>
-                </li>
+
                 <li class="nav-item"><a href="/board/list" class="nav-link">Board</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 페이지로 이동 --%>
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/cart/cart" class="nav-link">Cart</a></li>
                 </sec:authorize>
 
                 <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link"><span class="icon-shopping_cart"></span><span class="badge badge-success">${cartForMember}</span> </a></li>
+                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link">Cart<span class="badge badge-success">${cartForMember}</span> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">

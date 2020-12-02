@@ -65,12 +65,13 @@
                     <div class="form-group">
                         <form action="/cart/add" method="post" id="addCartForm">
                             <div class="input-group col-md-6 d-flex mb-3">
-                                <input type="number" id="quantity" name="amount" class="quantity form-control input-number" value="1" min="1" max="100">
+                                <input type="number" id="quantity" name="amount" class="quantity form-control input-number" value="1" min="1" max="100">&nbsp;&nbsp;
                                 <input type="hidden" name="product_id" value="${product.product_id}">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                 <input type="hidden" name="userid" value="${userid}">
+                                <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
                             </div>
-                            <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
+
                         </form>
                     </div>
                 </div>

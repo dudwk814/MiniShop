@@ -31,6 +31,9 @@ public interface OrderMapper {
     public List<OrderVO> getAllList();
 
     // 오더 삭제
-    public void delete(int order_id);
+    public int delete(String order_id);
+
+    // 오더 디테일 삭제
+    public void detailDelete(String order_id);
 
 }

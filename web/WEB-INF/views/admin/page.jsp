@@ -102,7 +102,7 @@
                                 <tr data-product-id="${product.product_id}" >
                                     <td><img src="/resources/shop/images/${product.product_url}" class="img-thumbnail" style="width: 150px; height: 200px;"/></td>
                                     <td>${product.product_id}</td>
-                                    <td><a href="/product/read?product_id=${product.product_id}"> ${product.product_name}</a></td>
+                                    <td><a href="/admin/product/modify?product_id=${product.product_id}"> ${product.product_name}</a></td>
                                     <td><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</td>
                                     <td>${product.brand}</td>
                                     <td>
@@ -129,18 +129,28 @@
                             <th scope="col">주문자 ID</th>
                             <th scope="col">주문날짜</th>
                             <th scope="col">결제방법</th>
-                            <th scope="col">제품 삭제</th>
+                            <th scope="col">결제상태</th>
+                            <th scope="col">결제취소</th>
                         </tr>
                         </thead>
                         <tbody id="order_tbody">
-                            <%--<c:forEach var="order" items="${orderList}" varStatus="idx">
+                            <c:forEach var="order" items="${orderList}" varStatus="idx">
                                 <tr data-order-id = "${order.order_id}">
                                     <td>${idx.count}</td>
                                     <td>${order.order_id}</td>
+                                    <td>${order.userid}</td>
                                     <td><fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd"/></td>
                                     <td>${order.payment_option}</td>
+                                    <td>입금 전</td>
+                                    <td>
+                                        <form action="/admin/order/cancel" method="post" id="orderCancelForm${order.order_id}">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                            <input type="hidden" name="order_id" value="${order.order_id}">
+                                            <input type="submit" class="btn btn-outline-danger cancelBtn" data-order-id="${order.order_id}" value="주문 취소">
+                                        </form>
+                                    </td>
                                 </tr>
-                            </c:forEach>--%>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -153,44 +163,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Product MODAL</h4>
             </div>
-            <form action="/admin/product/insertProduct" id="productRegisterForm" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>제품명</label>
-                        <input class="form-control" name="product_name" placeholder="제품명">
-                    </div>
-                    <div class="form-group">
-                        <label>제품가격</label>
-                        <input class="form-control" name="product_price" placeholder="제품가격">
-                    </div>
-                    <div class="form-group">
-                        <label>브랜드</label>
-                        <input class="form-control" name="brand" placeholder="브랜드">
-                    </div>
-                    <div class="form-group">
-                        <label>제품설명</label>
-                        <textarea class="form-control" name="product_desc" placeholder="제품설명"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="product_img">사진 첨부</label>
-                        <input type="file" class="form-control-file" name="product_photo" id="product_img">
-                        <div class="select-img"><img src=""/></div>
-                    </div>
-
-                    <%=request.getRealPath("/") %>
-                </div>
-
-                <div class="modal-footer">
-                    <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
-                    <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-                    <button id="modalRegisterBtn" type="submit" class="btn btn-primary">Register</button>
-                    <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
-                </div>
-            </form>
+            <div class="modal-body"><h3>처리가 완료되었습니다.</h3></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" id="closeBtn" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
@@ -217,20 +196,38 @@
 <script>
     $(document).ready(function () {
 
+        // RedirectAttributes로 부터 전달받은 값
+        var result = '<c:out value="${result}"/>';
+
+        // 모달 close 버튼
+        var closeBtn = $("#closeBtn");
+
+        closeBtn.on("click", function () {
+
+            $("#myModal").modal("hide");
+        })
+
+
+        checkModal(result);
+
+        function checkModal(result) {
+
+            if (result === '') {
+                return;
+            }
+
+            $("#myModal").modal("show");
+        }
+
 
         var memberAuthModifyBtn = $(".authBtn");
-        var memberAuthModifyForm = $("#memberAuthModifyForm");
 
         var productRemoveBtn = $(".productRemoveBtn");
-        var productRemoveForm = $("#productRemoveForm");
 
-        var productRegisterForm = $("#productRegisterForm");
-
-        var product_tbody = $("#product_tbody");
+        var orderCancelBtn = $(".cancelBtn"); // 주문 취소 버튼 변수
 
 
-
-        memberAuthModifyBtn.on("click", function (e) {
+        memberAuthModifyBtn.on("click", function (e) {  // 회원 권한 등급 변경 체크 함수
 
             e.preventDefault();
 
@@ -250,7 +247,7 @@
             }
         });
 
-        productRemoveBtn.on("click", function (e) {
+        productRemoveBtn.on("click", function (e) {     // 상품 삭제 체크 함수
             e.preventDefault();
 
             var product_id = $(this).data("product-id");
@@ -263,6 +260,23 @@
                 return;
             }
         });
+
+        orderCancelBtn.on("click", function (e) {       // 주문 취소 체크 함수
+            e.preventDefault();
+
+            var order_id = $(this).data("order-id");
+
+            console.log(order_id);
+
+            if (confirm("주문을 취소하시겠습니까?") == true) {
+                $("#orderCancelForm" + order_id).submit();
+            } else {
+                return;
+            }
+
+            return;
+
+        })
 
         var regex = new RegExp("(.*?)\.(JPG|jpg|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$"); // 파일 확장자 정규식
         var maxSize = 20971520; // 20MB
@@ -299,55 +313,8 @@
         });
 
         var modal = $(".modal");
-        var modalInputReview_title = modal.find("input[name='review_title']");
-        var modalInputReview_content = modal.find("input[name='review_content']");
-        var modalInputUserId = modal.find("input[name='userid']");
-        var modalInputReview_Date = modal.find("input[name='review_date']");
 
-        var modalModBtn = $("#modalModBtn");
-        var modalRemoveBtn = $("#modalRemoveBtn");
-        var modalRegisterBtn = $("#modalRegisterBtn");
-        var modalCloseBtn = $("#modalCloseBtn");
-
-        $("#productRegBtn").on("click", function (e) {
-
-
-            modal.find("input").val("");
-            modal.find(modalInputUserId).val();
-            modalInputReview_Date.closest("div").hide();
-            modal.find("button[id != 'modalCloseBtn']").hide();
-
-            modalRegisterBtn.show();
-
-            $(".modal").modal("show");
-        });
-
-
-        // 모달창에서 close 버튼 누를 경우 모달창을 닫음
-        modalCloseBtn.on("click", function (e) {
-
-            modal.modal("hide");
-        });
-
-       /* // 모달창에서 register 버튼을 누를 경우 상품 등록을 수행
-        modalRegisterBtn.on("click", function () {
-
-            productRegisterForm.submit();
-
-        });*/
-
-       /* $("tr").on("click", function () {
-            modal.modal("show");
-        })*/
-
-        function productDelete() {
-            if (confirm("상품을 삭제하시겠습니까?") == true) {
-
-            }
-        }
     });
-
-
 </script>
 
 <%@ include file="../includes/footer.jsp"%>

@@ -23,5 +23,5 @@ public interface OrderService {
 
     public List<OrderVO> getAllList();
 
-    public void delete(int order_id);
+    public boolean delete(String order_id);
 }

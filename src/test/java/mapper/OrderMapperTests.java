@@ -37,4 +37,12 @@ public class OrderMapperTests {
 
         log.info(orderMapper.getTotalOrderCount("qwer"));
     }
+
+    @Test
+    public void testGetAllOrderList() {
+
+        List<OrderVO> allList = orderMapper.getAllList();
+
+        allList.forEach(order -> {log.info(order);});
+    }
 }

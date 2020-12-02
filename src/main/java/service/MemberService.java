@@ -20,5 +20,5 @@ public interface MemberService {
 
     public int findUser(String userid);
 
-    public void updateAuth(authVO vo);
+    public boolean updateAuth(authVO vo);
 }
