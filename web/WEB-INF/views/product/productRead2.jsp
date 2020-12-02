@@ -113,7 +113,7 @@
                     <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
                         <div class="row p-4">
                             <div class="col-md-12">
-                                <h3 class="mb-4">23 Reviews</h3>
+                                <h3 class="mb-4">Reviews</h3>
                                 <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성</button>
                                 <div class="review_wrapper">
                                     <div class="review">
@@ -138,11 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <%--<div class="col-md-4">
-                                <div class="rating-wrap">
-                                    <button class="btn btn-link" id="regBtn">New</button>
-                                </div>
-                            </div>--%>
+
                             <div class="review_paging">
 
                             </div>
@@ -165,9 +161,12 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>별점</label>
-                    <input id="input-21b" value="4" type="text" class="rating" data-min=0 data-max=5 data-step=0.5 data-size="lg"
-                           required title="">
-                    <div class="clearfix"></div>
+                    <i class="ion-ios-star-outline"></i>
+                    <i class="ion-ios-star-outline"></i>
+                    <i class="ion-ios-star-outline"></i>
+                    <i class="ion-ios-star-outline"></i>
+                    <i class="ion-ios-star-outline"></i>
+                    <input id="rating-system" name="input-name" type="number" class="rating" min=1 max=10 step=2 data-size="lg" data-rtl="true">
                 </div>
                 <div class="form-group">
                     <label>리뷰 제목</label>
@@ -218,50 +217,12 @@
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
-<script src="/resources/shop/js/star-rating.js"></script>
-<script src="/resources/shop/js/theme.js"></script>
+<script src="/resources/starRating/js/star-rating.js"></script>
+<script src="/resources/starRating/themes/krajee-fa/theme.js"></script>
 
 <script>
-    $(document).ready(function(){
-
-        // initialize with defaults
-        $("#input-id").rating();
-
-// with plugin options
-        $("#input-id").rating({min:1, max:10, step:2, size:'lg'});
-
-        var quantitiy=0;
-        $('.quantity-right-plus').click(function(e){
-
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('#quantity').val());
-
-            // If is not undefined
-
-            $('#quantity').val(quantity + 1);
-
-
-            // Increment
-
-        });
-
-        $('.quantity-left-minus').click(function(e){
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('#quantity').val());
-
-            // If is not undefined
-
-            // Increment
-            if(quantity>0){
-                $('#quantity').val(quantity - 1);
-            }
-        });
-
-    });
+    // initialize with defaults
+    $("#rating-system").rating();
 </script>
 
 <script>

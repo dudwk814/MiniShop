@@ -117,15 +117,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="chat list-group-flush">
-                        <li class="left clearfix" data-rno='12'>
-                            <div>
-                                <div class="header">
-                                    <strong class="font-weight-bold">user00</strong>
-                                    <small class="float-right text-muted">2020-10-12</small>
-                                </div>
-                                <p>Good Job</p>
-                            </div>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="card-footer">

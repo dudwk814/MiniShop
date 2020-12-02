@@ -128,6 +128,7 @@
                             <th scope="col">주문 ID</th>
                             <th scope="col">주문자 ID</th>
                             <th scope="col">주문날짜</th>
+                            <th scope="col">결제금액</th>
                             <th scope="col">결제방법</th>
                             <th scope="col">결제상태</th>
                             <th scope="col">결제취소</th>
@@ -140,6 +141,7 @@
                                     <td>${order.order_id}</td>
                                     <td>${order.userid}</td>
                                     <td><fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd"/></td>
+                                    <td><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${order.sum_price}" maxFractionDigits="0"/>원</td>
                                     <td>${order.payment_option}</td>
                                     <td>입금 전</td>
                                     <td>

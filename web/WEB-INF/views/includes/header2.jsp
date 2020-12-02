@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="/resources/shop/css/icomoon.css">
     <link rel="stylesheet" href="/resources/shop/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" media="all" href="/resources/shop/css/star-rating.css">
-    <link rel="stylesheet" href="/resources/shop/css/theme.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/resources/starRating/css/star-rating.css">
+    <link href="/resources/starRating/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
 
     <style>
         .select-img img { margin: 20px 100px 0;}
