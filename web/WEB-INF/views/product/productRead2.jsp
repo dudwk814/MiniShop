@@ -228,7 +228,9 @@
 <script>
     $(document).ready(function (e) {
 
+        // 장바구니 추가 버튼
         var addBtn = $("#addCartBtn");
+        // 장바구니 추가 폼
         var addCartForm = $("#addCartForm");
         var userid = '${userid}';
         var product_id_value = '<c:out value="${product.product_id}"/>';
