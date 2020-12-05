@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.ReviewAttachMapper">
+
+    <insert id="insert">
+        insert into tbl_review_attach (uuid, uploadPath, fileName, fileType, review_no)
+        values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{review_no})
+    </insert>
+
+    <select id="findByReviewNo" resultType="domain.ReviewAttachVO">
+        select * from tbl_review_attach where review_no = #{review_no}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_review_attach where uuid = #{uuid}
+    </delete>
+</mapper>

@@ -3,6 +3,7 @@ package domain;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class ReviewVO {
@@ -14,4 +15,6 @@ public class ReviewVO {
     private String review_content;
     private Date review_date;
     private Date review_updateDate;
+
+    private List<ReviewAttachVO> attachList;
 }

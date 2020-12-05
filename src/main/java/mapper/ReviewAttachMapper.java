@@ -4,11 +4,11 @@ import domain.ReviewAttachVO;
 
 import java.util.List;
 
-public interface ProductAttachMapper {
+public interface ReviewAttachMapper {
 
     public void insert(ReviewAttachVO vo);
 
     public void delete(String uuid);
 
-    public List<ReviewAttachVO> findByProductId(int product_id);
+    public List<ReviewAttachVO> findByReviewNo(int review_no);
 }

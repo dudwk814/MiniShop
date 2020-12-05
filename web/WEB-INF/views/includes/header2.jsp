@@ -58,7 +58,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item"><a href="/board/list" class="nav-link">Board</a></li>
+                <li class="nav-item cta cta-colored"><a href="/board/list" class="nav-link">Board</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 페이지로 이동 --%>
                 <sec:authorize access="isAnonymous()">
@@ -71,10 +71,10 @@
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a href="/user/loginForm" class="nav-link">Login</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/user/loginForm" class="nav-link">Login</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown cta cta-colored">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USER</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="/user/checkMemberForm">Modify</a>
@@ -82,9 +82,9 @@
                         </div>
                     </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <li class="nav-item"><a href="/admin/page" class="nav-link">Admin Page</a></li>
+                        <li class="nav-item cta cta-colored"><a href="/admin/page" class="nav-link">Admin Page</a></li>
                     </sec:authorize>
-                    <li class="nav-item"><a href="/user/logout" class="nav-link" id="logoutBtn">Logout</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/user/logout" class="nav-link" id="logoutBtn">Logout</a></li>
                 </sec:authorize>
             </ul>
         </div>

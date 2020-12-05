@@ -14,7 +14,7 @@
         delete from tbl_product_attach where uuid = #{uuid}
     </delete>
 
-    <select id="findByProductId" resultType="domain.ProductAttachVO">
+    <select id="findByProductId" resultType="domain.ReviewAttachVO">
         select * from tbl_product_attach where product_id = #{product_id}
     </select>
 </mapper>

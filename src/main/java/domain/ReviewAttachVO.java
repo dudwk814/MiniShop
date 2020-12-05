@@ -3,12 +3,12 @@ package domain;
 import lombok.Data;
 
 @Data
-public class ProductAttachVO {
+public class ReviewAttachVO {
 
     private String uuid;
     private String uploadPath;
     private String fileName;
     private boolean fileType;
 
-    private int product_id;
+    private int review_no;
 }

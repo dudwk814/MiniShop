@@ -186,7 +186,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">사진 첨부</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" multiple>
+                    <input type="file" name="uploadFile" class="form-control-file" id="exampleFormControlFile1" multiple>
                 </div>
             </div>
             <div class="modal-footer">
@@ -270,6 +270,7 @@
 
         showList(1);
 
+        // 화면 하단 리뷰 출력
         function showList(page) {
 
             reviewService.getList({product_id:product_id_value, page: page || 1}, function (reviewCnt, list) {
@@ -337,6 +338,56 @@
             alert("로그인 해주세요");
         });
 
+        var regex = new RegExp("(.*?)\.(JPG|jpg|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$"); // 파일 확장자 정규식 (리뷰 이미지 파일 체크)
+        var maxSize = 20971520; // 20MB
+
+        // 리뷰 이미지 업로드 파일 체크 함수
+        function checkExtension(fileName, fileSize) {
+
+            if (fileSize >= maxSize) {
+                alert("파일 사이즈 초과입니다.");
+                return false;
+            }
+
+            if (!regex.test(fileName)) {
+                alert("이미지 파일만 업로드가 가능합니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // 리뷰 이미지 업로드
+        $("input[type='file']").change(function (e) {
+
+            var formData = new FormData(); // form 생성
+
+            var inputFile = $("input[name='uploadFile']");
+
+            var files = inputFile[0].files;
+
+            for (var i = 0; i < files.length; i++) {
+
+                if (!checkExtension(files[i].name, files[i].size)) {
+                    return false;
+                }
+                formData.append("uploadFile", files[i]);
+            }
+
+            $.ajax({
+                url: '/uploadAjaxAction',
+                processData : false,
+                contentType : false,
+                data: formData,
+                type : 'POST',
+                dataType : 'json',
+                success : function (result) {
+                    console.log(result);
+                }
+            }); // end ajax
+        });
+
+        // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {
 
             review = {
