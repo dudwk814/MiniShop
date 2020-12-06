@@ -174,7 +174,7 @@
                 </div>
                 <div class="form-group">
                     <label>리뷰 본문</label>
-                    <input class="form-control" name="review_content" value="New Reply!!">
+                    <textarea name="product_desc" id="editor1" rows="10" cols="80"></textarea>
                 </div>
                 <div class="form-group">
                     <label>작성자</label>
@@ -184,10 +184,13 @@
                     <label>작성날짜</label>
                     <input class="form-control" name="review_date" value="">
                 </div>
-                <div class="form-group">
+                <%--<div class="form-group">
                     <label for="exampleFormControlFile1">사진 첨부</label>
                     <input type="file" name="uploadFile" class="form-control-file" id="exampleFormControlFile1" multiple>
                 </div>
+                <div class="uploadResult">
+
+                </div>--%>
             </div>
             <div class="modal-footer">
                 <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
@@ -219,6 +222,7 @@
 <script src="/resources/review.js"></script>
 <script src="/resources/starRating/js/star-rating.js"></script>
 <script src="/resources/starRating/themes/krajee-fa/theme.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 
 <script>
     // initialize with defaults
@@ -227,6 +231,16 @@
 
 <script>
     $(document).ready(function (e) {
+
+        // 이지윅 에디터
+        var ckeditor_config = {
+            resize_enaleb : false,
+            enterMode : CKEDITOR.ENTER_BR,
+            shiftEnterMode : CKEDITOR.ENTER_P,
+            filebrowserUploadUrl : "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
+        };
+
+        CKEDITOR.replace("product_desc", ckeditor_config);
 
         // 장바구니 추가 버튼
         var addBtn = $("#addCartBtn");
@@ -315,6 +329,7 @@
         var modalInputReview_content = modal.find("input[name='review_content']");
         var modalInputUserId = modal.find("input[name='userid']");
         var modalInputReview_Date = modal.find("input[name='review_date']");
+        var modalInputUploadFile = modal.find("input[name='uploadFile']");
 
         var modalModBtn = $("#modalModBtn");
         var modalRemoveBtn = $("#modalRemoveBtn");
@@ -360,6 +375,8 @@
         // 리뷰 이미지 업로드
         $("input[type='file']").change(function (e) {
 
+            console.log(modalInputUploadFile);
+
             var formData = new FormData(); // form 생성
 
             var inputFile = $("input[name='uploadFile']");
@@ -383,9 +400,33 @@
                 dataType : 'json',
                 success : function (result) {
                     console.log(result);
+                    showUploadResult(result);
                 }
             }); // end ajax
         });
+
+        // 리뷰 이미지 input추가 (모달 창)
+        function showUploadResult(uploadResultArr) {
+
+            if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+
+            var uploadResult = $(".uploadResult");
+
+            var str = "";
+
+            $(uploadResultArr).each(function (i, obj) {
+
+                if (obj.image) {
+                    var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+                    str += "<input type='hidden' name='uuid' value='" + obj.uuid + "'><br/>";
+                    str += "<input type='hidden' name='uploadPath' value='" + obj.uploadPath + "'><br/>";
+                    str += "<input type='hidden' name='fileName' value='" + obj.fileName + "'><br/>";
+                    str += "<input type='hidden' name='fileType' value='I'><br/>";
+                }
+
+                uploadResult.append(str);
+            });
+        }
 
         // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {

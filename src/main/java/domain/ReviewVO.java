@@ -1,6 +1,7 @@
 package domain;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,8 @@ public class ReviewVO {
     private String review_content;
     private Date review_date;
     private Date review_updateDate;
+
+    private MultipartFile[] uploadFile;
 
     private List<ReviewAttachVO> attachList;
 }
