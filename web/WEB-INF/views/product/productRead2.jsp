@@ -174,7 +174,7 @@
                 </div>
                 <div class="form-group">
                     <label>리뷰 본문</label>
-                    <textarea name="product_desc" id="editor1" rows="10" cols="80"></textarea>
+                    <input class="form-control" name="review_content">
                 </div>
                 <div class="form-group">
                     <label>작성자</label>
@@ -222,7 +222,6 @@
 <script src="/resources/review.js"></script>
 <script src="/resources/starRating/js/star-rating.js"></script>
 <script src="/resources/starRating/themes/krajee-fa/theme.js"></script>
-<script src="/resources/ckeditor/ckeditor.js"></script>
 
 <script>
     // initialize with defaults
@@ -232,15 +231,7 @@
 <script>
     $(document).ready(function (e) {
 
-        // 이지윅 에디터
-        var ckeditor_config = {
-            resize_enaleb : false,
-            enterMode : CKEDITOR.ENTER_BR,
-            shiftEnterMode : CKEDITOR.ENTER_P,
-            filebrowserUploadUrl : "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
-        };
 
-        CKEDITOR.replace("product_desc", ckeditor_config);
 
         // 장바구니 추가 버튼
         var addBtn = $("#addCartBtn");
@@ -330,6 +321,7 @@
         var modalInputUserId = modal.find("input[name='userid']");
         var modalInputReview_Date = modal.find("input[name='review_date']");
         var modalInputUploadFile = modal.find("input[name='uploadFile']");
+
 
         var modalModBtn = $("#modalModBtn");
         var modalRemoveBtn = $("#modalRemoveBtn");
