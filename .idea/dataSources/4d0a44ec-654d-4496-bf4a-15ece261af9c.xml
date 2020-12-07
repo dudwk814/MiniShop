@@ -55,8 +55,8 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
-      <ModifiedTimestamp>2020-12-06.05:07:39</ModifiedTimestamp>
-      <IntrospectionTimestamp>2020-12-06.05:07:40</IntrospectionTimestamp>
+      <ModifiedTimestamp>2020-12-08.04:03:33</ModifiedTimestamp>
+      <IntrospectionTimestamp>2020-12-08.04:03:35</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -248,7 +248,7 @@
     <table id="61" parent="18" name="TBL_PRODUCT">
       <ObjectId>80864</ObjectId>
       <CreatedTimestamp>2020-10-27.00:50:23</CreatedTimestamp>
-      <ModifiedTimestamp>2020-10-27.04:32:25</ModifiedTimestamp>
+      <ModifiedTimestamp>2020-12-08.04:03:33</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="62" parent="18" name="TBL_REPLY">

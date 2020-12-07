@@ -15,6 +15,7 @@ public interface ProductMapper {
     // 상품 수정
     public int updateProduct(ProductVO vo);
 
+
     // 상품 삭제
     public int deleteProduct(int product_id);
 

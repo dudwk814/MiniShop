@@ -36,6 +36,7 @@
         update tbl_product set product_price = #{product_price}, product_name = #{product_name}, product_desc = #{product_desc}, product_url = #{product_url}, brand = #{brand} where product_id = #{product_id}
     </update>
 
+
     <!-- 상품 삭제 -->
     <delete id="deleteProduct">
         delete from tbl_product where product_id = #{product_id}

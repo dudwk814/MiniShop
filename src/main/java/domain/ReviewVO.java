@@ -16,6 +16,7 @@ public class ReviewVO {
     private String review_content;
     private Date review_date;
     private Date review_updateDate;
+    private int review_star;
 
     private MultipartFile[] uploadFile;
 

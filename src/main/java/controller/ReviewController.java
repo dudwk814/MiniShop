@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import service.ProductService;
 import service.ReviewService;
 
 import java.util.List;
@@ -24,12 +26,16 @@ public class ReviewController {
     @Setter(onMethod_ = @Autowired)
     private ReviewService reviewService;
 
+    @Setter(onMethod_ = @Autowired)
+    private ProductService productService;
+
     @PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> create(@RequestBody ReviewVO vo) {
 
         log.info("ReviewVO : " + vo);
 
         int insertCount = reviewService.register(vo);
+
 
         log.info("Review INSERT COUNT : " + insertCount);
 

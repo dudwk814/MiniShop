@@ -33,22 +33,6 @@
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                 <h3>${product.product_name}</h3>
-                <div class="rating d-flex">
-                    <p class="text-left mr-4">
-                        <a href="#" class="mr-2">5.0</a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    </p>
-                    <p class="text-left mr-4">
-                        <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
-                    </p>
-                    <p class="text-left">
-                        <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
-                    </p>
-                </div>
                 <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</span></p>
                 <p><small>배송비 : 3000원 (5만원이상 주문 시 배송비 무료)</small></p>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
@@ -161,12 +145,13 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>별점</label>
-                    <i class="ion-ios-star-outline"></i>
-                    <i class="ion-ios-star-outline"></i>
-                    <i class="ion-ios-star-outline"></i>
-                    <i class="ion-ios-star-outline"></i>
-                    <i class="ion-ios-star-outline"></i>
-                    <input id="rating-system" name="input-name" type="number" class="rating" min=1 max=10 step=2 data-size="lg" data-rtl="true">
+                    <select name="review_star" id="star-rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>리뷰 제목</label>
@@ -184,13 +169,6 @@
                     <label>작성날짜</label>
                     <input class="form-control" name="review_date" value="">
                 </div>
-                <%--<div class="form-group">
-                    <label for="exampleFormControlFile1">사진 첨부</label>
-                    <input type="file" name="uploadFile" class="form-control-file" id="exampleFormControlFile1" multiple>
-                </div>
-                <div class="uploadResult">
-
-                </div>--%>
             </div>
             <div class="modal-footer">
                 <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
@@ -220,15 +198,19 @@
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
-<script src="/resources/starRating/js/star-rating.js"></script>
-<script src="/resources/starRating/themes/krajee-fa/theme.js"></script>
+<script src="/resources/starRating/docs/dist/jquery.barrating.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#star-rating').barrating({
+            theme: 'fontawesome-stars',
+            initialRating : '0'
+        });
+    });
 
-<script>
-    // initialize with defaults
-    $("#rating-system").rating();
 </script>
-
 <script>
+
+
     $(document).ready(function (e) {
 
 
@@ -257,7 +239,7 @@
         });
 
 
-        console.log(product_id_value);
+        console.log("product_id : " + product_id_value);
 
 
 
@@ -296,14 +278,15 @@
                 }
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<div class='review' data-review_no='" + list[i].review_no + "'><div class='user-img' style='background-image: url(/resources/shop/images/person_1.jpg)'></div>";
+                    str += "<div class='review' data-review_no='" + list[i].review_no + "'>";
                     str += "    <div class='desc'>";
-                    str += "    <h4><span class='text-left'>이름 : " + list[i].userid + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 제목 : " + list[i].review_title + "</span>";
-                    str += "        <span class='text-right'>" + reviewService.displayTime(list[i].review_date) + "</span></h4>";
-                    str += "    <p class='star'><span>";
-                    /*str += "            <i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i><i class='ion-ios-star-outline'></i>";*/
-                    str += "<input type='text' class='rating rating-loading' data-size='xs' value='5'>";
-                    str += "    </span> </p>";
+                    str += "    <p class='star' style='margin-bottom: 0px;'>";
+                    for (var k = 0; k < list[i].review_star; k++) {
+                        str += "<i class='fa fa-star'></i>";
+                    }
+                    str += "    </p><div class='review-div'><span class='text-left'>" + list[i].userid + "&nbsp; | &nbsp;" + list[i].review_title + "</span>";
+                    str += "        &nbsp; | &nbsp; <span>" + reviewService.displayTime(list[i].review_date) + "</span><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'></div>";
+
                     str += "<p>" + list[i].review_content + "</p>";
                     str += "</div></div>";
 
@@ -321,7 +304,7 @@
         var modalInputUserId = modal.find("input[name='userid']");
         var modalInputReview_Date = modal.find("input[name='review_date']");
         var modalInputUploadFile = modal.find("input[name='uploadFile']");
-
+        var modalInputStarValue = modal.find("select[name='review_star']");
 
         var modalModBtn = $("#modalModBtn");
         var modalRemoveBtn = $("#modalRemoveBtn");
@@ -423,11 +406,17 @@
         // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {
 
+            if (modalInputStarValue.val() == 0) {
+                alert("별점을 선택해주세요.");
+                return;
+            }
+
             review = {
                 review_title: modalInputReview_title.val(),
                 review_content: modalInputReview_content.val(),
                 userid : modalInputUserId.val(),
                 product_id: product_id_value,
+                review_star : modalInputStarValue.val()
             };
 
             reviewService.add(review, function (result) {
@@ -451,6 +440,7 @@
                 modalInputReview_title.val(review.review_title);
                 modalInputUserId.val(review.userid);
                 modalInputReview_Date.val(reviewService.displayTime(review.review_date)).attr("readonly", "readonly");
+                modalInputStarValue.val(review.review_star);
                 modal.data("review_no", review.review_no);
 
                 modal.find("button[id != 'modalCloseBtn']").hide();
