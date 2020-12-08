@@ -196,6 +196,27 @@
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close closeBtn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                회원가입을 축하합니다!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal">Close</button>
+                <a href="/user/loginForm" class="btn btn-primary">로그인</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/resources/shop/js/popper.min.js"></script>
@@ -215,6 +236,30 @@
 
 <script>
     $(document).ready(function (e) {
+
+        // RedirectAttributes로 부터 전달받은 값
+        var result = '<c:out value="${result}"/>';
+
+        // 모달 close 버튼
+        var closeBtn = $("#closeBtn");
+
+        closeBtn.on("click", function () {
+
+            $("#myModal").modal("hide");
+        })
+
+
+        checkModal(result);
+
+        function checkModal(result) {
+
+            if (result === '') {
+                return;
+            }
+
+            $("#myModal").modal("show");
+        }
+
         var logoutBtn = $("#logoutBtn");
 
         var addCartBtn = $("#addCartBtn");

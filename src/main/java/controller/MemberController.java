@@ -51,12 +51,14 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(MemberVO vo) {
+    public String join(MemberVO vo, RedirectAttributes rttr) {
 
         log.info("Joined  " + vo.getUserid());
         int register = memberService.register(vo);
 
-        return "user/loginForm";
+        rttr.addFlashAttribute("result", register);
+
+        return "redirect:/";
     }
 
 

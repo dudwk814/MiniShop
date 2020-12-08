@@ -24,6 +24,6 @@ public class CommonExceptionAdvice {
 
         log.error("Exception : " + ex.getMessage());
 
-        return "exception/error_page";
+        return "exception/exception";
     }
 }

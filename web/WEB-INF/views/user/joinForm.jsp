@@ -259,26 +259,26 @@
             if(username.val().trim() == "" || userid.val().trim() == "" || userpw.val().trim() == "") {
                 alert("회원정보를 입력해주세요.");
                 return;
-            }
-
-            if(post_code.val().trim() == ""
+            } else if(post_code.val().trim() == ""
                 || detailAddress.val().trim() == ""
                 || street_address.val().trim() == ""
                 || address.val().trim() == "") {
 
                 alert("주소를 정확히 입력해주세요.");
                 return;
-            }
-
-            if($("input:checkbox[name=chkAgreement]").is(":checked") != true) {
+            } else if($("input:checkbox[name=chkAgreement]").is(":checked") != true) {
 
                 alert("동의항목을 체크하여 주세요.");
                 return ;
-            }
-
-            if(userIdExist == false) {
+            } else if(userIdExist == false) {
                 alert("아이디 중복체크를 해주세요.");
                 return ;
+            } else if (userid.val().length < 5) {
+                alert("아이디는 5글자 이상이여야합니다.");
+                return;
+            } else if (userpw.val().length < 5) {
+                alert("비밀번호는 5글자 이상이여야합니다.");
+                return;
             }
 
             register_form.submit();
