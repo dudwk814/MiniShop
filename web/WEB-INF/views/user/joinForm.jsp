@@ -273,10 +273,10 @@
             } else if(userIdExist == false) {
                 alert("아이디 중복체크를 해주세요.");
                 return ;
-            } else if (userid.val().length < 5) {
+            } else if (userid.trim().val().length < 5) {
                 alert("아이디는 5글자 이상이여야합니다.");
                 return;
-            } else if (userpw.val().length < 5) {
+            } else if (userpw.trim().val().length < 5) {
                 alert("비밀번호는 5글자 이상이여야합니다.");
                 return;
             }
