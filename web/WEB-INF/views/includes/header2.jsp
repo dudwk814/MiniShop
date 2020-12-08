@@ -61,12 +61,12 @@
 
                 <%-- 로그인 안 한 경우 로그인 페이지로 이동 --%>
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart" class="nav-link">Cart</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/cart/cart" class="nav-link">Cart<span class="badge badge-success">${cartCount}</span></a></li>
                 </sec:authorize>
 
                 <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link">Cart<span class="badge badge-success">${cartForMember}</span> </a></li>
+                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link">Cart<span class="badge badge-success">${cartCount}</span> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">

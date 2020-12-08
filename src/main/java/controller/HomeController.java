@@ -35,20 +35,15 @@ public class HomeController {
 
         model.addAttribute("pList", list);
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();*/
 
-        String userid = auth.getName();
+        String userid = (String) session.getAttribute("userid");
 
-        int cartForMember = cartService.countCartForMember(userid);
+        /*int cartForMember = cartService.countCartForMember(userid);*/
+
+
 
         log.info(userid);
-
-
-
-        model.addAttribute("userid", userid);
-        model.addAttribute("cartForMember", cartForMember);
-
-        session.setAttribute("userid", userid);
 
         log.info("Main Page");
         return "home";

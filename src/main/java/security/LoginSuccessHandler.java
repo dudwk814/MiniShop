@@ -26,7 +26,11 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
         UserDetails user = (UserDetails) principal;
         String userId = user.getUsername();
 
-        httpServletRequest.setAttribute("userId", userId);
+
+        HttpSession session = httpServletRequest.getSession();
+
+        session.setAttribute("userid", userId);
+
         httpServletResponse.sendRedirect("/");
     }
 }
