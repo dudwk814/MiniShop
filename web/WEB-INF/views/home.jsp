@@ -217,6 +217,29 @@
     </div>
 </div>
 
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle2">Modal title</h5>
+                <button type="button" class="close modalCloseBtn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                해당 웹 사이트는 포트폴리오로써 실제 결제기능은 제공하지 않습니다.
+            </div>
+            <div class="modal-footer">
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="inlineCheckbox2">오늘 하루 열지 않기</label>
+                    <input name="modalClose" class="form-check-input  float-left" type="checkbox" id="inlineCheckbox2" value="option1">
+                </div>
+                <button type="button" class="btn btn-secondary modalCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/resources/shop/js/popper.min.js"></script>
@@ -233,9 +256,28 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
+<script src="/resources/jquery.cookie.js"></script>
 
 <script>
+
     $(document).ready(function (e) {
+
+        $("#inlineCheckbox2").change(function(){
+            if($("#inlineCheckbox2").is(":checked") == true) {
+                $.cookie("close", "Y", { expires: 1 });
+                console.log("Y");
+                $("#myModal2").modal("hide");
+            }
+        });
+
+        console.log($.cookie("close"));
+
+        if ($.cookie('close') == "Y") {
+            $("#myModal2").modal("hide");
+        } else {
+            $("#myModal2").modal("show");
+        }
+
 
         // RedirectAttributes로 부터 전달받은 값
         var result = '<c:out value="${result}"/>';
