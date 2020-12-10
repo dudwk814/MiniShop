@@ -18,6 +18,8 @@ public interface MemberService {
 
     public int remove(String userid);
 
+    public MemberVO getMember(String userid);
+
     public int findUser(String userid);
 
     public boolean updateAuth(authVO vo);

@@ -66,6 +66,12 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public MemberVO getMember(String userid) {
+
+        return memberMapper.getMember(userid);
+    }
+
+    @Override
     public MemberVO read(String userid) {
 
         log.info("get member info " + userid);

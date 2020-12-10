@@ -102,9 +102,13 @@ public class MemberController {
 
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping ("/modifyForm")
-    public String modifyForm() {
+    public String modifyForm(String userid, Model model) {
 
         log.info("Move to ModifyFrom");
+
+        MemberVO member = memberService.getMember(userid);
+
+        model.addAttribute("member", member);
 
         return "/user/modifyForm";
     }

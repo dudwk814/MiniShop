@@ -14,6 +14,8 @@ public interface MemberMapper {
     public int register(MemberVO memberVO);
     public void authRegister(String userid);
 
+    public MemberVO getMember(String userid);
+
     public int modify(MemberVO memberVO);
 
     public int removeMember(String userid);
