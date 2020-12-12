@@ -207,11 +207,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                회원가입을 축하합니다!
+                처리가 완료되었습니다.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal">Close</button>
-                <a href="/user/loginForm" class="btn btn-primary">로그인</a>
+                <sec:authorize access="isAnonymous()">
+                    <a href="/user/loginForm" class="btn btn-primary">로그인</a>
+                </sec:authorize>
             </div>
         </div>
     </div>

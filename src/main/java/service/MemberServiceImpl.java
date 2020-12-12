@@ -66,6 +66,19 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public MemberVO findPassword(MemberVO vo) {
+
+        return memberMapper.findPassword(vo);
+    }
+
+    @Override
+    public int modifyPassword(MemberVO vo) {
+
+        vo.setUserpw(encoder.encode(vo.getUserpw()));
+        return memberMapper.modifyPassword(vo);
+    }
+
+    @Override
     public MemberVO getMember(String userid) {
 
         return memberMapper.getMember(userid);

@@ -81,8 +81,8 @@
                 </div>
 
                 <div class="signin-form">
-                    <h2 class="form-title">Modify Member</h2>
-                    <form action="/user/modify" method="POST" class="register-form" id="login-form">
+                    <h2 class="form-title">회원정보 변경</h2>
+                    <form action="/user/modify" method="POST" class="register-form" id="modifyForm">
                         <div class="form-group">
                             <label for="userid"><i class="zmdi zmdi-account material-icons-name"></i></label>
                             <input type="text" name="userid" id="userid" placeholder="Your ID" value="<sec:authentication property="principal.member.userid"/>" readonly/>
@@ -107,26 +107,26 @@
 
                         <div class="form-group">
                             <label for="postcode"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="postcode" value="${member.post_code}" name="post_code" class="form-control text-body" placeholder="우편번호">
+                            <input type="text" id="sample4_postcode" value="${member.post_code}" name="post_code" class="text-body" placeholder="우편번호">
                         </div>
 
                         <div class="form-group">
                             <label for="country"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_roadAddress" value="${member.street_address}" name="street_address" class="form-control" placeholder="도로명주소">
+                            <input type="text" id="sample4_roadAddress" value="${member.street_address}" name="street_address"  placeholder="도로명주소">
                         </div>
 
                         <div class="form-group">
                             <label for="streetaddress"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_jibunAddress" value="${member.address}" name="address" class="form-control" placeholder="지번주소">
+                            <input type="text" id="sample4_jibunAddress" value="${member.address}" name="address"  placeholder="지번주소">
                         </div>
 
                         <div class="form-group">
                             <label for="streetaddress"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_detailAddress" value="${member.detail_address}" name="detail_address" class="form-control" placeholder="상세주소">
+                            <input type="text" id="sample4_detailAddress" value="${member.detail_address}" name="detail_address"  placeholder="상세주소">
                         </div>
 
                         <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="Modify Account Info"/>
+                            <input type="submit" name="signup" id="modBtn" class="form-submit" value="회원 정보 변경"/>
                         </div>
 
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -206,10 +206,40 @@
         var form = $("#removeForm");
         var removeBtn = $("#removeMemberBtn");
 
+        // 회원탈퇴 함수
         removeBtn.on("click", function (e) {
 
             if(confirm("정말 회원탈퇴 하시겠습니까?") == true) {
                 form.submit();
+            }
+        });
+
+        // 사용자 변경 폼
+        var modifyForm = $("#modifyForm");
+
+        // 사용자 변경 버튼
+        var modBtn = $("#modBtn");
+
+        // 사용자 비밀번호
+        var userpw = $("#userpw");
+
+        // 사용자 주소 관련 변수
+        var post_code = $("input[name='post_code']");
+        var street_address = $("input[name='street_address']");
+        var address = $("input[name='address']");
+        var detail_address = $("input[name='detail_address']");
+
+        // 회원 정보 변경 함수
+        modBtn.on("click", function (e) {
+            e.preventDefault();
+
+            if (post_code.val().trim() == "" || street_address.val().trim() == "" | address.val().trim() == "" | detail_address.val().trim() == "") {
+                alert("주소 정보를 입력해주세요.");
+                return;
+            }
+
+            if (confirm("회원정보를 변경하시겠습니까?") == true) {
+                modifyForm.submit();
             }
         });
 

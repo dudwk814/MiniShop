@@ -23,5 +23,9 @@ public interface MemberMapper {
 
     public int findUser(String userid);
 
+    public MemberVO findPassword(MemberVO vo);
+
+    public int modifyPassword(MemberVO vo);
+
     public int updateAuth(authVO vo);
 }

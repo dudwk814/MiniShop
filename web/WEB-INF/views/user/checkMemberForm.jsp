@@ -55,16 +55,7 @@
     <section class="signup">
         <div class="container">
             <a class="navbar-brand" href="${root}">Minishop</a>
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#ftco-nav"
-                    aria-controls="ftco-nav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-            </button>
+
             <div class="signup-content">
                 <div class="signup-form">
                     <h2 class="form-title">Check Member Account</h2>

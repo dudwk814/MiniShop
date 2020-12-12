@@ -20,6 +20,10 @@ public interface MemberService {
 
     public MemberVO getMember(String userid);
 
+    public MemberVO findPassword(MemberVO vo);
+
+    public int modifyPassword(MemberVO vo);
+
     public int findUser(String userid);
 
     public boolean updateAuth(authVO vo);

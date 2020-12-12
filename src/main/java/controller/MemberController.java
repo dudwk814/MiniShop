@@ -42,6 +42,7 @@ public class MemberController {
     @Setter(onMethod_ = @Autowired)
     private OAuth2Parameters googleOAuth2Parameters;
 
+    // 회원 가입 폼으로 이동
     @GetMapping("/joinForm")
     public String joinForm(HttpServletResponse response, Model model, @ModelAttribute("memberVO") MemberVO memberVO, @RequestParam(value = "member", required = false) MemberVO member) {
 
@@ -50,6 +51,7 @@ public class MemberController {
         return "user/joinForm";
     }
 
+    // 회원 가입
     @PostMapping("/join")
     public String join(MemberVO vo, RedirectAttributes rttr) {
 
@@ -62,6 +64,7 @@ public class MemberController {
     }
 
 
+    // 로그인 폼으로 이동
     @GetMapping("/loginForm")
     public String loginForm(String error, String logout, Model model) {
 
@@ -91,6 +94,7 @@ public class MemberController {
         return "user/loginForm";
     }
 
+    // 회원 정보 체크
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @GetMapping("/checkMemberForm")
     public String checkMemberForm() {
@@ -100,6 +104,7 @@ public class MemberController {
         return "/user/checkMemberForm";
     }
 
+    // 회원 정보 변경 폼으로 이동
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping ("/modifyForm")
     public String modifyForm(String userid, Model model) {
@@ -113,15 +118,19 @@ public class MemberController {
         return "/user/modifyForm";
     }
 
+    // 회원 정보 변경
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping("/modify")
-    public String modify(MemberVO vo) {
+    public String modify(MemberVO vo, RedirectAttributes rttr) {
 
         int modify = memberService.modify(vo);
 
-        return "user/modifyForm";
+        rttr.addFlashAttribute("result", modify);
+
+        return "redirect:/";
     }
 
+    // 회원 탈퇴
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping("/remove")
     public String remove(String userid) {
@@ -133,6 +142,7 @@ public class MemberController {
         return "redirect:/user/logout";
     }
 
+    // 로그아웃
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')") 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -143,6 +153,7 @@ public class MemberController {
         return "redirect:/user/loginForm";
     }
 
+    // 회원가입 아이디 체크
     @ResponseBody
     @RequestMapping(value = "/ID_Check", produces="text/plane")
     public String ID_Check(@RequestBody String paramData) {
@@ -158,6 +169,35 @@ public class MemberController {
             System.out.println("null");
             return "0";
         }
+    }
+
+    // 비밀번호 찾기 폼으로 이동
+    @GetMapping("/findPasswordForm")
+    public String findPasswordForm() {
+
+        return "/user/findPasswordForm";
+    }
+
+    // 비밀번호 변경 폼으로 이동
+    @PostMapping("/modifyPasswordForm")
+    public String modifyPasswordForm(MemberVO vo, Model model) {
+
+        MemberVO member = memberService.findPassword(vo);
+
+        model.addAttribute("member", member);
+
+        return "/user/modifyPasswordForm";
+    }
+
+    // 비밀번호 변경
+    @PostMapping("/modifyPassword")
+    public String modifyPassword(MemberVO vo, RedirectAttributes rttr) {
+
+        int result = memberService.modifyPassword(vo);
+
+        rttr.addFlashAttribute("result", result);
+
+        return "redirect:/";
     }
 
 
