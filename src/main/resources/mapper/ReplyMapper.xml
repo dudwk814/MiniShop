@@ -5,6 +5,7 @@
 
 <mapper namespace="mapper.ReplyMapper">
 
+    <!-- 댓글 입력 -->
     <insert id="insert">
         <![CDATA[
             insert into tbl_reply (rno, bno, reply, replyer)
@@ -12,12 +13,14 @@
         ]]>
     </insert>
 
+    <!-- 댓글 조회 -->
     <select id="read" resultType="domain.ReplyVO">
         <![CDATA[
             select * from tbl_reply where rno = #{rno}
         ]]>
     </select>
 
+    <!-- 댓글 리스트 조회 -->
     <select id="getListWithPaging" resultType="domain.ReplyVO">
         <![CDATA[
             select rno, bno, reply, replyer, replyDate, updateDate
@@ -32,18 +35,27 @@
         ]]>
     </select>
 
+    <!-- 게시글당 댓글 수 -->
     <select id="getCountByBno" resultType="int">
         select count(rno) from tbl_reply where bno = #{bno}
     </select>
 
 
-
+    <!-- 댓글 삭제 -->
     <delete id="delete">
         <![CDATA[
             delete from tbl_reply where rno = #{rno}
         ]]>
     </delete>
 
+    <!-- 게시글 번호의 해당하는 전체 댓글 삭제 -->
+    <delete id="deleteByBno">
+        <![CDATA[
+            delete from tbl_reply where bno = #{bno}
+        ]]>
+    </delete>
+
+    <!-- 댓글 수정 -->
     <update id="update">
         <![CDATA[
             update tbl_reply set reply = #{reply}, updateDate = sysdate

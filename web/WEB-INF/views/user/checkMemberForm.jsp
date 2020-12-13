@@ -54,7 +54,7 @@
     <!-- Sign up form -->
     <section class="signup">
         <div class="container">
-            <a class="navbar-brand" href="${root}">Minishop</a>
+            <a class="navbar-brand" href="${root}"><h1 style="color: black; text-decoration: none;">MiniShop</h1></a>
 
             <div class="signup-content">
                 <div class="signup-form">

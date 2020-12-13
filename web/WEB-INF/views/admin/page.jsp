@@ -94,7 +94,7 @@
                             <th scope="col">상품 이름</th>
                             <th scope="col">상품 가격</th>
                             <th scope="col">브랜드</th>
-                            <th scope="col">제품 삭제</th>
+                            <th scope="col">상품 삭제</th>
                         </tr>
                         </thead>
                         <tbody id="product_tbody">
@@ -109,7 +109,7 @@
                                         <form action="/admin/product/remove" id="productRemoveForm${product.product_id}" method="post">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                             <input type="hidden" name="product_id" value="${product.product_id}">
-                                            <input type="submit" class="btn btn-outline-danger productRemoveBtn" data-product-id="${product.product_id}" value="제품 삭제">
+                                            <input type="submit" class="btn btn-outline-danger productRemoveBtn" data-product-id="${product.product_id}" value="상품 삭제">
                                         </form>
                                     </td>
                                 </tr>

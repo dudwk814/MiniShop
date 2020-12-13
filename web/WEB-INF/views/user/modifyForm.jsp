@@ -58,7 +58,7 @@
     <!-- Sing in  Form -->
     <section class="sign-in">
         <div class="container">
-            <a class="navbar-brand" href="${root}">Minishop</a>
+            <a class="navbar-brand" style="color: black;" href="${root}">Minishop</a>
             <button
                     class="navbar-toggler"
                     type="button"
