@@ -128,6 +128,7 @@
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input type="hidden" name="userid" value="${userid}"/>
                                         <input type="hidden" name="amount" value="1"/>
+                                        <input type="hidden" name="product_name" value="${pList.product_name}">
                                         <input type="hidden" name="product_id" value="${pList.product_id}">
 
                                     <button type="submit" class="btn btn-info addCartBtn" data-product-id="${pList.product_id}" name="addCartBtn" id="addCartBtn"><span class="icon-plus"></span>&nbsp; <span class="icon-shopping_cart"></span></button>

@@ -50,9 +50,8 @@ public class MemberServiceTests {
     @Test
     public void testModifyMember() {
 
-        MemberVO vo = new MemberVO();
-        vo.setUserid("member");
-        vo.setUserpw(encoder.encode("1234"));
+        MemberVO vo = memberMapper.getMember("admin");
+        vo.setUserpw(encoder.encode("admin"));
 
         memberMapper.modify(vo);
 

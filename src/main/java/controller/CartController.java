@@ -51,7 +51,6 @@ public class CartController {
         int fee = sumMoney >= 50000 ? 0 : 3000;
 
         model.addAttribute("cart", list);
-        model.addAttribute("cartCount", cartCount);
         model.addAttribute("sumMoney", sumMoney);
         model.addAttribute("fee", fee);
         model.addAttribute("AllSumMoney", sumMoney + fee);
@@ -69,19 +68,25 @@ public class CartController {
     /* 장바구니 등록 */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/add")
-    public String addCart(CartVO cartVO) {
+    public String addCart(CartVO cartVO, RedirectAttributes rttr) {
 
         int cartCount = cartService.countCart(cartVO.getProduct_id(), cartVO.getUserid());
+
+
 
         if(cartCount >= 1) {
 
             log.info("이미 장바구니에 제품이 존재합니다.");
             cartService.updateCart(cartVO);
 
+            rttr.addFlashAttribute("result", "장바구니에 " + cartVO.getProduct_name() + " 상품이 추가되었습니다.");
+
             return "redirect:/cart/cart?userid=" + cartVO.getUserid();
         }
 
         log.info("Add Cart : " + cartVO.getUserid());
+
+        rttr.addFlashAttribute("result", "장바구니에 " + cartVO.getProduct_name() + " 상품이 추가되었습니다.");
 
         cartService.insertCart(cartVO);
 
@@ -101,13 +106,15 @@ public class CartController {
 
         rttr.addFlashAttribute("userid", userid);
 
+        rttr.addFlashAttribute("result", "장바구니에서 상품을 삭제했습니다.");
+
         return "redirect:/cart/cart?userid=" + userid;
     }
 
     /* 장바구니 상품 수량 변경 */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/amountModify")
-    public String amountModify(CartVO vo) {
+    public String amountModify(CartVO vo, RedirectAttributes rttr) {
 
         if (vo.getAmount() <= 0) {
             return "redirect:/cart/cart?userid=" + vo.getUserid();
@@ -115,6 +122,8 @@ public class CartController {
 
         log.info("Modify Amount : " + vo.getAmount());
         cartService.modifyCart(vo);
+
+        rttr.addFlashAttribute("result", "장바구니에서 상품의 수량이 변경되었습니다.");
 
         return "redirect:/cart/cart?userid=" + vo.getUserid();
 

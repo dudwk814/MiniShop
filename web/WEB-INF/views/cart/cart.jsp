@@ -91,13 +91,10 @@
                         <span>Delivery</span>
                         <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${fee}" maxFractionDigits="0"/>원 (50,000원 이상 배송비 무료)</span>
                     </p>
-                    <%--<p class="d-flex">
-                        <span>Discount</span>
-                        <span>$3.00</span>
-                    </p>--%>
-                    <hr>
+                     <hr>
                     <p class="d-flex total-price">
                         <span>Total</span>
+                        <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${AllSumMoney}" maxFractionDigits="0"/>원
                     </p>
                 </div>
                 <p class="text-center"><a href="/order/orderForm?userid=<sec:authentication property="principal.member.userid"/>" class="btn btn-primary py-3 px-4">주문하기</a></p>
@@ -105,6 +102,30 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ${result}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <a href="${root}"> <button type="button" class="btn btn-primary">쇼핑 계속하기</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="regBtn2" type="button" class="btn btn-primary float-left">글 쓰기</button>
+
+</div>
 
 <script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
@@ -125,6 +146,20 @@
 
 <script>
     $(document).ready(function (e) {
+
+        // 모달 reuslt
+        var result = '<c:out value="${result}"/>';
+
+        checkModal(result);
+
+        function checkModal(result) {
+
+            if (result === '') {
+                return;
+            }
+
+            $("#myModal").modal("show");
+        }
 
         if(${cartCount == 0}) {
             alert("장바구니가 비었습니다.");
@@ -155,8 +190,21 @@
 
             e.preventDefault();
 
-            if($("input[name='amount']").val() <= 0) {
-                alert("주문 수량을 0보다 크게 해주세요.");
+            var regex= /^[0-9]/g;
+
+            var amount = $("input[name='amount']").val();
+
+            if(amount <= 0) {
+                alert("상품 수량을 0보다 크게 해주세요.");
+                return;
+            } else if (amount > 100) {
+                alert("최대 100개까지만 주문 가능합니다.");
+                return;
+            } else if (!regex.test(amount)) {
+                alert("올바른 상품 수량을 입력해주세요.");
+                return;
+            } else if (amount.trim() == "") {
+                alert("올바른 상품 수량을 입력해주세요.");
                 return;
             }
 

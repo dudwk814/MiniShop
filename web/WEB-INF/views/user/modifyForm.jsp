@@ -89,7 +89,11 @@
                         </div>
                         <div class="form-group">
                             <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="userpw" id="userpw" placeholder="Password"/>
+                            <input type="password" name="userpw"  id="userpw" placeholder="비밀번호"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="userpw2"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="userpw2"  id="userpw2" placeholder="비밀번호 확인"/>
                         </div>
                         <div class="form-group">
                             <label for="userName"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -221,7 +225,8 @@
         var modBtn = $("#modBtn");
 
         // 사용자 비밀번호
-        var userpw = $("#userpw");
+        var inputUserpw = $("#userpw");
+        var inputUserpw2 = $("#userpw2");
 
         // 사용자 주소 관련 변수
         var post_code = $("input[name='post_code']");
@@ -233,6 +238,16 @@
         modBtn.on("click", function (e) {
             e.preventDefault();
 
+            // 비밀번호 정합성 검증
+            if(inputUserpw.val().trim() == "" || inputUserpw2.val().trim() == "") { // 비밀번호 칸이 비어있는 경우
+                alert("변경할 비밀번호를 입력해주세요.");
+                return;
+            } else if (inputUserpw != inputUserpw2) { // 비밀번호가 서로 다른 경우
+                alert("비밀번호를 정확히 입력해주세요.");
+                return;
+            }
+
+            // 주소 정합성 검증
             if (post_code.val().trim() == "" || street_address.val().trim() == "" | address.val().trim() == "" | detail_address.val().trim() == "") {
                 alert("주소 정보를 입력해주세요.");
                 return;

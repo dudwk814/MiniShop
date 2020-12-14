@@ -178,7 +178,7 @@ public class MemberController {
         return "/user/findPasswordForm";
     }
 
-    // 비밀번호 변경 폼으로 이동
+    // 비밀번호 재설정 폼으로 이동
     @PostMapping("/modifyPasswordForm")
     public String modifyPasswordForm(MemberVO vo, Model model) {
 
@@ -189,7 +189,7 @@ public class MemberController {
         return "/user/modifyPasswordForm";
     }
 
-    // 비밀번호 변경
+    // 비밀번호 재설정
     @PostMapping("/modifyPassword")
     public String modifyPassword(MemberVO vo, RedirectAttributes rttr) {
 

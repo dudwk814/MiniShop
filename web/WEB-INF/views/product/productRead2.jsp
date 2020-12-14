@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <form action="/cart/add" method="post" id="addCartForm">
                             <div class="input-group col-md-6 d-flex mb-3">
-                                <input type="number" id="quantity" name="amount" class="quantity form-control input-number" value="1" min="1" max="100">&nbsp;&nbsp;
+                                <input type="text" id="quantity" name="amount" class="quantity form-control input-number" value="1" min="1" max="100">&nbsp;&nbsp;
                                 <input type="hidden" name="product_id" value="${product.product_id}">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                 <input type="hidden" name="userid" value="${userid}">
@@ -219,22 +219,46 @@
         var addBtn = $("#addCartBtn");
         // 장바구니 추가 폼
         var addCartForm = $("#addCartForm");
+
+
         var userid = '${userid}';
         var product_id_value = '<c:out value="${product.product_id}"/>';
-
-
 
         console.log("userid : " + userid);
 
 
+        // 주문 수량 정합성 검증 이벤트
         addBtn.on("click", function (e) {
             e.preventDefault();
 
-            if (userid == 'anonymousUser') {
+
+            // 주문 수량
+            var amount = $("input[name='amount']").val();
+
+            // 주문 수량 정합성 체크 정규식 (숫자만 가능)
+            var regex= /^[0-9]/g;
+
+
+
+            <sec:authorize access="isAnonymous()">
                 alert("로그인 후 이용가능합니다.");
                 return;
-            }
+            </sec:authorize>
 
+            // 주문 수량 정합성 검증
+            if(amount <= 0) {
+                alert("상품 수량을 0보다 크게 해주세요.");
+                return;
+            } else if (amount > 100) {
+                alert("최대 100개까지만 주문 가능합니다.");
+                return;
+            } else if (!regex.test(amount)) {
+                alert("올바른 상품 수량을 입력해주세요.");
+                return;
+            } else if (amount == "") {
+                alert("올바른 상품 수량을 입력해주세요.");
+                return;
+            }
             addCartForm.submit();
         });
 
