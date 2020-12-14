@@ -14,7 +14,7 @@ import security.domain.CustomUser;
 import javax.servlet.http.HttpServletRequest;
 
 @Log4j
-public class CustomUserDetailsService implements UserDetailsService {
+public class  CustomUserDetailsService implements UserDetailsService {
 
     @Setter(onMethod_ = {@Autowired})
     private MemberMapper memberMapper;

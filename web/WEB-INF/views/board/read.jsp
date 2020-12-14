@@ -44,19 +44,19 @@
                 <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
                     <button id="listBtn" type="button" class="btn btn-info">목록</button>
                 </a>
-                <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
 
-                        <c:if test="${board.writer == userid}">
-                            <a id="modBtn" href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
-                               class="float-right">
-                                <button  type="button" class="btn btn-danger">수정</button>
-                            </a>&nbsp; &nbsp; &nbsp;
-                        </c:if>
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
-                        <button id="removeBtn" type="button" class="btn btn-warning float-right" style="margin-right: 10px;">
-                            삭제
-                        </button>
-                    </sec:authorize>
+                    <c:if test="${board.writer == userid}">
+                        <a id="modBtn"
+                           href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
+                           class="float-right">
+                            <button type="button" class="btn btn-danger">수정</button>
+                        </a>&nbsp; &nbsp; &nbsp;
+                    </c:if>
+                    <button id="removeBtn" type="button" class="btn btn-warning float-right"
+                            style="margin-right: 10px;">
+                        삭제
+                    </button>
                 </sec:authorize>
             </div>
         </div>
@@ -153,39 +153,41 @@
         var writer = '<c:out value="${board.writer}"/>';
 
         <sec:authorize access="isAuthenticated()">
-            var userid = '<sec:authentication property="principal.member.userid"/>';
+        var userid = '<sec:authentication property="principal.member.userid"/>';
         </sec:authorize>
 
 
-        $("#modBtn").on("click", function (e) {
+        /*$("#modBtn").on("click", function (e) {
 
 
             e.preventDefault();
 
-            <sec:authorize access="isAnonymous()">
-                alert("로그인 후 이용가능합니다.");
-                return ;
-            </sec:authorize>
+
+        <sec:authorize access="isAnonymous()">
+            alert("로그인 후 이용가능합니다.");
+            return;
+
+        </sec:authorize>
 
 
-            if(writer != userid) {
+            if (writer != userid) {
                 alert("본인이 작성한 글만 수정또는 삭제가 가능합니다.");
                 return;
             } else {
                 $(this).get(0).click();
             }
 
-        });
+        });*/
 
 
         $("#removeBtn").on("click", function () {
 
             <sec:authorize access="isAnonymous()">
-                alert("로그인 후 이용가능합니다.");
-                return;
+            alert("로그인 후 이용가능합니다.");
+            return;
             </sec:authorize>
 
-            if(userid == writer || userid == 'admin') {
+            if (userid == writer || userid == 'admin') {
                 if (confirm("글을 삭제하시겠습니까?") == true) {
                     formObj.attr("action", "/board/remove");
 

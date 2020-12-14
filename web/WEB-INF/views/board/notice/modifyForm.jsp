@@ -43,8 +43,8 @@
         <input type="hidden" name="keyword" value="${cri.keyword}"/>
         <input type="hidden" name="nno" value="${notice.nno}">
 
-        <button type="button" class="btn btn-outline-primary float-left" id="cancelBtn">Cancel</button>
-        <button type="submit" class="btn btn-info float-right">Submit Information</button>
+        <button type="button" class="btn btn-outline-primary float-left" id="cancelBtn">목록</button>
+        <button type="submit" class="btn btn-info float-right">수정하기</button>
     </form>
 
 </div>

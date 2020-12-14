@@ -50,9 +50,9 @@
             </div>
 
             <a href="/board/list">
-                <button type="button" id="listBtn" class="btn btn-primary">List</button>
+                <button type="button" id="listBtn" class="btn btn-primary">목록</button>
             </a>
-            <button type="submit" class="btn btn-info float-right">Submit Information</button>
+            <button type="submit" class="btn btn-info float-right">수정하기</button>
         </form>
     </div>
     </div>
