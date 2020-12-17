@@ -58,18 +58,18 @@
 
             <div class="signup-content">
                 <div class="signup-form">
-                    <h2 class="form-title">Check Member Account</h2>
+                    <h2 class="form-title">사용자 비밀번호 확인</h2>
                     <form action="${root}user/modifyForm" method="post" class="register-form" id="register-form">
                         <div class="form-group">
                             <label for="userid"><i class="zmdi zmdi-account-circle"></i></label>
-                            <input type="text" name="userid" id="userid" placeholder="Your ID" value="<sec:authentication property="principal.member.userid"/>"/>
+                            <input type="text" name="userid" id="userid" placeholder="Your ID" value="<sec:authentication property="principal.member.userid"/>" readonly/>
                         </div>
                         <div class="form-group">
                             <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="userpw" id="userpw" placeholder="Password"/>
+                            <input type="password" name="userpw" id="userpw" placeholder="비밀번호를 입력해주세요."/>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="OK"/>
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="확인"/>
                         </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
