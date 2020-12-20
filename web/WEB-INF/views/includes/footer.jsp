@@ -31,11 +31,11 @@
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">Menu</h2>
+                    <h2 class="ftco-heading-2">메뉴</h2>
                     <ul class="list-unstyled">
-                        <li><a href="${root}" class="py-2 d-block">Home</a></li>
-                        <li><a href="/board/list" class="py-2 d-block">Board</a></li>
-                        <li><a href="/user/loginForm" class="py-2 d-block">Login</a></li>
+                        <li><a href="${root}" class="py-2 d-block">홈</a></li>
+                        <li><a href="/board/list" class="py-2 d-block">게시판</a></li>
+                        <li><a href="/user/loginForm" class="py-2 d-block">로그인</a></li>
                     </ul>
                 </div>
             </div>
