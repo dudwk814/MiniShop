@@ -144,14 +144,8 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>별점</label>
-                    <select name="review_star" id="star-rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                    <label>Grade <span class="grade"></span></label>
+                    <div class="starrr"></div>
                 </div>
                 <div class="form-group">
                     <label>리뷰 제목</label>
@@ -198,22 +192,25 @@
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
-<script src="/resources/starRating/docs/dist/jquery.barrating.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#star-rating').barrating({
-            theme: 'fontawesome-stars',
-            initialRating : '0'
-        });
-    });
-
-</script>
+<script src="/resources/starrr.js"></script>
 <script>
 
 
     $(document).ready(function (e) {
 
 
+        var grade = 0;
+
+        // starrr 레이팅
+        $(".starrr").starrr({
+            rating: grade,
+            change : function (e, value) {
+                if (value) {
+                    console.log(value);
+                    grade = value;
+                }
+            }
+        });
 
         // 장바구니 추가 버튼
         var addBtn = $("#addCartBtn");
