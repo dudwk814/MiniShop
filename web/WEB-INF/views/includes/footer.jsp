@@ -5,6 +5,26 @@
   Time: 오후 9:33
   To change this template use File | Settings | File Templates.
 --%>
+
+
+<%--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>--%>
+
+<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/resources/jquery.cookie.js"></script>
+<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
+<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
+<script src="/resources/shop/js/jquery.stellar.min.js"></script>
+<script src="/resources/shop/js/popper.min.js"></script>
+<script src="/resources/shop/js/owl.carousel.min.js"></script>
+<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/shop/js/aos.js"></script>
+<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
+<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
+<script src="/resources/shop/js/scrollax.min.js"></script>
+<script src="/resources/shop/js/main.js"></script>
+<script src="/resources/review.js"></script>
+<script src="/resources/starrr.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>

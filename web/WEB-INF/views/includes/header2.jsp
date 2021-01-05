@@ -43,6 +43,7 @@
     <style>
         .select-img img { margin: 20px 100px 0;}
     </style>
+    <script src="/resources/shop/js/jquery.min.js"></script>
 </head>
 <body class="goto-here">
 

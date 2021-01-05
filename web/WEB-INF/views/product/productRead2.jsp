@@ -175,7 +175,7 @@
 </div>
 
 
-<script src="/resources/shop/js/jquery.min.js"></script>
+<%--<script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/resources/shop/js/popper.min.js"></script>
 <script src="/resources/shop/js/bootstrap.min.js"></script>
@@ -192,7 +192,7 @@
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
-<script src="/resources/starrr.js"></script>
+<script src="/resources/starrr.js"></script>--%>
 <script>
 
 
