@@ -131,7 +131,7 @@
                                         <input type="hidden" name="product_name" value="${pList.product_name}">
                                         <input type="hidden" name="product_id" value="${pList.product_id}">
 
-                                    <button type="submit" class="btn btn-info addCartBtn" data-product-id="${pList.product_id}" name="addCartBtn" id="addCartBtn"><span class="icon-plus"></span>&nbsp; <span class="icon-shopping_cart"></span></button>
+                                    <button type="submit" class="btn btn-info addCartBtn" data-product-id="${pList.product_id}" data-product_id="${pList.product_id}" name="addCartBtn" id="addCartBtn${pList.product_id}"><span class="icon-plus"></span>&nbsp; <span class="icon-shopping_cart"></span></button>
 
                                 </form>
                             </div>
