@@ -8,8 +8,8 @@
     <!-- 리뷰 작성 -->
     <insert id="insert">
         <![CDATA[
-            insert into tbl_review(review_no, product_id, userid, review_title, review_content, review_star)
-            values (seq_review.nextval, #{product_id}, #{userid}, #{review_title}, #{review_content}, #{review_star})
+            insert into tbl_review(review_no, product_id, userid, review_title, review_content)
+            values (seq_review.nextval, #{product_id}, #{userid}, #{review_title}, #{review_content})
         ]]>
     </insert>
 
@@ -34,7 +34,7 @@
             from
             (
                 select /*+ INDEX(tbl_review SYS_C0015606) */
-                    rownum rn, review_no, product_id, review_title, review_content, review_date, review_updateDate, userid, review_star
+                    rownum rn, review_no, product_id, review_title, review_content, review_date, review_updateDate, userid
                     from tbl_review
                     where product_id = #{product_id}
                     and review_no > 0
@@ -46,7 +46,7 @@
     <!-- 리뷰 수정 -->
     <update id="modify">
         <![CDATA[
-            update tbl_review set review_title = #{review_title}, review_content = #{review_content}, review_updateDate = sysdate, review_star = #{review_star} where review_no = #{review_no}
+            update tbl_review set review_title = #{review_title}, review_content = #{review_content}, review_updateDate = sysdate where review_no = #{review_no}
         ]]>
     </update>
 

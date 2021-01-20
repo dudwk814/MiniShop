@@ -75,6 +75,7 @@
                         </tbody>
                     </table>
 
+
                     <div class="row">
                         <div class="col-lg-auto">
                             <form id="searchForm" action="/board/list" method="get">
@@ -100,17 +101,17 @@
 
                     </div>
 
-                    <div class="float-right">
-                        <nav aria-label="page navigation">
-                            <ul class="pagination">
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="page navigation ">
+                            <ul class="pagination d-flex justify-content-center">
                                 <c:if test="${pageMaker.prev}">
                                     <li class="page-item"> <a class="page-link" href="${root}board/list?pageNum=${pageMaker.startPage - 1}&amount=10">Previous</a></li>
                                 </c:if>
-                                &nbsp;
+
                                 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
                                     <li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}"> <a class="page-link" href="${root}board/list?pageNum=${num}&amount=10&keyword=${pageMaker.cri.keyword}&type=${pageMaker.cri.type}">${num}</a>
                                 </c:forEach>
-                                &nbsp;
+
                                 <c:if test="${pageMaker.next}">
                                     <li class="page-item"> <a class="page-link" href="${root}board/list?pageNum=${pageMaker.endPage + 1}&amount=10">Next</a></li>
                                 </c:if>
@@ -138,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id="regBtn2" type="button" class="btn btn-primary float-left">글 쓰기</button>
+                    <%--<button id="regBtn2" type="button" class="btn btn-primary float-left">글 쓰기</button>--%>
 
                 </div>
             </div>

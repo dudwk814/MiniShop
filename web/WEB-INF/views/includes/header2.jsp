@@ -16,6 +16,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
     <link rel="stylesheet" href="/resources/shop/css/open-iconic-bootstrap.min.css">
@@ -59,7 +61,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item cta cta-colored"><a href="/board/list" class="nav-link">Board</a></li>
+                <li class="nav-item cta cta-colored"><a href="/board/list" class="nav-link">게시판</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 페이지로 이동 --%>
                 <sec:authorize access="isAnonymous()">

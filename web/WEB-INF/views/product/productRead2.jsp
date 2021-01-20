@@ -115,7 +115,6 @@
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
                                                     </span>
-                                               <%-- <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>--%>
                                             </p>
                                             <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
                                         </div>
@@ -301,11 +300,7 @@
                 for (var i = 0, len = list.length || 0; i < len; i++) {
                     str += "<div class='review' data-review_no='" + list[i].review_no + "'>";
                     str += "    <div class='desc'>";
-                    str += "    <p class='star' style='margin-bottom: 0px;'>";
-                    for (var k = 0; k < list[i].review_star; k++) {
-                        str += "<i class='fa fa-star'></i>";
-                    }
-                    str += "    </p><div class='review-div'><span class='text-left'>" + list[i].userid + "&nbsp; | &nbsp;" + list[i].review_title + "</span>";
+                    str += "    <div class='review-div'><span class='text-left'>" + list[i].userid + "&nbsp; | &nbsp;" + list[i].review_title + "</span>";
                     str += "        &nbsp; | &nbsp; <span>" + reviewService.displayTime(list[i].review_date) + "</span><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'></div>";
 
                     str += "<p>" + list[i].review_content + "</p>";
@@ -324,14 +319,15 @@
         var modalInputReview_content = modal.find("input[name='review_content']");
         var modalInputUserId = modal.find("input[name='userid']");
         var modalInputReview_Date = modal.find("input[name='review_date']");
-        var modalInputUploadFile = modal.find("input[name='uploadFile']");
-        var modalInputStarValue = modal.find("select[name='review_star']");
 
         var modalModBtn = $("#modalModBtn");
         var modalRemoveBtn = $("#modalRemoveBtn");
         var modalRegisterBtn = $("#modalRegisterBtn");
 
+        // 리뷰 작성 모달
         $("#regBtn").on("click", function (e) {
+
+            console.log("userid : " + userid);
 
             <sec:authorize access="isAuthenticated()">
             modal.find("input").val("");
@@ -427,17 +423,12 @@
         // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {
 
-            if (modalInputStarValue.val() == 0) {
-                alert("별점을 선택해주세요.");
-                return;
-            }
 
             review = {
                 review_title: modalInputReview_title.val(),
                 review_content: modalInputReview_content.val(),
                 userid : modalInputUserId.val(),
                 product_id: product_id_value,
-                review_star : modalInputStarValue.val()
             };
 
             reviewService.add(review, function (result) {
@@ -451,17 +442,20 @@
         });
 
         // 리뷰 조회 클릭 이벤트
-        $(".review_wrapper").on("click", "div", function (e) {
+        $(".review_wrapper").on("click", ".review", function (e) {
 
-            var review_no = $(this).data("review_no");
+             var review_no = $(this).data("review_no");
+
+            console.log("Review_no : " + review_no);
 
             reviewService.get(review_no, function (review) {
+
+
 
                 modalInputReview_content.val(review.review_content);
                 modalInputReview_title.val(review.review_title);
                 modalInputUserId.val(review.userid);
                 modalInputReview_Date.val(reviewService.displayTime(review.review_date)).attr("readonly", "readonly");
-                modalInputStarValue.val(review.review_star);
                 modal.data("review_no", review.review_no);
 
                 modal.find("button[id != 'modalCloseBtn']").hide();
