@@ -255,7 +255,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                해당 웹 사이트는 포트폴리오로써 실제 결제기능은 제공하지 않습니다.
+                <p>해당 웹 사이트는 포트폴리오로써 실제 결제기능은 제공하지 않습니다.</p>
+                <p>해당 웹사이트는 크롬과 파이어폭스 브라우저에 최적화되어있습니다.</p>
             </div>
             <div class="modal-footer">
                 <div class="form-check form-check-inline">

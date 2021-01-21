@@ -27,7 +27,8 @@
 <script src="/resources/shop/js/main.js"></script>
 <script src="/resources/review.js"></script>
 <script src="/resources/starrr.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="/resources/shop/js/bootstrap.min.js"></script>
+<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>--%>
 
 
 <footer class="ftco-footer ftco-section">
@@ -102,13 +103,13 @@
 
 
 <!-- loader -->
-<div id="ftco-loader" class="show fullscreen">
+<%--<div id="ftco-loader" class="show fullscreen">
     <svg class="circular" width="48px" height="48px">
         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
         <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
                 stroke="#F96D00"/>
     </svg>
-</div>
+</div>--%>
 
 
 </body>

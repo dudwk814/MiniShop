@@ -39,9 +39,10 @@
     <link rel="stylesheet" href="/resources/shop/css/icomoon.css">
     <link rel="stylesheet" href="/resources/shop/css/style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/starRating/docs/dist/themes/fontawesome-stars.css">
     <link rel="stylesheet" href="/resources/starrr.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
+
     <style>
         .select-img img { margin: 20px 100px 0;}
     </style>
@@ -55,7 +56,7 @@
     <div class="container">
         <a class="navbar-brand" href="${root}">Minishop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> 메뉴
+            <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
