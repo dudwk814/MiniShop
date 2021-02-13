@@ -56,7 +56,7 @@
     <div class="container">
         <a class="navbar-brand" href="${root}">Minishop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> menuK
+            <span class="oi oi-menu"></span> menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
