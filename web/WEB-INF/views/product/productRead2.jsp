@@ -143,7 +143,8 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Grade <span class="grade"></span></label>
+                    <label>평점</label><br>
+                    <span class="grade"></span>
                     <div class="starrr"></div>
                 </div>
                 <div class="form-group">
@@ -161,6 +162,16 @@
                 <div class="form-group">
                     <label>작성날짜</label>
                     <input class="form-control" name="review_date" value="">
+                </div>
+
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                        <label class="custom-file-label" for="inputGroupFile04">사진 첨부</label>
+                    </div>
+                    <%--<div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                    </div>--%>
                 </div>
             </div>
             <div class="modal-footer">
