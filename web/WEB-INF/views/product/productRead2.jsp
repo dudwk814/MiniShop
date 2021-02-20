@@ -166,13 +166,18 @@
 
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                        <input type="file" name="uploadFile" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
                         <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                     </div>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                     </div>
                 </div>
+
+                <div class="uploadResult">
+
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button id="modalModBtn" type="button" class="btn btn-warning">수정</button>
@@ -378,7 +383,7 @@
         // 리뷰 이미지 업로드
         $("input[type='file']").change(function (e) {
 
-            console.log(modalInputUploadFile);
+           /* console.log(modalInputUploadFile);*/
 
             var formData = new FormData(); // form 생성
 
