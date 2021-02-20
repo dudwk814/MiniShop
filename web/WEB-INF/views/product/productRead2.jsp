@@ -167,18 +167,18 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                        <label class="custom-file-label" for="inputGroupFile04">사진 첨부</label>
+                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                     </div>
-                    <%--<div class="input-group-append">
+                    <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-                    </div>--%>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
-                <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-                <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
-                <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
+                <button id="modalModBtn" type="button" class="btn btn-warning">수정</button>
+                <button id="modalRemoveBtn" type="button" class="btn btn-danger">삭제</button>
+                <button id="modalRegisterBtn" type="button" class="btn btn-primary">등록</button>
+                <button id="modalCloseBtn" type="button" class="btn btn-info">닫기</button>
             </div>
         </div>
     </div>

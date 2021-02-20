@@ -29,6 +29,11 @@ public class ReviewController {
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
 
+    /**
+     * 리뷰 등록
+     * @param vo
+     * @return
+     */
     @PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> create(@RequestBody ReviewVO vo) {
 
@@ -44,6 +49,13 @@ public class ReviewController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * 해당 상품 리뷰 목록 조회
+     * @param product_id
+     * @param page
+     * @param model
+     * @return
+     */
     @GetMapping(value = "/pages/{product_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ReviewPageDTO> getList(@PathVariable("product_id") int product_id, @PathVariable("page") int page, Model model) {
 
@@ -57,6 +69,11 @@ public class ReviewController {
         return new ResponseEntity<ReviewPageDTO>(reviewService.getList(cri, product_id), HttpStatus.OK);
     }
 
+    /**
+     * 해당 상품 리뷰 조회
+     * @param review_no
+     * @return
+     */
     @GetMapping(value = "/{review_no}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ReviewVO> get(@PathVariable("review_no") int review_no) {
 
@@ -65,6 +82,11 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.get(review_no), HttpStatus.OK);
     }
 
+    /**
+     * 리뷰 삭제
+     * @param review_no
+     * @return
+     */
     @DeleteMapping(value = "/{review_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> remove(@PathVariable("review_no") int review_no) {
 
@@ -75,6 +97,12 @@ public class ReviewController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * 리뷰 수정
+     * @param vo
+     * @param review_no
+     * @return
+     */
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT}, value = "/{review_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> modify(@RequestBody ReviewVO vo, @PathVariable("review_no") int review_no) {
 

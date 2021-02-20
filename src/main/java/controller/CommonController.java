@@ -26,14 +26,21 @@ import java.util.UUID;
 @Log4j
 public class CommonController {
 
-    // 스프링 시큐리티 접근 에러 메서드
+    /**
+     * 접근제어 에러
+     * @return
+     */
     @GetMapping("/accessError")
     public String accessError() {
 
         return "accessError";
     }
 
-    // 이미지 업로드
+    /**
+     * 이미지 업로드
+     * @param uploadFile
+     * @return
+     */
     @PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<List<ReviewAttachVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
@@ -100,7 +107,10 @@ public class CommonController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    // 이미지 파일 년/월/일 폴더 문자열 생성 메소드
+    /**
+     * 이미지 파일 년/월/일 체크
+     * @return
+     */
     private String getFolder() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,7 +122,11 @@ public class CommonController {
         return str.replace("-", File.separator);
     }
 
-    // 이미지 파일 체크 메서드
+    /**
+     * 이미지 파일 체크
+     * @param file
+     * @return
+     */
     private boolean checkImageType(File file) {
 
         try {

@@ -116,7 +116,7 @@
             <c:forEach var="pList" items="${pList}">
                 <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                     <div class="product d-flex flex-column">
-                        <a href="/product/read?product_id=${pList.product_id}&userid=${userid}" class="img-prod"><img
+                        <a href="/product/read?product_id=${pList.product_id}" class="img-prod"><img
                                 class="img-fluid" src="/resources/shop/images/${pList.product_url}"
                                 alt="Colorlib Template">
                             <div class="overlay"></div>

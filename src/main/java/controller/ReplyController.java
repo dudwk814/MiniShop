@@ -23,6 +23,11 @@ public class ReplyController {
 
     private ReplyService service;
 
+    /**
+     * 댓글 등록
+     * @param vo
+     * @return
+     */
     @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
@@ -36,6 +41,12 @@ public class ReplyController {
         return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * 댓글 목록 조회
+     * @param bno
+     * @param page
+     * @return
+     */
     @GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ReplyPageDTO> getList(@PathVariable("bno") Long bno, @PathVariable("page") int page) {
 
@@ -46,6 +57,11 @@ public class ReplyController {
         return new ResponseEntity<>(service.getList(bno, cri), HttpStatus.OK);
     }
 
+    /**
+     * 댓글 조회
+     * @param rno
+     * @return
+     */
     @GetMapping(value = "/{rno}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno) {
 
@@ -54,6 +70,11 @@ public class ReplyController {
         return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
     }
 
+    /**
+     * 댓글 수 조회
+     * @param bno
+     * @return
+     */
     // bno당 댓글 개수
     @GetMapping(value = "/replyCnt/{bno}")
     public ResponseEntity<Integer> getReplyCnt(@PathVariable("bno") Long bno) {
@@ -64,6 +85,12 @@ public class ReplyController {
     }
 
 
+    /**
+     * 댓글 삭제
+     * @param rno
+     * @param vo
+     * @return
+     */
     @DeleteMapping(value = "/{rno}")
     public ResponseEntity<String> remove(@PathVariable("rno") Long rno, @RequestBody ReplyVO vo) {
 
@@ -76,6 +103,12 @@ public class ReplyController {
         return service.remove(rno, vo2.getBno()) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * 댓글 수정
+     * @param vo
+     * @param rno
+     * @return
+     */
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT}, value = "/{rno}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> modify(@RequestBody ReplyVO vo, @PathVariable("rno") Long rno) {
 
