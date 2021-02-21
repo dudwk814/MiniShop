@@ -12,7 +12,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
-<%@ include file="../includes/header2.jsp"%>
+<%@ include file="../includes/header2.jsp" %>
 
 <div class="hero-wrap hero-bread" style="background-image: url('/resources/shop/images/bg_6.jpg');">
     <div class="container">
@@ -29,14 +29,24 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mb-5 ftco-animate">
-                <a href="/resources/shop/images/${product.product_url}" class="image-popup prod-img-bg"><img src="/resources/shop/images/${product.product_url}" class="img-fluid" alt="Colorlib Template"></a>
+                <a href="/resources/shop/images/${product.product_url}" class="image-popup prod-img-bg"><img
+                        src="/resources/shop/images/${product.product_url}" class="img-fluid"
+                        alt="Colorlib Template"></a>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                 <h3>${product.product_name}</h3>
-                <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${product.product_price}" maxFractionDigits="0"/>원</span></p>
+                <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦"
+                                                                                  value="${product.product_price}"
+                                                                                  maxFractionDigits="0"/>원</span></p>
                 <p><small>배송비 : 3000원 (5만원이상 주문 시 배송비 무료)</small></p>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
+                    paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would
+                    have been rewritten a thousand times and everything that was left from its origin would be the word
+                    "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing
+                    the copy said could convince her and so it didn’t take long until a few insidious Copy Writers
+                    ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they
+                    abused her for their.
                 </p>
                 <div class="row mt-4">
                     <div class="col-md-6">
@@ -45,69 +55,78 @@
                     </div>
                     <div class="w-100"></div>
                 </div>
-                    <div class="w-100"></div>
-                    <div class="form-group">
-                        <form action="/cart/add" method="post" id="addCartForm">
-                            <div class="input-group col-md-6 d-flex mb-3">
-                                <input type="text" id="quantity" name="amount" class="quantity form-control input-number" value="1" min="1" max="100">&nbsp;&nbsp;
-                                <input type="hidden" name="product_id" value="${product.product_id}">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                <input type="hidden" name="userid" value="${userid}">
-                                <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
-                            </div>
+                <div class="w-100"></div>
+                <div class="form-group">
+                    <form action="/cart/add" method="post" id="addCartForm">
+                        <div class="input-group col-md-6 d-flex mb-3">
+                            <input type="text" id="quantity" name="amount" class="quantity form-control input-number"
+                                   value="1" min="1" max="100">&nbsp;&nbsp;
+                            <input type="hidden" name="product_id" value="${product.product_id}">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                            <input type="hidden" name="userid" value="${userid}">
+                            <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
+                        </div>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row mt-5">
+        <div class="col-md-12 nav-link-wrap">
+            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
+                   role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
+
+                <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+                   role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+
+                <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
+                   aria-controls="v-pills-3" aria-selected="false">Reviews</a>
 
             </div>
         </div>
+        <div class="col-md-12 tab-wrap">
 
+            <div class="tab-content bg-light" id="v-pills-tabContent">
 
-
-
-        <div class="row mt-5">
-            <div class="col-md-12 nav-link-wrap">
-                <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
-
-                    <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
-
-                    <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
-
+                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
+                    <div class="p-4">
+                        <h3 class="mb-4">${product.product_name}</h3>
+                        <p>${product.product_desc}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12 tab-wrap">
 
-                <div class="tab-content bg-light" id="v-pills-tabContent">
-
-                    <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-                        <div class="p-4">
-                            <h3 class="mb-4">${product.product_name}</h3>
-                            <p>${product.product_desc}</p>
-                        </div>
+                <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+                    <div class="p-4">
+                        <h3 class="mb-4">Manufactured By Nike</h3>
+                        <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
+                            would have been rewritten a thousand times and everything that was left from its origin
+                            would be the word "and" and the Little Blind Text should turn around and return to its own,
+                            safe country. But nothing the copy said could convince her and so it didn’t take long until
+                            a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
+                            her into their agency, where they abused her for their.</p>
                     </div>
-
-                    <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
-                        <div class="p-4">
-                            <h3 class="mb-4">Manufactured By Nike</h3>
-                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
-                        <div class="row p-4">
-                            <div class="col-md-12">
-                                <h3 class="mb-4">Reviews</h3>
+                </div>
+                <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+                    <div class="row p-4">
+                        <div class="col-md-12">
+                            <h3 class="mb-4">Reviews
                                 <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성</button>
-                                <div class="review_wrapper">
-                                    <div class="review">
-                                        <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                        <div class="desc">
-                                            <h4>
-                                                <span class="text-left">Jacob Webb</span>
-                                                <span class="text-right">14 March 2018</span>
-                                            </h4>
-                                            <p class="star">
+                            </h3>
+                        </div>
+                        <div class="review_wrapper col-md-12">
+                            <div class="review">
+                                <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                                <div class="desc">
+                                    <h4>
+                                        <span class="text-left">Jacob Webb</span>
+                                        <span class="text-right">14 March 2018</span>
+                                    </h4>
+                                    <p class="star">
                                                     <span>
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
@@ -115,22 +134,25 @@
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
                                                     </span>
-                                            </p>
-                                            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-                                        </div>
-                                    </div>
+                                    </p>
+                                    <p>When she reached the first hills of the Italic Mountains, she had a last view
+                                        back on the skyline of her hometown Bookmarksgrov</p>
                                 </div>
-                            </div>
-
-                            <div class="review_paging">
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="review_paging">
+
+            </div>
         </div>
     </div>
+    <%--</div>
+    </div>
+    </div>
+    </div>--%>
 </section>
 
 
@@ -166,11 +188,13 @@
 
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" name="uploadFile" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                        <input type="file" name="uploadFile" class="custom-file-input" id="inputGroupFile04"
+                               aria-describedby="inputGroupFileAddon04" multiple>
                         <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                     </div>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button
+                        </button>
                     </div>
                 </div>
 
@@ -214,12 +238,12 @@
     $(document).ready(function (e) {
 
 
-        var grade = 0;
+        var grade = 5;
 
         // starrr 레이팅
         $(".starrr").starrr({
             rating: grade,
-            change : function (e, value) {
+            change: function (e, value) {
                 if (value) {
                     console.log(value);
                     grade = value;
@@ -248,17 +272,16 @@
             var amount = $("input[name='amount']").val();
 
             // 주문 수량 정합성 체크 정규식 (숫자만 가능)
-            var regex= /^[0-9]/g;
-
+            var regex = /^[0-9]/g;
 
 
             <sec:authorize access="isAnonymous()">
-                alert("로그인 후 이용가능합니다.");
-                return;
+            alert("로그인 후 이용가능합니다.");
+            return;
             </sec:authorize>
 
             // 주문 수량 정합성 검증
-            if(amount <= 0) {
+            if (amount <= 0) {
                 alert("상품 수량을 0보다 크게 해주세요.");
                 return;
             } else if (amount > 100) {
@@ -278,7 +301,6 @@
         console.log("product_id : " + product_id_value);
 
 
-
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
@@ -288,7 +310,6 @@
         });
 
 
-
         var reviewDIV = $(".review_wrapper");
 
         showList(1);
@@ -296,31 +317,47 @@
         // 화면 하단 리뷰 출력
         function showList(page) {
 
-            reviewService.getList({product_id:product_id_value, page: page || 1}, function (reviewCnt, list) {
+            reviewService.getList({product_id: product_id_value, page: page || 1}, function (reviewCnt, list) {
 
                 console.log("reviewCnt : " + reviewCnt);
                 console.log("list : " + list);
 
                 if (page == -1) {
-                    pageNum = Math.ceil(reviewCnt/10.0);
+                    pageNum = Math.ceil(reviewCnt / 10.0);
                     showList(pageNum);
-                    return ;
+                    return;
                 }
                 var str = "";
 
                 if (list == null || list.length == 0) {
                     reviewDIV.html("");
-                    return ;
+                    return;
                 }
 
-                for (var i = 0, len = list.length || 0; i < len; i++) {
+                /*for (var i = 0, len = list.length || 0; i < len; i++) {
                     str += "<div class='review' data-review_no='" + list[i].review_no + "'>";
-                    str += "    <div class='desc'>";
-                    str += "    <div class='review-div'><span class='text-left'>" + list[i].userid + "&nbsp; | &nbsp;" + list[i].review_title + "</span>";
-                    str += "        &nbsp; | &nbsp; <span>" + reviewService.displayTime(list[i].review_date) + "</span><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'></div>";
+                    str += "    <div class='desc col-md-8'>";
+                    str += "    <div class='review-div'> ";
+                    str += "    <h4><span class='text-left'>" + list[i].userid +  list[i].review_title + "</span>" ;
+                    str += "        <span>" + reviewService.displayTime(list[i].review_date) + "</span></h4><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'></div>";
 
                     str += "<p>" + list[i].review_content + "</p>";
                     str += "</div></div>";
+
+                }*/
+
+                for (var i = 0, len = list.length || 0; i < len; i++) {
+                    str += "<div>";
+                    str += "    <div class='desc row justify-content-start'>";
+                    str += "            <img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'>";
+                    str += "    </div>";
+
+                    str += "    <div class='review ' data-review_no='" + list[i].review_no + "'>";
+                    str += "        <div class='desc row justify-content-start'>";
+                    str += "            <div class='starrr'></div>";
+                    str += "        </div>";
+                    str += "    </div>";
+                    str += "</div>";
 
                 }
 
@@ -355,7 +392,7 @@
 
             $(".modal").modal("show");
 
-            return ;
+            return;
             </sec:authorize>
 
             alert("로그인 해주세요");
@@ -383,7 +420,7 @@
         // 리뷰 이미지 업로드
         $("input[type='file']").change(function (e) {
 
-           /* console.log(modalInputUploadFile);*/
+            /* console.log(modalInputUploadFile);*/
 
             var formData = new FormData(); // form 생성
 
@@ -401,12 +438,12 @@
 
             $.ajax({
                 url: '/uploadAjaxAction',
-                processData : false,
-                contentType : false,
+                processData: false,
+                contentType: false,
                 data: formData,
-                type : 'POST',
-                dataType : 'json',
-                success : function (result) {
+                type: 'POST',
+                dataType: 'json',
+                success: function (result) {
                     console.log(result);
                     showUploadResult(result);
                 }
@@ -416,7 +453,9 @@
         // 리뷰 이미지 input추가 (모달 창)
         function showUploadResult(uploadResultArr) {
 
-            if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+            if (!uploadResultArr || uploadResultArr.length == 0) {
+                return;
+            }
 
             var uploadResult = $(".uploadResult");
 
@@ -443,8 +482,9 @@
             review = {
                 review_title: modalInputReview_title.val(),
                 review_content: modalInputReview_content.val(),
-                userid : modalInputUserId.val(),
+                userid: modalInputUserId.val(),
                 product_id: product_id_value,
+                grade: grade
             };
 
             reviewService.add(review, function (result) {
@@ -460,18 +500,21 @@
         // 리뷰 조회 클릭 이벤트
         $(".review_wrapper").on("click", ".review", function (e) {
 
-             var review_no = $(this).data("review_no");
+            var review_no = $(this).data("review_no");
 
             console.log("Review_no : " + review_no);
 
             reviewService.get(review_no, function (review) {
 
 
-
                 modalInputReview_content.val(review.review_content);
                 modalInputReview_title.val(review.review_title);
                 modalInputUserId.val(review.userid);
                 modalInputReview_Date.val(reviewService.displayTime(review.review_date)).attr("readonly", "readonly");
+                var grade = review.grade;
+
+                $(".starrr a:nth-child(" + grade + ")").trigger('click');
+                console.log("grade : " + grade);
                 modal.data("review_no", review.review_no);
 
                 modal.find("button[id != 'modalCloseBtn']").hide();
@@ -488,10 +531,13 @@
         modalModBtn.on("click", function (e) {
 
             var review = {
-                review_no : modal.data("review_no"),
-                review_title : modalInputReview_title.val(),
-                review_content : modalInputReview_content.val()
+                review_no: modal.data("review_no"),
+                review_title: modalInputReview_title.val(),
+                review_content: modalInputReview_content.val(),
+                grade: grade
             };
+
+            console.log("updated grade : " + grade);
 
             reviewService.update(review, function (result) {
 
@@ -535,7 +581,7 @@
             var str = "<ul class='pagination float-right'>";
 
             if (prev) {
-                str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1)+"'>Previous</a></li>";
+                str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
             }
 
             for (var i = startNum; i <= endNum; i++) {
@@ -570,4 +616,4 @@
 
     });
 </script>
-<%@ include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp" %>

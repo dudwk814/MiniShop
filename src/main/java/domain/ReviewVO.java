@@ -14,6 +14,7 @@ public class ReviewVO {
     private String userid;
     private String review_title;
     private String review_content;
+    private int grade;
     private Date review_date;
     private Date review_updateDate;
 
