@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-        </div>
+        <%--</div>--%>
     </div>
 
 
@@ -114,7 +114,7 @@
                 <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
                     <div class="row p-4">
                         <div class="col-md-12">
-                            <h3 class="mb-4">Reviews
+                            <h3 class="mb-4">리뷰
                                 <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성</button>
                             </h3>
                         </div>
