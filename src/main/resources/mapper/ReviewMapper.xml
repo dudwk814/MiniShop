@@ -34,7 +34,7 @@
             from
             (
                 select /*+ INDEX(tbl_review SYS_C0015606) */
-                    rownum rn, review_no, product_id, review_title, review_content, review_date, review_updateDate, userid
+                    rownum rn, review_no, product_id, review_title, review_content, grade, review_date, review_updateDate, userid
                     from tbl_review
                     where product_id = #{product_id}
                     and review_no > 0

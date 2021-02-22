@@ -141,13 +141,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="w-100"></div>
+                    <div class="review_paging">
+
+                    </div>
                 </div>
             </div>
-
-            <div class="review_paging">
-
-            </div>
         </div>
+
+
     </div>
     <%--</div>
     </div>
@@ -347,16 +349,21 @@
                 }*/
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<div>";
-                    str += "    <div class='desc row justify-content-start'>";
-                    str += "            <img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'>";
-                    str += "    </div>";
+                    str += "<div class='review  row justify-content-start ' data-review_no='" + list[i].review_no + "'>";
+                    str += "    <img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-fluid float-left'>";
+                    str += "    <div class='desc col-12'>";
+                    str += " &nbsp;&nbsp; <div class='grade_div'>";
 
-                    str += "    <div class='review ' data-review_no='" + list[i].review_no + "'>";
-                    str += "        <div class='desc row justify-content-start'>";
-                    str += "            <div class='starrr'></div>";
-                    str += "        </div>";
+                    for (var j = 0; j < list[i].grade; j++) {
+                        str += "    <span class='fa fa-star'></span>";
+                    }
+                    str += "        &nbsp;&nbsp;<span>" + list[i].userid + "</span>&nbsp;&nbsp;"
+                    str += "        <span>" + reviewService.displayTime(list[i].review_date) + "</span>";
+                    str += "            </div>";
+                    str += "            <div class='content_div'><h5>" + list[i].review_content + "</h5></div>";
                     str += "    </div>";
+                    /*str += "    <div><h4>작성자</h4></div>";*/
+                    str += "<button type='button' class='reviewModBtn btn btn-info float-right'>수정</button>";
                     str += "</div>";
 
                 }
@@ -378,6 +385,7 @@
         var modalModBtn = $("#modalModBtn");
         var modalRemoveBtn = $("#modalRemoveBtn");
         var modalRegisterBtn = $("#modalRegisterBtn");
+        var modalCloseBtn = $("#modalCloseBtn");
 
         // 리뷰 작성 모달
         $("#regBtn").on("click", function (e) {
@@ -499,8 +507,10 @@
             });
         });
 
-        // 리뷰 조회 클릭 이벤트
-        $(".review_wrapper").on("click", ".review", function (e) {
+        /**
+         * 리뷰 조회 이벤트
+         */
+        /*$(".review_wrapper").on("click", ".review", function (e) {
 
             var review_no = $(this).data("review_no");
 
@@ -527,7 +537,7 @@
 
                 $(".modal").modal("show");
             });
-        });
+        });*/
 
         // 리뷰 수정
         modalModBtn.on("click", function (e) {
@@ -580,7 +590,7 @@
                 next = true;
             }
 
-            var str = "<ul class='pagination float-right'>";
+            var str = "<br/><ul class='pagination float-left'>";
 
             if (prev) {
                 str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
@@ -614,6 +624,13 @@
             pageNum = targetNum;
 
             showList(pageNum);
+        });
+
+        /**
+         * 리뷰 모달 닫기 버튼
+         */
+        modalCloseBtn.on("click", function () {
+            modal.modal("hide");
         });
 
     });
