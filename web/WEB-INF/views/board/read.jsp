@@ -47,11 +47,11 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
 
                     <c:if test="${board.writer == userid}">
-                        <a id="modBtn"
+                        <%--<a id="modBtn"
                            href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
-                           class="float-right">
-                            <button type="button" class="btn btn-danger">수정</button>
-                        </a>&nbsp; &nbsp; &nbsp;
+                           class="float-right">--%>
+                            <button id="modBtn" type="button" class="btn btn-danger float-right">수정</button>
+                        <%--</a>--%>&nbsp; &nbsp; &nbsp;
                     </c:if>
                     <button id="removeBtn" type="button" class="btn btn-warning float-right"
                             style="margin-right: 10px;">
@@ -157,27 +157,25 @@
         </sec:authorize>
 
 
-        /*$("#modBtn").on("click", function (e) {
+        /**
+         * 게시글 수정 버튼 클릭 시 /member/modifyForm으로 이동
+         */
+        $("#modBtn").on("click", function (e) {
+            //create element (form)
+            var modForm = $('<form></form>');
+            modForm.attr("name","modForm");
+            modForm.attr("method","post");
+            modForm.attr("action","/board/modifyForm");
 
+            modForm.append($('<input/>', {type: 'hidden', name: 'bno', value:'<c:out value="${board.bno}"/>'}));
+            modForm.append($('<input/>', {type: 'hidden', name: 'pageNum', value:'<c:out value="${cri.pageNum}"/>'}));
+            modForm.append($('<input/>', {type: 'hidden', name: 'amount', value:'<c:out value="${cri.amount}"/>'}));
+            modForm.append($('<input/>', {type: 'hidden', name: '${_csrf.parameterName}', value:'${_csrf.token}'}));
 
-            e.preventDefault();
+            modForm.appendTo('body');
+            modForm.submit();
 
-
-        <sec:authorize access="isAnonymous()">
-            alert("로그인 후 이용가능합니다.");
-            return;
-
-        </sec:authorize>
-
-
-            if (writer != userid) {
-                alert("본인이 작성한 글만 수정또는 삭제가 가능합니다.");
-                return;
-            } else {
-                $(this).get(0).click();
-            }
-
-        });*/
+        });
 
 
         $("#removeBtn").on("click", function () {
