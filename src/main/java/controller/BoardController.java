@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +52,7 @@ public class BoardController {
         model.addAttribute("noticeList", noticeList);
     }
 
+    @Transactional
     @GetMapping("/read")
     public String read(@RequestParam(value = "bno", required = false) Long bno,
                        @RequestParam(value = "nno", required = false) Long nno,
@@ -60,6 +62,8 @@ public class BoardController {
         log.info("Get Board......" + bno);
 
         BoardVO read = boardService.read(bno);
+
+        boardService.upHit(bno);
 
         model.addAttribute("board", read);
 

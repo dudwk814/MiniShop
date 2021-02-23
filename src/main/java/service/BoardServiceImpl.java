@@ -23,24 +23,38 @@ public class BoardServiceImpl implements BoardService{
     @Setter(onMethod_ = {@Autowired})
     private ReplyMapper replyMapper;
 
-    // 단일 게시글 조회
-    @Transactional
+    /**
+     * 단일 게시글 조회
+     * @param bno
+     * @return
+     */
     @Override
     public BoardVO read(Long bno) {
 
         log.info("read......." + bno);
 
-        boardMapper.UpHit(bno);
-
         return boardMapper.get(bno);
     }
 
+    @Override
+    public void upHit(Long bno) {
+        boardMapper.UpHit(bno);
+    }
+
+    /**
+     * 전체 게시글 수 조회
+     * @return
+     */
     @Override
     public int getTotalCount() {
         return boardMapper.getTotalCount();
     }
 
-    // 전체 게시글 조회
+    /**
+     * 전체 게시글 조회 (List)
+     * @param cri
+     * @return
+     */
     @Override
     public List<BoardVO> getList(Criteria cri) {
 
@@ -48,7 +62,10 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.getListWithPaging(cri);
     }
 
-    // 게시글 등록
+    /**
+     * 게시글 등록
+     * @param vo
+     */
     @Override
     public void register(BoardVO vo) {
         log.info("Registered Board...." + vo);
@@ -56,7 +73,11 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.insertSelectKey(vo);
     }
 
-    // 게시글 수정
+    /**
+     * 게시글 수정
+     * @param vo
+     * @return
+     */
     @Override
     public boolean modify(BoardVO vo) {
 
@@ -65,7 +86,11 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.update(vo);
     }
 
-    // 게시글 삭제
+    /**
+     * 게시글 삭제
+     * @param bno
+     * @return
+     */
     @Override
     public boolean remove(Long bno) {
 

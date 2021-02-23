@@ -30,7 +30,12 @@ public class CartController {
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
 
-    /* 장바구니 목록 조회 */
+    /**
+     * 장바구니 목록 조회
+     * @param userid
+     * @param model
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @GetMapping("/cart")
     public String cart(String userid, Model model) {
@@ -65,7 +70,12 @@ public class CartController {
         return "cart/cart";
     }
 
-    /* 장바구니 등록 */
+    /**
+     * 장바구니에 상품 등록
+     * @param cartVO
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/add")
     public String addCart(CartVO cartVO, RedirectAttributes rttr) {
@@ -95,7 +105,13 @@ public class CartController {
         return "redirect:/cart/cart?userid=" + cartVO.getUserid();
     }
 
-    /* 장바구니 삭제 */
+    /**
+     * 장바구니에 상품 삭제
+     * @param cart_id
+     * @param userid
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/remove")
     public String removeCart(@RequestParam("cart_id") int cart_id, @RequestParam("userid") String userid, RedirectAttributes rttr) {
@@ -111,7 +127,12 @@ public class CartController {
         return "redirect:/cart/cart?userid=" + userid;
     }
 
-    /* 장바구니 상품 수량 변경 */
+    /**
+     * 장바구니에 상품 개수 수정
+     * @param vo
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/amountModify")
     public String amountModify(CartVO vo, RedirectAttributes rttr) {

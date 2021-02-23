@@ -9,7 +9,7 @@ public interface BoardService {
 
     public BoardVO read(Long bno);
 
-    /*public List<BoardVO> list();*/
+    public void upHit(Long bno);
 
     public List<BoardVO> getList(Criteria cri);
 

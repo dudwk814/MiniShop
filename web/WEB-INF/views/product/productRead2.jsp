@@ -349,21 +349,21 @@
                 }*/
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<div class='review  row justify-content-start ' data-review_no='" + list[i].review_no + "'>";
-                    str += "    <img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-fluid float-left'>";
-                    str += "    <div class='desc col-12'>";
+                    str += "<div class='review  row justify-content-start' data-review_no='" + list[i].review_no + "'>";
+                    // str += "    <img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-fluid float-left'>";
+                    str += "    <div class='desc col-8 float-left'>";
                     str += " &nbsp;&nbsp; <div class='grade_div'>";
 
                     for (var j = 0; j < list[i].grade; j++) {
-                        str += "    <span class='fa fa-star'></span>";
+                        str += "    <i class='fa fa-star'></i>";
                     }
                     str += "        &nbsp;&nbsp;<span>" + list[i].userid + "</span>&nbsp;&nbsp;"
                     str += "        <span>" + reviewService.displayTime(list[i].review_date) + "</span>";
                     str += "            </div>";
-                    str += "            <div class='content_div'><h5>" + list[i].review_content + "</h5></div>";
+                    str += "            <h5><span class='content_div'>" + list[i].review_content + "</span></h5>";
                     str += "    </div>";
-                    /*str += "    <div><h4>작성자</h4></div>";*/
-                    str += "<button type='button' class='reviewModBtn btn btn-info float-right'>수정</button>";
+                    str += "<a href='/resources/shop/images/gallery-1.jpg' class='ftco-animate image-popup prod-img-bg'><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a>";
+                    /*str += "<button type='button' class='reviewModBtn btn btn-info float-right'>수정</button>";*/
                     str += "</div>";
 
                 }

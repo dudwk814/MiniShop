@@ -42,7 +42,7 @@
                                 <option value="TW">제목 OR 작성자</option>
                                 <option value="TWC">제목 OR 내용 OR 작성자</option>
                             </select>
-                            <input type="text" name="keyword" placeholder="검색" />
+                            <input type="text"  name="keyword" placeholder="검색" />
                             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                             <button id="searchBtn" class="btn btn-info">검색</button>
@@ -170,12 +170,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
-        var msg = '<c:out value="${msg}"/>';
-
-        if (msg) {
-            alert(msg);
-        }
 
         // 관리자 공지 글 작성
         var noticeRegBtn = $("#noticeRegBtn");
