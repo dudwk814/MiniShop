@@ -363,7 +363,7 @@
                     str += "            <details><summary><strong>" + list[i].review_title + "</strong></summary>";
                     str += "                    <p>" + list[i].review_content + "</p></details>";
                     str += "    </div>";
-                    str += "<div class='ftco-animate ftco-animated fadeInUp'><a href='/resources/shop/images/gallery-1.jpg' data-lightbox='example-set' class='image-popup prod-img-bg'><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a></div>";
+                    str += "<a href='/resources/shop/images/gallery-1.jpg' data-lightbox='example-set" + i + "' ><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a>";
                     /*str += "<button type='button' class='reviewModBtn btn btn-info float-right'>수정</button>";*/
                     str += "</div>";
 
