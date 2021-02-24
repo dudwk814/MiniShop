@@ -358,23 +358,26 @@
                         str += "    <i class='fa fa-star'></i>";
                     }
                     str += "        &nbsp;&nbsp;<span>" + list[i].userid + "</span>&nbsp;&nbsp;"
-                    str += "        <span>" + reviewService.displayTime(list[i].review_date) + "</span>";
+                    str += "                    <span>" + reviewService.displayTime(list[i].review_date) + "</span>";
                     str += "            </div>";
-                    str += "            <h5><span class='content_div'>" + list[i].review_content + "</span></h5>";
+                    str += "            <details><summary><strong>" + list[i].review_title + "</strong></summary>";
+                    str += "                    <p>" + list[i].review_content + "</p></details>";
                     str += "    </div>";
-                    str += "<a href='/resources/shop/images/gallery-1.jpg' class='ftco-animate image-popup prod-img-bg'><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a>";
+                    str += "<div class='ftco-animate ftco-animated fadeInUp'><a href='/resources/shop/images/gallery-1.jpg' data-lightbox='example-set' class='image-popup prod-img-bg'><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a></div>";
                     /*str += "<button type='button' class='reviewModBtn btn btn-info float-right'>수정</button>";*/
                     str += "</div>";
 
                 }
 
-
-
                 reviewDIV.html(str);
+
+
 
                 showReviewPage(reviewCnt);
             });
         } //end showList
+
+
 
         var modal = $(".modal");
         var modalInputReview_title = modal.find("input[name='review_title']");
@@ -459,6 +462,8 @@
                 }
             }); // end ajax
         });
+
+
 
         // 리뷰 이미지 input추가 (모달 창)
         function showUploadResult(uploadResultArr) {
