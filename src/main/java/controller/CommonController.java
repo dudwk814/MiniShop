@@ -3,10 +3,12 @@ package controller;
 import domain.ReviewAttachVO;
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,27 +73,39 @@ public class CommonController {
 
             ReviewAttachVO attachVO = new ReviewAttachVO();
 
-            String uploadFileName = multipartFile.getOriginalFilename();
+            String fileName = multipartFile.getOriginalFilename();
 
             // IE 브라우저 파일 경로
-            uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+            fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 
-            log.info("Only File Name : " + uploadFileName);
+            log.info("Only File Name : " + fileName);
 
-            attachVO.setFileName(uploadFileName);
+            attachVO.setFileName(fileName);
 
             UUID uuid = UUID.randomUUID();
 
-            uploadFileName = uuid.toString() + "_" + uploadFileName;
+            String uploadFileName = uuid.toString() + "_" + fileName;
+
 
 
 
             try {
                 File saveFile = new File(uploadPath, uploadFileName);
+
+                // 원본 파일 저장
                 multipartFile.transferTo(saveFile);
+
+                // 섬네일 생성
+                String thumbnailSaveName = uploadPath + File.separator +
+                        "s_" + uuid + "_" + fileName;
+
+                File thumbnailFile = new File(thumbnailSaveName);
+
+                Thumbnailator.createThumbnail(saveFile, thumbnailFile, 100, 100);
 
                 attachVO.setUuid(uuid.toString());
                 attachVO.setUploadPath(uploadFolderPath);
+                attachVO.setFileName(fileName);
 
                 // 이미지 파일 여부 체크
                 if (checkImageType(saveFile)) {
@@ -137,5 +154,39 @@ public class CommonController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * 이미지 업로드 후 결과창에서 이미지 조회
+     */
+    @GetMapping("/display")
+    public ResponseEntity<byte[]> getFile(String fileName) {
+        ResponseEntity<byte[]> result = null;
+
+        try {
+            String srcFileName = URLDecoder.decode(fileName, "UTF-8");
+
+            log.info("fileName : " + srcFileName);
+
+            String uploadPath = "C:\\upload";
+
+            File file = new File(uploadPath + File.separator + srcFileName);
+
+            log.info("file : " + file);
+
+            HttpHeaders header = new HttpHeaders();
+
+            // MIME타입 처리
+            header.add("Content-Type", Files.probeContentType(file.toPath()));
+
+            // 파일 데이터 처리
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return result;
     }
 }

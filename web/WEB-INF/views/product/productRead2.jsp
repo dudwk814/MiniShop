@@ -71,62 +71,69 @@
                 </div>
             </div>
 
-        <%--</div>--%>
-    </div>
-
-
-    <div class="row mt-5">
-        <div class="col-md-12 nav-link-wrap">
-            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
-                   role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
-
-                <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
-                   role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
-
-                <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
-                   aria-controls="v-pills-3" aria-selected="false">Reviews</a>
-
-            </div>
+            <%--</div>--%>
         </div>
-        <div class="col-md-12 tab-wrap">
 
-            <div class="tab-content bg-light" id="v-pills-tabContent">
 
-                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-                    <div class="p-4">
-                        <h3 class="mb-4">${product.product_name}</h3>
-                        <p>${product.product_desc}</p>
-                    </div>
+        <div class="row mt-5">
+            <div class="col-md-12 nav-link-wrap">
+                <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                    <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill"
+                       href="#v-pills-1"
+                       role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
+
+                    <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+                       role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+
+                    <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
+                       aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+
                 </div>
+            </div>
+            <div class="col-md-12 tab-wrap">
 
-                <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
-                    <div class="p-4">
-                        <h3 class="mb-4">Manufactured By Nike</h3>
-                        <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
-                            would have been rewritten a thousand times and everything that was left from its origin
-                            would be the word "and" and the Little Blind Text should turn around and return to its own,
-                            safe country. But nothing the copy said could convince her and so it didn’t take long until
-                            a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
-                            her into their agency, where they abused her for their.</p>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
-                    <div class="row p-4">
-                        <div class="col-md-12">
-                            <h3 class="mb-4">리뷰
-                                <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성</button>
-                            </h3>
+                <div class="tab-content bg-light" id="v-pills-tabContent">
+
+                    <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
+                        <div class="p-4">
+                            <h3 class="mb-4">${product.product_name}</h3>
+                            <p>${product.product_desc}</p>
                         </div>
-                        <div class="review_wrapper col-md-12">
-                            <div class="review">
-                                <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                <div class="desc">
-                                    <h4>
-                                        <span class="text-left">Jacob Webb</span>
-                                        <span class="text-right">14 March 2018</span>
-                                    </h4>
-                                    <p class="star">
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+                        <div class="p-4">
+                            <h3 class="mb-4">Manufactured By Nike</h3>
+                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from
+                                it
+                                would have been rewritten a thousand times and everything that was left from its origin
+                                would be the word "and" and the Little Blind Text should turn around and return to its
+                                own,
+                                safe country. But nothing the copy said could convince her and so it didn’t take long
+                                until
+                                a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and
+                                dragged
+                                her into their agency, where they abused her for their.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+                        <div class="row p-4">
+                            <div class="col-md-12">
+                                <h3 class="mb-4">리뷰
+                                    <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성
+                                    </button>
+                                </h3>
+                            </div>
+                            <div class="review_wrapper col-md-12">
+                                <div class="review">
+                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                                    <div class="desc">
+                                        <h4>
+                                            <span class="text-left">Jacob Webb</span>
+                                            <span class="text-right">14 March 2018</span>
+                                        </h4>
+                                        <p class="star">
                                                     <span>
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
@@ -134,27 +141,27 @@
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
                                                     </span>
-                                    </p>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view
-                                        back on the skyline of her hometown Bookmarksgrov</p>
+                                        </p>
+                                        <p>When she reached the first hills of the Italic Mountains, she had a last view
+                                            back on the skyline of her hometown Bookmarksgrov</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="review_paging">
+                        <div class="w-100"></div>
+                        <div class="review_paging">
 
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-
-
-    </div>
-    <%--</div>
-    </div>
-    </div>
-    </div>--%>
+        <%--</div>
+        </div>
+        </div>
+        </div>--%>
 </section>
 
 
@@ -201,7 +208,9 @@
                 </div>
 
                 <div class="uploadResult">
+                    <ul>
 
+                    </ul>
                 </div>
 
             </div>
@@ -372,11 +381,9 @@
                 reviewDIV.html(str);
 
 
-
                 showReviewPage(reviewCnt);
             });
         } //end showList
-
 
 
         var modal = $(".modal");
@@ -439,6 +446,8 @@
 
             var inputFile = $("input[name='uploadFile']");
 
+            console.log("inputFile : " + inputFile);
+
             var files = inputFile[0].files;
 
             for (var i = 0; i < files.length; i++) {
@@ -464,7 +473,6 @@
         });
 
 
-
         // 리뷰 이미지 input추가 (모달 창)
         function showUploadResult(uploadResultArr) {
 
@@ -472,21 +480,21 @@
                 return;
             }
 
-            var uploadResult = $(".uploadResult");
+            var uploadResultUL = $(".uploadResult ul");
 
             var str = "";
 
             $(uploadResultArr).each(function (i, obj) {
 
-                if (obj.image) {
-                    var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
-                    str += "<input type='hidden' name='uuid' value='" + obj.uuid + "'><br/>";
-                    str += "<input type='hidden' name='uploadPath' value='" + obj.uploadPath + "'><br/>";
-                    str += "<input type='hidden' name='fileName' value='" + obj.fileName + "'><br/>";
-                    str += "<input type='hidden' name='fileType' value='I'><br/>";
-                }
+                str += "<li data-name='" + obj.fileName + "' data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "'>";
+                str += "<div>";
+                str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
+                str += "class='btn-warning btn-sm'>X</button><br>";
+                str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
+                str += "</div></li>";
 
-                uploadResult.append(str);
+
+                uploadResultUL.append(str);
             });
         }
 
@@ -535,10 +543,12 @@
                 modal.data("review_no", review.review_no);
 
                 modal.find("button[id != 'modalCloseBtn']").hide();
-                <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
+
+        <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
                 modalModBtn.show();
                 modalRemoveBtn.show();
-                </sec:authorize>
+
+        </sec:authorize>
 
                 $(".modal").modal("show");
             });

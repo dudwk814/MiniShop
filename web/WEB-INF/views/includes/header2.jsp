@@ -46,6 +46,29 @@
 
     <style>
         .select-img img { margin: 20px 100px 0;}
+
+        .uploadResult {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .uploadResult ul {
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            vertical-align: top;
+            overflow: auto;
+        }
+
+        .uploadResult ul li {
+            list-style: none;
+            padding: 10px;
+            margin-left: 2em;
+        }
+
+        .uploadResult ul li img {
+            width: 100px;
+        }
     </style>
     <script src="/resources/shop/js/jquery.min.js"></script>
 </head>
