@@ -345,17 +345,6 @@
                     return;
                 }
 
-                /*for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<div class='review' data-review_no='" + list[i].review_no + "'>";
-                    str += "    <div class='desc col-md-8'>";
-                    str += "    <div class='review-div'> ";
-                    str += "    <h4><span class='text-left'>" + list[i].userid +  list[i].review_title + "</span>" ;
-                    str += "        <span>" + reviewService.displayTime(list[i].review_date) + "</span></h4><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-thumbnail float-right'></div>";
-
-                    str += "<p>" + list[i].review_content + "</p>";
-                    str += "</div></div>";
-
-                }*/
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
                     str += "<div class='review  row justify-content-start' data-review_no='" + list[i].review_no + "'>";
@@ -386,6 +375,9 @@
         } //end showList
 
 
+        /**
+         * 모달 관련 변수
+         **/
         var modal = $(".modal");
         var modalInputReview_title = modal.find("input[name='review_title']");
         var modalInputReview_content = modal.find("input[name='review_content']");
@@ -397,7 +389,15 @@
         var modalRegisterBtn = $("#modalRegisterBtn");
         var modalCloseBtn = $("#modalCloseBtn");
 
-        // 리뷰 작성 모달
+        /**
+         * 리뷰 이미지 Array
+         **/
+
+        var review_image = new Array();
+
+        /**
+         * 리뷰 모달
+         **/
         $("#regBtn").on("click", function (e) {
 
             console.log("userid : " + userid);
@@ -421,7 +421,9 @@
         var regex = new RegExp("(.*?)\.(JPG|jpg|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$"); // 파일 확장자 정규식 (리뷰 이미지 파일 체크)
         var maxSize = 20971520; // 20MB
 
-        // 리뷰 이미지 업로드 파일 체크 함수
+        /**
+         * 리뷰 이미지 파일 체크
+         **/
         function checkExtension(fileName, fileSize) {
 
             if (fileSize >= maxSize) {
@@ -437,7 +439,9 @@
             return true;
         }
 
-        // 리뷰 이미지 업로드
+        /**
+         * 리뷰 이미지 업로드
+         **/
         $("input[type='file']").change(function (e) {
 
             /* console.log(modalInputUploadFile);*/
@@ -468,6 +472,8 @@
                 success: function (result) {
                     console.log(result);
                     showUploadResult(result);
+                    review_image = result;
+                    console.log("review-image-array : " + review_image);
                 }
             }); // end ajax
         });
@@ -507,7 +513,8 @@
                 review_content: modalInputReview_content.val(),
                 userid: modalInputUserId.val(),
                 product_id: product_id_value,
-                grade: grade
+                grade: grade,
+                attachList : review_image
             };
 
             reviewService.add(review, function (result) {

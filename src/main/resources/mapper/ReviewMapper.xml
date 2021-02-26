@@ -7,9 +7,12 @@
 
     <!-- 리뷰 작성 -->
     <insert id="insert">
+        <selectKey keyProperty="review_no" order="BEFORE" resultType="int">
+            select seq_review.nextval from dual
+        </selectKey>
         <![CDATA[
             insert into tbl_review(review_no, product_id, userid, review_title, review_content, grade)
-            values (seq_review.nextval, #{product_id}, #{userid}, #{review_title}, #{review_content}, #{grade})
+            values (#{review_no}, #{product_id}, #{userid}, #{review_title}, #{review_content}, #{grade})
         ]]>
     </insert>
 
