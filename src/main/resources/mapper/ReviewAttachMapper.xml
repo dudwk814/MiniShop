@@ -15,6 +15,6 @@
     </select>
 
     <delete id="delete">
-        delete from tbl_review_attach where uuid = #{uuid}
+        delete from tbl_review_attach where review_no = #{review_no}
     </delete>
 </mapper>

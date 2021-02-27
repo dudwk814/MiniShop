@@ -32,6 +32,7 @@
                 and rno > 0
                 and rownum < #{cri.pageNum} * #{cri.amount}
             ) where rn > (#{cri.pageNum} - 1) * #{cri.amount}
+            order by rno desc
         ]]>
     </select>
 

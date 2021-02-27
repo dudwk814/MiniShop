@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService{
         if (vo.getAttachList() != null && vo.getAttachList().size() > 0) {
             for (int i = 0; i < vo.getAttachList().size(); i++) {
                 ReviewAttachVO reviewAttachVO = vo.getAttachList().get(i);
-                reviewAttachVO.setReview_no(reviewNum);
+                reviewAttachVO.setReview_no(vo.getReview_no());
                 reviewAttachMapper.insert(reviewAttachVO);
                 log.info("reviewAttachVO : " + reviewAttachVO);
             }

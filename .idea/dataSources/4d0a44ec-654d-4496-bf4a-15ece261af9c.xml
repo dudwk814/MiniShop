@@ -55,9 +55,9 @@
     <schema id="18" parent="1" name="MINISHOP">
       <ObjectId>92</ObjectId>
       <CreatedTimestamp>2020-10-03.23:49:39</CreatedTimestamp>
-      <ModifiedTimestamp>2021-02-21.18:27:41</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-02-28.02:11:29</ModifiedTimestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <IntrospectionTimestamp>2021-02-21.18:27:45</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-02-28.02:11:30</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="19" parent="1" name="OE">
@@ -378,13 +378,13 @@
     <table id="102" parent="18" name="TBL_REVIEW">
       <ObjectId>81759</ObjectId>
       <CreatedTimestamp>2020-11-16.01:43:58</CreatedTimestamp>
-      <ModifiedTimestamp>2021-02-21.18:27:41</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-02-28.02:11:08</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="103" parent="18" name="TBL_REVIEW_ATTACH">
       <ObjectId>82118</ObjectId>
       <CreatedTimestamp>2020-11-29.03:40:00</CreatedTimestamp>
-      <ModifiedTimestamp>2020-12-06.05:07:39</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-02-28.02:11:29</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <synonym id="104" parent="29" name="ABSPATH">
@@ -34970,23 +34970,19 @@
       <DataType>NUMBER(*)|0s</DataType>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <index id="5064" parent="102" name="SYS_C0015606">
-      <ObjectId>81760</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2020-11-16.01:43:58</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-16.01:43:58</ModifiedTimestamp>
+    <index id="5064" parent="102" name="PK_REVIEW">
+      <ObjectId>84758</ObjectId>
+      <CreatedTimestamp>2021-02-28.02:11:08</CreatedTimestamp>
+      <ModifiedTimestamp>2021-02-28.02:11:08</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
-      <ColNames>PRODUCT_ID
-REVIEW_NO</ColNames>
+      <ColNames>REVIEW_NO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="5065" parent="102" name="SYS_C0015606">
-      <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2020-11-16.01:43:58</ModifiedTimestamp>
-      <ColNames>PRODUCT_ID
-REVIEW_NO</ColNames>
+    <key id="5065" parent="102" name="PK_REVIEW">
+      <ModifiedTimestamp>2021-02-28.02:11:08</ModifiedTimestamp>
+      <ColNames>REVIEW_NO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>SYS_C0015606</UnderlyingIndexName>
+      <UnderlyingIndexName>PK_REVIEW</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="5066" parent="102" name="FK_PRODUCT_ID">
@@ -35027,26 +35023,26 @@ REVIEW_NO</ColNames>
       <Position>5</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <index id="5073" parent="103" name="PK_PRODUCT_ATTACH">
-      <ObjectId>82119</ObjectId>
-      <CreatedTimestamp>2020-11-29.03:42:20</CreatedTimestamp>
-      <ModifiedTimestamp>2020-11-29.03:42:20</ModifiedTimestamp>
+    <index id="5073" parent="103" name="PK_REVIEW_ATTACH">
+      <ObjectId>84757</ObjectId>
+      <CreatedTimestamp>2021-02-28.02:07:37</CreatedTimestamp>
+      <ModifiedTimestamp>2021-02-28.02:07:37</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>UUID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="5074" parent="103" name="PK_PRODUCT_ATTACH">
-      <ModifiedTimestamp>2020-11-29.03:42:20</ModifiedTimestamp>
+    <key id="5074" parent="103" name="PK_REVIEW_ATTACH">
+      <ModifiedTimestamp>2021-02-28.02:07:37</ModifiedTimestamp>
       <ColNames>UUID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>PK_PRODUCT_ATTACH</UnderlyingIndexName>
+      <UnderlyingIndexName>PK_REVIEW_ATTACH</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="5075" parent="103" name="FK_PRODUCT_ATTACH">
-      <ModifiedTimestamp>2020-11-29.03:43:10</ModifiedTimestamp>
+    <foreign-key id="5075" parent="103" name="FK_REVIEW_ATTACH">
+      <ModifiedTimestamp>2021-02-28.02:11:29</ModifiedTimestamp>
       <ColNames>REVIEW_NO</ColNames>
-      <RefTableName>TBL_PRODUCT</RefTableName>
-      <RefKeyName>SYS_C0015045</RefKeyName>
+      <RefTableName>TBL_REVIEW</RefTableName>
+      <RefKeyName>PK_REVIEW</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
   </database-model>
