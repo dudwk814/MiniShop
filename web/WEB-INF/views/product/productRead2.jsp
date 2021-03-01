@@ -345,7 +345,6 @@
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
                     str += "<div class='review  row justify-content-start' data-review_no='" + list[i].review_no + "'>";
-                    // str += "    <img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='img-fluid float-left'>";
                     str += "    <div class='desc col-8 float-left'>";
                     str += " &nbsp;&nbsp; <div class='grade_div'>";
 
@@ -356,10 +355,13 @@
                     str += "                    <span>" + reviewService.displayTime(list[i].review_date) + "</span>";
                     str += "            </div>";
                     str += "            <details><summary><strong>" + list[i].review_title + "</strong></summary>";
-                    str += "                    <p>" + list[i].review_content + "</p></details>";
+                    str += "                    <p><span>" + list[i].review_content + "</span>";
+                    if (list[i].userid == userid) {
+                        str += "                        <button type='button' class='btn btn-info float-right' id='reviewModBtn' data-review_no='" + list[i].review_no + "'>수정</button>";
+                    }
+                    str += "</p></details>";
                     str += "    </div>";
                     str += "<a href='/resources/shop/images/gallery-1.jpg' data-lightbox='example-set" + i + "' ><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a>";
-                    /*str += "<button type='button' class='reviewModBtn btn btn-info float-right'>수정</button>";*/
                     str += "</div>";
 
                 }
@@ -492,7 +494,7 @@
                 str += "<li data-name='" + obj.fileName + "' data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "'>";
                 str += "<div>";
                 str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
-                str += "class='btn-warning btn-sm'>X</button><br>";
+                str += "class='btn-warning btn-sm img-remove-btn'>X</button><br>";
                 str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
                 str += "</div></li>";
 
@@ -527,7 +529,9 @@
         /**
          * 리뷰 조회 이벤트
          */
-        /*$(".review_wrapper").on("click", ".review", function (e) {
+        $(document).on("click", "#reviewModBtn", function (e) {
+
+            console.log("굳");
 
             var review_no = $(this).data("review_no");
 
@@ -556,7 +560,7 @@
 
                 $(".modal").modal("show");
             });
-        });*/
+        });
 
         // 리뷰 수정
         modalModBtn.on("click", function (e) {
