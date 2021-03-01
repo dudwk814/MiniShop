@@ -24,6 +24,11 @@ public class ReviewServiceImpl implements ReviewService{
     @Setter(onMethod_ = @Autowired)
     private ReviewAttachMapper reviewAttachMapper;
 
+    /**
+     * 리뷰 등록
+     * @param vo
+     * @return
+     */
     @Override
     @Transactional
     public int register(ReviewVO vo) {
@@ -46,6 +51,11 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewNum;
     }
 
+    /**
+     * 단일 리뷰 조회
+     * @param review_no
+     * @return
+     */
     @Override
     public ReviewVO get(int review_no) {
 
@@ -53,6 +63,12 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewMapper.read(review_no);
     }
 
+    /**
+     * 리뷰 목록 조회 (페이징)
+     * @param cri
+     * @param product_id
+     * @return
+     */
     @Override
     public ReviewPageDTO getList(Criteria cri, int product_id) {
 
@@ -60,6 +76,11 @@ public class ReviewServiceImpl implements ReviewService{
         return new ReviewPageDTO(reviewMapper.countReview(product_id), reviewMapper.getListWithPaging(cri, product_id));
     }
 
+    /**
+     * 리뷰 수정
+     * @param vo
+     * @return
+     */
     @Override
     public int modify(ReviewVO vo) {
 
@@ -68,10 +89,23 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewMapper.modify(vo);
     }
 
+    /**
+     * 리뷰 삭제
+     * @param review_no
+     * @return
+     */
     @Override
+    @Transactional
     public int remove(int review_no) {
 
         log.info("Remove Review : " + review_no);
+
+        List<ReviewAttachVO> reviewAttachVOS = reviewAttachMapper.findByReviewNo(review_no);
+
+        if (reviewAttachVOS.size() > 0 && reviewAttachVOS != null) {
+            reviewAttachMapper.delete(review_no);
+        }
+
         
         return reviewMapper.delete(review_no);
     }

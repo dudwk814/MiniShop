@@ -357,7 +357,7 @@
                     str += "            <details><summary><strong>" + list[i].review_title + "</strong></summary>";
                     str += "                    <p><span>" + list[i].review_content + "</span>";
                     if (list[i].userid == userid) {
-                        str += "                        <button type='button' class='btn btn-info float-right' id='reviewModBtn' data-review_no='" + list[i].review_no + "'>수정</button>";
+                        str += "                        <button type='button' class='btn btn-info float-right' id='reviewModBtn' data-grade='" + list[i].grade + "' data-review_no='" + list[i].review_no + "'>수정</button>";
                     }
                     str += "</p></details>";
                     str += "    </div>";
