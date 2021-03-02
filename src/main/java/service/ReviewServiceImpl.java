@@ -56,11 +56,20 @@ public class ReviewServiceImpl implements ReviewService{
      * @param review_no
      * @return
      */
+    @Transactional
     @Override
     public ReviewVO get(int review_no) {
 
         log.info("get Review : " + review_no);
-        return reviewMapper.read(review_no);
+
+        List<ReviewAttachVO> reviewAttachVOS = reviewAttachMapper.findByReviewNo(review_no);
+
+        ReviewVO reviewVO = reviewMapper.read(review_no);
+
+        if (reviewAttachVOS.size() > 0) {
+            reviewVO.setAttachList(reviewAttachVOS);
+        }
+        return reviewVO;
     }
 
     /**

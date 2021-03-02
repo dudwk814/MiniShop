@@ -17,4 +17,8 @@
     <delete id="delete">
         delete from tbl_review_attach where review_no = #{review_no}
     </delete>
+
+    <delete id="deleteByFileName">
+        delete from tbl_review_attach where fileName = #{fileName}
+    </delete>
 </mapper>

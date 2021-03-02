@@ -1,8 +1,11 @@
 package controller;
 
 import domain.ReviewAttachVO;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import mapper.ReviewAttachMapper;
 import net.coobird.thumbnailator.Thumbnailator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +34,9 @@ import java.util.UUID;
 @Controller
 @Log4j
 public class CommonController {
+
+    @Setter(onMethod_ = @Autowired)
+    private ReviewAttachMapper reviewAttachMapper;
 
     /**
      * 접근제어 에러
@@ -192,7 +198,7 @@ public class CommonController {
     }
 
     @PostMapping("/removeFile")
-    public ResponseEntity<String> removeFile(String fileName) {
+    public ResponseEntity<String> removeFile(String fileName, String originalFileName) {
         String srcFileName = null;
         String uploadPath = "C:\\upload";
         String result = null;
@@ -209,6 +215,12 @@ public class CommonController {
             if (delete == true) {
                 result = "success";
             }
+
+
+            System.out.println("originalFileName = " + originalFileName);
+
+            reviewAttachMapper.deleteByFileName(originalFileName);
+
 
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (UnsupportedEncodingException e) {

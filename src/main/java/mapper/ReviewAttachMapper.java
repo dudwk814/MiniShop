@@ -10,5 +10,7 @@ public interface ReviewAttachMapper {
 
     public void delete(int review_no);
 
+    public void deleteByFileName(String fileName);
+
     public List<ReviewAttachVO> findByReviewNo(int review_no);
 }

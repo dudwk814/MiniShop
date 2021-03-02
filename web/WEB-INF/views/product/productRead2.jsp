@@ -120,7 +120,7 @@
                     <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
                         <div class="row p-4">
                             <div class="col-md-12">
-                                <h3 class="mb-4">리뷰
+                                <h3 class="mb-4"><span class="fa fa-comments"></span>   리뷰
                                     <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성
                                     </button>
                                 </h3>
@@ -409,6 +409,8 @@
 
             modalRegisterBtn.show();
 
+            $(".uploadResult ul li").remove();
+
             $(".modal").modal("show");
 
             return;
@@ -491,13 +493,13 @@
 
             var str = "";
 
+            $(".uploadResult ul li").remove();
+
             $(uploadResultArr).each(function (i, obj) {
 
                 str += "<li data-name='" + obj.fileName + "' data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "'>";
                 str += "<div>";
-                // str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
-                // str += "class='btn-warning btn-sm img-remove-btn'>X</button><br>";
-                str += "<span class='fa fa-times mg-remove-btn' aria-hidden='true' data-file=\'" + obj.imageURL + "\'></span><br/>";
+                str += "<span class='fa fa-times fa-2x img-remove-btn' aria-hidden='true' data-file=\'" + obj.imageURL + "\' data-file-name='" + obj.fileName + "'></span><br/>";
                 str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
                 str += "</div></li>";
 
@@ -506,20 +508,24 @@
             uploadResultUL.append(str);
         }
 
-        /**
-         * 리뷰 이미지 삭제 (모달창)
-         **/
-        $(".uploadResult").on("click", "li button", function (e) {
+        $(".img-remove-btn").mouseenter(function () {
+            $(this).css("color", "red");
+        });
+
+        <!-- 리뷰 이미지 삭제 -->
+        $(".uploadResult").on("click", "li span", function (e) {
 
             console.log("delete file");
 
             var targetFile = $(this).data("file");
 
+            var targetFileName = $(this).data("file-name");
+
             var targetLi = $(this).closest("li");
 
             $.ajax({
                 url: '/removeFile',
-                data: {fileName : targetFile},
+                data: {fileName : targetFile, originalFileName : targetFileName},
                 dataType: 'text',
                 type : 'post',
                 success: function (result) {
@@ -553,11 +559,10 @@
         });
 
         /**
-         * 리뷰 조회 이벤트
+         * 리뷰 조회 이벤트 (수정)
          */
         $(document).on("click", "#reviewModBtn", function (e) {
 
-            console.log("굳");
 
             var review_no = $(this).data("review_no");
 
@@ -578,6 +583,10 @@
 
                 modal.find("button[id != 'modalCloseBtn']").hide();
 
+                console.log("reviewImages : " + review.attachList);
+
+                showUploadResult(review.attachList);
+
         <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
                 modalModBtn.show();
                 modalRemoveBtn.show();
@@ -595,7 +604,8 @@
                 review_no: modal.data("review_no"),
                 review_title: modalInputReview_title.val(),
                 review_content: modalInputReview_content.val(),
-                grade: grade
+                grade: grade,
+                attachList : review_image
             };
 
             console.log("updated grade : " + grade);
