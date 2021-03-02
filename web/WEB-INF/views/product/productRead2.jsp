@@ -478,7 +478,9 @@
         });
 
 
-        // 리뷰 이미지 input추가 (모달 창)
+        /**
+         * 리뷰 이미지 조회 (모달창)
+         **/
         function showUploadResult(uploadResultArr) {
 
             if (!uploadResultArr || uploadResultArr.length == 0) {
@@ -493,15 +495,39 @@
 
                 str += "<li data-name='" + obj.fileName + "' data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "'>";
                 str += "<div>";
-                str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
-                str += "class='btn-warning btn-sm img-remove-btn'>X</button><br>";
+                // str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
+                // str += "class='btn-warning btn-sm img-remove-btn'>X</button><br>";
+                str += "<span class='fa fa-times mg-remove-btn' aria-hidden='true' data-file=\'" + obj.imageURL + "\'></span><br/>";
                 str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
                 str += "</div></li>";
 
-
-                uploadResultUL.append(str);
             });
+
+            uploadResultUL.append(str);
         }
+
+        /**
+         * 리뷰 이미지 삭제 (모달창)
+         **/
+        $(".uploadResult").on("click", "li button", function (e) {
+
+            console.log("delete file");
+
+            var targetFile = $(this).data("file");
+
+            var targetLi = $(this).closest("li");
+
+            $.ajax({
+                url: '/removeFile',
+                data: {fileName : targetFile},
+                dataType: 'text',
+                type : 'post',
+                success: function (result) {
+                    alert(result);
+                    targetLi.remove();
+                }
+            });
+        });
 
         // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {

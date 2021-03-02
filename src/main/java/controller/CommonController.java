@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -188,5 +189,31 @@ public class CommonController {
         }
 
         return result;
+    }
+
+    @PostMapping("/removeFile")
+    public ResponseEntity<String> removeFile(String fileName) {
+        String srcFileName = null;
+        String uploadPath = "C:\\upload";
+        String result = null;
+        try {
+            srcFileName = URLDecoder.decode(fileName, "UTF-8");
+
+            File file = new File(uploadPath + File.separator + srcFileName);
+            boolean delete = file.delete();
+
+            File thumbnail = new File(file.getParent(), "s_" + file.getName());
+
+            delete = thumbnail.delete();
+
+            if (delete == true) {
+                result = "success";
+            }
+
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("false", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
