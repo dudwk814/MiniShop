@@ -82,7 +82,13 @@ public class ReviewServiceImpl implements ReviewService{
     public ReviewPageDTO getList(Criteria cri, int product_id) {
 
         log.info("get ReviewList : " + product_id);
-        return new ReviewPageDTO(reviewMapper.countReview(product_id), reviewMapper.getListWithPaging(cri, product_id));
+
+        ReviewPageDTO reviewPageDTO = new ReviewPageDTO(reviewMapper.countReview(product_id), reviewMapper.getListWithPaging(cri, product_id));
+
+        for (ReviewVO reviewVO : reviewPageDTO.getList()) {
+            log.info(reviewVO.getAttachList());
+        }
+        return reviewPageDTO;
     }
 
     /**

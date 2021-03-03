@@ -565,6 +565,7 @@
          */
         $(document).on("click", "#reviewModBtn", function (e) {
 
+            $(".uploadResult ul li").remove();
 
             var review_no = $(this).data("review_no");
 
@@ -592,7 +593,9 @@
 
                 console.log("reviewImages : " + review.attachList);
 
-                showUploadResult(review.attachList);
+                if (review_image != null) {
+                    showUploadResult(review.attachList);
+                }
 
         <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
                 modalModBtn.show();

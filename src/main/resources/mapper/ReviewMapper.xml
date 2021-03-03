@@ -30,10 +30,32 @@
         ]]>
     </select>
 
+    <!-- review list resultMap -->
+    <resultMap id="reviewResultMap" type="java.util.HashMap">
+        <id property="review_no" column="review_no"/>
+        <result property="product_id" column="product_id"/>
+        <result property="review_title" column="review_title"/>
+        <result property="review_content" column="review_content"/>
+        <result property="grade" column="grade"/>
+        <result property="review_date" column="review_date"/>
+        <result property="review_updateDate" column="review_updateDate"/>
+        <result property="userid" column="userid"/>
+        <collection property="attachList" javaType="java.util.ArrayList" resultMap="reviewAttachResultMap"/>
+    </resultMap>
+
+    <!-- review attach list resultMap -->
+    <resultMap id="reviewAttachResultMap" type="java.util.HashMap">
+        <id property="uuid" column="uuid"/>
+        <result property="uploadPath" column="uploadPath"/>
+        <result property="fileName" column="fileName"/>
+        <result property="fileType" column="fileType"/>
+        <result property="attach_no" column="attach_no"/>
+    </resultMap>
     <!-- product_id에 해당하는 리뷰 리스트 조회(페이징 처리) -->
     <select id="getListWithPaging" resultType="domain.ReviewVO">
         <![CDATA[
-            select *
+            select a.rn, a.review_no, a.product_id, a.review_title, a.review_content, a.grade, a.review_date, a.review_updateDate, a.userid,
+                    b.uuid, b.uploadPath, b.fileName, b.fileType, b.attach_no
             from
             (
                 select /*+ INDEX(tbl_review SYS_C0015606) */
@@ -42,7 +64,9 @@
                     where product_id = #{product_id}
                     and review_no > 0
                     and rownum <= #{cri.pageNum} * #{cri.amount}
-            ) where rn > (#{cri.pageNum} -1) * #{cri.amount}
+            ) a left join tbl_review_attach b
+            on a.review_no = b.review_no
+            where rn > (#{cri.pageNum} -1) * #{cri.amount}
                 order by review_no desc
         ]]>
     </select>
