@@ -6,12 +6,12 @@
 <mapper namespace="mapper.ReviewAttachMapper">
 
     <insert id="insert">
-        insert into tbl_review_attach (uuid, uploadPath, fileName, fileType, review_no)
-        values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{review_no})
+        insert into tbl_review_attach (uuid, uploadPath, fileName, fileType, review_no, attach_no)
+        values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{review_no}, seq_review_attach.nextval)
     </insert>
 
     <select id="findByReviewNo" resultType="domain.ReviewAttachVO">
-        select * from tbl_review_attach where review_no = #{review_no}
+        select * from tbl_review_attach where review_no = #{review_no} order by review_no
     </select>
 
     <delete id="delete">

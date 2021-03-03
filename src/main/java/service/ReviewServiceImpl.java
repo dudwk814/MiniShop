@@ -90,10 +90,19 @@ public class ReviewServiceImpl implements ReviewService{
      * @param vo
      * @return
      */
+    @Transactional
     @Override
     public int modify(ReviewVO vo) {
 
         log.info("Modified Review : " + vo);
+
+        if (vo.getAttachList().size() > 0) {
+            reviewAttachMapper.delete(vo.getReview_no());
+            for (ReviewAttachVO reviewAttachVO : vo.getAttachList()) {
+                reviewAttachVO.setReview_no(vo.getReview_no());
+                reviewAttachMapper.insert(reviewAttachVO);
+            }
+        }
 
         return reviewMapper.modify(vo);
     }

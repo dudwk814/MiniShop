@@ -493,6 +493,8 @@
 
             var str = "";
 
+            review_image = uploadResultArr;
+
             $(".uploadResult ul li").remove();
 
             $(uploadResultArr).each(function (i, obj) {
@@ -568,6 +570,8 @@
 
             console.log("Review_no : " + review_no);
 
+
+
             reviewService.get(review_no, function (review) {
 
 
@@ -576,6 +580,9 @@
                 modalInputUserId.val(review.userid);
                 modalInputReview_Date.val(reviewService.displayTime(review.review_date)).attr("readonly", "readonly");
                 var grade = review.grade;
+
+                review_image = review.attachList;
+
 
                 $(".starrr a:nth-child(" + grade + ")").trigger('click');
                 console.log("grade : " + grade);
