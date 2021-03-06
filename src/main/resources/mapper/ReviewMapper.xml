@@ -54,20 +54,25 @@
     <!-- product_id에 해당하는 리뷰 리스트 조회(페이징 처리) -->
     <select id="getListWithPaging" resultType="domain.ReviewVO">
         <![CDATA[
-            select a.rn, a.review_no, a.product_id, a.review_title, a.review_content, a.grade, a.review_date, a.review_updateDate, a.userid,
-                    b.uuid, b.uploadPath, b.fileName, b.fileType, b.attach_no
-            from
-            (
-                select /*+ INDEX(tbl_review SYS_C0015606) */
-                    rownum rn, review_no, product_id, review_title, review_content, grade, review_date, review_updateDate, userid
-                    from tbl_review
-                    where product_id = #{product_id}
-                    and review_no > 0
-                    and rownum <= #{cri.pageNum} * #{cri.amount}
-            ) a left join tbl_review_attach b
-            on a.review_no = b.review_no
-            where rn > (#{cri.pageNum} -1) * #{cri.amount}
-                order by review_no desc
+        select *
+        from (
+                 select /*+ INDEX(tbl_review SYS_C0015606) */
+                     rownum rn,
+                     review_no,
+                     product_id,
+                     review_title,
+                     review_content,
+                     grade,
+                     review_date,
+                     review_updateDate,
+                     userid
+                 from tbl_review
+                 where product_id = #{product_id}
+                   and review_no > 0
+                   and rownum <= #{cri.pageNum} * #{cri.amount}
+             )
+        where rn > (#{cri.pageNum} - 1) * #{cri.amount}
+        order by review_no desc
         ]]>
     </select>
 

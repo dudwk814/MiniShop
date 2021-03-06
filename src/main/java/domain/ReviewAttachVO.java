@@ -12,8 +12,10 @@ public class ReviewAttachVO {
     private String uploadPath;
     private String fileName;
     private boolean fileType;
+    private int attach_no;
 
     private int review_no;
+
 
     public String getImageURL() {
         try {

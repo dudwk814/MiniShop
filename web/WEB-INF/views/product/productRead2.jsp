@@ -502,7 +502,7 @@
                 str += "<li data-name='" + obj.fileName + "' data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "'>";
                 str += "<div>";
                 str += "<span class='fa fa-times fa-2x img-remove-btn' aria-hidden='true' data-file=\'" + obj.imageURL + "\' data-file-name='" + obj.fileName + "'></span><br/>";
-                str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
+                str += "<a href='/display?fileName=" + obj.imageURL + "' data-lightbox='example-set'><img src='/display?fileName=" + obj.thumbnailURL + "'></a>";
                 str += "</div></li>";
 
             });

@@ -64,6 +64,10 @@ public class ReviewServiceImpl implements ReviewService{
 
         List<ReviewAttachVO> reviewAttachVOS = reviewAttachMapper.findByReviewNo(review_no);
 
+        for (ReviewAttachVO reviewAttachVO : reviewAttachVOS) {
+            System.out.println("reviewAttachVO = " + reviewAttachVO.getFileName());
+        }
+
         ReviewVO reviewVO = reviewMapper.read(review_no);
 
         if (reviewAttachVOS.size() > 0) {
@@ -85,9 +89,6 @@ public class ReviewServiceImpl implements ReviewService{
 
         ReviewPageDTO reviewPageDTO = new ReviewPageDTO(reviewMapper.countReview(product_id), reviewMapper.getListWithPaging(cri, product_id));
 
-        for (ReviewVO reviewVO : reviewPageDTO.getList()) {
-            log.info(reviewVO.getAttachList());
-        }
         return reviewPageDTO;
     }
 
