@@ -31,7 +31,7 @@
     </select>
 
     <!-- review list resultMap -->
-    <resultMap id="reviewResultMap" type="java.util.HashMap">
+    <resultMap id="reviewResultMap" type="domain.ReviewVO">
         <id property="review_no" column="review_no"/>
         <result property="product_id" column="product_id"/>
         <result property="review_title" column="review_title"/>
@@ -40,19 +40,16 @@
         <result property="review_date" column="review_date"/>
         <result property="review_updateDate" column="review_updateDate"/>
         <result property="userid" column="userid"/>
-        <collection property="attachList" javaType="java.util.ArrayList" resultMap="reviewAttachResultMap"/>
+        <collection property="attachList" column="review_no" ofType="domain.ReviewAttachVO" select="getReviewAttach" javaType="java.util.ArrayList" />
     </resultMap>
 
-    <!-- review attach list resultMap -->
-    <resultMap id="reviewAttachResultMap" type="java.util.HashMap">
-        <id property="uuid" column="uuid"/>
-        <result property="uploadPath" column="uploadPath"/>
-        <result property="fileName" column="fileName"/>
-        <result property="fileType" column="fileType"/>
-        <result property="attach_no" column="attach_no"/>
-    </resultMap>
+    <select id="getReviewAttach" resultType="domain.ReviewAttachVO">
+        <![CDATA[
+            select uuid, uploadPath, fileName, fileType, attach_no, review_no from tbl_review_attach where review_no = #{review_no}
+        ]]>
+    </select>
     <!-- product_id에 해당하는 리뷰 리스트 조회(페이징 처리) -->
-    <select id="getListWithPaging" resultType="domain.ReviewVO">
+    <select id="getListWithPaging" resultMap="reviewResultMap">
         <![CDATA[
         select *
         from (

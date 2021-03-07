@@ -53,9 +53,15 @@ public class ReviewMapperTests {
     @Test
     public void testGetListForProduct_id() {
 
-        int product_id = 1;
+        int product_id = 6;
 
-        log.info(reviewMapper.getList(product_id));
+        List<ReviewVO> reviewVOList = reviewMapper.getListWithPaging(new Criteria(), product_id);
+
+        for (ReviewVO reviewVO : reviewVOList) {
+            for (int i = 0; i < reviewVO.getAttachList().size(); i++) {
+                System.out.println("reviewAttachList + " + reviewVO.getReview_no() + "의 리뷰 이미지 : " + reviewVO.getAttachList().get(i).toString());
+            }
+        }
     }
 
     // product_id에 해당하는 리뷰 리스트 조회 테스트(페이징 처리)

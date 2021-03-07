@@ -330,6 +330,7 @@
                 console.log("reviewCnt : " + reviewCnt);
                 console.log("list : " + list);
 
+
                 if (page == -1) {
                     pageNum = Math.ceil(reviewCnt / 10.0);
                     showList(pageNum);
@@ -344,6 +345,7 @@
 
 
                 for (var i = 0, len = list.length || 0; i < len; i++) {
+                    console.log("reviewAttachList : " + list[i].attachList);
                     str += "<div class='review  row justify-content-start' data-review_no='" + list[i].review_no + "'>";
                     str += "    <div class='desc col-8 float-left'>";
                     str += " &nbsp;&nbsp; <div class='grade_div'>";
@@ -361,7 +363,20 @@
                     }
                     str += "</p></details>";
                     str += "    </div>";
-                    str += "<a href='/resources/shop/images/gallery-1.jpg' data-lightbox='example-set" + i + "' ><img src='/resources/shop/images/gallery-1.jpg' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a>";
+                    for (var k = 0; k < list[i].attachList.length; k++) {
+
+                        if (k == 0) {
+                            str += "<a href='/display?fileName=" + list[i].attachList[k].imageURL + "' +  data-lightbox='example-set" + i + "' >";
+                            str += "<img src='/display?fileName=" + list[i].attachList[k].imageURL + "' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right'></a>";
+                        } else {
+                            str += "<a href='/display?fileName=" + list[i].attachList[k].imageURL + "' +  data-lightbox='example-set" + i + "' style='display: none' >";
+                            str += "<img src='/display?fileName=" + list[i].attachList[k].imageURL + "' style='width: 100px; height: 100px;' alt='...' class='rounded  img-fluid float-right' style='display: none'></a>";
+                        }
+
+
+
+                    }
+
                     str += "</div>";
 
                 }
