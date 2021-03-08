@@ -69,18 +69,31 @@
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
 
+
     <div class="col-lg-9">
         <div>
             <div class="card">
-                <div class="card-header">
-                    <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt"
-                                                                             class="badge badge-info">${board.replyCnt}</span>
-                    <button class="btn btn-link float-right" id="regBtn">New</button>
-                </div>
+                <sec:authorize access="isAnonymous()">
+                    <div class="card-header">
+                        <span class="lnr lnr-bubble"> 비회원은 댓글을 작성할 수 없습니다. <a href="/user/loginForm"> [로그인]</a></span>
+                    </div>
+                </sec:authorize>
+
+                <sec:authorize access="isAuthenticated()">
+                    <div class="card-header">
+                        <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt"
+                                                                                 class="badge badge-info">${board.replyCnt}</span>
+                        <button class="btn btn-link float-right" id="regBtn">New</button>
+                    </div>
+                </sec:authorize>
+
                 <div class="card-body">
                     <ul class="chat list-group-flush">
 
                     </ul>
+                    <div>
+
+                    </div>
                 </div>
                 <div class="card-footer">
 
@@ -88,11 +101,7 @@
             </div>
 
         </div>
-        <div class="float-right">
-
-        </div>
     </div>
-
 </section>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
