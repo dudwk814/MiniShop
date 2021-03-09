@@ -45,7 +45,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
 
     <style>
-        .select-img img { margin: 20px 100px 0;}
+        .select-img img {
+            margin: 20px 100px 0;
+        }
 
         .uploadResult {
             width: 100%;
@@ -75,11 +77,11 @@
 <body class="goto-here">
 
 
-
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="${root}">Minishop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
@@ -90,31 +92,94 @@
 
                 <%-- 로그인 안 한 경우 로그인 페이지로 이동 --%>
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart" class="nav-link">장바구니<span class="badge badge-success">${cartCount}</span></a></li>
+                    <li class="nav-item cta cta-colored"><a href="/cart/cart" class="nav-link">장바구니<span
+                            class="badge badge-success">${cartCount}</span></a></li>
                 </sec:authorize>
 
                 <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item cta cta-colored"><a href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>" class="nav-link">장바구니<span class="badge badge-success">${cartCount}</span> </a></li>
+                    <li class="nav-item cta cta-colored"><a
+                            href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>"
+                            class="nav-link">장바구니<span class="badge badge-success">${cartCount}</span> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item cta cta-colored"><a href="/user/loginForm" class="nav-link">로그인</a></li>
+                    <li class="nav-item cta cta-colored"><a href="#" class="nav-link loginBtn">로그인</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item dropdown cta cta-colored">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">회원</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="/user/checkMemberForm">회원 정보</a>
-                            <a class="dropdown-item" href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>">주문 내역</a>
+                            <a class="dropdown-item"
+                               href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>">주문
+                                내역</a>
                         </div>
                     </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li class="nav-item cta cta-colored"><a href="/admin/page" class="nav-link">관리자</a></li>
                     </sec:authorize>
-                    <li class="nav-item cta cta-colored"><a href="/user/logout" class="nav-link" id="logoutBtn">로그아웃</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/user/logout" class="nav-link" id="logoutBtn">로그아웃</a>
+                    </li>
                 </sec:authorize>
             </ul>
         </div>
     </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">로그인</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/login" method="POST" class="register-form" id="login-form">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="userid">아이디</label>
+                        <input type="text" class="form-control" name="userid" id="userid" placeholder="Your ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="userpw">비밀번호</label>
+                        <input type="password" class="form-control" name="userpw" id="userpw" placeholder="Password"/>
+                    </div>
+
+                    <div class="form-check">
+                        <a class="float-right" href="/user/joinForm">회원가입</a>
+                        <input class="form-check-input" name="remember-me" id="remember-me" type="checkbox" value=""
+                               id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            <span>로그인 유지</span>
+                        </label>
+                    </div>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary">로그인</button>
+                    <%--<button type="button" class="btn btn-secondary close" data-dismiss="modal">닫기</button>--%>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var modal = $("#loginModal");
+
+        $(".loginBtn").on("click", function (e) {
+            e.preventDefault();
+
+            modal.modal("show");
+        });
+
+    });
+</script>

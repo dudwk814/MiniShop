@@ -2031,7 +2031,9 @@ textarea.form-control {
     .form-inline .custom-control-label {
       margin-bottom: 0; } }
 
-.btn {
+
+
+ .btn {
   display: inline-block;
   font-weight: 400;
   color: #212529;

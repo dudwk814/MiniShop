@@ -75,7 +75,7 @@
             <div class="card">
                 <sec:authorize access="isAnonymous()">
                     <div class="card-header">
-                        <span class="lnr lnr-bubble"> 비회원은 댓글을 작성할 수 없습니다. <a href="/user/loginForm"> [로그인]</a></span>
+                        <span class="lnr lnr-bubble"> 비회원은 댓글을 작성할 수 없습니다. <a href="#" class="loginBtn"> [로그인]</a></span>
                     </div>
                 </sec:authorize>
 
@@ -255,6 +255,9 @@
         var modalModBtn = $("#modalModBtn");
         var modalRemoveBtn = $("#modalRemoveBtn");
         var modalRegisterBtn = $("#modalRegisterBtn");
+        var modalCloseBtn = $("#modalCloseBtn");
+
+
 
         var replyer = null;
 
@@ -359,6 +362,10 @@
                 modal.modal("hide");
                 showList(1);
             });
+        });
+
+        modalCloseBtn.on("click", function (e) {
+            modal.modal("hide");
         });
 
         modalRemoveBtn.on("click", function (e) {

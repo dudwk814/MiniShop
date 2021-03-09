@@ -48,7 +48,7 @@ public class MemberController {
 
         log.info("Move to JoinForm");
 
-        return "user/joinForm";
+        return "user/joinForm2";
     }
 
     // 회원 가입

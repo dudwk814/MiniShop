@@ -30,6 +30,8 @@
 
             <div class="row">
                 <div class="col-lg-auto">
+                    <br/>
+
                     <form id="searchForm" action="/board/list" method="get">
                         <!-- Search form -->
                         <div class="form-group"> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -54,9 +56,7 @@
             </div>
 
 
-            <%--<div class="col-lg-auto">
 
-            </div>--%>
             <div class="card-body">
 
                 <div class="table-responsive">
@@ -141,7 +141,6 @@
                             </div>
                         </div>
                     </div>
-                    <%--<button id="regBtn2" type="button" class="btn btn-primary float-left">글 쓰기</button>--%>
 
                 </div>
             </div>
