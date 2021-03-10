@@ -155,7 +155,7 @@ public class MemberController {
 
     // 회원가입 아이디 체크
     @ResponseBody
-    @RequestMapping(value = "/ID_Check", produces="text/plane")
+    @RequestMapping(value = "/ID_Check")
     public String ID_Check(@RequestBody String paramData) {
         //클라이언트가 보낸 ID값
         String ID = paramData.trim();

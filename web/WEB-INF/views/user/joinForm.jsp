@@ -223,6 +223,7 @@
             success: function(data){
                 if(data == 0){
                     console.log("아이디 없음");
+                    console.log(id);
                     alert("사용하실 수 있는 아이디입니다.");
                     userIdExist = true;
                 }else{

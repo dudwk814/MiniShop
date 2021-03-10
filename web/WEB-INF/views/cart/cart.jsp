@@ -39,7 +39,7 @@
                                                 <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                 <input type="hidden" name="userid" value="${userid}"/>
-                                                <a type="submit" <%--class="btn btn-outline-primary removeBtn"--%> data-cart-id="${cart.cart_id}">
+                                                <a type="submit" <%--class="btn btn-outline-primary removeBtn"--%> class="removeBtn" data-cart-id="${cart.cart_id}">
                                                     <span class="ion-ios-close"></span>
                                                 </a>
                                             </form>
