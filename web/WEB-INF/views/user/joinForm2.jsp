@@ -45,7 +45,7 @@
                         <div class="form-group row">
                             <label for="userid" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="userid" id="userid" placeholder="아이디를 입력하세요!"/>
+                                <input type="text" class="form-control userid" name="userid"  placeholder="아이디를 입력하세요!"/>
                             </div>
                             <div class="tagcloud">
                                 <a href="#" type="button" class="tag-cloud-link" id="chkUseridBtn" name="chkUseridBtn">중복확인</a>
@@ -166,8 +166,7 @@
 </script>
 <script>
 
-    $(document).ready(function (e) {
-
+    $(document).ready(function () {
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
@@ -180,7 +179,8 @@
 
         var userIdExist = false;
 
-        var userid = $("input[name='userid']").val();
+        var userid = $(".userid").val();
+        var userName = $("#userName").val();
 
 
 
@@ -188,6 +188,9 @@
 
         $("#chkUseridBtn").on("click", function (e) {
             e.preventDefault();
+
+
+            console.log("userNam : " + userName);
 
             $.ajax({
                 url: '/user/ID_Check',
@@ -215,8 +218,10 @@
             });
         });
     });
-
 </script>
 
 
+
 <%@ include file="../includes/footer.jsp" %>
+
+

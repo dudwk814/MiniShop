@@ -156,9 +156,9 @@ public class MemberController {
     // 회원가입 아이디 체크
     @ResponseBody
     @RequestMapping(value = "/ID_Check")
-    public String ID_Check(@RequestBody String paramData) {
+    public String ID_Check(@RequestBody String userid) {
         //클라이언트가 보낸 ID값
-        String ID = paramData.trim();
+        String ID = userid.trim();
         System.out.println(ID);
 
         int findUser = memberService.findUser(ID);
