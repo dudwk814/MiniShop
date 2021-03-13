@@ -34,10 +34,10 @@
                     회원가입
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="/user/join" method="post" id="joinForm">
                         <h5>회원 기본 정보</h5>
                         <div class="form-group row">
-                            <label for="username" class="col-sm-3 col-form-label">이름</label>
+                            <label for="userName" class="col-sm-3 col-form-label">이름</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="userName" id="joinUserName" placeholder="이름을 입력하세요!"/>
                             </div>
@@ -69,10 +69,11 @@
 
 
 
-                        <div class="form-group">
-                            <h5>배송지 주소
-                            <button type="button" onclick="sample4_execDaumPostcode()" class="btn btn-info pull-right">우편번호 찾기</button><br>
-                            </h5>
+                        <div class="form-group tagcloud">
+                            <span style="font-size: large; color: black;">배송지 주소
+
+                            </span>
+                            <a style="color: black;" type="button" onclick="sample4_execDaumPostcode()" class="tag-cloud-link float-right">우편번호 찾기</a>
                         </div>
 
                         <div class="form-group">
@@ -179,26 +180,20 @@
 
 
 
-
+        var userIdExist = false;
 
 
         $("#chkUseridBtn").on("click", function (e) {
 
             e.preventDefault();
 
-            var userIdExist = false;
-
             var userid = $("#joinUserid").val();
-            var userName = $("#joinUserName").val();
 
             if (userid == "") {
                 alert("아이디를 입력해주세요.");
                 return;
             }
 
-
-
-            console.log("userNam : " + userName);
 
             $.ajax({
                 url: '/user/ID_Check',
@@ -224,6 +219,15 @@
 
                 }
             });
+        });
+
+        <!-- 회원가입 버튼 클릭 -->
+        $("#signup").on("click", function (e) {
+            e.preventDefault();
+
+            $("#joinForm").find("input[type != hidden]").each(function () {
+                
+            })
         });
     });
 </script>
