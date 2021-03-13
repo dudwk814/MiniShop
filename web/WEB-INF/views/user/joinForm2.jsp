@@ -39,13 +39,13 @@
                         <div class="form-group row">
                             <label for="username" class="col-sm-3 col-form-label">이름</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="userName" id="userName" placeholder="이름을 입력하세요!"/>
+                                <input type="text" class="form-control" name="userName" id="joinUserName" placeholder="이름을 입력하세요!"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="userid" class="col-sm-3 col-form-label">아이디</label>
+                            <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control userid" name="userid"  placeholder="아이디를 입력하세요!"/>
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!"/>
                             </div>
                             <div class="tagcloud">
                                 <a href="#" type="button" class="tag-cloud-link" id="chkUseridBtn" name="chkUseridBtn">중복확인</a>
@@ -177,17 +177,25 @@
             xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
         });
 
-        var userIdExist = false;
-
-        var userid = $(".userid").val();
-        var userName = $("#userName").val();
 
 
 
 
 
         $("#chkUseridBtn").on("click", function (e) {
+
             e.preventDefault();
+
+            var userIdExist = false;
+
+            var userid = $("#joinUserid").val();
+            var userName = $("#joinUserName").val();
+
+            if (userid == "") {
+                alert("아이디를 입력해주세요.");
+                return;
+            }
+
 
 
             console.log("userNam : " + userName);
@@ -196,7 +204,7 @@
                 url: '/user/ID_Check',
                 type: 'POST',
                 dataType: 'text', //서버로부터 내가 받는 데이터의 타입
-                contentType : 'text/plain; charset=utf-8;',//내가 서버로 보내는 데이터의 타입
+                contentType : 'application/json; charset=utf-8',//내가 서버로 보내는 데이터의 타입
                 data: userid ,
 
                 success: function(data){
