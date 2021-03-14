@@ -53,16 +53,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="userpw" class="col-sm-3 col-form-label">비밀번호</label>
+                            <label for="joinUserpw" class="col-sm-3 col-form-label">비밀번호</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" name="userpw" id="userpw" placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
+                                <input type="password" class="form-control" name="userpw" id="joinUserpw" placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="userpw2" class="col-sm-3 col-form-label">비밀번호 확인</label>
+                            <label for="joinUserpw2" class="col-sm-3 col-form-label">비밀번호 확인</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" name="userpw2" id="userpw2" placeholder="비밀번호를 재입력해주세요!" data-name="비밀번호 확인"/>
+                                <input type="password" class="form-control" name="userpw2" id="joinUserpw2" placeholder="비밀번호를 재입력해주세요!" data-name="비밀번호 확인"/>
                             </div>
                         </div>
                         <br/>
@@ -225,6 +225,10 @@
             });
         });
 
+        $("#joinUserid").change(function () {
+            userIdExist = false;
+        });
+
         <!-- 회원가입 버튼 클릭 -->
         $("#signup").on("click", function (e) {
             e.preventDefault();
@@ -242,10 +246,17 @@
                 }
             });
 
+            if ($("#joinUserpw").val().trim() != $("#joinUserpw2").val().trim()) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return;
+            }
+
             if($("input:checkbox[name=checkAgree]").is(":checked") == false) {
                 alert("회원가입 동의를 해주세요.");
                 return;
             }
+
+            $("#joinForm").submit();
         });
     });
 </script>

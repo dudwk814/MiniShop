@@ -237,7 +237,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal">Close</button>
                 <sec:authorize access="isAnonymous()">
-                    <a href="/user/loginForm" class="btn btn-primary">로그인</a>
+                    <a href="#"  class="btn btn-primary loginBtn">로그인</a>
                 </sec:authorize>
             </div>
         </div>
@@ -372,6 +372,11 @@
         } else {
             $("#myModal2").modal("show");
         }
+
+        <!-- 회원가입 로그인 버튼 클릭시 모달 hide -->
+        $(".loginBtn").on("click", function () {
+            $("#myModal").modal("hide");
+        })
 
     });
 </script>
