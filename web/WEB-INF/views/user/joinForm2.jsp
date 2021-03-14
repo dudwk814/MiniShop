@@ -39,13 +39,13 @@
                         <div class="form-group row">
                             <label for="userName" class="col-sm-3 col-form-label">이름</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="userName" id="joinUserName" placeholder="이름을 입력하세요!"/>
+                                <input type="text" class="form-control" name="userName" id="joinUserName" placeholder="이름을 입력하세요!" data-name="이름"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!"/>
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!" data-name="아이디"/>
                             </div>
                             <div class="tagcloud">
                                 <a href="#" type="button" class="tag-cloud-link" id="chkUseridBtn" name="chkUseridBtn">중복확인</a>
@@ -55,14 +55,14 @@
                         <div class="form-group row">
                             <label for="userpw" class="col-sm-3 col-form-label">비밀번호</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" name="userpw" id="userpw" placeholder="비밀번호를 입력하세요!"/>
+                                <input type="password" class="form-control" name="userpw" id="userpw" placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="userpw2" class="col-sm-3 col-form-label">비밀번호 확인</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" name="userpw2" id="userpw2" placeholder="비밀번호를 재입력해주세요!"/>
+                                <input type="password" class="form-control" name="userpw2" id="userpw2" placeholder="비밀번호를 재입력해주세요!" data-name="비밀번호 확인"/>
                             </div>
                         </div>
                         <br/>
@@ -78,27 +78,31 @@
 
                         <div class="form-group">
                             <label for="postcode">우편번호</label>
-                                <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" placeholder="우편번호">
+                                <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" placeholder="우편번호" data-name="우편번호">
                         </div>
 
                         <div class="form-group">
                             <label for="country">도로명 주소</label>
-                            <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" placeholder="도로명주소">
+                            <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" placeholder="도로명주소" data-name="도로명주소">
                         </div>
 
                         <div class="form-group">
                             <label for="streetaddress">지번주소</label>
-                            <input type="text" id="sample4_jibunAddress" name="address" class="form-control" placeholder="지번주소">
+                            <input type="text" id="sample4_jibunAddress" name="address" class="form-control" placeholder="지번주소" data-name="지번주소">
                         </div>
 
                         <div class="form-group">
                             <label for="streetaddress">상세주소</label>
-                            <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" placeholder="상세주소">
+                            <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" placeholder="상세주소" data-name="상세주소">
                         </div>
 
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-                        <button type="button" id="signup" class="btn btn-primary">회원가입</button>
+                        <div>
+                            <input type="checkbox" id="checkAgree" name="checkAgree"> 회원가입의 동의합니다.
+                            <button type="button" id="signup" class="btn btn-primary float-right">회원가입</button>
+                        </div>
+
                    </form>
                 </div>
             </div>
@@ -189,7 +193,7 @@
 
             var userid = $("#joinUserid").val();
 
-            if (userid == "") {
+            if (userid.trim() == "") {
                 alert("아이디를 입력해주세요.");
                 return;
             }
@@ -225,9 +229,23 @@
         $("#signup").on("click", function (e) {
             e.preventDefault();
 
-            $("#joinForm").find("input[type != hidden]").each(function () {
-                
-            })
+            if (userIdExist == false) {
+                alert("아이디 중복체크를 해주세요.");
+                return;
+            }
+
+            $("#joinForm").find("input[type=text]").each(function(index, item){
+                // 아무값없이 띄어쓰기만 있을 때도 빈 값으로 체크되도록 trim() 함수 호출
+                if ($(this).val().trim() == '') {
+                    alert($(this).attr("data-name")+" 항목을 입력하세요.");
+                    return;
+                }
+            });
+
+            if($("input:checkbox[name=checkAgree]").is(":checked") == false) {
+                alert("회원가입 동의를 해주세요.");
+                return;
+            }
         });
     });
 </script>
