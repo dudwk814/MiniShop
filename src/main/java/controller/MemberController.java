@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.GrantType;
@@ -41,6 +42,9 @@ public class MemberController {
 
     @Setter(onMethod_ = @Autowired)
     private OAuth2Parameters googleOAuth2Parameters;
+
+    @Setter(onMethod_ = @Autowired)
+    private BCryptPasswordEncoder encoder;
 
     // 회원 가입 폼으로 이동
     @GetMapping("/joinForm")
@@ -101,21 +105,33 @@ public class MemberController {
 
         log.info("Move to checkMemberForm");
 
-        return "/user/checkMemberForm";
+        return "/user/checkMemberForm2";
     }
 
     // 회원 정보 변경 폼으로 이동
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping ("/modifyForm")
-    public String modifyForm(String userid, Model model) {
+    public String modifyForm(String userid, String userpw, RedirectAttributes rttr, Model model) {
 
         log.info("Move to ModifyFrom");
 
         MemberVO member = memberService.getMember(userid);
 
-        model.addAttribute("member", member);
+        String userpw2 = member.getUserpw();
 
-        return "/user/modifyForm";
+        boolean matches = encoder.matches(userpw, userpw2);
+
+
+        if (matches) {
+            model.addAttribute("member", member);
+
+            return "/user/modifyForm2";
+        } else {
+            rttr.addFlashAttribute("msg", "비밀번호가 틀립니다.");
+            return "redirect:/user/checkMemberForm";
+        }
+
+
     }
 
     // 회원 정보 변경

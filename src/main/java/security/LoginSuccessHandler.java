@@ -3,7 +3,12 @@ package security;
 import lombok.extern.log4j.Log4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.ui.Model;
 
 import javax.servlet.ServletException;
@@ -15,6 +20,10 @@ import java.util.List;
 
 @Log4j
 public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
+
+    private RequestCache requestCache = new HttpSessionRequestCache();
+    private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication auth) throws IOException, ServletException {
@@ -31,6 +40,22 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         session.setAttribute("userid", userId);
 
-        httpServletResponse.sendRedirect("/");
+        resultRedirectStrategy(httpServletRequest, httpServletResponse, auth);
     }
+
+    protected void resultRedirectStrategy(HttpServletRequest request, HttpServletResponse response,
+                                          Authentication authentication) throws IOException, ServletException {
+
+        SavedRequest savedRequest = requestCache.getRequest(request, response);
+
+        if(savedRequest!=null) {
+            String targetUrl = savedRequest.getRedirectUrl();
+            redirectStratgy.sendRedirect(request, response, targetUrl);
+        } else {
+            redirectStratgy.sendRedirect(request, response, "/");
+        }
+
+    }
+
+
 }
