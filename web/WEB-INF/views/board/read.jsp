@@ -100,9 +100,9 @@
                                 <strong>댓글 작성</strong>
                             </summary>
                             <sec:authorize access="isAuthenticated()">
-                                <textarea name="content" id="editor1" rows="20" cols="80"></textarea>
+                                <textarea name="reply" id="editor1" rows="20" cols="80" placeholder="댓글을 입력해주세요!"></textarea>
                             </sec:authorize>
-                            <a href="#" class="btn btn-link float-right">등록</a>
+                            <a href="#" class="btn btn-link float-right replyRegBtn">등록</a>
                         </details>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Reply</label>
-                    <input class="form-control" name="reply" value="New Reply!!">
+                    <%--<input class="form-control" name="reply" value="New Reply!!">--%>
                 </div>
                 <div class="form-group">
                     <label>Replyer</label>
@@ -168,15 +168,9 @@
 
 </script>
 
+<!-- CKEDITOR (이지윅 에디터) -->
 <script>
-    /*var ckeditor_config = {
-        resize_enaleb : false,
-        enterMode : CKEDITOR.ENTER_BR,
-        shiftEnterMode : CKEDITOR.ENTER_P,
-        filebrowserUploadUrl : "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
-    };*/
-
-    CKEDITOR.replace("content",  {
+    CKEDITOR.replace("reply",  {
         toolbar : 'Basic'
     });
 </script>
@@ -316,6 +310,24 @@
             alert("로그인 해주세요");
         });
 
+        <!-- 리뷰 등록 버튼 클릭 이벤트 (리뷰 등록) -->
+        $(".replyRegBtn").on("click", function (e) {
+            e.preventDefault();
+
+            reply = {
+                reply : $("textarea[name=reply]").val(),
+                replyer : replyer,
+                bno : bnoValue
+            };
+
+            replyService.add(reply, function (result) {
+                alert(result);
+                showList(-1);
+
+            });
+
+        });
+
 
         modalRegisterBtn.on("click", function (e) {
 
@@ -354,7 +366,7 @@
                 modalModBtn.show();
                 modalRemoveBtn.show();
 
-                $(".modal").modal("show");
+                modal.modal("show");
             });
         });
 
