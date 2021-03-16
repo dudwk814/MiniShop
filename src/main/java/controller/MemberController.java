@@ -166,7 +166,7 @@ public class MemberController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/user/loginForm";
+        return "redirect:/";
     }
 
     // 회원가입 아이디 체크

@@ -91,11 +91,22 @@
                     <ul class="chat list-group-flush">
 
                     </ul>
-                    <div>
-
+                    <div class="form-group">
+                        <details>
+                            <summary>
+                                <sec:authorize access="isAnonymous()">
+                                    <strong>비회원은 댓글을 작성할 수 없습니다. <a href="#" class="loginBtn"> [로그인]</a> </strong>
+                                </sec:authorize>
+                                <strong>댓글 작성</strong>
+                            </summary>
+                            <sec:authorize access="isAuthenticated()">
+                                <textarea name="content" id="editor1" rows="20" cols="80"></textarea>
+                            </sec:authorize>
+                            <a href="#" class="btn btn-link float-right">등록</a>
+                        </details>
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-center">
 
                 </div>
             </div>
@@ -104,7 +115,7 @@
     </div>
 </section>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -155,6 +166,19 @@
 <script>
     var bnoValue = '<c:out value="${board.bno}"/>';
 
+</script>
+
+<script>
+    /*var ckeditor_config = {
+        resize_enaleb : false,
+        enterMode : CKEDITOR.ENTER_BR,
+        shiftEnterMode : CKEDITOR.ENTER_P,
+        filebrowserUploadUrl : "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
+    };*/
+
+    CKEDITOR.replace("content",  {
+        toolbar : 'Basic'
+    });
 </script>
 <script>
     $(document).ready(function () {
@@ -247,7 +271,7 @@
             });
         }
 
-        var modal = $(".modal");
+        var modal = $("#replyModal");
         var modalInputReply = modal.find("input[name='reply']");
         var modalInputReplyer = modal.find("input[name='replyer']");
         var modalInputReplyDate = modal.find("input[name='replyDate']");
@@ -284,7 +308,7 @@
 
             modalRegisterBtn.show();
 
-            $(".modal").modal("show");
+            modal.modal("show");
 
             return;
             </sec:authorize>
@@ -417,7 +441,7 @@
                 next = true;
             }
 
-            var str = "<ul class='pagination float-right'>";
+            var str = "<ul class='pagination'>";
 
             if (prev) {
                 str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";

@@ -162,7 +162,7 @@
 </section>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -426,7 +426,7 @@
 
             $(".uploadResult ul li").remove();
 
-            $(".modal").modal("show");
+            $("#reviewModal").modal("show");
 
             return;
             </sec:authorize>
@@ -618,7 +618,7 @@
 
         </sec:authorize>
 
-                $(".modal").modal("show");
+                $("#reviewModal").modal("show");
             });
         });
 

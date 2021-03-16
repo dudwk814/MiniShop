@@ -21,9 +21,9 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Board
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                         <button id="noticeRegBtn" type="button" class="btn btn-danger float-right">Register New Notice </button> &nbsp;
+                         <button id="noticeRegBtn" type="button" class="btn btn-link float-right">공지 쓰기 </button> &nbsp;
                     </sec:authorize>
-                    <button id="regBtn" type="button" class="btn btn-link float-right">Register New Board</button></h6>
+                    <button id="regBtn" type="button" class="btn btn-link float-right">글 쓰기</button></h6>
 
             </div>
             <br/>
