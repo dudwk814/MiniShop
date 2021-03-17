@@ -30,9 +30,11 @@ public class ReplyServiceImpl implements ReplyService{
 
         log.info("insert Reply : " + vo.getRno());
 
+        int insert = replyMapper.insert(vo);
+
         boardMapper.plusReplyCnt(vo.getBno());
 
-        return replyMapper.insert(vo);
+        return insert;
     }
 
     @Override

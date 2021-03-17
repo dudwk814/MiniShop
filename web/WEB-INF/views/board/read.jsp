@@ -83,7 +83,7 @@
                     <div class="card-header">
                         <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt"
                                                                                  class="badge badge-info">${board.replyCnt}</span>
-                        <button class="btn btn-link float-right" id="regBtn">New</button>
+                        <%--<button class="btn btn-link float-right" id="regBtn">New</button>--%>
                     </div>
                 </sec:authorize>
 
@@ -98,9 +98,9 @@
                                     <strong>비회원은 댓글을 작성할 수 없습니다. <a href="#" class="loginBtn"> [로그인]</a> </strong>
                                 </sec:authorize>
                                 <strong>댓글 작성</strong>
-                            </summary>
+                            </summary><br/>
                             <sec:authorize access="isAuthenticated()">
-                                <textarea name="reply" id="editor1" rows="20" cols="80" placeholder="댓글을 입력해주세요!"></textarea>
+                                <input type="text" class="form-control" name="reply" id="replyContent" placeholder="댓글을 작성해주세요.">
                             </sec:authorize>
                             <a href="#" class="btn btn-link float-right replyRegBtn">등록</a>
                         </details>
@@ -124,56 +124,40 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Reply</label>
-                    <%--<input class="form-control" name="reply" value="New Reply!!">--%>
+                    <label>댓글</label>
+                    <input class="form-control" name="reply" value="New Reply!!">
                 </div>
                 <div class="form-group">
-                    <label>Replyer</label>
-                    <input class="form-control" name="replyer" value="replyer" readonly>
+                    <label>작성자</label>
+                    <input class="form-control-plaintext" name="replyer" value="replyer" readonly>
                 </div>
                 <div class="form-group">
-                    <label>ReplyDate</label>
-                    <input class="form-control" name="replyDate" value="">
+                    <label>작성일</label>
+                    <input class="form-control-plaintext" name="replyDate" value="">
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
-                <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-                <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
-                <button id="modalCloseBtn" type="button" class="btn btn-info">Close</button>
+                <button id="modalModBtn" type="button" class="btn btn-warning">수정</button>
+                <button id="modalRemoveBtn" type="button" class="btn btn-danger">삭제</button>
+                <button id="modalRegisterBtn" type="button" class="btn btn-primary">등록</button>
+                <button id="modalCloseBtn" type="button" class="btn btn-info">닫기</button>
             </div>
         </div>
     </div>
 </div>
 <br/>
 
-<script src="/resources/shop/js/jquery.min.js"></script>
-<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/resources/shop/js/popper.min.js"></script>
-<script src="/resources/shop/js/bootstrap.min.js"></script>
-<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
-<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
-<script src="/resources/shop/js/jquery.stellar.min.js"></script>
-<script src="/resources/shop/js/owl.carousel.min.js"></script>
-<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
-<script src="/resources/shop/js/aos.js"></script>
-<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
-<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
-<script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="/resources/shop/js/main.js"></script>
-<script type="text/javascript" src="/resources/reply.js"></script>
-<script src="/resources/ckeditor/ckeditor.js"></script>
 <script>
     var bnoValue = '<c:out value="${board.bno}"/>';
 
 </script>
 
 <!-- CKEDITOR (이지윅 에디터) -->
-<script>
+<%--<script>
     CKEDITOR.replace("reply",  {
         toolbar : 'Basic'
     });
-</script>
+</script>--%>
 <script>
     $(document).ready(function () {
 
@@ -253,7 +237,7 @@
                     return;
                 }
                 for (var i = 0, len = list.length || 0; i < len; i++) {
-                    str += "<li class='list-group-item' data-rno='" + list[i].rno + "'>";
+                    str += "<li class='list-group-item' data-rno='" + list[i].rno + "' data-replyer = '" + list[i].replyer + "'>";
                     str += "  <div><div class='header'><strong class='font-weight-bold'>" + list[i].replyer + "</strong>";
                     str += "    <small class='float-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
                     str += "    <p>" + list[i].reply + "</p></div></li>";
@@ -314,14 +298,24 @@
         $(".replyRegBtn").on("click", function (e) {
             e.preventDefault();
 
+            var replyContent = $("#replyContent");
+
+            if (replyContent.val().trim() == '') {
+                alert("댓글을 작성해주세요.");
+                return;
+            }
+
             reply = {
-                reply : $("textarea[name=reply]").val(),
+                reply : replyContent.val(),
                 replyer : replyer,
                 bno : bnoValue
             };
 
             replyService.add(reply, function (result) {
                 alert(result);
+
+                replyContent.val("");
+
                 showList(-1);
 
             });
@@ -355,19 +349,30 @@
 
             var rno = $(this).data("rno");
 
-            replyService.get(rno, function (reply) {
+            var replyer = $(this).data("replyer");
 
-                modalInputReply.val(reply.reply);
-                modalInputReplyer.val(reply.replyer);
-                modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
-                modal.data("rno", reply.rno);
+            <sec:authorize access="isAnonymous()">
+                return;
+            </sec:authorize>
 
-                modal.find("button[id != 'modalCloseBtn']").hide();
-                modalModBtn.show();
-                modalRemoveBtn.show();
+            if (replyer == userid) {
 
-                modal.modal("show");
-            });
+                replyService.get(rno, function (reply) {
+
+                    modalInputReply.val(reply.reply);
+                    modalInputReplyer.val(reply.replyer);
+                    modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+                    modal.data("rno", reply.rno);
+
+                    modal.find("button[id != 'modalCloseBtn']").hide();
+                    modalModBtn.show();
+                    modalRemoveBtn.show();
+
+                    modal.modal("show");
+                });
+            } else {
+                return;
+            }
         });
 
         modalModBtn.on("click", function (e) {

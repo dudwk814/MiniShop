@@ -19,33 +19,29 @@
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
 
     <div class="col-lg-9">
-        <h1>Board Modify</h1>
+        <h1>게시글 수정</h1>
         <form action="/board/modify" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <input type="hidden" name="pageNum" value="${cri.pageNum}">
             <input type="hidden" name="amount" value="${cri.amount}">
             <div class="form-group">
-                <label for="bno">bno</label>
-                <input type="text" class="form-control" id="bno" placeholder="bno" name="bno"
+                <label for="bno">글 번호</label>
+                <input type="text" class="form-control-plaintext" id="bno" placeholder="bno" name="bno"
                        value="<c:out value='${board.bno}'/>" readonly>
             </div>
 
             <div class="form-group">
-                <label for="title">title</label>
+                <label for="title">제목</label>
                 <input type="text" class="form-control" id="title" placeholder="title" name="title"
                        value="<c:out value='${board.title}'/>">
             </div>
-            <%--<div class="form-group">
-                <label for="regDate">date</label>
-                <input type="text" class="form-control" name="regDate" id="regDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value='${board.regDate}'/>" readonly>
-            </div>--%>
             <div class="form-group">
-                <label for="editor1">content</label>
+                <label for="editor1">내용</label>
                 <textarea name="content" id="editor1" rows="20" cols="80">${board.content}</textarea>
             </div>
             <div class="form-group">
-                <label for="writer">writer</label>
-                <input type="text" class="form-control" name="writer" id="writer" placeholder="writer"
+                <label for="writer">작성자</label>
+                <input type="text" class="form-control-plaintext" name="writer" id="writer" placeholder="writer"
                        value="<c:out value='${board.writer}'/>" readonly>
             </div>
 
@@ -60,7 +56,7 @@
 </section>
 <br/><br/><br/><br/>
 
-<script src="/resources/shop/js/jquery.min.js"></script>
+<%--<script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/resources/shop/js/popper.min.js"></script>
 <script src="/resources/shop/js/bootstrap.min.js"></script>
@@ -75,7 +71,7 @@
 <script src="/resources/shop/js/scrollax.min.js"></script>
 <script src="/resources/shop/js/google-map.js"></script>
 <script src="/resources/shop/js/main.js"></script>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>--%>
 
 <script type="text/javascript">
 

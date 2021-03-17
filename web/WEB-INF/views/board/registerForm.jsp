@@ -20,43 +20,26 @@
     <h1>Board Register</h1>
     <form action="/board/register" method="post">
         <div class="form-group">
-            <label for="title">title</label>
+            <label for="title">제목</label>
             <input type="text" class="form-control" id="title" placeholder="title" name="title">
         </div>
         <div class="form-group">
-            <label for="editor1">content</label>
+            <label for="editor1">내용</label>
             <textarea name="content" id="editor1" rows="20" cols="80"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="writer">writer</label>
+            <label for="writer">작성자</label>
             <input type="writer" class="form-control" name="writer" id="writer" placeholder="writer" value="<sec:authentication property="principal.member.userid"/>">
         </div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 
-        <button type="submit" class="btn btn-info float-right">Submit Information</button>
+        <button type="submit" class="btn btn-info float-right">글 작성</button>
     </form>
 </div>
 </section>
 <br/><br/><br/><br/>
-
-    <script src="/resources/shop/js/jquery.min.js"></script>
-    <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="/resources/shop/js/popper.min.js"></script>
-    <script src="/resources/shop/js/bootstrap.min.js"></script>
-    <script src="/resources/shop/js/jquery.easing.1.3.js"></script>
-    <script src="/resources/shop/js/jquery.waypoints.min.js"></script>
-    <script src="/resources/shop/js/jquery.stellar.min.js"></script>
-    <script src="/resources/shop/js/owl.carousel.min.js"></script>
-    <script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
-    <script src="/resources/shop/js/aos.js"></script>
-    <script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
-    <script src="/resources/shop/js/bootstrap-datepicker.js"></script>
-    <script src="/resources/shop/js/scrollax.min.js"></script>
-    <script src="/resources/shop/js/google-map.js"></script>
-    <script src="/resources/shop/js/main.js"></script>
-    <script src="/resources/ckeditor/ckeditor.js"></script>
 
 <script>
     var ckeditor_config = {
