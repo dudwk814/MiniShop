@@ -39,7 +39,7 @@
                                                 <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                 <input type="hidden" name="userid" value="${userid}"/>
-                                                <a type="submit" <%--class="btn btn-outline-primary removeBtn"--%> class="removeBtn" data-cart-id="${cart.cart_id}">
+                                                <a type="submit" class="removeBtn" data-cart-id="${cart.cart_id}">
                                                     <span class="ion-ios-close"></span>
                                                 </a>
                                             </form>
@@ -99,7 +99,7 @@
                         <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${AllSumMoney}" maxFractionDigits="0"/>원
                     </p>
                 </div>
-                <p class="text-center"><a href="/order/orderForm?userid=<sec:authentication property="principal.member.userid"/>" class="btn btn-primary py-3 px-4">주문하기</a></p>
+                <p class="text-center"><a href="/order/orderForm?userid=<sec:authentication property="principal.member.userid"/>" id="orderBtn" class="btn btn-primary py-3 px-4">주문하기</a></p>
             </div>
         </div>
     </div>
@@ -129,22 +129,6 @@
 
 </div>
 
-<%--<script src="/resources/shop/js/jquery.min.js"></script>--%>
-<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/resources/shop/js/popper.min.js"></script>
-<script src="/resources/shop/js/bootstrap.min.js"></script>
-<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
-<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
-<script src="/resources/shop/js/jquery.stellar.min.js"></script>
-<script src="/resources/shop/js/owl.carousel.min.js"></script>
-<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
-<script src="/resources/shop/js/aos.js"></script>
-<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
-<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
-<script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="/resources/shop/js/google-map.js"></script>
-<script src="/resources/shop/js/main.js"></script>
 
 <script>
     $(document).ready(function (e) {
@@ -163,10 +147,10 @@
             $("#myModal").modal("show");
         }
 
-        if(${cartCount == 0}) {
+        /*if(${cartCount == 0}) {
             alert("장바구니가 비었습니다.");
             location.href = "/";
-        }
+        }*/
 
 
         var amountModifyForm = $("#amountModifyForm");
@@ -211,6 +195,18 @@
             }
 
             amountModifyForm.submit();
+
+        });
+
+        $("#orderBtn").on("click", function (e) {
+            e.preventDefault();
+
+            if (${cartCount} == 0) {
+                alert("장바구니가 비었습니다.")
+                return;
+            }
+
+            location.href = "/order/orderForm?userid=<sec:authentication property='principal.member.userid'/>";
 
         });
 
