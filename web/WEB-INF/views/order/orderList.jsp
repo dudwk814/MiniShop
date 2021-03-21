@@ -44,11 +44,11 @@
                                     <tr class="text-center">
 
                                         <td class="product-remove">
-                                            <form action="/cart/remove" method="post" id="removeForm${cart.cart_id}">
-                                                <input type="hidden" name="cart_id" value="${cart.cart_id}"/>
+                                            <form action="/order/remove" method="post" id="removeForm${order.order_id}">
+                                                <input type="hidden" name="order_id" value="${order.order_id}"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                 <input type="hidden" name="userid" value="${userid}"/>
-                                                <a type="submit" class="removeBtn" data-cart-id="${cart.cart_id}">
+                                                <a type="submit" class="removeBtn" data-order0-id="${order.cart_id}">
                                                     <span class="ion-ios-close"></span>
                                                 </a>
                                             </form>

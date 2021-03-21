@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.AddressService;
 import service.CartService;
 import service.MemberService;
@@ -77,11 +78,11 @@ public class OrderController {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-        String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+        String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
         String subNum = "";
 
-        for(int i = 1; i <= 6; i ++) {
-            subNum += (int)(Math.random() * 10);
+        for (int i = 1; i <= 6; i++) {
+            subNum += (int) (Math.random() * 10);
         }
 
         String orderId = ymd + "_" + subNum;
@@ -106,7 +107,6 @@ public class OrderController {
         model.addAttribute("orderDetails", getOrderDetailsVO);
 
 
-
         return "order/orderResult";
     }
 
@@ -121,9 +121,9 @@ public class OrderController {
 
         int orderCount = 0;
 
-        if(orderVOList == null) {
+        if (orderVOList == null) {
             model.addAttribute("orderCount", orderCount);
-        } else if(orderVOList != null) {
+        } else if (orderVOList != null) {
             orderCount = 1;
             model.addAttribute("orderCount", orderCount);
         }
@@ -135,5 +135,14 @@ public class OrderController {
 
 
         return "order/orderList";
+    }
+
+    @PostMapping("/remove")
+    public String removeOrder(String order_id, String userid, RedirectAttributes rttr) {
+        boolean delete = orderService.delete(order_id);
+
+        rttr.addFlashAttribute("removeMsg", order_id + "주문을 취소했습니다.");
+
+        return "redirect:/order/getOrderList?userid=" + userid;
     }
 }
