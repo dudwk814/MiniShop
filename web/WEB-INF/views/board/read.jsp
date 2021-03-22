@@ -152,12 +152,7 @@
 
 </script>
 
-<!-- CKEDITOR (이지윅 에디터) -->
-<%--<script>
-    CKEDITOR.replace("reply",  {
-        toolbar : 'Basic'
-    });
-</script>--%>
+
 <script>
     $(document).ready(function () {
 

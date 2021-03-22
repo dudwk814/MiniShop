@@ -47,8 +47,8 @@
                                             <form action="/order/remove" method="post" id="removeForm${order.order_id}">
                                                 <input type="hidden" name="order_id" value="${order.order_id}"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                                <input type="hidden" name="userid" value="${userid}"/>
-                                                <a type="submit" class="removeBtn" data-order0-id="${order.cart_id}">
+                                                <input type="hidden" name="userid" value="${order.userid}"/>
+                                                <a type="submit"  class="orderRemoveBtn" data-order-id="${order.order_id}">
                                                     <span class="ion-ios-close"></span>
                                                 </a>
                                             </form>
@@ -107,6 +107,60 @@
 
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="orderRemoveResultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ${removeMsg}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <a href="${root}"> <button type="button" class="btn btn-primary">쇼핑 계속하기</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function (e) {
+
+        // 모달 reuslt
+        var result = '<c:out value="${removeMsg}"/>';
+
+        checkModal(result);
+
+        function checkModal(result) {
+
+            if (result === '') {
+                return;
+            }
+
+            $("#orderRemoveResultModal").modal("show");
+        }
+
+        <!-- 주문 취소 -->
+        $(".orderRemoveBtn").on("click", function (e) {
+            e.preventDefault();
+
+            var order_id = $(this).data("order-id");
+
+            if (confirm("주문을 취소하시겠습니까?") == true) {
+                $("#removeForm" + order_id).submit();
+            } else  {
+                return;
+            }
+
+        });
+    });
+</script>
 
 
 <%@ include file="../includes/footer.jsp"%>

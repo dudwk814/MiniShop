@@ -40,7 +40,28 @@
 
 </section>
 
-<script src="/resources/shop/js/jquery.min.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="orderResultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ${result}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <a href="${root}"> <button type="button" class="btn btn-primary">쇼핑 계속하기</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--<script src="/resources/shop/js/jquery.min.js"></script>
 <script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/resources/shop/js/popper.min.js"></script>
 <script src="/resources/shop/js/bootstrap.min.js"></script>
@@ -55,6 +76,34 @@
 <script src="/resources/shop/js/scrollax.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="/resources/shop/js/google-map.js"></script>
-<script src="/resources/shop/js/main.js"></script>
+<script src="/resources/shop/js/main.js"></script>--%>
+
+<script>
+    $(document).ready(function () {
+
+        // RedirectAttributes로 부터 전달받은 값
+        var result = '<c:out value="${result}"/>';
+
+        // 모달 close 버튼
+        var closeBtn = $("#closeBtn");
+
+        closeBtn.on("click", function () {
+
+            $("#orderResultModal").modal("hide");
+        })
+
+
+        checkModal(result);
+
+        function checkModal(result) {
+
+            if (result === '') {
+                return;
+            }
+
+            $("#orderResultModal").modal("show");
+        }
+    });
+</script>
 
 <%@ include file="../includes/footer.jsp"%>

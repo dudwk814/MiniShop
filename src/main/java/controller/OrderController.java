@@ -73,7 +73,7 @@ public class OrderController {
     @Transactional
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @PostMapping("order")
-    public String order(OrderVO orderVO, OrderDetailsVO orderDetailsVO, Model model) {
+    public String order(OrderVO orderVO, OrderDetailsVO orderDetailsVO, Model model, RedirectAttributes rttr) {
 
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -105,6 +105,8 @@ public class OrderController {
         }
         model.addAttribute("order", getOrderVO);
         model.addAttribute("orderDetails", getOrderDetailsVO);
+        rttr.addFlashAttribute("result", "주문이 정상적으로 완료되었습니다.");
+
 
 
         return "order/orderResult";

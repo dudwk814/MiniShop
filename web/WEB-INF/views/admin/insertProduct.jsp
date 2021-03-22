@@ -60,23 +60,7 @@
         </div>
     </div>
 </section>
-<script src="/resources/shop/js/jquery.min.js"></script>
-<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/resources/shop/js/popper.min.js"></script>
-<script src="/resources/shop/js/bootstrap.min.js"></script>
-<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
-<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
-<script src="/resources/shop/js/jquery.stellar.min.js"></script>
-<script src="/resources/shop/js/owl.carousel.min.js"></script>
-<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
-<script src="/resources/shop/js/aos.js"></script>
-<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
-<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
-<script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="/resources/shop/js/google-map.js"></script>
-<script src="/resources/shop/js/main.js"></script>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+
 
 <script>
     $(document).ready(function () {

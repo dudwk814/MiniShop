@@ -147,10 +147,7 @@
             $("#myModal").modal("show");
         }
 
-        /*if(${cartCount == 0}) {
-            alert("장바구니가 비었습니다.");
-            location.href = "/";
-        }*/
+
 
 
         var amountModifyForm = $("#amountModifyForm");
@@ -165,7 +162,7 @@
 
             console.log(cart_id);
 
-            if (confirm("장바구니에 상품을 삭제하시겠습니까?") == true) {
+            if (confirm("장바구니에서 상품을 삭제하시겠습니까?") == true) {
                 $("#removeForm" + cart_id).submit();
             } else {
                 return;
