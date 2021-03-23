@@ -109,8 +109,21 @@ public class OrderController {
 
 
 
+        return "redirect:/order/order";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
+    @GetMapping("/order")
+    public String orderGet(Model model, RedirectAttributes rttr) {
+
+        model.addAttribute("order", model.getAttribute("order"));
+        model.addAttribute("orderDetails", model.getAttribute("orderDetails"));
+
+        rttr.addFlashAttribute("result", rttr.getFlashAttributes());
         return "order/orderResult";
     }
+
+
 
     @PreAuthorize("isAuthenticated() and ((#userid == principal.member.userid) or hasAnyRole('ROLE_ADMIN'))")
     @GetMapping("/getOrderList")

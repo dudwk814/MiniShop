@@ -60,7 +60,7 @@
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                 <input type="hidden" name="userid" value="${userid}"/>
                                                 <input type="hidden" name="product_id" value="${cart.product_id}"/>
-                                                <input type="text" name="amount" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100">
+                                                <input type="number" name="amount" class="quantity form-control input-number" value="${cart.amount}" min="1" max="100">
                                             </div>
                                             <div>
                                                 <input type="submit" class="btn btn-outline-primary" value="변경" id="amountModifyBtn"/>

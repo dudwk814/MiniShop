@@ -95,7 +95,7 @@ public class MemberController {
 
         log.info("Move to LoginForm");
 
-        return "user/loginForm";
+        return "user/loginForm2";
     }
 
     // 회원 정보 체크
