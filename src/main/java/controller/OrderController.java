@@ -99,7 +99,7 @@ public class OrderController {
 
 
 
-        return "redirect:/order/order?orderid=" + orderId;
+        return "redirect:/order/order?orderId=" + orderId;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
