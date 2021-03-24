@@ -294,6 +294,15 @@
     $(document).ready(function (e) {
 
 
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        // Ajax spring security header.
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        });
+
+
         // RedirectAttributes로 부터 전달받은 값
         var result = '<c:out value="${result}"/>';
 
@@ -354,6 +363,34 @@
             } else {
                 return;
             }
+
+            <%--<sec:authorize access="isAuthenticated()">
+                var userid = "<sec:authentication property="principal.member.userid"/>";
+            </sec:authorize>
+
+            var product = {
+                userid : userid,
+                amount : 1,
+                product_name : $("#addCartBtn" + product_id).find("input[name='product_name']").val(),
+                product_id : product_id
+            };
+
+            $.ajax({
+                type : 'post',
+                url : '/cart/add',
+                data : product,
+                contentType : "application/json; charset=utf-8",
+                success : function (result, status, xhr) {
+                    if (confirm("장바구니에 상품이 추가되었습니다. 장바구니로 이동하시겠습니까?") == true) {
+                        location.href = "/cart/cart?userid=" + userid;
+                    } else {
+                        return;
+                    }
+
+                }
+
+            });--%>
+
         });
 
         // 홈 화면 팝업 모달

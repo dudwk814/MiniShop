@@ -95,6 +95,17 @@ public class OrderController {
 
         cartService.deleteAfterOrder(orderVO.getUserid());
 
+
+
+
+
+        return "redirect:/order/order?orderid=" + orderId;
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
+    @GetMapping("/order")
+    public String orderGet(Model model, String orderId, RedirectAttributes rttr) {
+
         OrderVO getOrderVO = orderService.get(orderId);
         List<OrderDetailsVO> getOrderDetailsVO = orderService.getOrderDetails(orderId);
 
@@ -107,19 +118,6 @@ public class OrderController {
         model.addAttribute("orderDetails", getOrderDetailsVO);
         rttr.addFlashAttribute("result", "주문이 정상적으로 완료되었습니다.");
 
-
-
-        return "redirect:/order/order";
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
-    @GetMapping("/order")
-    public String orderGet(Model model, RedirectAttributes rttr) {
-
-        model.addAttribute("order", model.getAttribute("order"));
-        model.addAttribute("orderDetails", model.getAttribute("orderDetails"));
-
-        rttr.addFlashAttribute("result", rttr.getFlashAttributes());
         return "order/orderResult";
     }
 
