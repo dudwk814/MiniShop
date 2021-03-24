@@ -11,7 +11,7 @@
 
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
-        <div class="slider-item js-fullheight">
+        <%--<div class="slider-item js-fullheight">
             <div class="overlay"></div>
             <div class="container-fluid p-0">
                 <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
         <div class="slider-item js-fullheight">
             <div class="overlay"></div>
@@ -49,7 +49,7 @@
                                 <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                                     necessary regelialia. It is a paradisematic country.</p>
 
-                                <p><a href="#" class="btn-custom">Discover Now</a></p>
+                                <p><a href="/product/read?product_id=1" class="btn-custom">Discover Now</a></p>
                             </div>
                         </div>
                     </div>

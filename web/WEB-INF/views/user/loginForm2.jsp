@@ -36,23 +36,23 @@
                 <div class="card-body">
                     <form action="/login" method="post" id="LoginForm">
                         <div class="form-group row">
-                            <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
-                            <div class="col-sm-7">
+                            <label for="loginUserid" class="col-sm-3 col-form-label">아이디</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control userid" id="loginUserid" name="userid"
                                        placeholder="아이디를 입력하세요!" data-name="아이디"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="joinUserpw" class="col-sm-3 col-form-label">비밀번호</label>
-                            <div class="col-sm-7">
+                            <label for="loginUserpw" class="col-sm-3 col-form-label">비밀번호</label>
+                            <div class="col-sm-8">
                                 <input type="password" class="form-control" name="userpw" id="loginUserpw"
                                        placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
                             </div>
                         </div>
 
                         <div class="form-check">
-                            <a class="float-right" href="/user/joinForm">회원가입</a>
+
                             <input class="form-check-input" name="remember-me" id="remember-me" type="checkbox" value=""
                                    id="defaultCheck1">
                             <label class="form-check-label" for="defaultCheck1">
@@ -61,7 +61,8 @@
                         </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-
+                        <a class="float-left" href="/user/joinForm">회원가입</a>
+                        <button type="submit" class="btn btn-outline-primary float-right">로그인</button>
                     </form>
                 </div>
             </div>
@@ -69,5 +70,23 @@
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function (e) {
+        $("button[type='submit']").on("click", function (e) {
+            e.preventDefault();
+
+            if ($("#loginUserid").val().trim() == "") {
+                alert("아이디를 입력해주세요.");
+                return;
+            } else if ($("#loginUserpw").val().trim() == "") {
+                alert("비밀번호를 입력해주세요.");
+                return;
+            }
+
+            $("#LoginForm").submit();
+        });
+    });
+</script>
 
 <%@ include file="../includes/footer.jsp" %>

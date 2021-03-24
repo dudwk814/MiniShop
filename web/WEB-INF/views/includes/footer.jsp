@@ -59,7 +59,12 @@
                     <ul class="list-unstyled">
                         <li><a href="${root}" class="py-2 d-block">홈</a></li>
                         <li><a href="/board/list" class="py-2 d-block">게시판</a></li>
-                        <li><a href="/user/loginForm" class="py-2 d-block">로그인</a></li>
+                        <sec:authorize access="isAnonymous()">
+                            <li><a href="#" class="py-2 d-block loginBtn">로그인</a></li>
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                            <li><a href="/user/logout" class="py-2 d-block">로그인</a></li>
+                        </sec:authorize>
                     </ul>
                 </div>
             </div>
@@ -112,6 +117,10 @@
     </svg>
 </div>--%>
 
+<script>
+    $()
+
+</script>
 
 </body>
 </html>
