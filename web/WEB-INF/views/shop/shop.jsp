@@ -41,24 +41,30 @@
                                         <div class="cat">
                                             <span>Lifestyle</span>
                                         </div>
-                                        <%--<div class="rating">
-                                            <p class="text-right mb-0">
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                            </p>
-                                        </div>--%>
+                                        <div class="rating">
+
+                                        </div>
                                     </div>
-                                    <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                                    <h3><a href="/product/read?product_id=${product.product_id}">${product.product_name}</a></h3>
                                     <div class="pricing">
-                                        <p class="price"><span>$120.00</span></p>
+                                        <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency"
+                                                                                                          currencySymbol="￦"
+                                                                                                          value="${product.product_price}"
+                                                                                                          maxFractionDigits="0"/>원 </span></p>
                                     </div>
                                     <p class="bottom-area d-flex px-3">
-                                        <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                                        <a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                        <a href="#" class="add-to-cart text-center py-2 mr-1" data-order-id="${product.product_id}" id="addCartBtn${product.product_id}"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                                        <%--<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>--%>
                                     </p>
+                                    <sec:authorize access="isAuthenticated()">
+                                        <form method="post" action="/cart/add" id="addCartForm${product.product_id}">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                            <input type="hidden" name="userid" value="<sec:authentication property="principal.member.userid"/>"/>
+                                            <input type="hidden" name="amount" value="1"/>
+                                            <input type="hidden" name="product_name" value="${product.product_name}">
+                                            <input type="hidden" name="product_id" value="${product.product_id}">
+                                        </form>
+                                    </sec:authorize>
                                 </div>
                             </div>
                         </div>
@@ -83,91 +89,6 @@
 
             <div class="col-md-4 col-lg-2">
                 <div class="sidebar">
-                    <div class="sidebar-box-2">
-                        <h2 class="heading">Categories</h2>
-                        <div class="fancy-collapse-panel">
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Men's Shoes
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body">
-                                            <ul>
-                                                <li><a href="#">Sport</a></li>
-                                                <li><a href="#">Casual</a></li>
-                                                <li><a href="#">Running</a></li>
-                                                <li><a href="#">Jordan</a></li>
-                                                <li><a href="#">Soccer</a></li>
-                                                <li><a href="#">Football</a></li>
-                                                <li><a href="#">Lifestyle</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Women's Shoes
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                        <div class="panel-body">
-                                            <ul>
-                                                <li><a href="#">Sport</a></li>
-                                                <li><a href="#">Casual</a></li>
-                                                <li><a href="#">Running</a></li>
-                                                <li><a href="#">Jordan</a></li>
-                                                <li><a href="#">Soccer</a></li>
-                                                <li><a href="#">Football</a></li>
-                                                <li><a href="#">Lifestyle</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Accessories
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                        <div class="panel-body">
-                                            <ul>
-                                                <li><a href="#">Jeans</a></li>
-                                                <li><a href="#">T-Shirt</a></li>
-                                                <li><a href="#">Jacket</a></li>
-                                                <li><a href="#">Shoes</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingFour">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">Clothing
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                        <div class="panel-body">
-                                            <ul>
-                                                <li><a href="#">Jeans</a></li>
-                                                <li><a href="#">T-Shirt</a></li>
-                                                <li><a href="#">Jacket</a></li>
-                                                <li><a href="#">Shoes</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="sidebar-box-2">
                         <h2 class="heading">Price Range</h2>
                         <form method="post" class="colorlib-form-2">
@@ -210,5 +131,32 @@
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function (e) {
+
+        $(".add-to-cart").on("click", function (e) {
+           e.preventDefault();
+
+            <sec:authorize access="isAnonymous()">
+                alert("로그인 해주세요.");
+                return;
+            </sec:authorize>
+
+            var order_id = $(this).data("order-id");
+
+            var form = $("#addCartForm" + order_id);
+
+            if (confirm("상품을 장바구니에 추가하시겠습니까?") == true) {
+                form.submit();
+            } else {
+                return;
+            }
+
+        });
+
+
+    });
+</script>
 
 <%@ include file="../includes/footer.jsp" %>
