@@ -1,9 +1,6 @@
 package controller;
 
-import domain.MemberVO;
-import domain.OrderVO;
-import domain.ProductVO;
-import domain.authVO;
+import domain.*;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +39,13 @@ public class AdminController {
     // 관리자 페이지 조회 메소드
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/page")
-    public String page(Model model) {
+    public String page(Criteria cri, Model model) {
 
         // 멤버 리스트
         List<MemberVO> memberList = memberService.getList();
 
         // 상품 리스트
-        List<ProductVO> productList = productService.getProductList();
+        List<ProductVO> productList = productService.getProductList(cri);
 
         // 주문 리스트
         List<OrderVO> orderList = orderService.getAllList();

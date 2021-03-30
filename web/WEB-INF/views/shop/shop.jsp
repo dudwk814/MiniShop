@@ -91,37 +91,58 @@
                 <div class="sidebar">
                     <div class="sidebar-box-2">
                         <h2 class="heading">Price Range</h2>
-                        <form method="post" class="colorlib-form-2">
+                        <form method="get" action="/shop" class="colorlib-form-2">
+                            <input type="hidden" name="amount" value="9">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="guests">Price from:</label>
+                                        <label for="price_from">Price from:</label>
                                         <div class="form-field">
                                             <i class="icon icon-arrow-down3"></i>
-                                            <select name="people" id="people" class="form-control">
-                                                <option value="#">1</option>
-                                                <option value="#">200</option>
-                                                <option value="#">300</option>
-                                                <option value="#">400</option>
-                                                <option value="#">1000</option>
+                                            <select name="price_from" id="price_from" class="form-control">
+                                                <option value="0" <c:out value="${searchMaker.price_to == 0 ? 'selected' : ''}"/>></option>
+                                                <option value="10000" <c:out value="${searchMaker.price_from == 10000 ? 'selected' : ''}"/>>10000원</option>
+                                                <option value="20000" <c:out value="${searchMaker.price_from == 20000 ? 'selected' : ''}"/>>20000원</option>
+                                                <option value="30000" <c:out value="${searchMaker.price_from == 30000 ? 'selected' : ''}"/>>30000원</option>
+                                                <option value="40000" <c:out value="${searchMaker.price_from == 40000 ? 'selected' : ''}"/>>40000원</option>
+                                                <option value="50000" <c:out value="${searchMaker.price_from == 50000 ? 'selected' : ''}"/>>50000원</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="guests">Price to:</label>
+                                        <label for="price_to">Price to:</label>
                                         <div class="form-field">
                                             <i class="icon icon-arrow-down3"></i>
-                                            <select name="people" id="people" class="form-control">
-                                                <option value="#">2000</option>
-                                                <option value="#">4000</option>
-                                                <option value="#">6000</option>
-                                                <option value="#">8000</option>
-                                                <option value="#">10000</option>
+                                            <select name="price_to" id="price_to" class="form-control">
+                                                <option value="0" <c:out value="${searchMaker.price_to == 0 ? 'selected' : ''}"/>></option>
+                                                <option value="20000" <c:out value="${searchMaker.price_to == 20000 ? 'selected' : ''}"/>>20000원</option>
+                                                <option value="30000" <c:out value="${searchMaker.price_to == 30000 ? 'selected' : ''}"/>>30000원</option>
+                                                <option value="60000" <c:out value="${searchMaker.price_to == 60000 ? 'selected' : ''}"/>>60000원</option>
+                                                <option value="80000" <c:out value="${searchMaker.price_to == 80000 ? 'selected' : ''}"/>>80000원</option>
+                                                <option value="100000" <c:out value="${searchMaker.price_to == 100000 ? 'selected' : ''}"/>>100000원</option>
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="brand">Brand</label>
+                                        <div class="form-field">
+                                            <i class="icon icon-arrow-down3"></i>
+                                            <select name="brand" id="brand" class="form-control">
+                                                <option value="" <c:out value="${searchMaker.brand == null ? 'selected' : ''}"/>></option>
+                                                <option value="VANS" <c:out value="${searchMaker.brand == 'VANS' ? 'selected' : ''}"/>>VANS</option>
+                                                <option value="BROOKS" <c:out value="${searchMaker.brand == 'BROOKS' ? 'selected' : ''}"/>>BROOKS</option>
+                                                <option value="자체 생산" <c:out value="${searchMaker.brand == '자체 생산' ? 'selected' : ''}"/>>자체 생산</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <a type="reset" href="/shop" id="resetBtn" class="btn btn-lg btn-outline-dark" onclick="reset()">초기화</a>
+                                    <button type="submit" class="btn btn-lg btn-outline-dark">검색</button>
                                 </div>
                             </div>
                         </form>
@@ -154,6 +175,10 @@
             }
 
         });
+
+        function reset() {
+            location.href = "/shop";
+        }
 
 
     });

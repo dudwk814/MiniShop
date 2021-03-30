@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Criteria;
 import domain.ProductVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,13 +20,15 @@ public class ShopController {
     private ProductService productService;
 
     @GetMapping("/shop")
-    public String shop(Model model) {
+    public String shop(Criteria cri, Model model) {
 
-        List<ProductVO> productList = productService.getProductList();
+        List<ProductVO> productList = productService.getProductList(cri);
 
         log.info("go to Shop Page");
 
         model.addAttribute("productList", productList);
+
+        model.addAttribute("searchMaker", cri);
 
 
         return "shop/shop";

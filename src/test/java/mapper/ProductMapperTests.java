@@ -1,5 +1,6 @@
 package mapper;
 
+import domain.Criteria;
 import domain.ProductVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -31,7 +32,15 @@ public class ProductMapperTests {
     @Test
     public void testGetList() {
 
-        List<ProductVO> productList = productMapper.getProductList();
+        Criteria cri = new Criteria();
+
+        /*cri.setPrice_from(0);
+
+        cri.setBrand("자체 생산");*/
+
+        /*cri.setPrice_to(100000);*/
+
+        List<ProductVO> productList = productMapper.getProductList(cri);
 
         productList.forEach(productVO -> log.info(productVO));
     }

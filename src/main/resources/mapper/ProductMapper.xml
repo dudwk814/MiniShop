@@ -23,7 +23,28 @@
 
     <!-- 전체 상품 목록 조회 -->
     <select id="getProductList" resultType="domain.ProductVO">
-        select * from tbl_product where product_id > 0 order by product_id asc
+
+            select * from (
+                select
+                    rownum rn, product_id, product_name, product_price, product_desc, product_url, brand
+                from
+                    tbl_product
+                where
+                    product_id > 0
+                    <if test="price_from != null and price_from > 0">
+                        <![CDATA[and product_price >= #{price_from}]]>
+                    </if>
+                    <if test="price_to != null and price_to > 0">
+                        <![CDATA[and product_price <= #{price_to}]]>
+                    </if>
+                    <if test="brand != null">
+                        <![CDATA[and brand = #{brand}]]>
+                    </if>
+                    <![CDATA[and rownum <= #{pageNum} * #{amount}]]>
+                )
+                where rn > (#{pageNum} - 1) * #{amount}
+            order by product_id asc
+
     </select>
 
     <!-- 단일 상품 조회 -->

@@ -1,5 +1,6 @@
 package service;
 
+import domain.Criteria;
 import domain.ProductVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -27,11 +28,11 @@ public class ProductServiceImpl implements ProductService{
 
     // 전체 상품 조회
     @Override
-    public List<ProductVO> getProductList() {
+    public List<ProductVO> getProductList(Criteria cri) {
 
         log.info("Get All ProductList");
 
-        return productMapper.getProductList();
+        return productMapper.getProductList(cri);
     }
 
     // 단일 상품 조회

@@ -1,5 +1,6 @@
 package mapper;
 
+import domain.Criteria;
 import domain.ProductVO;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface ProductMapper {
     public int deleteProduct(int product_id);
 
     // 전체 상품 목록 조회
-    public List<ProductVO> getProductList();
+    public List<ProductVO> getProductList(Criteria cri);
 
     // 단일 상품
     public ProductVO getProduct(int product_id);

@@ -1,5 +1,6 @@
 package service;
 
+import domain.Criteria;
 import domain.ProductVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -23,7 +24,11 @@ public class ProductServiceTests {
     @Test
     public void testGetList() {
 
-        List<ProductVO> productList = productService.getProductList();
+        Criteria cri = new Criteria();
+
+        cri.setPrice_from(0);
+
+        List<ProductVO> productList = productService.getProductList(cri);
 
         productList.forEach(productVO -> log.info(productVO));
     }

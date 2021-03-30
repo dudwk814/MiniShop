@@ -36,15 +36,15 @@
                         <!-- Search form -->
                         <div class="form-group"> &nbsp;&nbsp;&nbsp;&nbsp;
                             <select name="type" class="custom-select" id="inputGroupSelect02" style="width: 200px;">
-                                <option value="">--</option>
-                                <option value="T">제목</option>
-                                <option value="C">내용</option>
-                                <option value="W">작성자</option>
-                                <option value="TC">제목 OR 내용</option>
-                                <option value="TW">제목 OR 작성자</option>
-                                <option value="TWC">제목 OR 내용 OR 작성자</option>
+                                <option value="" <c:out value="${pageMaker.cri.type == null ? 'selected':''}"/>>--</option>
+                                <option value="T" <c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/>>제목</option>
+                                <option value="C" <c:out value="${pageMaker.cri.type eq 'C' ? 'selected':''}"/>>내용</option>
+                                <option value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
+                                <option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 OR 내용</option>
+                                <option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 OR 작성자</option>
+                                <option value="TWC" <c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목 OR 내용 OR 작성자</option>
                             </select>
-                            <input type="text"  name="keyword" placeholder="검색" />
+                            <input type="text"  name="keyword" placeholder="검색" value="<c:out value="${pageMaker.cri.keyword}"/>" />
                             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                             <button id="searchBtn" class="btn btn-info">검색</button>

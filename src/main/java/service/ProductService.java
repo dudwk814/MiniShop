@@ -1,5 +1,6 @@
 package service;
 
+import domain.Criteria;
 import domain.ProductVO;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ProductService {
     public List<ProductVO> getHomeProductList();
 
     // 전체 상품 조회
-    public List<ProductVO> getProductList();
+    public List<ProductVO> getProductList(Criteria cri);
 
     // 단일 상품 조회
     public ProductVO getProduct(int product_id);
