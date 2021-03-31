@@ -35,7 +35,8 @@
         ]]>
     </select>
 
-    <select id="getListWithPaging" resultType="domain.BoardVO">
+    <!-- 전체 게시글 조회 Oracle -->
+    <!--<select id="getListWithPaging" resultType="domain.BoardVO">
         <![CDATA[
             select bno, title, content, writer, regdate, updateDate, replyCnt, hit
             from (
@@ -53,6 +54,24 @@
                 )
             where rn > (#{pageNum} - 1) * #{amount}
         ]]>
+    </select>-->
+
+    <!-- 전체 게시글 조회 MariaDB -->
+    <select id="getListWithPaging" resultType="domain.BoardVO">
+        <![CDATA[
+            select
+                *
+            from
+                tbl_board
+            where
+        ]]>
+                <include refid="criteria"></include>
+            order by
+                bno desc
+            limit
+                #{pageStart}, #{amount}
+
+
     </select>
 
     <!-- 전체 게시글 개수 -->

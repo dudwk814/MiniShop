@@ -10,15 +10,25 @@
 
     <context:annotation-config/>
 
-    <!--Hikari CP-->
-    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-        <!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>-->
+    <!--Hikari CP Oracle-->
+    <!--<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        &lt;!&ndash; <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>&ndash;&gt;
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
         <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1522:orcl"/>
         <property name="username" value="minishop"/>
         <property name="password" value="minishop"/>
+    </bean>-->
+
+    <!-- Hikari CP MariaDB-->
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mariadb://127.0.0.1:3306/minishop?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+        <property name="username" value="minishop"></property>
+        <property name="password" value="minishop"></property>
     </bean>
+
+
 
     <!--HikariCP Configuration-->
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

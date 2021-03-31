@@ -15,6 +15,12 @@ public class Criteria {
     private int pageNum;
     private int amount;
 
+    public int getPageStart() {
+        return (this.pageNum-1)*amount;
+    }
+
+
+
     private String type;
     private String keyword;
 
