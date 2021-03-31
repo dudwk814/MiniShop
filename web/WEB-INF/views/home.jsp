@@ -108,6 +108,7 @@
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <h2 class="mb-4">신상품</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                <a href="/shop" class="float-right">더 보기</a>
             </div>
         </div>
     </div>

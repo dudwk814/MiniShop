@@ -18,8 +18,8 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span> <span>Shop</span></p>
-                <h1 class="mb-0 bread">Shop</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span> <span><a href="/shop">Store</a></span></p>
+                <h1 class="mb-0 bread">Store</h1>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                     <c:forEach var="product" items="${productList}">
                         <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
                             <div class="product d-flex flex-column">
-                                <a href="/product/read?product_id=${product.product_id}" class="img-prod"><img class="img-fluid" src="/resources/shop/images/${product.product_url}" alt="Colorlib Template">
+                                <a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}" class="img-prod"><img class="img-fluid" src="/resources/shop/images/${product.product_url}" alt="Colorlib Template">
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3">
@@ -45,7 +45,7 @@
 
                                         </div>
                                     </div>
-                                    <h3><a href="/product/read?product_id=${product.product_id}">${product.product_name}</a></h3>
+                                    <h3><a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}">${product.product_name}</a></h3>
                                     <div class="pricing">
                                         <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency"
                                                                                                           currencySymbol="￦"
@@ -74,13 +74,17 @@
                     <div class="col text-center">
                         <div class="block-27">
                             <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
+                                <c:if test="${searchMaker.prev}">
+                                    <li><a href="${root}shop?pageNum=${searchMaker.startPage - 1}&amount=9">&lt;</a></li>
+                                </c:if>
+
+                                <c:forEach var="num" begin="${searchMaker.startPage}" end="${searchMaker.endPage}">
+                                    <li class="active ${searchMaker.cri.pageNum == num ? "active":""}"><a href="/shop?pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}">${num}</a></li>
+                                </c:forEach>
+
+                                <c:if test="${searchMaker.next}">
+                                    <li> <a class="page-link" href="${root}shop?pageNum=${searchMaker.endPage + 1}&amount=9">&gt;</a></li>
+                                </c:if>
                             </ul>
                         </div>
                     </div>
@@ -100,12 +104,12 @@
                                         <div class="form-field">
                                             <i class="icon icon-arrow-down3"></i>
                                             <select name="price_from" id="price_from" class="form-control">
-                                                <option value="0" <c:out value="${searchMaker.price_to == 0 ? 'selected' : ''}"/>></option>
-                                                <option value="10000" <c:out value="${searchMaker.price_from == 10000 ? 'selected' : ''}"/>>10000원</option>
-                                                <option value="20000" <c:out value="${searchMaker.price_from == 20000 ? 'selected' : ''}"/>>20000원</option>
-                                                <option value="30000" <c:out value="${searchMaker.price_from == 30000 ? 'selected' : ''}"/>>30000원</option>
-                                                <option value="40000" <c:out value="${searchMaker.price_from == 40000 ? 'selected' : ''}"/>>40000원</option>
-                                                <option value="50000" <c:out value="${searchMaker.price_from == 50000 ? 'selected' : ''}"/>>50000원</option>
+                                                <option value="0" <c:out value="${searchMaker.cri.price_to == 0 ? 'selected' : ''}"/>>전체 금액</option>
+                                                <option value="10000" <c:out value="${searchMaker.cri.price_from == 10000 ? 'selected' : ''}"/>>10000원</option>
+                                                <option value="20000" <c:out value="${searchMaker.cri.price_from == 20000 ? 'selected' : ''}"/>>20000원</option>
+                                                <option value="30000" <c:out value="${searchMaker.cri.price_from == 30000 ? 'selected' : ''}"/>>30000원</option>
+                                                <option value="40000" <c:out value="${searchMaker.cri.price_from == 40000 ? 'selected' : ''}"/>>40000원</option>
+                                                <option value="50000" <c:out value="${searchMaker.cri.price_from == 50000 ? 'selected' : ''}"/>>50000원</option>
                                             </select>
                                         </div>
                                     </div>
@@ -116,12 +120,12 @@
                                         <div class="form-field">
                                             <i class="icon icon-arrow-down3"></i>
                                             <select name="price_to" id="price_to" class="form-control">
-                                                <option value="0" <c:out value="${searchMaker.price_to == 0 ? 'selected' : ''}"/>></option>
-                                                <option value="20000" <c:out value="${searchMaker.price_to == 20000 ? 'selected' : ''}"/>>20000원</option>
-                                                <option value="30000" <c:out value="${searchMaker.price_to == 30000 ? 'selected' : ''}"/>>30000원</option>
-                                                <option value="60000" <c:out value="${searchMaker.price_to == 60000 ? 'selected' : ''}"/>>60000원</option>
-                                                <option value="80000" <c:out value="${searchMaker.price_to == 80000 ? 'selected' : ''}"/>>80000원</option>
-                                                <option value="100000" <c:out value="${searchMaker.price_to == 100000 ? 'selected' : ''}"/>>100000원</option>
+                                                <option value="0" <c:out value="${searchMaker.cri.price_to == 0 ? 'selected' : ''}"/>>전체 금액</option>
+                                                <option value="20000" <c:out value="${searchMaker.cri.price_to == 20000 ? 'selected' : ''}"/>>20000원</option>
+                                                <option value="30000" <c:out value="${searchMaker.cri.price_to == 30000 ? 'selected' : ''}"/>>30000원</option>
+                                                <option value="60000" <c:out value="${searchMaker.cri.price_to == 60000 ? 'selected' : ''}"/>>60000원</option>
+                                                <option value="80000" <c:out value="${searchMaker.cri.price_to == 80000 ? 'selected' : ''}"/>>80000원</option>
+                                                <option value="100000" <c:out value="${searchMaker.cri.price_to == 100000 ? 'selected' : ''}"/>>100000원</option>
                                             </select>
                                         </div>
                                     </div>
@@ -132,10 +136,23 @@
                                         <div class="form-field">
                                             <i class="icon icon-arrow-down3"></i>
                                             <select name="brand" id="brand" class="form-control">
-                                                <option value="" <c:out value="${searchMaker.brand == null ? 'selected' : ''}"/>></option>
-                                                <option value="VANS" <c:out value="${searchMaker.brand == 'VANS' ? 'selected' : ''}"/>>VANS</option>
-                                                <option value="BROOKS" <c:out value="${searchMaker.brand == 'BROOKS' ? 'selected' : ''}"/>>BROOKS</option>
-                                                <option value="자체 생산" <c:out value="${searchMaker.brand == '자체 생산' ? 'selected' : ''}"/>>자체 생산</option>
+                                                <option value="" <c:out value="${searchMaker.cri.brand == null ? 'selected' : ''}"/>>전체 상품</option>
+                                                <option value="VANS" <c:out value="${searchMaker.cri.brand == 'VANS' ? 'selected' : ''}"/>>VANS</option>
+                                                <option value="BROOKS" <c:out value="${searchMaker.cri.brand == 'BROOKS' ? 'selected' : ''}"/>>BROOKS</option>
+                                                <option value="자체 생산" <c:out value="${searchMaker.cri.brand == '자체 생산' ? 'selected' : ''}"/>>자체 생산</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="sort">Sort</label>
+                                        <div class="form-field">
+                                            <i class="icon icon-arrow-down3"></i>
+                                            <select name="sort" id="sort" class="form-control">
+                                                <option value="" <c:out value="${searchMaker.cri.sort == null ? 'selected' : ''}"/>>정렬 없음</option>
+                                                <option value="asc" <c:out value="${searchMaker.cri.sort == 'asc' ? 'selected' : ''}"/>>낮은 가격순</option>
+                                                <option value="desc" <c:out value="${searchMaker.cri.sort == 'desc' ? 'selected' : ''}"/>>높은 가격순</option>
                                             </select>
                                         </div>
                                     </div>

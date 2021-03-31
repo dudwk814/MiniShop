@@ -24,6 +24,7 @@ public class Criteria {
     private int price_from;
     private int price_to;
     private String brand;
+    private String sort;
 
     public Criteria() {
         this(1, 10);

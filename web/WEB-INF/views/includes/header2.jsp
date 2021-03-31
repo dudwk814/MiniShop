@@ -91,7 +91,7 @@
 
                 <li class="nav-item"><a href="/board/list" class="nav-link">게시판</a></li>
 
-                <li class="nav-item"><a href="/shop?amount=9&pageNum=1" class="nav-link">상품</a></li>
+                <li class="nav-item"><a href="/shop" class="nav-link">상품</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 모달 생성 --%>
                 <sec:authorize access="isAnonymous()">

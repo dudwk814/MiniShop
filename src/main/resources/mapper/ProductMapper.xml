@@ -37,14 +37,28 @@
                     <if test="price_to != null and price_to > 0">
                         <![CDATA[and product_price <= #{price_to}]]>
                     </if>
-                    <if test="brand != null">
+                    <if test="brand != null and brand != ''">
                         <![CDATA[and brand = #{brand}]]>
                     </if>
                     <![CDATA[and rownum <= #{pageNum} * #{amount}]]>
                 )
                 where rn > (#{pageNum} - 1) * #{amount}
-            order by product_id asc
+                <choose>
+                    <when test="sort == 'asc'">
+                        order by product_price asc, product_id asc
+                    </when>
+                    <when test="sort == 'desc'">
+                        order by product_price desc, product_id asc
+                    </when>
+                    <otherwise>
+                        order by product_id asc
+                    </otherwise>
+                </choose>
+    </select>
 
+    <!-- 상품 전체 개수 -->
+    <select id="getTotalCount" resultType="int">
+        select count (*) from tbl_product
     </select>
 
     <!-- 단일 상품 조회 -->

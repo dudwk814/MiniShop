@@ -18,8 +18,9 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span> <span>Shop</span></p>
-                <h1 class="mb-0 bread">Shop</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span> <span><a
+                        href="/shop">Store</a></span></p>
+                <h1 class="mb-0 bread">Store</h1>
             </div>
         </div>
     </div>
@@ -72,69 +73,68 @@
                 </div>
             </div>
 
-            </div>
         </div>
 
 
-        <div class="row mt-5">
-            <div class="col-md-12 nav-link-wrap">
-                <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist"
-                     aria-orientation="vertical">
-                    <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill"
-                       href="#v-pills-1"
-                       role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
+    <div class="row mt-5 justify-content-start">
+        <div class="col-md-12 nav-link-wrap">
+            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist"
+                 aria-orientation="vertical">
+                <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill"
+                   href="#v-pills-1"
+                   role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
 
-                    <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
-                       role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+                <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+                   role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
 
-                    <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
-                       aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+                <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
+                   aria-controls="v-pills-3" aria-selected="false">Reviews</a>
 
-                </div>
             </div>
-            <div class="col-md-12 tab-wrap">
+        </div>
+        <div class="col-md-12 tab-wrap">
 
-                <div class="tab-content bg-light" id="v-pills-tabContent">
+            <div class="tab-content bg-light" id="v-pills-tabContent">
 
-                    <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-                        <div class="p-4">
-                            <h3 class="mb-4">${product.product_name}</h3>
-                            <p>${product.product_desc}</p>
-                        </div>
+                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
+                    <div class="p-4">
+                        <h3 class="mb-4">${product.product_name}</h3>
+                        <p>${product.product_desc}</p>
                     </div>
+                </div>
 
-                    <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
-                        <div class="p-4">
-                            <h3 class="mb-4">Manufactured By Nike</h3>
-                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from
-                                it
-                                would have been rewritten a thousand times and everything that was left from its origin
-                                would be the word "and" and the Little Blind Text should turn around and return to its
-                                own,
-                                safe country. But nothing the copy said could convince her and so it didn’t take long
-                                until
-                                a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and
-                                dragged
-                                her into their agency, where they abused her for their.</p>
-                        </div>
+                <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+                    <div class="p-4">
+                        <h3 class="mb-4">Manufactured By Nike</h3>
+                        <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from
+                            it
+                            would have been rewritten a thousand times and everything that was left from its origin
+                            would be the word "and" and the Little Blind Text should turn around and return to its
+                            own,
+                            safe country. But nothing the copy said could convince her and so it didn’t take long
+                            until
+                            a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and
+                            dragged
+                            her into their agency, where they abused her for their.</p>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
-                        <div class="row p-4">
-                            <div class="col-md-12">
-                                <h3 class="mb-4"><span class="fa fa-comments"></span>   리뷰
-                                    <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성
-                                    </button>
-                                </h3>
-                            </div>
-                            <div class="review_wrapper col-md-12">
-                                <div class="review">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                    <div class="desc">
-                                        <h4>
-                                            <span class="text-left">Jacob Webb</span>
-                                            <span class="text-right">14 March 2018</span>
-                                        </h4>
-                                        <p class="star">
+                </div>
+                <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+                    <div class="row p-4">
+                        <div class="col-md-12">
+                            <h3 class="mb-4"><span class="fa fa-comments"></span> 리뷰
+                                <button type="button" class="btn btn-link btn-lg float-right" id="regBtn">리뷰작성
+                                </button>
+                            </h3>
+                        </div>
+                        <div class="review_wrapper col-md-12">
+                            <div class="review">
+                                <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                                <div class="desc">
+                                    <h4>
+                                        <span class="text-left">Jacob Webb</span>
+                                        <span class="text-right">14 March 2018</span>
+                                    </h4>
+                                    <p class="star">
                                                     <span>
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
@@ -142,23 +142,23 @@
                                                         <i class="ion-ios-star-outline"></i>
                                                         <i class="ion-ios-star-outline"></i>
                                                     </span>
-                                        </p>
-                                        <p>When she reached the first hills of the Italic Mountains, she had a last view
-                                            back on the skyline of her hometown Bookmarksgrov</p>
-                                    </div>
+                                    </p>
+                                    <p>When she reached the first hills of the Italic Mountains, she had a last view
+                                        back on the skyline of her hometown Bookmarksgrov</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="w-100"></div>
-                        <div class="review_paging">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="review_paging">
 
-                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
+    </div>
+
+    </div>
 
 </section>
 
@@ -375,7 +375,6 @@
                         }
 
 
-
                     }
 
                     str += "</div>";
@@ -543,9 +542,9 @@
 
             $.ajax({
                 url: '/removeFile',
-                data: {fileName : targetFile, originalFileName : targetFileName},
+                data: {fileName: targetFile, originalFileName: targetFileName},
                 dataType: 'text',
-                type : 'post',
+                type: 'post',
                 success: function (result) {
                     alert(result);
                     targetLi.remove();
@@ -563,7 +562,7 @@
                 userid: modalInputUserId.val(),
                 product_id: product_id_value,
                 grade: grade,
-                attachList : review_image
+                attachList: review_image
             };
 
             reviewService.add(review, function (result) {
@@ -586,7 +585,6 @@
             var review_no = $(this).data("review_no");
 
             console.log("Review_no : " + review_no);
-
 
 
             reviewService.get(review_no, function (review) {
@@ -613,11 +611,11 @@
                     showUploadResult(review.attachList);
                 }
 
-        <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
+                <sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
                 modalModBtn.show();
                 modalRemoveBtn.show();
 
-        </sec:authorize>
+                </sec:authorize>
 
                 $("#reviewModal").modal("show");
             });
@@ -631,7 +629,7 @@
                 review_title: modalInputReview_title.val(),
                 review_content: modalInputReview_content.val(),
                 grade: grade,
-                attachList : review_image
+                attachList: review_image
             };
 
             console.log("updated grade : " + grade);

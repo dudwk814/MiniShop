@@ -60,4 +60,9 @@ public class ProductServiceImpl implements ProductService{
     public boolean deleteProduct(int product_id) {
         return productMapper.deleteProduct(product_id) == 1;
     }
+
+    @Override
+    public int getTotalCount() {
+        return productMapper.getTotalCount();
+    }
 }

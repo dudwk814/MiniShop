@@ -51,4 +51,11 @@ public class ProductMapperTests {
 
         log.info(productMapper.getProduct(2));
     }
+
+    // 전체 상품 개수 조회 테스트
+    @Test
+    public void testGetTotalCount() {
+
+        log.info(productMapper.getTotalCount());
+    }
 }

@@ -24,4 +24,7 @@ public interface ProductService {
 
     // 상품 삭제
     public boolean deleteProduct(int product_id);
+
+    // 상품 전체 개수 조회
+    public int getTotalCount();
 }
