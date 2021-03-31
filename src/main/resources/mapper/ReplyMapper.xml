@@ -5,11 +5,19 @@
 
 <mapper namespace="mapper.ReplyMapper">
 
-    <!-- 댓글 입력 -->
-    <insert id="insert">
+    <!-- 댓글 입력 Oracle -->
+    <!--<insert id="insert">
         <![CDATA[
             insert into tbl_reply (rno, bno, reply, replyer)
             values (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
+        ]]>
+    </insert>-->
+
+    <!-- 댓글 입력 MariaDB -->
+    <insert id="insert">
+        <![CDATA[
+        insert into tbl_reply (bno, reply, replyer)
+        values (#{bno}, #{reply}, #{replyer})
         ]]>
     </insert>
 

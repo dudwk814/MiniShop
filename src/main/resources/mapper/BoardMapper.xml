@@ -63,9 +63,24 @@
                 *
             from
                 tbl_board
-            where
         ]]>
-                <include refid="criteria"></include>
+        <trim prefix="where "  prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like CONCAT('%',#{keyword},'%')
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like CONCAT('%',#{keyword},'%')
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            writer like CONCAT('%',#{keyword},'%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
             order by
                 bno desc
             limit
@@ -92,18 +107,24 @@
     </insert>
 
     <insert id="insertSelectKey">
-        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
-            select seq_board.nextval from dual
-        </selectKey>
+
+
+
         <![CDATA[
-            insert into tbl_board(bno, title, content, writer)
-            values (#{bno}, #{title}, #{content}, #{writer})
+            insert into tbl_board(title, content, writer)
+            values (#{title}, #{content}, #{writer})
         ]]>
+
+        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+
     </insert>
 
     <update id="update">
         <![CDATA[
-            update tbl_board set title = #{title}, content = #{content}, updateDate = sysdate where bno = #{bno}
+            update tbl_board set title = #{title}, content = #{content} where bno = #{bno}
         ]]>
     </update>
 
