@@ -5,9 +5,14 @@
 
 <mapper namespace="mapper.CartMapper">
 
-    <!-- 장바구니 추가 -->
-    <insert id="insertCart">
+    <!-- 장바구니 추가 Oracle -->
+    <!--<insert id="insertCart">
         insert into tbl_cart(cart_id, userid, product_id, amount) values (seq_cart.nextval, #{userid}, #{product_id}, #{amount})
+    </insert>-->
+
+    <!-- 장바구니 추가 MariaDB -->
+    <insert id="insertCart">
+        insert into tbl_cart(userid, product_id, amount) values (#{userid}, #{product_id}, #{amount})
     </insert>
 
     <!-- 장바구니 목록 -->

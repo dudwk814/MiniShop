@@ -13,7 +13,7 @@ public interface BoardService {
 
     public List<BoardVO> getList(Criteria cri);
 
-    public int getTotalCount();
+    public int getTotalCount(Criteria cri);
 
     public void register(BoardVO vo);
 

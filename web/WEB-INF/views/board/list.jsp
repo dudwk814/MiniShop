@@ -107,7 +107,7 @@
                         <nav aria-label="page navigation ">
                             <ul class="pagination d-flex justify-content-center">
                                 <c:if test="${pageMaker.prev}">
-                                    <li class="page-item"> <a class="page-link" href="${root}board/list?pageNum=${pageMaker.startPage - 1}&amount=10&keyword=${pageMaker.cri.keyword}&type=${pageMaker.cri.type}"">Previous</a></li>
+                                    <li class="page-item"> <a class="page-link" href="${root}board/list?pageNum=${pageMaker.startPage - 1}&amount=10&keyword=${pageMaker.cri.keyword}&type=${pageMaker.cri.type}">Previous</a></li>
                                 </c:if>
 
                                 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">

@@ -91,7 +91,27 @@
 
     <!-- 전체 게시글 개수 -->
     <select id="getTotalCount" resultType="int">
-        select count(*) from tbl_board
+        select
+            count(*)
+        from
+            tbl_board
+        <trim prefix="where "  prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like CONCAT('%',#{keyword},'%')
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like CONCAT('%',#{keyword},'%')
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            writer like CONCAT('%',#{keyword},'%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
     </select>
 
     <!-- 조회수 증가 -->
@@ -106,22 +126,41 @@
         ]]>
     </insert>
 
+
+    <!-- 게시글 작성 Oracle -->
+    <!--<insert id="insertSelectKey">
+        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+            select seq_board.nextval from dual
+        </selectKey>
+        <![CDATA[
+            insert into tbl_board(bno, title, content, writer)
+            values (#{bno}, #{title}, #{content}, #{writer})
+        ]]>
+    </insert>-->
+
+
+
+
+
+    <!-- 게시글 작성 MariaDB -->
     <insert id="insertSelectKey">
-
-
-
         <![CDATA[
             insert into tbl_board(title, content, writer)
             values (#{title}, #{content}, #{writer})
         ]]>
-
         <selectKey keyProperty="bno" order="BEFORE" resultType="long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-
-
     </insert>
 
+    <!-- 게시글 업데이트 Oracle -->
+    <!--<update id="update">
+        <![CDATA[
+        update tbl_board set title = #{title}, content = #{content}, updateDate = sysdate where bno = #{bno}
+        ]]>
+    </update>-->
+
+    <!-- 게시글 업데이트 MariaDB -->
     <update id="update">
         <![CDATA[
             update tbl_board set title = #{title}, content = #{content} where bno = #{bno}

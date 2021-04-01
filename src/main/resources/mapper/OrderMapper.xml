@@ -32,7 +32,8 @@
         select * from tbl_order_details where order_id = #{order_id}
     </select>
 
-    <select id="getList" resultType="domain.OrderVO">
+    <!-- 특정 회원 주문 내역 Oracle -->
+    <!--<select id="getList" resultType="domain.OrderVO">
         <![CDATA[
             select order_id, userid, post_code, street_address, detail_address, order_date, payment_option, sum_price
             from (
@@ -44,7 +45,22 @@
             )
             where  rn > (#{cri.pageNum} - 1) * #{cri.amount}
         ]]>
+    </select>-->
 
+    <!-- 특정 회원 주문 내역 MariaDB -->
+    <select id="getList" resultType="domain.OrderVO">
+        <![CDATA[
+        select
+            *
+        from
+            tbl_order
+        where
+            userid = #{userid}
+        order by
+            order_id desc
+        limit
+            #{cri.pageStart}, #{cri.amount}
+        ]]>
     </select>
 
     <!-- 유저에 대한 전체 오더 개수 -->

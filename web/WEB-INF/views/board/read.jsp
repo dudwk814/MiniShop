@@ -227,6 +227,11 @@
                     return;
                 }
 
+                if (replyCnt == 0) {
+                    replyUL.html("");
+                    return;
+                }
+
                 var str = "";
                 if (list == null || list.length == 0) {
                     return;
@@ -311,7 +316,7 @@
 
                 replyContent.val("");
 
-                showList(-1);
+                showList(1);
 
             });
 
@@ -429,7 +434,7 @@
             replyService.remove(rno, originalReplyer, function (result) {
                 alert(result);
                 modal.modal("hide");
-                showList(-1);
+                showList(1);
 
             });
         });

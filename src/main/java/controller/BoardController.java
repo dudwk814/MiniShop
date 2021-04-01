@@ -45,7 +45,7 @@ public class BoardController {
 
         List<BoardVO> list = boardService.getList(cri);
         List<NoticeVO> noticeList = noticeService.list();
-        int totalCount = boardService.getTotalCount();
+        int totalCount = boardService.getTotalCount(cri);
 
         model.addAttribute("board", list);
         model.addAttribute("pageMaker", new PageDTO(cri, totalCount));

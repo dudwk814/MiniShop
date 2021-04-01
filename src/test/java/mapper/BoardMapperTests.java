@@ -125,11 +125,11 @@ public class BoardMapperTests {
     }
 
     // 전체 게시글 갯수 테스트
-    @Test
+    /*@Test
     public void testTotal() {
 
         log.info(boardMapper.getTotalCount());
-    }
+    }*/
 
    /* // 게시글 당 전체 댓글 테스트
     @Test
