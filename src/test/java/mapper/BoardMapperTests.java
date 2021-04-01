@@ -30,7 +30,7 @@ public class BoardMapperTests {
 
         boardMapper.insert(vo);*/
 
-        for (int i = 2; i <= 10; i++) {
+        for (int i = 2; i <= 100; i++) {
             BoardVO vo = new BoardVO();
             vo.setTitle("테스트" + i);
             vo.setContent("테스트" + i);
@@ -43,12 +43,16 @@ public class BoardMapperTests {
     // 게시글 추가 테스트2
     @Test
     public void testInsert2() {
-        BoardVO vo = new BoardVO();
-        vo.setTitle("ㅎㅎㅎㅋㅋㅋ");
-        vo.setContent("헤헿");
-        vo.setWriter("후후후");
+        for (int i = 0; i < 100; i++) {
+            BoardVO vo = new BoardVO();
+            vo.setTitle("게시글 테스트 " + i);
+            vo.setContent("게시글 테스트 " + i);
+            vo.setWriter("admin");
+            boardMapper.insertSelectKey(vo);
+        }
 
-        boardMapper.insertSelectKey(vo);
+
+
     }
 
     // 게시글 조회 테스트
