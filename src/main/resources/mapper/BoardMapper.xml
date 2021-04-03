@@ -148,7 +148,7 @@
             insert into tbl_board(title, content, writer)
             values (#{title}, #{content}, #{writer})
         ]]>
-        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+        <selectKey keyProperty="bno" order="AFTER" resultType="long">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>

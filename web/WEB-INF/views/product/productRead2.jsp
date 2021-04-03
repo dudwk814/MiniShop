@@ -552,8 +552,26 @@
             });
         });
 
+        // 중복 서브밋 체크 관련 변수
+        var doubleSubmitFlag = false;
+
+        // 중복 서브밋 체크 관련 함수
+        function doubleSubmitCheck(){
+            if(doubleSubmitFlag){
+                return doubleSubmitFlag;
+            } else {
+                doubleSubmitFlag = true;
+                return false;
+            }
+        }
+
+
         // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {
+
+            if (doubleSubmitCheck()) {
+                return;
+            }
 
 
             review = {
@@ -571,7 +589,9 @@
                 modal.find("input").val("");
                 modal.modal("hide");
 
-                showList(-1);
+                doubleSubmitFlag = false;
+
+                showList(1);
             });
         });
 

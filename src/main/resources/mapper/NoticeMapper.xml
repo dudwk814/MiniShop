@@ -20,15 +20,26 @@
         update tbl_notice set hit = hit + 1 where nno = #{nno}
     </update>
 
-    <!-- 공지 작성 -->
-    <insert id="insert">
+    <!-- 공지 작성 Oracle -->
+    <!--<insert id="insert">
         insert into tbl_notice (nno, title, content, writer)
         values (seq_notice.nextval, #{title}, #{content}, #{writer})
+    </insert>-->
+
+    <!-- 공지 작성 MariaDB -->
+    <insert id="insert">
+        insert into tbl_notice (title, content, writer)
+        values (#{title}, #{content}, #{writer})
     </insert>
 
-    <!-- 공지 수정 -->
-    <update id="update">
+    <!-- 공지 수정 Oracle -->
+    <!--<update id="update">
         update tbl_notice set title = #{title}, content = #{content}, updateDate = sysdate where nno = #{nno}
+    </update>-->
+
+    <!-- 공지 수정 MariaDB -->
+    <update id="update">
+        update tbl_notice set title = #{title}, content = #{content} where nno = #{nno}
     </update>
 
     <!-- 공지 삭제 -->

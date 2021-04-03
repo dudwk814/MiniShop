@@ -5,9 +5,20 @@
 
 <mapper namespace="mapper.ReviewAttachMapper">
 
-    <insert id="insert">
+    <!-- 리뷰 이미지 파일 작성 Oracle -->
+    <!--<insert id="insert">
         insert into tbl_review_attach (uuid, uploadPath, fileName, fileType, review_no, attach_no)
         values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{review_no}, seq_review_attach.nextval)
+    </insert>-->
+
+    <!-- 리뷰 이미지 파일 작성 MariaDB -->
+    <insert id="insert">
+        insert into tbl_review_attach (uuid, uploadPath, fileName, fileType, review_no, attach_no)
+        values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{review_no}, #{attach_no})
+
+        <selectKey keyProperty="attach_no" order="BEFORE" resultType="int">
+            SELECT LAST_INSERT_ID() + 1
+        </selectKey>
     </insert>
 
     <select id="findByReviewNo" resultType="domain.ReviewAttachVO">
