@@ -10,9 +10,16 @@
         values (#{order_id}, #{userid}, #{post_code}, #{street_address}, #{address}, #{detail_address}, #{sum_price}, #{payment_option})
     </insert>
 
-    <insert id="insertDetail">
+     <!--orderDetail 작성 Oracle -->
+    <!--<insert id="insertDetail">
         insert into TBL_ORDER_DETAILS (ORDER_DETAILS_NUM, ORDER_ID, PRODUCT_ID, amount, USERID)
         SELECT SEQ_ORDER_DETAILS.nextval, #{order_id}, PRODUCT_ID, amount, userid from TBL_CART where USERID = #{userid}
+    </insert>-->
+
+    <!-- orderDetail 작성 MariaDB -->
+    <insert id="insertDetail">
+        insert into TBL_ORDER_DETAILS (ORDER_ID, PRODUCT_ID, amount, USERID)
+        SELECT #{order_id}, PRODUCT_ID, amount, userid from TBL_CART where USERID = #{userid}
     </insert>
 
     <!-- 주문 취소 -->

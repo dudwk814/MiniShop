@@ -52,7 +52,7 @@
 
                     <div class="form-group">
                         <label for="product_img">사진 첨부</label>
-                        <input type="file" class="form-control-file" name="product_photo" id="product_img">
+                        <input type="file" class="form-control-file" name="product_photo" id="product_img" value="/resources/shop/images/${product.product_url}">
                         <div class="select-img"><img src="/resources/shop/images/${product.product_url}"/></div>
                     </div>
                     <input type="submit" class="btn btn-primary btn-lg" id="productModBtn" value="확인">

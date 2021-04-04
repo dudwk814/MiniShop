@@ -68,9 +68,15 @@
         insert into tbl_member_auth (userid, auth) values (#{userid}, 'ROLE_MEMBER')
     </insert>
 
-    <!-- 회원 정보 변경 -->
-    <update id="modify">
+    <!-- 회원 정보 변경 Oracle -->
+    <!--<update id="modify">
         update tbl_member set userpw = #{userpw}, updateDate = sysdate, post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address} where userid = #{userid}
+    </update>-->
+
+
+    <!-- 회원 정보 변경 MariaDB -->
+    <update id="modify">
+        update tbl_member set userpw = #{userpw}, post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address} where userid = #{userid}
     </update>
 
     <!-- 회원 탈퇴 -->
