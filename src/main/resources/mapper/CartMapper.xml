@@ -23,12 +23,20 @@
         order by c.cart_id
     </select>
 
-    <!-- 장바구니 전체 금액 -->
-    <select id="sumMoney" resultType="int">
+    <!-- 장바구니 전체 금액 Oracle -->
+    <!--<select id="sumMoney" resultType="int">
         select nvl(sum(product_price * amount), 0) money
         from tbl_cart c, tbl_product p
         where c.product_id = p.product_id and c.userid = #{userid}
+    </select>-->
+
+    <!-- 장바구니 전체 금액 MariaDB -->
+    <select id="sumMoney" resultType="int">
+        select IFNULL(sum(product_price * amount), 0) money
+        from tbl_cart c, tbl_product p
+        where c.product_id = p.product_id and c.userid = #{userid}
     </select>
+
 
     <!-- 장바구니 수정 -->
     <update id="modifyCart">

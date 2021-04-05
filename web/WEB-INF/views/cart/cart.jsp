@@ -120,7 +120,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                <a href="${root}"> <button type="button" class="btn btn-primary">쇼핑 계속하기</button></a>
+                <a href="${root}shop"> <button type="button" class="btn btn-primary">쇼핑 계속하기</button></a>
             </div>
         </div>
     </div>

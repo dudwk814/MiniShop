@@ -61,7 +61,7 @@ public class CommonController {
 
         List<ReviewAttachVO> list = new ArrayList<>();
 
-        String uploadFolder = "C:\\upload";
+        String uploadFolder = "/dudwk814/tomcat/upload";
 
         String uploadFolderPath = getFolder();
 
@@ -175,7 +175,7 @@ public class CommonController {
 
             log.info("fileName : " + srcFileName);
 
-            String uploadPath = "C:\\upload";
+            String uploadPath = "/dudwk814/tomcat/upload";
 
             File file = new File(uploadPath + File.separator + srcFileName);
 
@@ -200,7 +200,7 @@ public class CommonController {
     @PostMapping("/removeFile")
     public ResponseEntity<String> removeFile(String fileName, String originalFileName) {
         String srcFileName = null;
-        String uploadPath = "C:\\upload";
+        String uploadPath = "/dudwk814/tomcat/upload";
         String result = null;
         try {
             srcFileName = URLDecoder.decode(fileName, "UTF-8");

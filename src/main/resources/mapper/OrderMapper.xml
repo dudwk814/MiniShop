@@ -5,6 +5,7 @@
 
 <mapper namespace="mapper.OrderMapper">
 
+    <!-- 주문 작성 -->
     <insert id="insert">
         insert into tbl_order (order_id, userid, post_code, street_address, address, detail_address, sum_price, payment_option)
         values (#{order_id}, #{userid}, #{post_code}, #{street_address}, #{address}, #{detail_address}, #{sum_price}, #{payment_option})
@@ -18,7 +19,7 @@
 
     <!-- orderDetail 작성 MariaDB -->
     <insert id="insertDetail">
-        insert into TBL_ORDER_DETAILS (ORDER_ID, PRODUCT_ID, amount, USERID)
+        insert into tbl_order_details (ORDER_ID, PRODUCT_ID, amount, USERID)
         SELECT #{order_id}, PRODUCT_ID, amount, userid from TBL_CART where USERID = #{userid}
     </insert>
 
@@ -27,14 +28,17 @@
         delete from tbl_order where order_id = #{order_id}
     </delete>
 
+    <!-- order_id에 대한 오더 디테일 삭제 -->
     <delete id="detailDelete">
         delete from tbl_order_details where order_id = #{order_id}
     </delete>
 
+    <!-- order_id에 대한 오더 조회 -->
     <select id="get" resultType="domain.OrderVO">
         select * from tbl_order where order_id = #{order_id}
     </select>
 
+    <!-- 특정 회원에 대한 오더 디테일 조회 -->
     <select id="getOrderDetails" resultType="domain.OrderDetailsVO">
         select * from tbl_order_details where order_id = #{order_id}
     </select>
