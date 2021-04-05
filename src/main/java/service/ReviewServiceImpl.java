@@ -4,6 +4,7 @@ import domain.Criteria;
 import domain.ReviewAttachVO;
 import domain.ReviewPageDTO;
 import domain.ReviewVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.ReviewAttachMapper;
@@ -16,13 +17,12 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService{
 
-    @Setter(onMethod_ = @Autowired)
-    private ReviewMapper reviewMapper;
+    private final ReviewMapper reviewMapper;
 
-    @Setter(onMethod_ = @Autowired)
-    private ReviewAttachMapper reviewAttachMapper;
+    private final ReviewAttachMapper reviewAttachMapper;
 
     /**
      * 리뷰 등록

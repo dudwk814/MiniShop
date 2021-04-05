@@ -3,6 +3,7 @@ package service;
 import domain.Criteria;
 import domain.ReplyPageDTO;
 import domain.ReplyVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.BoardMapper;
@@ -15,13 +16,12 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class ReplyServiceImpl implements ReplyService{
 
-    @Setter(onMethod_ = {@Autowired})
-    private ReplyMapper replyMapper;
+    private final ReplyMapper replyMapper;
 
-    @Setter(onMethod_ = {@Autowired})
-    private BoardMapper boardMapper;
+    private final BoardMapper boardMapper;
 
 
     @Transactional

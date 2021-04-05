@@ -19,8 +19,8 @@
 
     <!-- orderDetail 작성 MariaDB -->
     <insert id="insertDetail">
-        insert into tbl_order_details (ORDER_ID, PRODUCT_ID, amount, USERID)
-        SELECT #{order_id}, PRODUCT_ID, amount, userid from TBL_CART where USERID = #{userid}
+        insert into tbl_order_details (order_id, product_id, amount, userid)
+        SELECT #{order_id}, product_id, amount, userid from tbl_cart where userid = #{userid}
     </insert>
 
     <!-- 주문 취소 -->

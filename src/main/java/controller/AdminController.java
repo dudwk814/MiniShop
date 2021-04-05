@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/")
+@RequiredArgsConstructor
 @Log4j
 public class AdminController {
 
-    @Setter(onMethod_ = @Autowired)
-    private MemberService memberService;
+    private final MemberService memberService;
 
-    @Setter(onMethod_ = @Autowired)
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Setter(onMethod_ = @Autowired)
-    private OrderService orderService;
+    private final OrderService orderService;
 
 
     // 관리자 페이지 조회 메소드

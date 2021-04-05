@@ -1,6 +1,7 @@
 package service;
 
 import domain.CartVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.CartMapper;
@@ -11,10 +12,10 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class CartServiceImpl implements CartService{
 
-    @Setter(onMethod_ = @Autowired)
-    private CartMapper cartMapper;
+    private final CartMapper cartMapper;
 
     @Override
     public void insertCart(CartVO vo) {

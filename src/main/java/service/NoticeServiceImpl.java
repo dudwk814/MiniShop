@@ -1,6 +1,7 @@
 package service;
 
 import domain.NoticeVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.NoticeMapper;
@@ -12,10 +13,10 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class NoticeServiceImpl implements NoticeService {
 
-    @Setter(onMethod_ = @Autowired)
-    private NoticeMapper noticeMapper;
+    private final NoticeMapper noticeMapper;
 
     @Transactional
     @Override

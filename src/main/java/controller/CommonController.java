@@ -1,6 +1,7 @@
 package controller;
 
 import domain.ReviewAttachVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.ReviewAttachMapper;
@@ -33,10 +34,10 @@ import java.util.UUID;
 
 @Controller
 @Log4j
+@RequiredArgsConstructor
 public class CommonController {
 
-    @Setter(onMethod_ = @Autowired)
-    private ReviewAttachMapper reviewAttachMapper;
+    private final ReviewAttachMapper reviewAttachMapper;
 
     /**
      * 접근제어 에러
@@ -197,6 +198,12 @@ public class CommonController {
         return result;
     }
 
+    /**
+     * 이미지 파일 삭제
+     * @param fileName
+     * @param originalFileName
+     * @return
+     */
     @PostMapping("/removeFile")
     public ResponseEntity<String> removeFile(String fileName, String originalFileName) {
         String srcFileName = null;

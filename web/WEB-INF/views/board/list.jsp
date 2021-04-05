@@ -57,10 +57,10 @@
 
 
 
-            <div class="card-body">
+            <div class="card-body col-lg-12">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-hover" id="dataTable">
                         <thead>
                         <tr class="table-primary table-borderless">
                             <th>#번호</th>
@@ -174,6 +174,8 @@
         checkModal(result);
 
         history.replaceState({}, null, null);
+
+        /* 글 작성 후 모달 활성화 체크 함수 */
         function checkModal(result) {
 
             if (result === '' || history.state) {
@@ -188,16 +190,21 @@
         }
 
 
+        /* 글쓰기 버튼 클릭 시 글쓰기 폼으로 이동 */
         $("#regBtn").on("click", function () {
+
+            <sec:authorize access="isAnonymous()">
+                alert("로그인 후 이용가능합니다.");
+                return;
+            </sec:authorize>
             self.location = "/board/registerForm";
         });
 
-        $("#regBtn2").on("click", function () {
-            self.location = "/board/registerForm";
-        });
 
-        var searchForm = $("#searchForm");
+        /* 검색 폼폼 */
+        var seachForm = $("#searchForm");
 
+        /* 검색 관련 함수 */
         $("#searchForm #searchBtn").on("click", function (e) {
 
             if (!searchForm.find("option:selected").val()) {

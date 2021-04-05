@@ -1,6 +1,7 @@
 package service;
 
 import domain.AddressVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.AddressMapper;
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService{
 
-    @Setter(onMethod_ = @Autowired)
-    private AddressMapper addressMapper;
+    private final AddressMapper addressMapper;
 
     @Override
     public AddressVO get(String userid) {

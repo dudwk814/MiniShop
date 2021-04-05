@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.AddressVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
@@ -12,12 +13,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
+@RequiredArgsConstructor
 public class AddressMapperTests {
 
-    @Setter(onMethod_ = @Autowired)
-    private AddressMapper addressMapper;
+    private final AddressMapper addressMapper;
 
-    /* 회원 주호 테스트 */
+    /* 회원 등록 테스트 */
     @Test
     public void testInsert() {
 

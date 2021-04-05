@@ -3,6 +3,7 @@ package controller;
 import domain.AddressVO;
 import domain.MemberVO;
 import domain.ReplyVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +33,16 @@ import java.io.PrintWriter;
 @Controller
 @RequestMapping("/user/")
 @Log4j
+@RequiredArgsConstructor
 public class MemberController {
 
-    @Setter(onMethod_ = {@Autowired})
-    private MemberService memberService;
+    private final MemberService memberService;
 
-    @Setter(onMethod_ = @Autowired)
-    private GoogleConnectionFactory googleConnectionFactory;
+    private final GoogleConnectionFactory googleConnectionFactory;
 
-    @Setter(onMethod_ = @Autowired)
-    private OAuth2Parameters googleOAuth2Parameters;
+    private final OAuth2Parameters googleOAuth2Parameters;
 
-    @Setter(onMethod_ = @Autowired)
-    private BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
     // 회원 가입 폼으로 이동
     @GetMapping("/joinForm")

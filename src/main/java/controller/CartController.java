@@ -1,6 +1,7 @@
 package controller;
 
 import domain.CartVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,13 @@ import java.util.Map;
 
 @Log4j
 @RequestMapping("/cart")
+@RequiredArgsConstructor
 @Controller
 public class CartController {
 
-    @Setter(onMethod_ = @Autowired)
-    private CartService cartService;
+    private final CartService cartService;
 
-    @Setter(onMethod_ = @Autowired)
-    private ProductService productService;
+    private final ProductService productService;
 
     /**
      * 장바구니 목록 조회

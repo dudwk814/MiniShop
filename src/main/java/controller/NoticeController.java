@@ -2,6 +2,7 @@ package controller;
 
 import domain.Criteria;
 import domain.NoticeVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ import service.NoticeService;
 @Controller
 @RequestMapping("/notice/")
 @Log4j
+@RequiredArgsConstructor
 public class NoticeController {
 
-    @Setter(onMethod_ = @Autowired)
-    private NoticeService noticeService;
+    private final NoticeService noticeService;
 
     // 공지 조회
     @GetMapping("/read")

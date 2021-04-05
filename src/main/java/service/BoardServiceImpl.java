@@ -2,6 +2,7 @@ package service;
 
 import domain.BoardVO;
 import domain.Criteria;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.BoardMapper;
@@ -15,13 +16,12 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-    @Setter(onMethod_ = {@Autowired})
-    private BoardMapper boardMapper;
+    private final BoardMapper boardMapper;
 
-    @Setter(onMethod_ = {@Autowired})
-    private ReplyMapper replyMapper;
+    private final ReplyMapper replyMapper;
 
     /**
      * 단일 게시글 조회

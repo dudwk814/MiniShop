@@ -5,6 +5,7 @@ import domain.ReplyPageDTO;
 import domain.ReplyVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,10 +19,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/replies/")
 @Log4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReplyController {
 
-    private ReplyService service;
+    private final ReplyService service;
 
     /**
      * 댓글 등록

@@ -3,6 +3,7 @@ package service;
 import domain.AddressVO;
 import domain.MemberVO;
 import domain.authVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.MemberMapper;
@@ -16,16 +17,14 @@ import java.util.List;
 
 @Log4j
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
 
-    @Setter(onMethod_ = {@Autowired})
-    private MemberMapper memberMapper;
+    private final MemberMapper memberMapper;
 
-    @Setter(onMethod_ = {@Autowired})
-    private AddressService addressService;
+    private final AddressService addressService;
 
-    @Setter(onMethod_ = @Autowired)
-    private BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
     @Transactional
     @Override

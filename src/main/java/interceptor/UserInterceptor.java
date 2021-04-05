@@ -1,5 +1,6 @@
 package interceptor;
 
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Log4j
+@RequiredArgsConstructor
 public class UserInterceptor extends HandlerInterceptorAdapter{
 
-    @Setter(onMethod_ = @Autowired)
-    private CartService cartService;
+    private final CartService cartService;
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {

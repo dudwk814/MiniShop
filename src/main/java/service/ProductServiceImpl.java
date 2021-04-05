@@ -2,6 +2,7 @@ package service;
 
 import domain.Criteria;
 import domain.ProductVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.ProductMapper;
@@ -12,10 +13,10 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService{
 
-    @Setter(onMethod_ = @Autowired)
-    private ProductMapper productMapper;
+    private final ProductMapper productMapper;
 
     // 홈 화면 상품 조회
     @Override

@@ -3,6 +3,7 @@ package controller;
 import domain.Criteria;
 import domain.ReviewPageDTO;
 import domain.ReviewVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.apache.http.protocol.HTTP;
@@ -21,13 +22,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/review/")
 @Log4j
+@RequiredArgsConstructor
 public class ReviewController {
 
-    @Setter(onMethod_ = @Autowired)
-    private ReviewService reviewService;
+    private final ReviewService reviewService;
 
-    @Setter(onMethod_ = @Autowired)
-    private ProductService productService;
+    private final ProductService productService;
 
     /**
      * 리뷰 등록

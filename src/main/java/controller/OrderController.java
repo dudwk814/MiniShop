@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.AddressMapper;
@@ -25,17 +26,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/order/")
+@RequiredArgsConstructor
 @Log4j
 public class OrderController {
 
-    @Setter(onMethod_ = @Autowired)
-    private MemberService memberService;
+    private final MemberService memberService;
 
-    @Setter(onMethod_ = @Autowired)
-    private CartService cartService;
+    private final CartService cartService;
 
-    @Setter(onMethod_ = @Autowired)
-    private OrderService orderService;
+    private final OrderService orderService;
 
     @GetMapping("/orderForm")
     public String orderForm(@RequestParam("userid") String userid, Model model) {

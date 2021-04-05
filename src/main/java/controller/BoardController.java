@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.NoticeMapper;
@@ -26,17 +27,15 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/board/")
+@RequiredArgsConstructor
 @Log4j
 public class BoardController {
 
-    @Setter(onMethod_ = {@Autowired})
-    private BoardService boardService;
+    private final BoardService boardService;
 
-    @Setter(onMethod_ = {@Autowired})
-    private ReplyMapper replyMapper;
+    private final ReplyMapper replyMapper;
 
-    @Setter(onMethod_ = @Autowired)
-    private NoticeService noticeService;
+    private final NoticeService noticeService;
 
     @GetMapping("/list")
     public void list(@ModelAttribute("cri") Criteria cri,  Model model) {

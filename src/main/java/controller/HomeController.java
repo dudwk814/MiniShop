@@ -1,6 +1,7 @@
 package controller;
 
 import domain.ProductVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,12 @@ import java.util.List;
 
 @Controller
 @Log4j
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Setter(onMethod_ = @Autowired)
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Setter(onMethod_ = @Autowired)
-    private CartService cartService;
+    private final CartService cartService;
 
     @GetMapping("/")
     public String home(Model model, HttpSession session) {

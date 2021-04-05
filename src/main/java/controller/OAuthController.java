@@ -1,6 +1,7 @@
 package controller;
 
 import domain.MemberVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,12 @@ import java.io.IOException;
 
 @Controller
 @Log4j
+@RequiredArgsConstructor
 public class OAuthController {
 
-    @Setter(onMethod_ = @Autowired)
-    private GoogleConnectionFactory googleConnectionFactory;
+    private final GoogleConnectionFactory googleConnectionFactory;
 
-    @Setter(onMethod_ = @Autowired)
-    private OAuth2Parameters googleOAuth2Parameters;
+    private final OAuth2Parameters googleOAuth2Parameters;
 
     // 구글 Callback호출 메소드
     @RequestMapping(value = "/login/google/auth", method = { RequestMethod.GET, RequestMethod.POST })

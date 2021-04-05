@@ -45,9 +45,9 @@
                         <div class="form-group row">
                             <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!" data-name="아이디"/>
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="4글자 이상의 아이디를 입력하세요!" data-name="아이디"/>
                             </div>
-                            <div class="tagcloud">
+                            <div class="tagcloud col-sm-7">
                                 <a href="#" type="button" class="tag-cloud-link" id="chkUseridBtn" name="chkUseridBtn">중복확인</a>
                             </div>
                         </div>
@@ -195,6 +195,11 @@
 
             if (userid.trim() == "") {
                 alert("아이디를 입력해주세요.");
+                return;
+            }
+
+            if (userid.trim().length < 4) {
+                alert("아이디를 4글자 이상으로 해주세요.");
                 return;
             }
 

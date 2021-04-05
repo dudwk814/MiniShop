@@ -3,6 +3,7 @@ package service;
 import domain.Criteria;
 import domain.OrderDetailsVO;
 import domain.OrderVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.OrderMapper;
@@ -14,10 +15,10 @@ import java.util.List;
 
 @Service
 @Log4j
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
-    @Setter(onMethod_ = @Autowired)
-    private OrderMapper orderMapper;
+    private final OrderMapper orderMapper;
 
     @Override
     public void insert(OrderVO vo) {
