@@ -30,7 +30,7 @@
 
     <!-- 회원 정보 조회 -->
     <select id="getMember" resultType="domain.MemberVO">
-        select * from tbl_member where userid = #{userid}
+        select userid, userpw, userName, regDate, updateDate, enabled, post_code, street_address, address, detail_address  from tbl_member where userid = #{userid}
     </select>
 
     <!-- 비밀번호 찾기 -->

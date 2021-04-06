@@ -13,4 +13,6 @@ public interface ReviewAttachMapper {
     public void deleteByFileName(String fileName);
 
     public List<ReviewAttachVO> findByReviewNo(int review_no);
+
+    public List<ReviewAttachVO> getOldFiles();
 }

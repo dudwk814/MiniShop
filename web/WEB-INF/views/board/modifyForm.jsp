@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label for="editor1">내용</label>
-                <textarea name="content" id="editor1" rows="20" cols="80">${board.content}</textarea>
+                <textarea name="content" id="editor1" rows="20" cols="80"><c:out value="${board.content}"/></textarea>
             </div>
             <div class="form-group">
                 <label for="writer">작성자</label>

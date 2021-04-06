@@ -64,6 +64,14 @@
           <element id="library" level="project" name="Maven: com.oracle.database.ha:ons:11.2.0.4" />
           <element id="library" level="project" name="Maven: com.oracle.database.security:osdt_cert:11.2.0.4" />
           <element id="library" level="project" name="Maven: org.mariadb.jdbc:mariadb-java-client:2.0.3" />
+          <element id="library" level="project" name="Maven: com.navercorp.lucy:lucy-xss-servlet:2.0.0" />
+          <element id="library" level="project" name="Maven: com.navercorp.lucy:lucy-xss:1.6.3" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: com.zaxxer:HikariCP-java6:2.3.13" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz-jobs:2.3.0" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.3.0" />
         </element>
       </element>
     </root>

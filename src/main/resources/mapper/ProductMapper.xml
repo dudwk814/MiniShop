@@ -18,9 +18,12 @@
     <!-- 홈 화면 신 상품 MariaDB -->
     <select id="getHomeProductList" resultType="domain.ProductVO">
         <![CDATA[
-            select *
-            from tbl_product
-            limit 0, 8
+            select
+                product_id, product_name, product_price, product_desc, product_url
+            from
+                tbl_product
+            limit
+                0, 8
         ]]>
     </select>
 
@@ -75,9 +78,9 @@
     <select id="getProductList" resultType="domain.ProductVO">
 
         select
-               *
+            product_id, product_name, product_price, product_desc, product_url
         from
-             tbl_product
+            tbl_product
         /*order by product_id asc*/
         where
             product_id > 0
@@ -107,12 +110,12 @@
 
     <!-- 상품 전체 개수 -->
     <select id="getTotalCount" resultType="int">
-        select count (*) from tbl_product
+        select count (product_id) from tbl_product
     </select>
 
     <!-- 단일 상품 조회 -->
     <select id="getProduct" resultType="domain.ProductVO">
-        select * from tbl_product where product_id = #{product_id}
+        select product_id, product_name, product_price, product_desc, product_url from tbl_product where product_id = #{product_id}
     </select>
 
     <!-- 상품 수정 -->

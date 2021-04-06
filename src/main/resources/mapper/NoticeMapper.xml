@@ -7,12 +7,12 @@
 
     <!-- 단일 공지 조회 -->
     <select id="get" resultType="domain.NoticeVO">
-        select * from tbl_notice where nno = #{nno}
+        select nno, title, content, writer, regDate, updateDate, hit from tbl_notice where nno = #{nno}
     </select>
 
      <!-- 전체 공지 조회 -->
     <select id="getList" resultType="domain.NoticeVO">
-        select * from tbl_notice where nno > 0
+        select nno, title, content, writer, regDate, updateDate, hit from tbl_notice where nno > 0
     </select>
 
     <!-- 조회수 증가 -->

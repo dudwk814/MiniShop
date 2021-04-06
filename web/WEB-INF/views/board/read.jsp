@@ -21,8 +21,8 @@
             <div class="col align-content-center">
 
                 <div class="col-lg-auto">
-                    <strong><h1>${board.title}</h1></strong>
-                    <span>${board.writer}</span> | <span><fmt:formatDate value="${board.regDate}"
+                    <strong><h1><c:out value="${board.title}"/></h1></strong>
+                    <span><c:out value="${board.writer}"/></span> | <span><fmt:formatDate value="${board.regDate}"
                                                                          pattern="yyyy-MM-dd"/> </span>
                 </div>
 
@@ -32,7 +32,7 @@
                     <input type="hidden" name="pageNum" value="${cri.pageNum}">
                     <input type="hidden" name="amount" value="${cri.amount}">
                     <div class="form-group" style="margin-bottom: 20px">
-                        <p>${board.content}</p>
+                        <p><c:out value="${board.content}" escapeXml="false"/></p>
 
                     </div>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -47,11 +47,8 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
 
                     <c:if test="${board.writer == userid}">
-                        <%--<a id="modBtn"
-                           href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
-                           class="float-right">--%>
+
                             <button id="modBtn" type="button" class="btn btn-danger float-right">수정</button>
-                        <%--</a>--%>&nbsp; &nbsp; &nbsp;
                     </c:if>
                     <button id="removeBtn" type="button" class="btn btn-warning float-right"
                             style="margin-right: 10px;">
@@ -83,7 +80,6 @@
                     <div class="card-header">
                         <span class="lnr lnr-bubble"> Comments</span>&nbsp;<span id="replyCnt"
                                                                                  class="badge badge-info">${board.replyCnt}</span>
-                        <%--<button class="btn btn-link float-right" id="regBtn">New</button>--%>
                     </div>
                 </sec:authorize>
 

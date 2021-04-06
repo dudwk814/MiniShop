@@ -35,12 +35,12 @@
 
     <!-- order_id에 대한 오더 조회 -->
     <select id="get" resultType="domain.OrderVO">
-        select * from tbl_order where order_id = #{order_id}
+        select order_id, userid, post_code, street_address, address, detail_address, sum_price, order_date, payment_option from tbl_order where order_id = #{order_id}
     </select>
 
     <!-- 특정 회원에 대한 오더 디테일 조회 -->
     <select id="getOrderDetails" resultType="domain.OrderDetailsVO">
-        select * from tbl_order_details where order_id = #{order_id}
+        select order_details_num, order_id, product_id, amount, userid from tbl_order_details where order_id = #{order_id}
     </select>
 
     <!-- 특정 회원 주문 내역 Oracle -->
@@ -62,7 +62,7 @@
     <select id="getList" resultType="domain.OrderVO">
         <![CDATA[
         select
-            *
+            order_id, userid, post_code, street_address, address, detail_address, sum_price, order_date, payment_option
         from
             tbl_order
         where
@@ -76,14 +76,14 @@
 
     <!-- 유저에 대한 전체 오더 개수 -->
     <select id="getTotalOrderCount" resultType="int">
-        select count(*) from tbl_order where userid = #{userid}
+        select count(order_id) from tbl_order where userid = #{userid}
     </select>
 
     <select id="getAllList" resultType="domain.OrderVO">
-        select * from tbl_order order by order_date desc
+        select order_id, userid, post_code, street_address, address, detail_address, sum_price, order_date, payment_option from tbl_order order by order_date desc
     </select>
 
     <select id="getOrderResult" resultType="domain.OrderVO">
-        select * from tbl_order where order_id = #{order_id}
+        select order_id, userid, post_code, street_address, address, detail_address, sum_price, order_date, payment_option from tbl_order where order_id = #{order_id}
     </select>
 </mapper>

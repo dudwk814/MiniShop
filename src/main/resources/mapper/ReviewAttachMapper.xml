@@ -22,7 +22,7 @@
     </insert>
 
     <select id="findByReviewNo" resultType="domain.ReviewAttachVO">
-        select * from tbl_review_attach where review_no = #{review_no} order by review_no
+        select uuid, uploadPath, fileName, fileType, review_no, attach_no from tbl_review_attach where review_no = #{review_no} order by review_no
     </select>
 
     <delete id="delete">
@@ -32,4 +32,8 @@
     <delete id="deleteByFileName">
         delete from tbl_review_attach where fileName = #{fileName}
     </delete>
+
+    <select id="getOldFiles" resultType="domain.ReviewAttachVO">
+        select uuid, uploadPath, fileName, fileType, review_no, attach_no from tbl_review_attach where STR_TO_DATE(uploadPath, '%Y/%m/%d') = DATE_FORMAT(CURDATE() -1,'%Y/%m/%d')
+    </select>
 </mapper>

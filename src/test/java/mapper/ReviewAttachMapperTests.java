@@ -26,7 +26,7 @@ public class ReviewAttachMapperTests {
      * 리뷰 이미지 삭제 테스트
      */
     @Test
-    public void 리뷰이미지삭제() throws Exception {
+    public void reviewImageRemove() throws Exception {
         //given
         int review_no = 107;
 
@@ -38,6 +38,15 @@ public class ReviewAttachMapperTests {
         //then
 
         Assert.assertEquals(result.size(), 0L);
+    }
+
+    /**
+     * 데이터베이스에 없는 이미지 검색
+     */
+    @Test
+    public void searchDBImage() throws Exception {
+
+        log.info(reviewAttachMapper.getOldFiles());
     }
 
 }

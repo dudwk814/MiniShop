@@ -26,12 +26,12 @@
     </sql>
 
     <select id="get" resultType="domain.BoardVO">
-        select * from tbl_board where bno = #{bno}
+        select bno, title, content, writer, regDate, updateDate, replyCnt, hit from tbl_board where bno = #{bno}
     </select>
 
     <select id="getList" resultType="domain.BoardVO">
         <![CDATA[
-            select * from tbl_board where bno > 0 and boardIdx = #{boardIdx} order by bno desc
+            select bno, title, content, writer, regDate, updateDate, replyCnt, hit from tbl_board where bno > 0 and boardIdx = #{boardIdx} order by bno desc
         ]]>
     </select>
 
@@ -60,7 +60,7 @@
     <select id="getListWithPaging" resultType="domain.BoardVO">
         <![CDATA[
             select
-                *
+                bno, title, content, writer, regDate, updateDate, replyCnt, hit
             from
                 tbl_board
         ]]>
@@ -92,7 +92,7 @@
     <!-- 전체 게시글 개수 -->
     <select id="getTotalCount" resultType="int">
         select
-            count(*)
+            count(bno)
         from
             tbl_board
         <trim prefix="where "  prefixOverrides="OR">

@@ -90,7 +90,7 @@ public class BoardController {
         rttr.addFlashAttribute("writer", board.getWriter());
         rttr.addFlashAttribute("result", board.getBno());
 
-        return "redirect:/board/list";
+        return "redirect:/board/read?bno=" + board.getBno();
     }
 
     // ck 에디터에서 파일 업로드

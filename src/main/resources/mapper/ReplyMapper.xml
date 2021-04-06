@@ -24,7 +24,7 @@
     <!-- 댓글 조회 -->
     <select id="read" resultType="domain.ReplyVO">
         <![CDATA[
-            select * from tbl_reply where rno = #{rno}
+            select rno, bno, reply, replyer, replyDate, updateDate from tbl_reply where rno = #{rno}
         ]]>
     </select>
 
@@ -47,7 +47,7 @@
     <select id="getListWithPaging" resultType="domain.ReplyVO">
         <![CDATA[
         select
-            *
+            rno, bno, reply, replyer, replyDate, updateDate
         from
             tbl_reply
         where

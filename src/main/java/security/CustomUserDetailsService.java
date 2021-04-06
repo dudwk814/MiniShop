@@ -1,6 +1,7 @@
 package security;
 
 import domain.MemberVO;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -14,10 +15,10 @@ import security.domain.CustomUser;
 import javax.servlet.http.HttpServletRequest;
 
 @Log4j
+@RequiredArgsConstructor
 public class  CustomUserDetailsService implements UserDetailsService {
 
-    @Setter(onMethod_ = {@Autowired})
-    private MemberMapper memberMapper;
+    private final MemberMapper memberMapper;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

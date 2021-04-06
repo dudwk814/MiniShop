@@ -201,8 +201,8 @@
         });
 
 
-        /* 검색 폼폼 */
-        var seachForm = $("#searchForm");
+        /* 검색 폼 */
+        var searchForm = $("#searchForm");
 
         /* 검색 관련 함수 */
         $("#searchForm #searchBtn").on("click", function (e) {
