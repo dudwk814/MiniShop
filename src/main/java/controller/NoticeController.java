@@ -80,7 +80,7 @@ public class NoticeController {
 
         noticeService.modify(vo);
 
-        return "redirect:/board/list?pageNum=" + cri.getPageNum() + "&amount=" + cri.getAmount() +
+        return "redirect:/notice/read?nno= "+ vo.getNno() + "&pageNum=" + cri.getPageNum() + "&amount=" + cri.getAmount() +
                 "&type=" + cri.getType() + "&keyword=" + cri.getKeyword();
     }
 

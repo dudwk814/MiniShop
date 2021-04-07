@@ -18,7 +18,27 @@
 
     <div class="col-lg-9">
         <div class="row">
-            <div class="col align-content-center">
+            <div class="col-lg-12">
+                <div class="card border-white">
+                    <div class="card-header bg-transparent">
+                        <strong><h1><c:out value="${board.title}"/></h1></strong>
+                        <small class="card-title">
+                            &nbsp;<c:out value="${board.writer}"/>&nbsp; | &nbsp;<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd. H:m"/>
+                        </small>
+                    </div>
+                    <div class="card-body">
+                        <article>
+                            <c:out value="${board.content}" escapeXml="false"/>
+                        </article>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
+                            <button id="listBtn" type="button" class="btn btn-outline-secondary">목록</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <%--<div class="col align-content-center">
 
                 <div class="col-lg-auto">
                     <strong><h1><c:out value="${board.title}"/></h1></strong>
@@ -26,36 +46,56 @@
                                                                          pattern="yyyy-MM-dd"/> </span>
                 </div>
 
-                <hr/>
+                &lt;%&ndash;<hr/>&ndash;%&gt;
 
                 <form action="/board/register" method="post" id="form">
                     <input type="hidden" name="pageNum" value="${cri.pageNum}">
                     <input type="hidden" name="amount" value="${cri.amount}">
-                    <div class="form-group" style="margin-bottom: 20px">
+                    <article style="border: black">
+                    <div class="form-group border" style="margin-bottom: 20px">
                         <p><c:out value="${board.content}" escapeXml="false"/></p>
 
                     </div>
+                    </article>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <input type="hidden" name="bno" value="${board.bno}">
                 </form>
 
-                <hr/>
+                &lt;%&ndash;<hr/>&ndash;%&gt;
 
                 <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
                     <button id="listBtn" type="button" class="btn btn-info">목록</button>
                 </a>
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
 
-                    <c:if test="${board.writer == userid}">
+                    &lt;%&ndash;<c:if test="${board.writer == userid}">
 
                             <button id="modBtn" type="button" class="btn btn-danger float-right">수정</button>
                     </c:if>
                     <button id="removeBtn" type="button" class="btn btn-warning float-right"
                             style="margin-right: 10px;">
                         삭제
-                    </button>
+                    </button>&ndash;%&gt;
+                    <div class="float-right dropdown">
+                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                            <i class="fa fa-gear fa-lg" data-toggle="tooltip" data-placement="bottom" title="게시물 메뉴"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" id="modBtn" style="color: black;">
+                                    &nbsp; <i class="fa fa-edit fa-fw"></i>   수정
+                                </a>
+                            </li>
+                            &lt;%&ndash;<li class="dropdown-divider"/>&ndash;%&gt;
+                            <li>
+                                <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}" style="color: black;">
+                                    &nbsp; <i class="fa fa-trash-o fa-fw"></i>  삭제
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </sec:authorize>
-            </div>
+            </div>--%>
         </div>
     </div>
 </section>
@@ -102,7 +142,7 @@
                         </details>
                     </div>
                 </div>
-                <div class="card-footer d-flex justify-content-center">
+                <div class="card-footer reply-footer d-flex justify-content-center">
 
                 </div>
             </div>
@@ -146,22 +186,29 @@
 <script>
     var bnoValue = '<c:out value="${board.bno}"/>';
 
+
+
 </script>
 
 
 <script>
     $(document).ready(function () {
 
+        <!-- Bootstrap Tooltips -->
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
+        // 게시글 작성자
         var writer = '<c:out value="${board.writer}"/>';
 
         <sec:authorize access="isAuthenticated()">
-        var userid = '<sec:authentication property="principal.member.userid"/>';
+            var userid = '<sec:authentication property="principal.member.userid"/>';
         </sec:authorize>
 
 
-        /**
-         * 게시글 수정 버튼 클릭 시 /member/modifyForm으로 이동
-         */
+
+        <!-- 게시글 수정 버튼 클릭 시 /member/modifyForm으로 이동 -->
         $("#modBtn").on("click", function (e) {
             //create element (form)
             var modForm = $('<form></form>');
@@ -172,6 +219,8 @@
             modForm.append($('<input/>', {type: 'hidden', name: 'bno', value:'<c:out value="${board.bno}"/>'}));
             modForm.append($('<input/>', {type: 'hidden', name: 'pageNum', value:'<c:out value="${cri.pageNum}"/>'}));
             modForm.append($('<input/>', {type: 'hidden', name: 'amount', value:'<c:out value="${cri.amount}"/>'}));
+            modForm.append($('<input/>', {type: 'hidden', name: 'type', value:'<c:out value="${cri.type}"/>'}));
+            modForm.append($('<input/>', {type: 'hidden', name: 'keyword', value:'<c:out value="${cri.keyword}"/>'}));
             modForm.append($('<input/>', {type: 'hidden', name: '${_csrf.parameterName}', value:'${_csrf.token}'}));
 
             modForm.appendTo('body');
@@ -436,7 +485,7 @@
         });
 
         var pageNum = 1;
-        var replyPageFooter = $(".card-footer");
+        var replyPageFooter = $(".reply-footer");
 
         function showReplyPage(replyCnt) {
 

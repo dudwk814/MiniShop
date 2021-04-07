@@ -45,7 +45,7 @@
                        value="<c:out value='${board.writer}'/>" readonly>
             </div>
 
-            <a href="/board/list">
+            <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&keyword=${cri.keyword}&type=${cri.type}">
                 <button type="button" id="listBtn" class="btn btn-primary">목록</button>
             </a>
             <button type="submit" class="btn btn-info float-right">수정하기</button>

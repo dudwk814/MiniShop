@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j;
 import mapper.ReviewAttachMapper;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,6 +37,9 @@ import java.util.UUID;
 @Log4j
 @RequiredArgsConstructor
 public class CommonController {
+
+    @Value("${upload.path}")
+    private String path;
 
     private final ReviewAttachMapper reviewAttachMapper;
 

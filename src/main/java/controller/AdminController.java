@@ -87,7 +87,7 @@ public class AdminController {
         System.out.println("상품 등록");
 
         // 이미지 저장 경로(프로젝트 파일의 리소스 폴더)
-        String uploadFolder = "C:\\Users\\PCY\\IdeaProjects\\MiniShop\\out\\artifacts\\MiniShop_war_exploded\\resources\\shop\\images";
+        String uploadFolder = "/dudwk814/tomcat/webapps/ROOT/resources/shop/images";
 
         if(product_photo.isEmpty() != true || product_photo.getSize() != 0) {
             // 이미지 이름
@@ -130,7 +130,7 @@ public class AdminController {
     public String productModify(ProductVO vo, MultipartFile product_photo, RedirectAttributes rttr) {
 
         // 이미지 저장 경로(프로젝트 파일의 리소스 폴더)
-        String uploadFolder = "C:\\Users\\PCY\\IdeaProjects\\MiniShop\\out\\artifacts\\MiniShop_war_exploded\\resources\\shop\\images";
+        String uploadFolder = "/dudwk814/tomcat/webapps/ROOT/resources/shop/images";
 
         if(product_photo.isEmpty() != true || product_photo.getSize() != 0) {
             // 이미지 이름

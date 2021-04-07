@@ -21,7 +21,7 @@
         <div class="col align-content-center">
 
             <div class="col-lg-auto">
-                    <strong><h1>${notice.title}</h1></strong>
+                    <strong><h1><c:out value="${notice.title}"/></h1></strong>
                     <span>${notice.writer}</span> | <span><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/> </span>
             </div>
 
@@ -44,7 +44,7 @@
                             <button id="listBtn" type="button" class="btn btn-info">목록</button>
                         </a>
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <a href="/notice/modifyForm?nno=${notice.nno}&pageNum=${cri.pageNum}&amount=${cri.amount}"
+                            <a href="/notice/modifyForm?nno=${notice.nno}&pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}"
                                class="float-right">
                                 <button id="modBtn" type="button" class="btn btn-danger">수정</button>
                             </a>&nbsp; &nbsp; &nbsp;

@@ -20,7 +20,9 @@ public class Criteria {
     }
 
 
-
+    /**
+     * 검색 관련
+     */
     private String type;
     private String keyword;
 
