@@ -26,8 +26,6 @@ public class HomeController {
 
     private final ProductService productService;
 
-    private final CartService cartService;
-
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
 
@@ -35,12 +33,8 @@ public class HomeController {
 
         model.addAttribute("pList", list);
 
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();*/
 
         String userid = (String) session.getAttribute("userid");
-
-        /*int cartForMember = cartService.countCartForMember(userid);*/
-
 
 
         log.info(userid);

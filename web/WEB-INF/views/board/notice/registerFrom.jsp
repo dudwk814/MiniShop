@@ -12,6 +12,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <%@ include file="../../includes/header2.jsp" %>
 
+
 <br/><br/><br/><br/>
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
@@ -57,7 +58,10 @@
         enterMode : CKEDITOR.ENTER_BR,
         shiftEnterMode : CKEDITOR.ENTER_P,
         filebrowserUploadUrl : "/board/uploadImg?${_csrf.parameterName}=${_csrf.token}",
+
     };
+
+
 
     CKEDITOR.replace("content", ckeditor_config);
 </script>

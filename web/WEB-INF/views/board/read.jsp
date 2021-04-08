@@ -12,6 +12,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <%@ include file="../includes/header2.jsp" %>
 
+
 <br/><br/><br/><br/>
 
 <section id="home-section" class="d-flex justify-content-center col-lg-12">
@@ -26,76 +27,43 @@
                             &nbsp;<c:out value="${board.writer}"/>&nbsp; | &nbsp;<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd. H:m"/>
                         </small>
                     </div>
-                    <div class="card-body">
-                        <article>
+                    <div class="card-body" style="border-bottom: 0px;">
+                        <article class="content-area">
                             <c:out value="${board.content}" escapeXml="false"/>
                         </article>
                     </div>
-                    <div class="card-footer bg-transparent">
+                    <div class="card-body bg-transparent">
                         <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
                             <button id="listBtn" type="button" class="btn btn-outline-secondary">목록</button>
                         </a>
+                        <sec:authorize access="isAuthenticated()">
+                            <c:if test="${board.writer == userid}">
+
+
+                                <div class="float-right dropdown">
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                        <i class="fa fa-gear fa-lg" data-toggle="tooltip" data-placement="bottom" title="게시물 메뉴"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#" id="modBtn" style="color: black;">
+                                                &nbsp; <i class="fa fa-edit fa-fw"></i>   수정
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="removeBtn" href="#" style="color: black;">
+                                                &nbsp; <i class="fa fa-trash-o fa-fw"></i>  삭제
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:if>
+
+                        </sec:authorize>
                     </div>
                 </div>
+
             </div>
-            <%--<div class="col align-content-center">
-
-                <div class="col-lg-auto">
-                    <strong><h1><c:out value="${board.title}"/></h1></strong>
-                    <span><c:out value="${board.writer}"/></span> | <span><fmt:formatDate value="${board.regDate}"
-                                                                         pattern="yyyy-MM-dd"/> </span>
-                </div>
-
-                &lt;%&ndash;<hr/>&ndash;%&gt;
-
-                <form action="/board/register" method="post" id="form">
-                    <input type="hidden" name="pageNum" value="${cri.pageNum}">
-                    <input type="hidden" name="amount" value="${cri.amount}">
-                    <article style="border: black">
-                    <div class="form-group border" style="margin-bottom: 20px">
-                        <p><c:out value="${board.content}" escapeXml="false"/></p>
-
-                    </div>
-                    </article>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    <input type="hidden" name="bno" value="${board.bno}">
-                </form>
-
-                &lt;%&ndash;<hr/>&ndash;%&gt;
-
-                <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}">
-                    <button id="listBtn" type="button" class="btn btn-info">목록</button>
-                </a>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
-
-                    &lt;%&ndash;<c:if test="${board.writer == userid}">
-
-                            <button id="modBtn" type="button" class="btn btn-danger float-right">수정</button>
-                    </c:if>
-                    <button id="removeBtn" type="button" class="btn btn-warning float-right"
-                            style="margin-right: 10px;">
-                        삭제
-                    </button>&ndash;%&gt;
-                    <div class="float-right dropdown">
-                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
-                            <i class="fa fa-gear fa-lg" data-toggle="tooltip" data-placement="bottom" title="게시물 메뉴"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#" id="modBtn" style="color: black;">
-                                    &nbsp; <i class="fa fa-edit fa-fw"></i>   수정
-                                </a>
-                            </li>
-                            &lt;%&ndash;<li class="dropdown-divider"/>&ndash;%&gt;
-                            <li>
-                                <a href="/board/modifyForm?bno=${board.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}&type=${cri.type}&keyword=${cri.keyword}" style="color: black;">
-                                    &nbsp; <i class="fa fa-trash-o fa-fw"></i>  삭제
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </sec:authorize>
-            </div>--%>
         </div>
     </div>
 </section>
@@ -208,7 +176,7 @@
 
 
 
-        <!-- 게시글 수정 버튼 클릭 시 /member/modifyForm으로 이동 -->
+        <!-- 게시글 수정 버튼 클릭 시 /board/modifyForm으로 이동 -->
         $("#modBtn").on("click", function (e) {
             //create element (form)
             var modForm = $('<form></form>');
@@ -229,6 +197,7 @@
         });
 
 
+        <!-- 삭제 버튼 클릭 시 게시글 삭제 -->
         $("#removeBtn").on("click", function () {
 
             <sec:authorize access="isAnonymous()">
@@ -236,11 +205,24 @@
             return;
             </sec:authorize>
 
+            var removeForm = $('<form></form>');
+            removeForm.attr("name","removeForm");
+            removeForm.attr("method","post");
+            removeForm.attr("action","/board/remove");
+
+            removeForm.append($('<input/>', {type: 'hidden', name: 'bno', value:'<c:out value="${board.bno}"/>'}));
+            removeForm.append($('<input/>', {type: 'hidden', name: 'pageNum', value:'<c:out value="${cri.pageNum}"/>'}));
+            removeForm.append($('<input/>', {type: 'hidden', name: 'amount', value:'<c:out value="${cri.amount}"/>'}));
+            removeForm.append($('<input/>', {type: 'hidden', name: 'type', value:'<c:out value="${cri.type}"/>'}));
+            removeForm.append($('<input/>', {type: 'hidden', name: 'keyword', value:'<c:out value="${cri.keyword}"/>'}));
+            removeForm.append($('<input/>', {type: 'hidden', name: '${_csrf.parameterName}', value:'${_csrf.token}'}));
+
+            removeForm.appendTo('body');
+
             if (userid == writer || userid == 'admin') {
                 if (confirm("글을 삭제하시겠습니까?") == true) {
-                    formObj.attr("action", "/board/remove");
 
-                    formObj.submit();
+                    removeForm.submit();
                 } else {
                     return;
                 }

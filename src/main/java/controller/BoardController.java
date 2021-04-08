@@ -188,6 +188,6 @@ public class BoardController {
 
         rttr.addFlashAttribute("cri", cri);
 
-        return "redirect:/board/list";
+        return "redirect:/board/list?pageNum=" + cri.getPageNum() + "&amount=" + cri.getAmount() + "&type=" + cri.getType() + "&keyword=" + cri.getKeyword();
     }
 }

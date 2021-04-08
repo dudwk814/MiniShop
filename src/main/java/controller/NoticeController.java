@@ -59,7 +59,7 @@ public class NoticeController {
 
     // 공지 수정 폼 이동
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/modifyForm")
+    @PostMapping("/modifyForm")
     public String modifyForm(@ModelAttribute("cri") Criteria cri, Long nno, Model model) {
 
         log.info("Move to Notice ModifyForm");
