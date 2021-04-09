@@ -44,6 +44,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
 
+    <link rel="stylesheet" href="/resources/toastr-master/build/toastr.css">
+
     <style>
         .select-img img {
             margin: 20px 100px 0;

@@ -24,9 +24,9 @@
                          <button id="noticeRegBtn" type="button" class="btn btn-link float-right">공지 쓰기 </button> &nbsp;
                     </sec:authorize>
                     <button id="regBtn" type="button" class="btn btn-link float-right">글 쓰기</button></h6>
-
             </div>
             <br/>
+
 
             <div class="row">
                 <div class="col-lg-auto">
@@ -59,10 +59,10 @@
 
             <div class="card-body col-lg-12">
 
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="dataTable">
+                <div class="table-responsive-sm table-sm">
+                    <table class="table table-borderless table-hover" id="dataTable">
                         <thead>
-                        <tr class="table-primary table-borderless">
+                        <tr>
                             <th>#번호</th>
                             <th>제목</th>
                             <th>작성자</th>
@@ -75,8 +75,8 @@
 
                         <c:forEach var="notice" items="${noticeList}">
                             <tr class="table-success">
-                                <td align="center"><c:out value="${notice.nno}"/></td>
-                                <td><a href="/notice/read?nno=<c:out value='${notice.nno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"><c:out value="${notice.title}"/></a></td>
+                                <td align="center">#<c:out value="${notice.nno}"/></td>
+                                <td><a style="color: black;" href="/notice/read?nno=<c:out value='${notice.nno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"># <c:out value="${notice.title}"/></a></td>
                                 <td align="center"><c:out value="${notice.writer}"/></td>
                                 <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/></td>
                                 <td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.updateDate}"/></td>
@@ -86,8 +86,8 @@
 
                         <c:forEach var="board" items="${board}">
                             <tr>
-                                <td align="center"><c:out value="${board.bno}"/></td>
-                                <td><a href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"><c:out
+                                <td align="center">#<c:out value="${board.bno}"/></td>
+                                <td><a style="color: black;" href="${root}board/read?bno=<c:out value='${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>"># <c:out
                                         value="${board.title}"/>
                                     <span class="badge badge-info float-right"><c:out value="${board.replyCnt}"/></span>
                                 </a></td>
@@ -156,6 +156,27 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+
+        Command: toastr["success"]("~~님께서 댓글을 작성하셨습니다.", "신규 알림")
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "0",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "0"
+        }
 
         // 관리자 공지 글 작성
         var noticeRegBtn = $("#noticeRegBtn");
