@@ -16,6 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -46,6 +47,8 @@
 
     <link rel="stylesheet" href="/resources/toastr-master/build/toastr.css">
 
+
+
     <style>
         .select-img img {
             margin: 20px 100px 0;
@@ -73,6 +76,8 @@
         .uploadResult ul li img {
             width: 100px;
         }
+
+
     </style>
     <script src="/resources/shop/js/jquery.min.js"></script>
     <script src="/resources/ckeditor/ckeditor.js"></script>
@@ -105,33 +110,41 @@
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item"><a
                             href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>"
-                            class="nav-link">장바구니<span class="badge badge-success">${cartCount}</span> </a></li>
+                            class="nav-link">장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">
                     <li class="nav-item"><a href="#" class="nav-link loginBtn" data-toggle="modal" data-target="#staticBackdrop">로그인</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
+
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item"><a href="/admin/page" class="nav-link">관리자</a></li>
+                    </sec:authorize>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">회원</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="/user/checkMemberForm">회원 정보</a>
+                            <a class="dropdown-item" href="/user/checkMemberForm"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;회원 정보</a>
                             <a class="dropdown-item"
-                               href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>">주문
+                               href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;주문
                                 내역</a>
+                            <a href="/user/logout" class="dropdown-item" id="logoutBtn"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;로그아웃</a>
                         </div>
                     </li>
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <li class="nav-item"><a href="/admin/page" class="nav-link">관리자</a></li>
-                    </sec:authorize>
-                    <li class="nav-item"><a href="/user/logout" class="nav-link" id="logoutBtn">로그아웃</a>
-                    </li>
+
+                   <li class="nav-item"> <a href="#" class="nav-link" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="bottom"><i class="fa fa-bell"></i>&nbsp;알림</a></li>
+
+
+
+
                 </sec:authorize>
             </ul>
         </div>
     </div>
 </nav>
+<!-- END nav -->
 
 <!-- Modal -->
 <div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -184,6 +197,11 @@
             e.preventDefault();
 
             modal.modal("show");
+        });
+
+        $( '[data-toggle="popover"]' ).popover({
+            title : '댓글알림',
+            content : '~~님께서 <a href="#">~~에 댓글을 남기셨습니다.</a>'
         });
 
     });

@@ -7,8 +7,6 @@
 <%@ include file="includes/header2.jsp" %>
 
 
-<!-- END nav -->
-
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
         <div class="slider-item js-fullheight">
@@ -248,28 +246,29 @@
     </div>
 </div>
 
-<%--<script src="/resources/shop/js/jquery.min.js"></script>
-&lt;%&ndash;<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>&ndash;%&gt;
-
-<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/resources/jquery.cookie.js"></script>
-<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
-<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
-<script src="/resources/shop/js/jquery.stellar.min.js"></script>
-<script src="/resources/shop/js/popper.min.js"></script>
-<script src="/resources/shop/js/owl.carousel.min.js"></script>
-<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
-<script src="/resources/shop/js/aos.js"></script>
-<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
-<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
-<script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="/resources/shop/js/main.js"></script>
-&lt;%&ndash;<script src="/resources/shop/js/bootstrap.min.js"></script>&ndash;%&gt;
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>--%>
-
 <script>
 
     $(document).ready(function (e) {
+
+        Command: toastr["success"]("~~님께서 댓글을 작성하셨습니다.", "신규 알림")
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-full-width",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "0",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "0"
+        }
 
 
         var csrfHeaderName = "${_csrf.headerName}";
