@@ -144,6 +144,7 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
+/web/WEB-INF/applicationContext.xml
 
 ### Windows ###
 # Windows thumbnail cache files
