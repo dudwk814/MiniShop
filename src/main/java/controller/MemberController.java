@@ -67,7 +67,7 @@ public class MemberController {
 
 
     // 로그인 폼으로 이동
-    @GetMapping("/loginForm")
+    @PostMapping("/loginForm")
     public String loginForm(String error, String logout, Model model) {
 
         log.info("error : " + error);

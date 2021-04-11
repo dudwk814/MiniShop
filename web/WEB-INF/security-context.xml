@@ -11,6 +11,14 @@
 
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
+    <bean id="loginFailureHandler" class="security.LoginFailureHandler">
+        <property name="loginidname" value="userid"/>
+        <property name="loginpwdname" value="userpw"/>
+        <property name="errormsgname" value="ERRORMSG"/>
+        <property name="defaultFailureUrl" value="/user/loginForm?error"/>
+    </bean>
+
+
     <security:http pattern="/resources/**" security="none"/>
 
     <security:http auto-config="true">
@@ -24,7 +32,7 @@
 
 
         <security:access-denied-handler ref="customAccessDenied"/>
-        <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" username-parameter="userid" password-parameter="userpw"/>
+        <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" authentication-failure-handler-ref="loginFailureHandler" username-parameter="userid" password-parameter="userpw"/>
         <security:logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/" delete-cookies="remember,JSESSION_ID"/>
         <security:remember-me data-source-ref="dataSource"/>
 
@@ -37,10 +45,6 @@
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="customUserDetailsService">
-            <!--<security:jdbc-user-service data-source-ref="dataSource"
-                                        users-by-username-query="select userid, userpw, enabled, address from tbl_member where userid = ? and userpw = ?"
-                                        authorities-by-username-query="select  userid, auth from tbl_member_auth where userid = ?"/>-->
-
 
             <security:password-encoder ref="bcryptPasswordEncoder"/>
 

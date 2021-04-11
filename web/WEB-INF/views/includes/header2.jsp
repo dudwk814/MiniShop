@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,13 +98,13 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item"><a href="/board/list" class="nav-link">게시판</a></li>
+                <li class="nav-item"><a href="/board/list" class="nav-link"><i class="fa fa-th-list fa-lg" aria-hidden="true"></i>&nbsp;게시판</a></li>
 
-                <li class="nav-item"><a href="/shop" class="nav-link">상품</a></li>
+                <li class="nav-item"><a href="/shop" class="nav-link"><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i>&nbsp;상품</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 모달 생성 --%>
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a href="#" class="nav-link loginBtn">장바구니<span
+                    <li class="nav-item"><a href="#" class="nav-link loginBtn"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니<span
                             class="badge badge-success">${cartCount}</span></a></li>
                 </sec:authorize>
 
@@ -110,11 +112,11 @@
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item"><a
                             href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>"
-                            class="nav-link">장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
+                            class="nav-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a href="#" class="nav-link loginBtn" data-toggle="modal" data-target="#staticBackdrop">로그인</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link loginBtn" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;로그인</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
 
@@ -134,11 +136,6 @@
                         </div>
                     </li>
 
-                   <li class="nav-item"> <a href="#" class="nav-link" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="bottom"><i class="fa fa-bell"></i>&nbsp;알림</a></li>
-
-
-
-
                 </sec:authorize>
             </ul>
         </div>
@@ -157,32 +154,37 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <form action="/login" method="POST" class="register-form" id="login-form">
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label for="userid">아이디</label>
-                        <input type="text" class="form-control" name="userid" id="userid" placeholder="Your ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="userpw">비밀번호</label>
-                        <input type="password" class="form-control" name="userpw" id="userpw" placeholder="Password"/>
+                        <input type="text" class="form-control rounded" name="userid" id="userid" placeholder="Your ID">
                     </div>
 
+                    <div class="form-group">
+                        <label for="userpw">비밀번호</label>
+                        <input type="password" class="form-control rounded" name="userpw" id="userpw" placeholder="Password"/>
+                    </div>
+
+
                     <div class="form-check">
-                        <a class="float-right" href="/user/joinForm">회원가입</a>
+
                         <input class="form-check-input" name="remember-me" id="remember-me" type="checkbox" value=""
                                id="defaultCheck1">
+                        <a class="float-right" href="/user/joinForm">회원가입</a>
                         <label class="form-check-label" for="defaultCheck1">
                             <span>로그인 유지</span>
                         </label>
                     </div>
+
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
                 </div>
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-outline-primary">로그인</button>
-                    <%--<button type="button" class="btn btn-secondary close" data-dismiss="modal">닫기</button>--%>
                 </div>
             </form>
         </div>
@@ -197,12 +199,9 @@
             e.preventDefault();
 
             modal.modal("show");
-        });
+        })
 
-        $( '[data-toggle="popover"]' ).popover({
-            title : '댓글알림',
-            content : '~~님께서 <a href="#">~~에 댓글을 남기셨습니다.</a>'
-        });
+
 
     });
 </script>

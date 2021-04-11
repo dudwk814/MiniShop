@@ -37,19 +37,20 @@
                     <form action="/login" method="post" id="LoginForm">
                         <div class="form-group row">
                             <label for="loginUserid" class="col-sm-3 col-form-label">아이디</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control userid" id="loginUserid" name="userid"
+                            <div class="col-sm-8 userid-form-group">
+                                <input type="text" class="form-control rounded userid" id="loginUserid" name="userid" value="<c:out value="${userid}"/>"
                                        placeholder="아이디를 입력하세요!" data-name="아이디"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="loginUserpw" class="col-sm-3 col-form-label">비밀번호</label>
-                            <div class="col-sm-8">
-                                <input type="password" class="form-control" name="userpw" id="loginUserpw"
+                            <div class="col-sm-8 userpw-form-group">
+                                <input type="password" class="form-control rounded" name="userpw" id="loginUserpw"
                                        placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
                             </div>
                         </div>
+
 
                         <div class="form-check">
 
@@ -73,6 +74,11 @@
 
 <script>
     $(document).ready(function (e) {
+
+        $("input[type='password']").removeClass("is-invalid");
+        $("input[type='text']").removeClass("is-invalid");
+
+
         $("button[type='submit']").on("click", function (e) {
             e.preventDefault();
 
@@ -86,6 +92,59 @@
 
             $("#LoginForm").submit();
         });
+
+        if('${ERRORMSG}' == '1') {
+
+            $("input[type='text']").addClass("is-invalid");
+
+            $(".userid-form-group").append("<div class='invalid-tooltip'>아이디를 확인해주세요.</div>");
+            Command: toastr["error"]("아이디를 확이해주세요.", "계정이 존재하지 않습니다.")
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        } else if ('${ERRORMSG}' == '2') {
+            $("input[type='password']").addClass("is-invalid");
+
+            $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 확인해주세요.</div>");
+
+            Command: toastr["error"]("비밀번호를 확이해주세요.", "비밀번호가 틀립니다.")
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
+
+
+
     });
 </script>
 

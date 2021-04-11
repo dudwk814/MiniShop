@@ -74,7 +74,7 @@
                         <c:when test="${fn:length(productList) == 0}">
                             <div class="col-sm-12 col-md-12 col-lg-12 d-flex">
                                 <div class="product d-flex flex-column text-center">
-                                    <span class="fa fa-ban fa-5x"></span>
+                                    <span class="fa fa-frown-o fa-5x"></span>
                                     <h5>판매 중인 상품이 없습니다. 조건을 변경해 보세요!</h5>
                                 </div>
                             </div>
