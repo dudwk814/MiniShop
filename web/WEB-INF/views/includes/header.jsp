@@ -1,130 +1,210 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-04
-  Time: 오후 9:32
+  Date: 2020-10-27
+  Time: 오후 5:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
+    <title>Minishop</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Shop Homepage - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <%--<link href="/resources/shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="/resources/shop/css/shop-homepage.css" rel="stylesheet">
-
-    <!-- icomoon.io icon -->
-    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
 
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="/resources/shop/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/shop/css/animate.css">
+
+    <link rel="stylesheet" href="/resources/shop/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/resources/shop/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/resources/shop/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/resources/shop/css/aos.css">
+
+    <link rel="stylesheet" href="/resources/shop/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/resources/shop/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/resources/shop/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="/resources/shop/css/flaticon.css">
+    <link rel="stylesheet" href="/resources/shop/css/icomoon.css">
+    <link rel="stylesheet" href="/resources/shop/css/style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/starrr.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+
+    <link rel="stylesheet" href="/resources/toastr-master/build/toastr.css">
+
+
+
+    <style>
+        .select-img img {
+            margin: 20px 100px 0;
+        }
+
+        .uploadResult {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .uploadResult ul {
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            vertical-align: top;
+            overflow: auto;
+        }
+
+        .uploadResult ul li {
+            list-style: none;
+            padding: 10px;
+            margin-left: 2em;
+        }
+
+        .uploadResult ul li img {
+            width: 100px;
+        }
+
+
+    </style>
+    <script src="/resources/shop/js/jquery.min.js"></script>
+    <script src="/resources/ckeditor/ckeditor.js"></script>
 </head>
+<body class="goto-here">
 
-<body>
-<script src="/resources/shop/vendor/jquery/jquery.min.js"></script>
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="${root}">Mini Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" href="${root}">Minishop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu">MENU</span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="${root}">shop
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
 
+                <li class="nav-item"><a href="/board/list" class="nav-link"><i class="fa fa-th-list fa-lg" aria-hidden="true"></i>&nbsp;게시판</a></li>
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="/board/list">Board</a>
-                </li>
+                <li class="nav-item"><a href="/shop" class="nav-link"><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i>&nbsp;상품</a></li>
 
-                <li class="nav-item active">
-                    <div class="dropdown nav-link">
-                        <span class="lnr lnr-user dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%-- 로그인 안 한 경우 로그인 모달 생성 --%>
+                <sec:authorize access="isAnonymous()">
+                    <li class="nav-item"><a href="#" class="nav-link loginBtn"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니<span
+                            class="badge badge-success">${cartCount}</span></a></li>
+                </sec:authorize>
 
-                        </span>
-                        <div class="dropdown-menu">
-                            <sec:authorize access="isAnonymous()">
-                                <a class="dropdown-item lnr lnr-users" href="/user/joinForm"> 회원가입</a>
-                                <a class="dropdown-item lnr lnr-user" href="/user/loginForm"> 로그인</a>
-                            </sec:authorize>
-                            <sec:authorize access="isAuthenticated()">
-                                <h6 class="dropdown-header"><i class="lnr lnr-license"></i>&nbsp; <sec:authentication property="principal.member.userName"/></h6>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item lnr lnr-cart">  장바구니</a>
-                                <a id="logoutBtn" class="dropdown-item lnr lnr-exit" href="/user/logout">  로그아웃</a>
-                                <a class="dropdown-item lnr lnr-users" href="/user/checkMemberForm">  회원 설정</a>
-                            </sec:authorize>
-                        </div>
-                    </div>
-                    <%--<a class="nav-link dropdown" href="/user/loginForm">
-                        <span class="lnr lnr-user"></span></a>--%>
-                </li>
+                <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item"><a
+                            href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>"
+                            class="nav-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
+                </sec:authorize>
 
+                <sec:authorize access="isAnonymous()">
+                    <li class="nav-item"><a href="#" class="nav-link loginBtn" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;로그인</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item"><a href="/admin/page" class="nav-link"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>&nbsp;관리자</a></li>
+                    </sec:authorize>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;회원</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown05">
+                            <a class="dropdown-item" href="/user/checkMemberForm"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;회원 정보</a>
+                            <a class="dropdown-item"
+                               href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;주문
+                                내역</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/user/logout" class="dropdown-item" id="logoutBtn">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;로그아웃
+                            </a>
+                        </ul>
+                    </li>
+
+                </sec:authorize>
             </ul>
         </div>
     </div>
 </nav>
+<!-- END nav -->
 
-<br/>
-
-<script>
-    $(document).ready(function (e) {
-        var logoutBtn = $("#logoutBtn");
-
-        logoutBtn.on("click", function (e) {
-            e.preventDefault();
-
-            var newForm = $('<form></form>');
-            newForm.attr("action", "/user/logout");
-            newForm.attr("method", "post");
-            newForm.appendTo('body');
-
-            var input = $('<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>');
-
-            newForm.append(input);
-
-            newForm.submit();
-
-        });
-    }) ;
-</script>
-
-<!-- Page Content -->
-<div class="container">
-
-    <div class="row">
-
-        <div class="col-lg-3">
-
-            <h1 class="my-4">Mini Shop</h1>
-            <div class="list-group">
-                <a href="#" class="list-group-item">Nike</a>
-                <a href="#" class="list-group-item">Adidas</a>
-                <a href="#" class="list-group-item">Reebok</a>
-                <a href="#" class="list-group-item">Brooks</a>
+<!--로그인 Modal -->
+<div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">로그인</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
+            <form action="/login" method="POST" class="register-form" id="login-form">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="userid">아이디</label>
+                        <input type="text" class="form-control rounded" name="userid" id="userid" placeholder="Your ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userpw">비밀번호</label>
+                        <input type="password" class="form-control rounded" name="userpw" id="userpw" placeholder="Password"/>
+                    </div>
+
+
+                    <div class="form-check">
+
+                        <input class="form-check-input" name="remember-me" id="remember-me" type="checkbox" value=""
+                               id="defaultCheck1">
+                        <a class="float-right" href="/user/joinForm">회원가입</a>
+                        <label class="form-check-label" for="defaultCheck1">
+                            <span>로그인 유지</span>
+                        </label>
+                    </div>
+
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary">로그인</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var modal = $("#loginModal");
+
+        $(".loginBtn").on("click", function (e) {
+            e.preventDefault();
+
+            modal.modal("show");
+        })
 
 
 
-        <!-- /.col-lg-3 -->
+    });
+</script>

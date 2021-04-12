@@ -12,7 +12,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
-<%@ include file="includes/header2.jsp"%>
+<%@ include file="includes/header.jsp"%>
 
 <div class="hero-wrap hero-bread" style="background-image: url('/resources/shop/images/bg_6.jpg');">
     <div class="container">

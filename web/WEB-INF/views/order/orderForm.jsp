@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ include file="../includes/header2.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 
 
 <div class="hero-wrap hero-bread" style="background-image: url('/resources/shop/images/bg_6.jpg');">

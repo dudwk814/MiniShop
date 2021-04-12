@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<%@ include file="../../includes/header2.jsp" %>
+<%@ include file="../../includes/header.jsp" %>
 
 
 <br/><br/><br/><br/>

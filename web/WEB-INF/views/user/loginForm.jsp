@@ -1,107 +1,171 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-03
-  Time: 오후 2:55
+  Date: 2021-03-23
+  Time: 오후 8:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
-
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="/resources/userForm/fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="/resources/userForm/css/style.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-
-    <link rel="stylesheet" href="/resources/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/css/animate.css">
-
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/resources/css/magnific-popup.css">
-
-    <link rel="stylesheet" href="/resources/css/aos.css">
-
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
+<%@ include file="../includes/header.jsp" %>
 
 
-    <link rel="stylesheet" href="/resources/css/flaticon.css">
-    <link rel="stylesheet" href="/resources/css/icomoon.css">
-    <link rel="stylesheet" href="/resources/css/style.css">
-</head>
-<body>
-
-<div class="main">
-
-
-    <!-- Sing in  Form -->
-    <section class="sign-in">
-        <div class="container">
-            <a class="navbar-brand" href="${root}"><h1>Minishop</h1></a>
-
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure><img src="/resources/userForm/images/signin-image.jpg" alt="sing up image"></figure>
-                    <a href="/user/joinForm" class="signup-image-link">회원가입</a>
-                    <a href="/user/findPasswordForm" class="signup-image-link">비밀번호 찾기</a>
-                </div>
-
-                <div class="signin-form">
-                    <h2 class="form-title">Sign up</h2>
-                    <form action="/login" method="POST" class="register-form" id="login-form">
-                        <div class="form-group">
-                            <label for="userid"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="userid" id="userid" placeholder="Your ID"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="userpw" id="userpw" placeholder="Password"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                        </div>
-                        <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="로그인"/>
-                        </div>
-
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    </form>
-
-                    <div class="social-login">
-                        <span class="social-label">Or SignUp with</span>
-                        <ul class="socials">
-                            <%--<li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>--%>
-                            <li><a href="${google_url}"
-                                   id="googleLoginBtn"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                        </ul>
-                    </div>
-
-                </div>
+<div class="hero-wrap hero-bread" style="background-image: url('/resources/shop/images/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span> <span>Login</span></p>
+                <h1 class="mb-0 bread">Login Form</h1>
             </div>
         </div>
-    </section>
-
+    </div>
 </div>
 
-<!-- JS -->
-<script src="/resources/userForm/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/userForm/js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-</html>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-lg-center">
+
+            <div class="card col-md-9">
+                <div class="card-header text-center">
+                    로그인
+                </div>
+                <div class="card-body">
+                    <form action="/login" method="post" id="LoginForm">
+                        <div class="form-group row">
+                            <label for="loginUserid" class="col-sm-3 col-form-label">아이디</label>
+                            <div class="col-sm-8 userid-form-group">
+                                <input type="text" class="form-control rounded userid" id="loginUserid" name="userid" value="<c:out value="${userid}"/>"
+                                       placeholder="아이디를 입력하세요!" data-name="아이디"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="loginUserpw" class="col-sm-3 col-form-label">비밀번호</label>
+                            <div class="col-sm-8 userpw-form-group">
+                                <input type="password" class="form-control rounded" name="userpw" id="loginUserpw"
+                                       placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-check">
+
+                            <input class="form-check-input" name="remember-me" id="remember-me" type="checkbox" value=""
+                                   id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                <span>로그인 유지</span>
+                            </label>
+                        </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
+                        <a class="float-left" href="/user/joinForm">회원가입</a>
+                        <button type="submit" class="btn btn-outline-primary float-right">로그인</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function (e) {
+
+        $("input[type='password']").removeClass("is-invalid");
+        $("input[type='text']").removeClass("is-invalid");
+
+        <!-- 아이디 input 창 한글 & 특수문자 방지 -->
+        $("#loginUserid").keyup(function(event){
+            if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                var inputVal = $(this).val();
+                var pattern_kr = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+                var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/;
+
+                if(pattern_kr.test(inputVal) || pattern_spc.test(inputVal)){
+                    $(this).val("");
+                }
+            }
+        });
+
+
+        <!-- 로그인 버튼 클릭 시 -->
+        $("button[type='submit']").on("click", function (e) {
+            e.preventDefault();
+
+            if ($("#loginUserid").val().trim() == "") {
+                alert("아이디를 입력해주세요.");
+
+
+                return;
+            } else if ($("#loginUserpw").val().trim() == "") {
+                alert("비밀번호를 입력해주세요.");
+
+                $("#loginUserid").removeClass("is-invalid");
+                $("#loginUserpw").addClass("is-invalid");
+                $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 확인해주세요.</div>");
+                return;
+            }
+
+            $("#LoginForm").submit();
+        });
+
+        if('${ERRORMSG}' == '1') {
+
+            $("input[type='text']").addClass("is-invalid");
+
+            $(".userid-form-group").append("<div class='invalid-tooltip'>아이디를 확인해주세요.</div>");
+            Command: toastr["error"]("아이디를 확인해주세요.", "계정이 존재하지 않습니다.")
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        } else if ('${ERRORMSG}' == '2') {
+            $("input[type='password']").addClass("is-invalid");
+
+            $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 확인해주세요.</div>");
+
+            Command: toastr["error"]("비밀번호를 확인해주세요.", "비밀번호가 틀립니다.")
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
+
+
+
+    });
+</script>
+
+<%@ include file="../includes/footer.jsp" %>

@@ -22,17 +22,17 @@
     <security:http pattern="/resources/**" security="none"/>
 
     <security:http auto-config="true">
-        <security:intercept-url pattern="/user/checkMemberForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
-        <security:intercept-url pattern="/user/modifyForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
+        <security:intercept-url pattern="/member/checkMemberForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
+        <security:intercept-url pattern="/member/modifyForm" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
 
         <security:intercept-url pattern="/cart/cart" access="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"/>
 
-        <security:intercept-url pattern="/user/joinForm" access="isAnonymous()"/>
-        <security:intercept-url pattern="/user/loginForm2" access="permitAll()"/>
+        <security:intercept-url pattern="/member/joinForm" access="isAnonymous()"/>
+        <security:intercept-url pattern="/member/loginForm2" access="permitAll()"/>
 
 
         <security:access-denied-handler ref="customAccessDenied"/>
-        <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" authentication-failure-handler-ref="loginFailureHandler" username-parameter="userid" password-parameter="userpw"/>
+        <security:form-login login-page="/member/loginForm" authentication-success-handler-ref="customLoginSuccess" authentication-failure-handler-ref="loginFailureHandler" username-parameter="userid" password-parameter="userpw"/>
         <security:logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/" delete-cookies="remember,JSESSION_ID"/>
         <security:remember-me data-source-ref="dataSource"/>
 

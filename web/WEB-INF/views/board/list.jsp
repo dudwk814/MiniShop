@@ -8,7 +8,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<%@ include file="../includes/header2.jsp" %>
+<%@ include file="../includes/header.jsp" %>
 
 <br/><br/><br/><br/>
 
@@ -82,12 +82,12 @@
                                 <table class="table table-borderless table-hover" id="dataTable">
                                     <thead>
                                     <tr>
-                                        <th>#번호</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
-                                        <th>작성일</th>
-                                        <th>수정일</th>
-                                        <th>조회수</th>
+                                        <th scope="col">#번호</th>
+                                        <th scope="col">제목</th>
+                                        <th scope="col">작성자</th>
+                                        <th scope="col">작성일</th>
+                                        <th scope="col">수정일</th>
+                                        <th scope="col">조회수</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -96,7 +96,7 @@
                                         <tr class="table-success">
                                             <td align="center">#<c:out value="${notice.nno}"/></td>
                                             <td><a style="color: black;"
-                                                   href="/notice/read?nno=<c:out value='${notice.nno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>">#
+                                                   href="/notice/read?nno=<c:out value='${notice.nno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'/>">
                                                 <c:out value="${notice.title}"/></a></td>
                                             <td align="center"><c:out value="${notice.writer}"/></td>
                                             <td align="center"><fmt:formatDate pattern="yyyy-MM-dd"

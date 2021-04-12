@@ -33,7 +33,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
         String userid = httpServletRequest.getParameter(loginidname);
         String userpw = httpServletRequest.getParameter(loginpwdname);
         String errormsg = null;
-        defaultFailureUrl = "/user/loginForm?error";
+        defaultFailureUrl = "/member/loginForm?error";
 
         if (exception instanceof InternalAuthenticationServiceException) {
             errormsg = "1"; // 비밀번호를 잘못 입력했습니다.

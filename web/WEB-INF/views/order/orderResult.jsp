@@ -11,7 +11,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contentType}/"/>
 
-<%@ include file="../includes/header2.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 
 <section class="ftco-section ftco-cart">
     <div class="container">

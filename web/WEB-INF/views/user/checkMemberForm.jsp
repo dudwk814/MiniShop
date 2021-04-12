@@ -1,90 +1,145 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-14
-  Time: 오후 7:58
+  Date: 2021-03-15
+  Time: 오후 4:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
+<%@ include file="../includes/header.jsp" %>
+<div class="hero-wrap hero-bread" style="background-image: url('/resources/shop/images/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span></p>
+                <h1 class="mb-0 bread">checkMember Form</h1>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-lg-center">
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="/resources/userForm/fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="/resources/userForm/css/style.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-
-    <link rel="stylesheet" href="/resources/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/css/animate.css">
-
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/resources/css/magnific-popup.css">
-
-    <link rel="stylesheet" href="/resources/css/aos.css">
-
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
-
-
-    <link rel="stylesheet" href="/resources/css/flaticon.css">
-    <link rel="stylesheet" href="/resources/css/icomoon.css">
-    <link rel="stylesheet" href="/resources/css/style.css">
-</head>
-<body>
-
-
-<div class="main">
-
-
-    <!-- Sign up form -->
-    <section class="signup">
-        <div class="container">
-            <a class="navbar-brand" href="${root}"><h1 style="color: black; text-decoration: none;">MiniShop</h1></a>
-
-            <div class="signup-content">
-                <div class="signup-form">
-                    <h2 class="form-title">사용자 비밀번호 확인</h2>
-                    <form action="${root}user/modifyForm" method="post" class="register-form" id="register-form">
-                        <div class="form-group">
-                            <label for="userid"><i class="zmdi zmdi-account-circle"></i></label>
-                            <input type="text" name="userid" id="userid" placeholder="Your ID" value="<sec:authentication property="principal.member.userid"/>" readonly/>
+            <div class="card col-md-9">
+                <div class="card-header text-center">
+                    비밀번호 확인
+                </div>
+                <div class="card-body">
+                    <form action="${root}user/modifyForm" method="post" id="checkForm">
+                        <div class="form-group row">
+                            <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!" readonly data-name="아이디" value="<sec:authentication property='principal.member.userid'/>"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="userpw" id="userpw" placeholder="비밀번호를 입력해주세요."/>
+
+                        <div class="form-group row userpw-form-group">
+                            <label for="checkUserpw" class="col-sm-3 col-form-label">비밀번호</label>
+                            <div class="col-sm-7" id="password-filed">
+                                <input type="password" class="form-control" name="userpw" id="checkUserpw" placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
+                            </div>
                         </div>
-                        <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="확인"/>
-                        </div>
+
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
+                        <div>
+                            <button type="submit" id="checkPasswordBtn" class="btn btn-primary">비밀번호 확인</button>
+                        </div>
+
                     </form>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
+<script>
+    $(document).ready(function (e) {
+       var password = $("#checkUserpw");
 
+       var checkPasswordBtn = $("#checkPasswordBtn");
 
-</div>
+       var passwordFiled = $("#password-filed");
 
+        // RedirectAttributes로 부터 전달받은 값
+        var result = '<c:out value="${result}"/>';
 
+        checkModal(result);
 
-<!-- JS -->
-<script src="/resources/userForm/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/userForm/js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-</html>
+        function checkModal(result) {
+
+            if (result === '') {
+                return;
+            }
+
+            $("input[type='password']").addClass("is-invalid");
+
+            $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 확인해주세요.</div>");
+
+            Command: toastr["error"]("비밀번호를 확인해주세요.", "비밀번호가 틀립니다.")
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
+
+       checkPasswordBtn.on("click", function (e) {
+
+           var str = "";
+
+           e.preventDefault();
+
+           if (password.val().trim() == '') {
+               $("input[type='password']").addClass("is-invalid");
+
+               $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 확인해주세요.</div>");
+
+               Command: toastr["error"]("비밀번호를 확인해주세요.", "비밀번호를 입력해주세요.")
+
+               toastr.options = {
+                   "closeButton": true,
+                   "debug": false,
+                   "newestOnTop": false,
+                   "progressBar": false,
+                   "rtl": false,
+                   "preventDuplicates": false,
+                   "onclick": null,
+                   "showDuration": 300,
+                   "hideDuration": 1000,
+                   "timeOut": 0,
+                   "extendedTimeOut": 0,
+                   "showEasing": "swing",
+                   "hideEasing": "linear",
+                   "showMethod": "fadeIn",
+                   "hideMethod": "fadeOut"
+               }
+               return;
+           }
+
+           $("#checkForm").submit();
+
+       });
+    });
+</script>
+<%@ include file="../includes/footer.jsp" %>

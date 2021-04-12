@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-<%@ include file="../includes/header2.jsp" %>
+<%@ include file="../includes/header.jsp" %>
 
 
 <br/><br/><br/><br/>
@@ -100,11 +100,15 @@
                             <summary>
                                 <sec:authorize access="isAnonymous()">
                                     <strong>비회원은 댓글을 작성할 수 없습니다. <a href="#" class="loginBtn"> [로그인]</a> </strong>
-                                </sec:authorize>
-                                <strong>댓글 작성</strong>
                             </summary><br/>
+                                </sec:authorize>
+
+
                             <sec:authorize access="isAuthenticated()">
-                                <input type="text" class="form-control" name="reply" id="replyContent" placeholder="댓글을 작성해주세요.">
+                                    <strong>댓글 작성</strong>
+                                </summary><br/>
+
+                                    <input type="text" class="form-control" name="reply" id="replyContent" placeholder="댓글을 작성해주세요.">
                             </sec:authorize>
                             <a href="#" class="btn btn-link float-right replyRegBtn">등록</a>
                         </details>

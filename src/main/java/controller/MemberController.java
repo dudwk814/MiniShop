@@ -1,15 +1,8 @@
 package controller;
 
-import domain.AddressVO;
 import domain.MemberVO;
-import domain.ReplyVO;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,8 +20,6 @@ import service.MemberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 @Controller
 @RequestMapping("/user/")
@@ -50,7 +41,7 @@ public class MemberController {
 
         log.info("Move to JoinForm");
 
-        return "user/joinForm2";
+        return "user/joinForm";
     }
 
     // 회원 가입
@@ -60,7 +51,7 @@ public class MemberController {
         log.info("Joined  " + vo.getUserid());
         int register = memberService.register(vo);
 
-        rttr.addFlashAttribute("result", register);
+        rttr.addFlashAttribute("result", vo.getUserid() + "님의 회원가입을 축하합니다!");
 
         return "redirect:/";
     }
@@ -93,7 +84,7 @@ public class MemberController {
 
         log.info("Move to LoginForm");
 
-        return "user/loginForm2";
+        return "user/loginForm";
     }
 
     // 회원 정보 체크
@@ -103,7 +94,7 @@ public class MemberController {
 
         log.info("Move to checkMemberForm");
 
-        return "/user/checkMemberForm2";
+        return "/user/checkMemberForm";
     }
 
     // 회원 정보 변경 폼으로 이동
@@ -123,9 +114,9 @@ public class MemberController {
         if (matches) {
             model.addAttribute("member", member);
 
-            return "/user/modifyForm2";
+            return "/user/modifyForm";
         } else {
-            rttr.addFlashAttribute("msg", "비밀번호가 틀립니다.");
+            rttr.addFlashAttribute("result", "비밀번호가 틀립니다.");
             return "redirect:/user/checkMemberForm";
         }
 
@@ -139,7 +130,7 @@ public class MemberController {
 
         int modify = memberService.modify(vo);
 
-        rttr.addFlashAttribute("result", modify);
+        rttr.addFlashAttribute("result", vo.getUserid() + "님의 비밀번호가 성공적으로 변경되었습니다.");
 
         return "redirect:/";
     }
@@ -147,17 +138,19 @@ public class MemberController {
     // 회원 탈퇴
     @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @PostMapping("/remove")
-    public String remove(String userid) {
+    public String remove(String userid, RedirectAttributes rttr) {
 
         log.info("Removed Member for " + userid);
 
         memberService.remove(userid);
 
+        rttr.addFlashAttribute("result", userid + "님의 회원탈퇴가 정상적으로 처리되었습니다.");
+
         return "redirect:/user/logout";
     }
 
     // 로그아웃
-    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')") 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -209,7 +202,7 @@ public class MemberController {
 
         int result = memberService.modifyPassword(vo);
 
-        rttr.addFlashAttribute("result", result);
+        rttr.addFlashAttribute("result",  "비밀번호가 성공적으로 변경 되었습니다.");
 
         return "redirect:/";
     }

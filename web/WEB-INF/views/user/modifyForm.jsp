@@ -1,150 +1,112 @@
 <%--
   Created by IntelliJ IDEA.
   User: PCY
-  Date: 2020-10-18
-  Time: 오후 5:42
+  Date: 2021-03-15
+  Time: 오후 5:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
-
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="/resources/userForm/fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="/resources/userForm/css/style.css">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-
-    <%--<link rel="stylesheet" href="/resources/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/css/animate.css">
-
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/resources/css/magnific-popup.css">
-
-    <link rel="stylesheet" href="/resources/css/aos.css">
-
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
+<%@ include file="../includes/header.jsp" %>
 
 
-    <link rel="stylesheet" href="/resources/css/flaticon.css">
-    <link rel="stylesheet" href="/resources/css/icomoon.css">
-    <link rel="stylesheet" href="/resources/css/style.css">--%>
+<div class="hero-wrap hero-bread" style="background-image: url('/resources/shop/images/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span> <span>Modify</span></p>
+                <h1 class="mb-0 bread">Modify Form</h1>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- JS -->
-    <script src="/resources/userForm/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/userForm/js/main.js"></script>
-</head>
-<body>
-<div class="main">
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-lg-center">
 
-
-    <!-- Sing in  Form -->
-    <section class="sign-in">
-        <div class="container">
-            <a class="navbar-brand" style="color: black;" href="${root}">Minishop</a>
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#ftco-nav"
-                    aria-controls="ftco-nav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-            </button>
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure><img src="/resources/userForm/images/signin-image.jpg" alt="sing up image"></figure>
-                    <%--<a href="/user/joinForm" class="signup-image-link">Create an account</a>--%>
-                    <form action="/user/remove" method="post" id="removeForm">
-                        <input type="hidden" name="userid" value="<sec:authentication property="principal.member.userid"/>">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <button id="removeMemberBtn" class="btn btn-danger">회원탈퇴</button>
-                    </form>
+            <div class="card col-md-9">
+                <div class="card-header text-center">
+                    회원정보 변경
                 </div>
+                <div class="card-body">
+                    <form action="/user/modify" method="post" id="modifyForm">
+                        <h5>회원 기본 정보</h5>
+                        <div class="form-group row">
+                            <label for="userName" class="col-sm-3 col-form-label">이름</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="userName" id="joinUserName" readonly placeholder="이름을 입력하세요!" value="<c:out value="${member.userName}"/>" data-name="이름"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  readonly placeholder="아이디를 입력하세요!" value="<c:out value="${member.userid}"/>" data-name="아이디"/>
+                            </div>
+                        </div>
 
-                <div class="signin-form">
-                    <h2 class="form-title">회원정보 변경</h2>
-                    <form action="/user/modify" method="POST" class="register-form" id="modifyForm">
-                        <div class="form-group">
-                            <label for="userid"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="userid" id="userid" placeholder="Your ID" value="<sec:authentication property="principal.member.userid"/>" readonly/>
+                        <div class="form-group row">
+                            <label for="ModUserpw" class="col-sm-3 col-form-label">비밀번호</label>
+                            <div class="col-sm-7 userpw-form-group">
+                                <input type="password" class="form-control" name="userpw" id="ModUserpw" placeholder="비밀번호를 입력하세요!" data-name="비밀번호"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="userpw"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="userpw"  id="userpw" placeholder="비밀번호"/>
+
+                        <div class="form-group row">
+                            <label for="ModUserpw2" class="col-sm-3 col-form-label">비밀번호 확인</label>
+                            <div class="col-sm-7 userpw-form-group2">
+                                <input type="password" class="form-control" name="userpw2" id="ModUserpw2" placeholder="비밀번호를 재입력해주세요!" data-name="비밀번호 확인"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="userpw2"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="userpw2"  id="userpw2" placeholder="비밀번호 확인"/>
+                        <br/>
+
+
+
+                        <div class="form-group tagcloud">
+                            <span style="font-size: large; color: black;">배송지 주소
+
+                            </span>
+                            <a style="color: black;" type="button" onclick="sample4_execDaumPostcode()" class="tag-cloud-link float-right">우편번호 찾기</a>
                         </div>
+
                         <div class="form-group">
-                            <label for="userName"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="userName" id="userName" value="<sec:authentication property="principal.member.userName"/>" readonly/>
+                            <label for="postcode">우편번호</label>
+                            <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" value="<c:out value="${member.post_code}"/>" placeholder="우편번호" data-name="우편번호">
                         </div>
+
+                        <div class="form-group">
+                            <label for="country">도로명 주소</label>
+                            <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" value="<c:out value="${member.street_address}"/>" placeholder="도로명주소" data-name="도로명주소">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="streetaddress">지번주소</label>
+                            <input type="text" id="sample4_jibunAddress" name="address" class="form-control" value="<c:out value="${member.address}"/>" placeholder="지번주소" data-name="지번주소">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="streetaddress">상세주소</label>
+                            <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" value="<c:out value="${member.detail_address}"/>" placeholder="상세주소" data-name="상세주소">
+                        </div>
+
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
                         <div>
-                            &nbsp;
+                            <button type="button" id="removeMemberBtn" class="btn btn-danger float-left">회원 탈퇴</button>
+                            <button type="submit" id="modMemberBtn" class="btn btn-primary float-right">회원 정보 변경</button>
                         </div>
 
-
-                        <div class="form-group">
-                            <button type="button" onclick="sample4_execDaumPostcode()" class="btn btn-info pull-right">우편번호 찾기</button><br>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="postcode"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_postcode" value="${member.post_code}" name="post_code" class="text-body" placeholder="우편번호">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="country"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_roadAddress" value="${member.street_address}" name="street_address"  placeholder="도로명주소">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="streetaddress"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_jibunAddress" value="${member.address}" name="address"  placeholder="지번주소">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="streetaddress"><i class="zmdi zmdi-truck"></i></label>
-                            <input type="text" id="sample4_detailAddress" value="${member.detail_address}" name="detail_address"  placeholder="상세주소">
-                        </div>
-
-                        <div class="form-group form-button">
-                            <input type="submit" name="signup" id="modBtn" class="form-submit" value="회원 정보 변경"/>
-                        </div>
-
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
                 </div>
             </div>
+
         </div>
-    </section>
-
-</div>
-
-
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    </div>
+</section>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -204,60 +166,126 @@
         }).open();
     }
 </script>
-
 <script>
-    $(document).ready(function () {
-        var form = $("#removeForm");
-        var removeBtn = $("#removeMemberBtn");
+    $(document).ready(function (e) {
 
-        // 회원탈퇴 함수
-        removeBtn.on("click", function (e) {
-
-            if(confirm("정말 회원탈퇴 하시겠습니까?") == true) {
-                form.submit();
-            }
-        });
-
-        // 사용자 변경 폼
-        var modifyForm = $("#modifyForm");
-
-        // 사용자 변경 버튼
-        var modBtn = $("#modBtn");
-
-        // 사용자 비밀번호
-        var inputUserpw = $("#userpw");
-        var inputUserpw2 = $("#userpw2");
-
-        // 사용자 주소 관련 변수
-        var post_code = $("input[name='post_code']");
-        var street_address = $("input[name='street_address']");
-        var address = $("input[name='address']");
-        var detail_address = $("input[name='detail_address']");
-
-        // 회원 정보 변경 함수
-        modBtn.on("click", function (e) {
+        <!-- 회원 정보 변경 버튼 클릭 시 회원 비밀번호 & 주소 정보 변경 -->
+        $("#modMemberBtn").on("click", function (e) {
             e.preventDefault();
 
-            // 비밀번호 정합성 검증
-            if(inputUserpw.val().trim() == "" || inputUserpw2.val().trim() == "") { // 비밀번호 칸이 비어있는 경우
-                alert("변경할 비밀번호를 입력해주세요.");
-                return;
-            } else if (inputUserpw != inputUserpw2) { // 비밀번호가 서로 다른 경우
-                alert("비밀번호를 정확히 입력해주세요.");
-                return;
-            }
 
-            // 주소 정합성 검증
-            if (post_code.val().trim() == "" || street_address.val().trim() == "" | address.val().trim() == "" | detail_address.val().trim() == "") {
-                alert("주소 정보를 입력해주세요.");
-                return;
-            }
+            if (confirm("비밀번호를 변경하시겠습니까?")) {
 
-            if (confirm("회원정보를 변경하시겠습니까?") == true) {
-                modifyForm.submit();
-            }
+                if ($("#ModUserpw").val().trim() == '') {
+
+                    $("#ModUserpw").addClass("is-invalid");
+
+                    $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 입력해주세요.</div>");
+
+
+                    Command: toastr["error"]("비밀번호를 입력해주세요.", "비밀번호를 확인해주세요.");
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "rtl": false,
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 0,
+                        "extendedTimeOut": 0,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+
+                    return;
+                } else if ($("#ModUserpw").val().trim().length < 4) {
+
+                    $(".invalid-tooltip").remove();
+
+                    $("#ModUserpw").addClass("is-invalid");
+
+                    $(".userpw-form-group").append("<div class='invalid-tooltip'>비밀번호를 4글자 이상 입력해주세요.</div>");
+
+
+                    Command: toastr["error"]("비밀번호를 4글자 이상 입력해주세요.", "비밀번호를 확인해주세요.");
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "rtl": false,
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 0,
+                        "extendedTimeOut": 0,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+
+                    return;
+                }
+
+
+                if ($("#ModUserpw").val().trim() != $("#ModUserpw2").val().trim()) {
+
+                    $("#ModUserpw").removeClass("is-invalid");
+
+                    $("#ModUserpw2").addClass("is-invalid");
+
+                    $(".userpw-form-group2").append("<div class='invalid-tooltip'>비밀번호를 일치하지않습니다.</div>");
+
+                    Command: toastr["error"]("비밀번호를 확인해주세요.", "비밀번호가 일치하지않습니다..");
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "rtl": false,
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 0,
+                        "extendedTimeOut": 0,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                    return;
+                }
+
+                $("#modifyForm").submit();
+            };
+
         });
 
-    });
+        $("#removeMemberBtn").on("click", function (e) {
+            e.preventDefault();
+
+            $("#modifyForm").attr("action", "/user/remove");
+
+            if (confirm("정말 회원 탈퇴하시겠습니까?") == true) {
+                $("#modifyForm").submit();
+            }
+
+        });
+
+
+    })
 </script>
-</html>
+<%@ include file="../includes/footer.jsp" %>
