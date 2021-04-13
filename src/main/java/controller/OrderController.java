@@ -2,25 +2,18 @@ package controller;
 
 import domain.*;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import mapper.AddressMapper;
-import mapper.OrderMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import service.AddressService;
 import service.CartService;
-import service.MemberService;
+import service.UserService;
 import service.OrderService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,17 +23,23 @@ import java.util.List;
 @Log4j
 public class OrderController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
     private final CartService cartService;
 
     private final OrderService orderService;
 
+    /**
+     * 주문 폼으로 이동
+     * @param userid
+     * @param model
+     * @return
+     */
     @GetMapping("/orderForm")
     public String orderForm(@RequestParam("userid") String userid, Model model) {
 
         // 회원 정보 (주소 불러오기)
-        MemberVO user = memberService.read(userid);
+        UserVO user = userService.read(userid);
 
         // 장바구니 목록 불러오기
         List<CartVO> list = cartService.cartList(userid);
@@ -69,6 +68,14 @@ public class OrderController {
         return "order/orderForm";
     }
 
+    /**
+     * 주문
+     * @param orderVO
+     * @param orderDetailsVO
+     * @param model
+     * @param rttr
+     * @return
+     */
     @Transactional
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @PostMapping("order")
@@ -101,6 +108,13 @@ public class OrderController {
         return "redirect:/order/order?orderId=" + orderId;
     }
 
+    /**
+     *
+     * @param model
+     * @param orderId
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @GetMapping("/order")
     public String orderGet(Model model, String orderId, RedirectAttributes rttr) {
@@ -122,7 +136,7 @@ public class OrderController {
 
 
 
-    @PreAuthorize("isAuthenticated() and ((#userid == principal.member.userid) or hasAnyRole('ROLE_ADMIN'))")
+    @PreAuthorize("isAuthenticated() and ((#userid == principal.user.userid) or hasAnyRole('ROLE_ADMIN'))")
     @GetMapping("/getOrderList")
     public String getOrder(String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 

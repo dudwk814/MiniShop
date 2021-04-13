@@ -1,24 +1,20 @@
 package security;
 
-import domain.MemberVO;
+import domain.UserVO;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-import mapper.MemberMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import mapper.UserMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import security.domain.CustomUser;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Log4j
 @RequiredArgsConstructor
 public class  CustomUserDetailsService implements UserDetailsService {
 
-    private final MemberMapper memberMapper;
+    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -26,7 +22,7 @@ public class  CustomUserDetailsService implements UserDetailsService {
         log.warn("Load User By UserName : " + userName);
 
         // userName means userid
-        MemberVO vo = memberMapper.get(userName);
+        UserVO vo = userMapper.get(userName);
 
         log.warn("queried by member mapper : " + vo);
 

@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.MemberMapper">
-    <resultMap id="memberMap" type="domain.MemberVO">
+<mapper namespace="mapper.UserMapper">
+    <resultMap id="memberMap" type="domain.UserVO">
         <id property="userid" column="userid"/>
         <result property="userid" column="userid"/>
         <result property="userpw" column="userpw"/>
@@ -25,72 +25,72 @@
 
     <!-- 회원가입시 중복 유저 찾기 -->
     <select id="findUser" resultType="int">
-        select count(*) from tbl_member where userid = #{userid}
+        select count(*) from tbl_user where userid = #{userid}
     </select>
 
     <!-- 회원 정보 조회 -->
-    <select id="getMember" resultType="domain.MemberVO">
-        select userid, userpw, userName, regDate, updateDate, enabled, post_code, street_address, address, detail_address  from tbl_member where userid = #{userid}
+    <select id="getUser" resultType="domain.UserVO">
+        select userid, userpw, userName, regDate, updateDate, enabled, post_code, street_address, address, detail_address  from tbl_user where userid = #{userid}
     </select>
 
     <!-- 비밀번호 찾기 -->
-    <select id="findPassword" resultType="domain.MemberVO">
-        select * from tbl_member where userid = #{userid} and userName = #{userName}
+    <select id="findPassword" resultType="domain.UserVO">
+        select * from tbl_user where userid = #{userid} and userName = #{userName}
     </select>
 
     <!-- 비밀번호 찾기 후 변경 -->
     <update id="modifyPassword">
-        update tbl_member set userpw = #{userpw} where userid = #{userid}
+        update tbl_user set userpw = #{userpw} where userid = #{userid}
     </update>
 
     <!-- 로그인 -->
     <select id="get" resultMap="memberMap">
         SELECT mem.userid, userpw, username,  enabled, regdate, updatedate, auth, post_code, street_address, address, detail_address
-        FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth ON mem.userid = auth.userid
+        FROM tbl_user mem LEFT OUTER JOIN tbl_user_auth auth ON mem.userid = auth.userid
         WHERE mem.userid = #{userid}
     </select>
 
     <!-- 전체 회원 조회(admin) -->
     <select id="getList" resultMap="memberMap">
         SELECT mem.userid, userpw, username,  enabled, regdate, updatedate, auth, post_code, street_address, address, detail_address
-        FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth ON mem.userid = auth.userid
+        FROM tbl_user mem LEFT OUTER JOIN tbl_user_auth auth ON mem.userid = auth.userid
         WHERE mem.userid = auth.userid
     </select>
 
     <!-- 회원 가입 -->
     <insert id="register">
-        insert into tbl_member(userid, userpw, userName, post_code, street_address, address, detail_address)
+        insert into tbl_user(userid, userpw, userName, post_code, street_address, address, detail_address)
         values (#{userid}, #{userpw}, #{userName}, #{post_code}, #{street_address}, #{address}, #{detail_address})
     </insert>
 
     <!-- 회원 가입시 권한 설정 -->
     <insert id="authRegister">
-        insert into tbl_member_auth (userid, auth) values (#{userid}, 'ROLE_MEMBER')
+        insert into tbl_user_auth (userid, auth) values (#{userid}, 'ROLE_MEMBER')
     </insert>
 
     <!-- 회원 정보 변경 Oracle -->
     <!--<update id="modify">
-        update tbl_member set userpw = #{userpw}, updateDate = sysdate, post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address} where userid = #{userid}
+        update tbl_user set userpw = #{userpw}, updateDate = sysdate, post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address} where userid = #{userid}
     </update>-->
 
 
     <!-- 회원 정보 변경 MariaDB -->
     <update id="modify">
-        update tbl_member set userpw = #{userpw}, post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address} where userid = #{userid}
+        update tbl_user set userpw = #{userpw}, post_code = #{post_code}, street_address = #{street_address}, address = #{address}, detail_address = #{detail_address} where userid = #{userid}
     </update>
 
     <!-- 회원 탈퇴 -->
-    <delete id="removeMember">
-        delete from tbl_member where userid = #{user_id}
+    <delete id="removeUser">
+        delete from tbl_user where userid = #{userid}
     </delete>
 
     <!-- 회원 탈퇴 시 회원 권한 삭제 -->
     <delete id="removeAuth">
-        delete from tbl_member_auth where userid = #{userid}
+        delete from tbl_user_auth where userid = #{userid}
     </delete>
 
     <!-- 회원 권한(Auth) 변경 -->
     <update id="updateAuth">
-        update tbl_member_auth set auth = #{auth} where userid = #{userid}
+        update tbl_user_auth set auth = #{auth} where userid = #{userid}
     </update>
 </mapper>

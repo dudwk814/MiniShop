@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="writer">작성자</label>
-            <input type="writer" class="form-control-plaintext" name="writer" id="writer" placeholder="writer" value="<sec:authentication property="principal.member.userid"/>" readonly>
+            <input type="writer" class="form-control-plaintext" name="writer" id="writer" placeholder="writer" value="<sec:authentication property="principal.user.userid"/>" readonly>
         </div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 

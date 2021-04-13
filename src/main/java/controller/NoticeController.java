@@ -23,7 +23,13 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
-    // 공지 조회
+    /**
+     * 공지 조회
+     * @param nno
+     * @param cri
+     * @param model
+     * @return
+     */
     @GetMapping("/read")
     public String readNotice(Long nno, @ModelAttribute("cri") Criteria cri, Model model) {
 
@@ -35,7 +41,10 @@ public class NoticeController {
     }
 
 
-    // 공지 작성 폼 이동
+    /**
+     * 공지 작성 폼으로 이동
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registerFrom")
     public String registerForm() {
@@ -45,7 +54,11 @@ public class NoticeController {
         return "board/notice/registerFrom";
     }
 
-    // 공지 작성
+    /**
+     * 공지 작성
+     * @param noticeVO
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/register")
     public String register(@ModelAttribute("notice") NoticeVO noticeVO) {
@@ -57,7 +70,13 @@ public class NoticeController {
         return "redirect:/board/list";
     }
 
-    // 공지 수정 폼 이동
+    /**
+     * 공지 수정 폼으로 이동
+     * @param cri
+     * @param nno
+     * @param model
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/modifyForm")
     public String modifyForm(@ModelAttribute("cri") Criteria cri, Long nno, Model model) {
@@ -71,7 +90,12 @@ public class NoticeController {
         return "board/notice/modifyForm";
     }
 
-    // 공지 수정
+    /**
+     * 공지 수정
+     * @param cri
+     * @param vo
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("modify")
     public String modify(@ModelAttribute("cri") Criteria cri, NoticeVO vo) {
@@ -84,7 +108,12 @@ public class NoticeController {
                 "&type=" + cri.getType() + "&keyword=" + cri.getKeyword();
     }
 
-    // 공지 삭제
+    /**
+     * 공지 삭제
+     * @param nno
+     * @param cri
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/remove")
     public String removeNotice(Long nno, @ModelAttribute("cri") Criteria cri) {

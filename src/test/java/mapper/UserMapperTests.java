@@ -1,6 +1,6 @@
 package mapper;
 
-import domain.MemberVO;
+import domain.UserVO;
 import domain.authVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -15,15 +15,15 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
-public class MemberMapperTests {
+public class UserMapperTests {
 
     @Setter(onMethod_ = {@Autowired})
-    private MemberMapper memberMapper;
+    private UserMapper userMapper;
 
     @Test
     public void testRead() {
 
-        MemberVO vo = memberMapper.get("admin");
+        UserVO vo = userMapper.get("admin");
 
         log.info(vo);
 
@@ -35,13 +35,13 @@ public class MemberMapperTests {
 
         String userid = "admin";
 
-        log.info(memberMapper.findUser(userid));
+        log.info(userMapper.findUser(userid));
     }
 
     @Test
     public void testGetList() {
 
-        List<MemberVO> list = memberMapper.getList();
+        List<UserVO> list = userMapper.getList();
 
         list.forEach(memberVO -> log.info(memberVO));
     }
@@ -56,7 +56,7 @@ public class MemberMapperTests {
         vo.setAuth("ROLE_ADMIN");
         vo.setUserid("qwer");
 
-        memberMapper.updateAuth(vo);
+        userMapper.updateAuth(vo);
     }
 
 }

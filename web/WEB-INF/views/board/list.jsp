@@ -75,10 +75,10 @@
 
 
                 <div class="card-body">
-                    <div class="container-fluid">
+                    <div class="container">
                         <div class="row">
 
-                            <div class="table-responsive-sm table-sm">
+                            <div class="table-responsive-md table-md">
                                 <table class="table table-borderless table-hover" id="dataTable">
                                     <thead>
                                     <tr>

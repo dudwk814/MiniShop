@@ -36,4 +36,10 @@ public interface OrderMapper {
     // 오더 디테일 삭제
     public void detailDelete(String order_id);
 
+    // userid에 대한 오더 삭제
+    public void deleteByUserId(String userid);
+
+    // userid에 대한 오더 디테일 삭제
+    public void detailDeleteByUserId(String userid);
+
 }

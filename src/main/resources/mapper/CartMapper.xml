@@ -18,7 +18,7 @@
     <!-- 장바구니 목록 -->
     <select id="cartList" resultType="domain.CartVO">
         select c.cart_id, c.userid, p.product_id, m.username, p.product_name, c.amount, p.product_price, p.product_url, (product_price * amount) money
-        from tbl_member m, tbl_cart c, tbl_product p
+        from tbl_user m, tbl_cart c, tbl_product p
         where m.userid = c.userid and p.product_id = c.product_id and c.userid = #{userid}
         order by c.cart_id
     </select>

@@ -33,8 +33,6 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    private final ReplyMapper replyMapper;
-
     private final NoticeService noticeService;
 
     @GetMapping("/list")
@@ -102,7 +100,7 @@ public class BoardController {
         log.info("Image Upload");
 
         // 랜덤 문자 생성
-        UUID uid = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
 
         OutputStream out = null;
         PrintWriter printWriter = null;
@@ -119,7 +117,7 @@ public class BoardController {
             // 업로드 경로
             String defaultPath = req.getSession().getServletContext().getRealPath("/");
 
-            String ckUploadPath = defaultPath + "resources" + File.separator + "ckUpload" + File.separator + uid + "_" + fileName;
+            String ckUploadPath = defaultPath + "resources" + File.separator + "ckUpload" + File.separator + uuid + "_" + fileName;
 
             out = new FileOutputStream(new File(ckUploadPath));
             out.write(bytes);
@@ -127,7 +125,7 @@ public class BoardController {
 
             String callback = req.getParameter("CKEditorFuncNum");
             printWriter = res.getWriter();
-            String fileUrl = "/resources/ckUpload/" + uid + "_" + fileName;  // 작성화면
+            String fileUrl = "/resources/ckUpload/" + uuid + "_" + fileName;  // 작성화면
 
 
             // 업로드시 메시지 출력

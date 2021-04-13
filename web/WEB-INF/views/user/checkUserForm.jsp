@@ -36,7 +36,7 @@
                         <div class="form-group row">
                             <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!" readonly data-name="아이디" value="<sec:authentication property='principal.member.userid'/>"/>
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  placeholder="아이디를 입력하세요!" readonly data-name="아이디" value="<sec:authentication property='principal.user.userid'/>"/>
                             </div>
                         </div>
 

@@ -23,7 +23,7 @@
         SELECT #{order_id}, product_id, amount, userid from tbl_cart where userid = #{userid}
     </insert>
 
-    <!-- 주문 취소 -->
+    <!-- order_id에 대한 주문 취소 -->
     <delete id="delete">
         delete from tbl_order where order_id = #{order_id}
     </delete>
@@ -31,6 +31,16 @@
     <!-- order_id에 대한 오더 디테일 삭제 -->
     <delete id="detailDelete">
         delete from tbl_order_details where order_id = #{order_id}
+    </delete>
+
+    <!-- userid에 대한 주문 취소 -->
+    <delete id="deleteByUserId">
+        delete from tbl_order where userid = #{userid}
+    </delete>
+
+    <!-- userid에 대한 오더 디테일 삭제 -->
+    <delete id="detailDeleteByUserId">
+        delete from tbl_order_details where userid = #{userid}
     </delete>
 
     <!-- order_id에 대한 오더 조회 -->

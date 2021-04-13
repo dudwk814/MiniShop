@@ -82,7 +82,7 @@
         var writer = '<c:out value="${notice.writer}"/>';
 
         <sec:authorize access="isAuthenticated()">
-        var userid = '<sec:authentication property="principal.member.userid"/>';
+        var userid = '<sec:authentication property="principal.user.userid"/>';
         </sec:authorize>
 
         <!-- 게시글 수정 버튼 클릭 시 /board/modifyForm으로 이동 -->

@@ -39,13 +39,13 @@
                         <div class="form-group row">
                             <label for="userName" class="col-sm-3 col-form-label">이름</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="userName" id="joinUserName" readonly placeholder="이름을 입력하세요!" value="<c:out value="${member.userName}"/>" data-name="이름"/>
+                                <input type="text" class="form-control" name="userName" id="joinUserName" readonly placeholder="이름을 입력하세요!" value="<c:out value="${user.userName}"/>" data-name="이름"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="joinUserid" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  readonly placeholder="아이디를 입력하세요!" value="<c:out value="${member.userid}"/>" data-name="아이디"/>
+                                <input type="text" class="form-control userid" id="joinUserid" name="userid"  readonly placeholder="아이디를 입력하세요!" value="<c:out value="${user.userid}"/>" data-name="아이디"/>
                             </div>
                         </div>
 
@@ -75,22 +75,22 @@
 
                         <div class="form-group">
                             <label for="postcode">우편번호</label>
-                            <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" value="<c:out value="${member.post_code}"/>" placeholder="우편번호" data-name="우편번호">
+                            <input type="text" id="sample4_postcode" name="post_code" class="form-control text-body" value="<c:out value="${user.post_code}"/>" placeholder="우편번호" data-name="우편번호">
                         </div>
 
                         <div class="form-group">
                             <label for="country">도로명 주소</label>
-                            <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" value="<c:out value="${member.street_address}"/>" placeholder="도로명주소" data-name="도로명주소">
+                            <input type="text" id="sample4_roadAddress" name="street_address" class="form-control" value="<c:out value="${user.street_address}"/>" placeholder="도로명주소" data-name="도로명주소">
                         </div>
 
                         <div class="form-group">
                             <label for="streetaddress">지번주소</label>
-                            <input type="text" id="sample4_jibunAddress" name="address" class="form-control" value="<c:out value="${member.address}"/>" placeholder="지번주소" data-name="지번주소">
+                            <input type="text" id="sample4_jibunAddress" name="address" class="form-control" value="<c:out value="${user.address}"/>" placeholder="지번주소" data-name="지번주소">
                         </div>
 
                         <div class="form-group">
                             <label for="streetaddress">상세주소</label>
-                            <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" value="<c:out value="${member.detail_address}"/>" placeholder="상세주소" data-name="상세주소">
+                            <input type="text" id="sample4_detailAddress" name="detail_address" class="form-control" value="<c:out value="${user.detail_address}"/>" placeholder="상세주소" data-name="상세주소">
                         </div>
 
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

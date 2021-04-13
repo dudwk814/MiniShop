@@ -2,20 +2,16 @@ package controller;
 
 import domain.*;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import service.MemberService;
+import service.UserService;
 import service.OrderService;
 import service.ProductService;
 
@@ -28,7 +24,7 @@ import java.util.List;
 @Log4j
 public class AdminController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
     private final ProductService productService;
 
@@ -41,7 +37,7 @@ public class AdminController {
     public String page(Criteria cri, Model model) {
 
         // 멤버 리스트
-        List<MemberVO> memberList = memberService.getList();
+        List<UserVO> memberList = userService.getList();
 
         // 상품 리스트
         List<ProductVO> productList = productService.getProductList(cri);
@@ -64,7 +60,7 @@ public class AdminController {
 
 
         // 회원 권한 등급 변경 성공 시 모달 창 띄우기
-        if(memberService.updateAuth(auth)){
+        if(userService.updateAuth(auth)){
             rttr.addFlashAttribute("result", auth.getUserid());
         }
 

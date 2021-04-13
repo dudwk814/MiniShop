@@ -29,7 +29,7 @@
             <div class="col-xl-10 ftco-animate">
                 <form action="/order/order" id="orderForm" class="billing-form" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="hidden" name="userid" value="<sec:authentication property="principal.member.userid"/>"/>
+                    <input type="hidden" name="userid" value="<sec:authentication property="principal.user.userid"/>"/>
                     <input type="hidden" name="sum_price" value="${AllSumMoney}"/>
                     <h3 class="mb-4 billing-heading">Billing Details</h3>
 
@@ -41,7 +41,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>받는 분 성함</label>
-                                <input type="text" class="form-control" value="<sec:authentication property="principal.member.userName"/>">
+                                <input type="text" class="form-control" value="<sec:authentication property="principal.user.userName"/>">
                             </div>
                         </div>
 

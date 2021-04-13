@@ -60,7 +60,7 @@
                                             <sec:authorize access="isAuthenticated()">
                                                 <form method="post" action="/cart/add" id="addCartForm${product.product_id}">
                                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                                    <input type="hidden" name="userid" value="<sec:authentication property="principal.member.userid"/>"/>
+                                                    <input type="hidden" name="userid" value="<sec:authentication property="principal.user.userid"/>"/>
                                                     <input type="hidden" name="amount" value="1"/>
                                                     <input type="hidden" name="product_name" value="${product.product_name}">
                                                     <input type="hidden" name="product_id" value="${product.product_id}">

@@ -1,17 +1,15 @@
 package common;
 
-import domain.MemberVO;
+import domain.UserVO;
 import lombok.RequiredArgsConstructor;
-import mapper.MemberMapper;
+import mapper.UserMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class EchoHandler extends TextWebSocketHandler {
 
-    private final MemberMapper memberMapper;
+    private final UserMapper userMapper;
 
     List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 
@@ -96,7 +94,7 @@ public class EchoHandler extends TextWebSocketHandler {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;
 
-        MemberVO member = memberMapper.getMember(userDetails.getUsername());
+        UserVO member = userMapper.getUser(userDetails.getUsername());
 
 
         if(member == null) {

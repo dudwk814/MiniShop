@@ -21,7 +21,7 @@
                     <h3 class="billing-heading mb-4">Order Result</h3>
                     <p class="d-flex">
                         <span>성명</span>
-                        <span><sec:authentication property="principal.member.userName"/> </span>
+                        <span><sec:authentication property="principal.user.userName"/> </span>
                     </p>
                     <p class="d-flex">
                         <span>주문 번호</span>

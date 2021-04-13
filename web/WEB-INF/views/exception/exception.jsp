@@ -17,29 +17,12 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a><%--</span> <span>Checkout</span>--%></p>
+                <p class="breadcrumbs"><span class="mr-2"><a href="${root}">Home</a></span></p>
                 <h1 class="mb-0 bread">잘못된 요청입니다.</h1>
                 <h1 class="mb-0 bread">해당 페이지가 반복된다면 잠시 후 다시 시도 하시거나 관리자에게 문의해주세요.</h1>
             </div>
         </div>
     </div>
 </div>
-
-<%--<script src="/resources/shop/js/jquery.min.js"></script>
-<script src="/resources/shop/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/resources/shop/js/popper.min.js"></script>
-<script src="/resources/shop/js/bootstrap.min.js"></script>
-<script src="/resources/shop/js/jquery.easing.1.3.js"></script>
-<script src="/resources/shop/js/jquery.waypoints.min.js"></script>
-<script src="/resources/shop/js/jquery.stellar.min.js"></script>
-<script src="/resources/shop/js/owl.carousel.min.js"></script>
-<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
-<script src="/resources/shop/js/aos.js"></script>
-<script src="/resources/shop/js/jquery.animateNumber.min.js"></script>
-<script src="/resources/shop/js/bootstrap-datepicker.js"></script>
-<script src="/resources/shop/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="/resources/shop/js/google-map.js"></script>
-<script src="/resources/shop/js/main.js"></script>--%>
 
 <%@ include file="../includes/footer.jsp"%>

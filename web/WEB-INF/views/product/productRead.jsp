@@ -176,21 +176,21 @@
                     <span class="grade"></span>
                     <div class="starrr"></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group title-form-group">
                     <label>리뷰 제목</label>
-                    <input class="form-control" name="review_title" value="New Reply!!">
+                    <input class="form-control rounded" name="review_title" value="New Reply!!">
                 </div>
-                <div class="form-group">
+                <div class="form-group content-form-group">
                     <label>리뷰 본문</label>
-                    <input class="form-control" name="review_content">
+                    <input class="form-control rounded" name="review_content">
                 </div>
                 <div class="form-group">
                     <label>작성자</label>
-                    <input class="form-control" name="userid" value="replyer" readonly>
+                    <input class="form-control rounded" name="userid" value="replyer" readonly>
                 </div>
                 <div class="form-group">
                     <label>작성날짜</label>
-                    <input class="form-control" name="review_date" value="">
+                    <input class="form-control rounded" name="review_date" value="">
                 </div>
 
                 <div class="input-group">
@@ -371,9 +371,7 @@
         } //end showList
 
 
-        /**
-         * 모달 관련 변수
-         **/
+        <!-- 모달 관련 변수들 -->
         var modal = $(".modal");
         var modalInputReview_title = modal.find("input[name='review_title']");
         var modalInputReview_content = modal.find("input[name='review_content']");
@@ -385,16 +383,15 @@
         var modalRegisterBtn = $("#modalRegisterBtn");
         var modalCloseBtn = $("#modalCloseBtn");
 
-        /**
-         * 리뷰 이미지 Array
-         **/
 
+        <!-- 리뷰 이미지 Array -->
         var review_image = new Array();
 
-        /**
-         * 리뷰 모달
-         **/
+        <!-- 리뷰 모달 -->
         $("#regBtn").on("click", function (e) {
+
+            modalInputReview_title.removeClass("is-invalid");
+            modalInputReview_content.removeClass("is-invalid");
 
             console.log("userid : " + userid);
 
@@ -419,9 +416,7 @@
         var regex = new RegExp("(.*?)\.(JPG|jpg|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$"); // 파일 확장자 정규식 (리뷰 이미지 파일 체크)
         var maxSize = 20971520; // 20MB
 
-        /**
-         * 리뷰 이미지 파일 체크
-         **/
+        <!-- 리뷰 이미지 파일 체크 -->
         function checkExtension(fileName, fileSize) {
 
             if (fileSize >= maxSize) {
@@ -437,9 +432,7 @@
             return true;
         }
 
-        /**
-         * 리뷰 이미지 업로드
-         **/
+        <!-- 리뷰 이미지 업로드 -->
         $("input[type='file']").change(function (e) {
 
             /* console.log(modalInputUploadFile);*/
@@ -477,9 +470,7 @@
         });
 
 
-        /**
-         * 리뷰 이미지 조회 (모달창)
-         **/
+        <!-- 리뷰 이미지 조회 (모달창) -->
         function showUploadResult(uploadResultArr) {
 
             if (!uploadResultArr || uploadResultArr.length == 0) {
@@ -547,13 +538,43 @@
             }
         }
 
+        <!-- 리뷰 제목이 빈칸인 경우 -->
+        function check_input_title_trim_validation() {
+
+                $(".is-invalid").removeClass("is-invalid");
+                $(".invalid-feedback").remove();
+                modalInputReview_title.addClass("is-invalid");
+                $(".title-form-group").append("<div  class='invalid-feedback'>" + "리뷰 제목을 입력해주세요.</div>")
+
+        }
+
+        <!-- 리뷰 내용이 빈칸인 경우 -->
+        function check_input_content_trim_validation() {
+
+                $(".invalid-feedback").remove();
+                modalInputReview_title.removeClass("is-invalid");
+                modalInputReview_content.addClass("is-invalid");
+                $(".content-form-group").append("<div  class='invalid-feedback'>" + "리뷰 내용을 입력해주세요.</div>")
+
+        }
+
 
         // 리뷰 작성
         modalRegisterBtn.on("click", function (e) {
 
+            if (modalInputReview_title.val().trim() == '') {
+                check_input_title_trim_validation();
+                return;
+            } else if (modalInputReview_content.val().trim() == '') {
+                check_input_content_trim_validation();
+                return;
+            }
+
+
             if (doubleSubmitCheck()) {
                 return;
             }
+
 
 
             review = {
@@ -577,12 +598,12 @@
             });
         });
 
-        /**
-         * 리뷰 조회 이벤트 (수정)
-         */
+        <!-- 리뷰 조회 이벤트 (수정) -->
         $(document).on("click", "#reviewModBtn", function (e) {
 
             $(".uploadResult ul li").remove();
+
+            $(".invalid-feedback").remove();
 
             var review_no = $(this).data("review_no");
 
@@ -625,6 +646,19 @@
 
         // 리뷰 수정
         modalModBtn.on("click", function (e) {
+
+            if (modalInputReview_title.val().trim() == '') {
+                check_input_title_trim_validation();
+                return;
+            } else if (modalInputReview_content.val().trim() == '') {
+                check_input_content_trim_validation();
+                return;
+            }
+
+
+            if (doubleSubmitCheck()) {
+                return;
+            }
 
             var review = {
                 review_no: modal.data("review_no"),

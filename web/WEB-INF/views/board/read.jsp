@@ -97,7 +97,7 @@
                     </ul>
                     <div class="form-group">
                         <details>
-                            <summary>
+                            <summary class="reply-summary">
                                 <sec:authorize access="isAnonymous()">
                                     <strong>비회원은 댓글을 작성할 수 없습니다. <a href="#" class="loginBtn"> [로그인]</a> </strong>
                             </summary><br/>
@@ -107,8 +107,10 @@
                             <sec:authorize access="isAuthenticated()">
                                     <strong>댓글 작성</strong>
                                 </summary><br/>
+                                    <div class="input-group replyContent-input-group">
+                                        <input type="text" class="form-control rounded" name="reply" id="replyContent" placeholder="댓글을 작성해주세요.">
+                                    </div>
 
-                                    <input type="text" class="form-control" name="reply" id="replyContent" placeholder="댓글을 작성해주세요.">
                             </sec:authorize>
                             <a href="#" class="btn btn-link float-right replyRegBtn">등록</a>
                         </details>
@@ -131,9 +133,9 @@
                 <h4 class="modal-title" id="myModalLabel">Comments MODAL</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-group reply-form-group">
                     <label>댓글</label>
-                    <input class="form-control" name="reply" value="New Reply!!">
+                    <input class="form-control" name="reply" id="reply" value="New Reply!!">
                 </div>
                 <div class="form-group">
                     <label>작성자</label>
@@ -175,7 +177,7 @@
         var writer = '<c:out value="${board.writer}"/>';
 
         <sec:authorize access="isAuthenticated()">
-            var userid = '<sec:authentication property="principal.member.userid"/>';
+            var userid = '<sec:authentication property="principal.user.userid"/>';
         </sec:authorize>
 
 
@@ -295,7 +297,7 @@
         var replyer = null;
 
         <sec:authorize access="isAuthenticated()">
-        replyer = '<sec:authentication property="principal.member.userid"/>';
+        replyer = '<sec:authentication property="principal.user.userid"/>';
         </sec:authorize>
 
         var csrfHeaderName = "${_csrf.headerName}";
@@ -311,7 +313,7 @@
 
             <sec:authorize access="isAuthenticated()">
             modal.find("input").val("");
-            modal.find(modalInputReplyer).val("<sec:authentication property='principal.member.userid'/>");
+            modal.find(modalInputReplyer).val("<sec:authentication property='principal.user.userid'/>");
             modalInputReplyDate.closest("div").hide();
             modal.find("button[id != 'modalCloseBtn']").hide();
 
@@ -325,14 +327,20 @@
             alert("로그인 해주세요");
         });
 
-        <!-- 리뷰 등록 버튼 클릭 이벤트 (리뷰 등록) -->
+        <!-- 댓글 작성 버튼 클릭시 -->
+        $(".reply-summary").on("click", function () {
+            $("#replyContent").removeClass("is-invalid");
+        });
+
+       <!-- 댓글 등록 버튼 클릭 이벤트 (댓글 등록) -->
         $(".replyRegBtn").on("click", function (e) {
             e.preventDefault();
 
             var replyContent = $("#replyContent");
 
             if (replyContent.val().trim() == '') {
-                alert("댓글을 작성해주세요.");
+                replyContent.addClass("is-invalid");
+                $(".replyContent-input-group").append("<div class='invalid-tooltip'>댓글을 입력해주세요.</div>");
                 return;
             }
 
@@ -346,6 +354,8 @@
                 alert(result);
 
                 replyContent.val("");
+
+                $("#replyContent").removeClass("is-invalid");
 
                 showList(1);
 
@@ -399,6 +409,8 @@
                     modalModBtn.show();
                     modalRemoveBtn.show();
 
+                    $("input[id='reply']").removeClass("is-invalid");
+
                     modal.modal("show");
                 });
             } else {
@@ -406,6 +418,7 @@
             }
         });
 
+        <!-- 댓글 모달창에서 수정 버튼 클릭 시 -->
         modalModBtn.on("click", function (e) {
 
 
@@ -413,6 +426,15 @@
                 rno: modal.data("rno"),
                 reply: modalInputReply.val()
             };
+
+            if ($("input[id='reply']").val().trim() == '') {
+                $("input[id='reply']").addClass("is-invalid");
+
+                $(".reply-form-group").append("<div class='invalid-tooltip'>댓글을 입력해주세요.</div>");
+
+
+                return;
+            }
 
             if (!replyer) {
                 alert("로그인 후 다시 시도해주세요.");
@@ -462,12 +484,17 @@
                 return;
             }
 
-            replyService.remove(rno, originalReplyer, function (result) {
-                alert(result);
-                modal.modal("hide");
-                showList(1);
+            if (confirm("댓글을 삭제하시겠습니까?") == true) {
+                replyService.remove(rno, originalReplyer, function (result) {
+                    alert(result);
+                    modal.modal("hide");
+                    showList(1);
 
-            });
+                });
+            } else {
+                return;
+            }
+
         });
 
         var pageNum = 1;

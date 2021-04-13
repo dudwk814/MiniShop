@@ -111,7 +111,7 @@
                 <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item"><a
-                            href="/cart/cart?userid=<sec:authentication property="principal.member.userid"/>"
+                            href="/cart/cart?userid=<sec:authentication property="principal.user.userid"/>"
                             class="nav-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
                 </sec:authorize>
 
@@ -128,9 +128,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;회원</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown05">
-                            <a class="dropdown-item" href="/user/checkMemberForm"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;회원 정보</a>
+                            <a class="dropdown-item" href="/user/checkUserForm"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;회원 정보</a>
                             <a class="dropdown-item"
-                               href="/order/getOrderList?userid=<sec:authentication property="principal.member.userid"/>"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;주문
+                               href="/order/getOrderList?userid=<sec:authentication property="principal.user.userid"/>"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;주문
                                 내역</a>
                             <div class="dropdown-divider"></div>
                             <a href="/user/logout" class="dropdown-item" id="logoutBtn">

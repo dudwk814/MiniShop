@@ -1,24 +1,23 @@
 package service;
 
-import domain.MemberVO;
+import domain.UserVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import mapper.MemberMapper;
+import mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:web/WEB-INF/applicationContext.xml", "file:web/WEB-INF/security-context.xml"})
 @Log4j
-public class MemberServiceTests {
+public class UserServiceTests {
 
     @Setter(onMethod_ = {@Autowired})
-    private MemberMapper memberMapper;
+    private UserMapper userMapper;
 
     @Setter(onMethod_ = {@Autowired})
     private PasswordEncoder encoder;
@@ -27,7 +26,7 @@ public class MemberServiceTests {
     @Test
     public void testGetMember() {
 
-        log.info(memberMapper.get("admin"));
+        log.info(userMapper.get("admin"));
 
     }
 
@@ -35,14 +34,14 @@ public class MemberServiceTests {
     @Test
     public void testRegister() {
 
-        MemberVO vo = new MemberVO();
+        UserVO vo = new UserVO();
         vo.setUserid("member2");
         vo.setUserpw(encoder.encode("member2"));
         vo.setUserName("member2");
 
-        memberMapper.register(vo);
+        userMapper.register(vo);
 
-        memberMapper.authRegister(vo.getUserid());
+        userMapper.authRegister(vo.getUserid());
 
 
     }
@@ -50,10 +49,10 @@ public class MemberServiceTests {
     @Test
     public void testModifyMember() {
 
-        MemberVO vo = memberMapper.getMember("admin");
+        UserVO vo = userMapper.getUser("admin");
         vo.setUserpw(encoder.encode("admin"));
 
-        memberMapper.modify(vo);
+        userMapper.modify(vo);
 
     }
 
@@ -61,8 +60,8 @@ public class MemberServiceTests {
     public void testRemovedMember() {
 
 
-        memberMapper.removeAuth("member2");
-        memberMapper.removeMember("member2");
+        userMapper.removeAuth("user2");
+        userMapper.removeUser("user2");
 
     }
 

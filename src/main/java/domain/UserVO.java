@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class MemberVO {
+public class UserVO {
 
     private String userid;
     private String userpw;
