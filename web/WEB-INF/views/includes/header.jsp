@@ -111,7 +111,7 @@
                 <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item"><a
-                            href="/cart/cart?userid=<sec:authentication property="principal.user.userid"/>"
+                            href="/cart/cart?userid=<sec:authentication property="principal.user.userid"/>" id="cartListBtn"
                             class="nav-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
                 </sec:authorize>
 
@@ -198,11 +198,16 @@
     $(document).ready(function () {
         var modal = $("#loginModal");
 
+        <sec:authorize access="isAuthenticated()">
+
+        </sec:authorize>
+
+
         $(".loginBtn").on("click", function (e) {
             e.preventDefault();
 
             modal.modal("show");
-        })
+        });
 
 
 

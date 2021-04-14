@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import mapper.OrderMapper;
+import mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService{
 
     private final OrderMapper orderMapper;
+    private final ProductMapper productMapper;
 
     @Override
     public void insert(OrderVO vo) {
@@ -38,9 +40,19 @@ public class OrderServiceImpl implements OrderService{
         return orderMapper.getTotalOrderCount(userid);
     }
 
+    @Transactional
     @Override
     public void insertDetail(OrderDetailsVO vo) {
         orderMapper.insertDetail(vo);
+
+        List<OrderDetailsVO> orderDetails = orderMapper.getOrderDetails(vo.getOrder_id());
+
+        for (OrderDetailsVO orderDetail : orderDetails) {
+            System.out.println("amount : " + orderDetail.getAmount());
+            productMapper.updateStock(-orderDetail.getAmount(), orderDetail.getProduct_id());
+        }
+
+
     }
 
     @Override
@@ -68,6 +80,11 @@ public class OrderServiceImpl implements OrderService{
     public boolean delete(String order_id) {
 
         log.info("delete order : " + order_id);
+
+        List<OrderDetailsVO> orderDetails = orderMapper.getOrderDetails(order_id);
+        for (OrderDetailsVO orderDetail : orderDetails) {
+            productMapper.updateStock(orderDetail.getAmount(), orderDetail.getProduct_id());
+        }
 
         orderMapper.detailDelete(order_id);
 

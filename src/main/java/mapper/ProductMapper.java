@@ -2,6 +2,7 @@ package mapper;
 
 import domain.Criteria;
 import domain.ProductVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,4 +28,7 @@ public interface ProductMapper {
 
     // 단일 상품
     public ProductVO getProduct(int product_id);
+
+    // 상품 주문 혹은 주문 취소시 재고 수량 조정
+    public void updateStock(@Param("amount") int amount, @Param("product_id") int product_id);
 }

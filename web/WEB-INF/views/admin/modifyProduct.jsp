@@ -46,6 +46,10 @@
                         <input name="brand" class="form-control" placeholder="브랜드" value="${product.brand}"/>
                     </div>
                     <div class="form-group">
+                        <label>재고 수량</label>
+                        <input type="number" name="stock" class="form-control rounded" value="${product.stock}" placeholder="재고 수량">
+                    </div>
+                    <div class="form-group">
                         <label>제품 설명</label>
                         <textarea name="product_desc" id="editor1" rows="10" cols="80">${product.product_desc}</textarea>
                     </div>

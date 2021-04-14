@@ -3,6 +3,7 @@ package domain;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class OrderVO {
@@ -16,4 +17,5 @@ public class OrderVO {
     private String payment_option;
     private int sum_price;
     private Date order_date;
+
 }

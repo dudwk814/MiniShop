@@ -19,7 +19,7 @@
     <select id="getHomeProductList" resultType="domain.ProductVO">
         <![CDATA[
             select
-                product_id, product_name, product_price, product_desc, product_url
+                product_id, product_name, product_price, product_desc, product_url, stock, brand
             from
                 tbl_product
             limit
@@ -35,8 +35,8 @@
 
     <!-- 상품 등록 MariaDB -->
     <insert id="insertProduct">
-        insert into tbl_product (product_name, product_price, product_desc, product_url, brand)
-        values (#{product_name}, #{product_price}, #{product_desc}, #{product_url}, #{brand})
+        insert into tbl_product (product_name, product_price, product_desc, product_url, brand, stock)
+        values (#{product_name}, #{product_price}, #{product_desc}, #{product_url}, #{brand}, #{stock})
     </insert>
 
     <!-- 전체 상품 목록 조회 -->
@@ -44,7 +44,7 @@
 
             select * from (
                 select
-                    rownum rn, product_id, product_name, product_price, product_desc, product_url, brand
+                    rownum rn, product_id, product_name, product_price, product_desc, product_url, brand, stock
                 from
                     tbl_product
                 where
@@ -78,7 +78,7 @@
     <select id="getProductList" resultType="domain.ProductVO">
 
         select
-            product_id, product_name, product_price, product_desc, product_url
+            product_id, product_name, product_price, product_desc, product_url, brand, stock
         from
             tbl_product
         /*order by product_id asc*/
@@ -115,17 +115,22 @@
 
     <!-- 단일 상품 조회 -->
     <select id="getProduct" resultType="domain.ProductVO">
-        select product_id, product_name, product_price, product_desc, product_url from tbl_product where product_id = #{product_id}
+        select product_id, product_name, product_price, product_desc, product_url, brand, stock from tbl_product where product_id = #{product_id}
     </select>
 
     <!-- 상품 수정 -->
     <update id="updateProduct">
-        update tbl_product set product_price = #{product_price}, product_name = #{product_name}, product_desc = #{product_desc}, product_url = #{product_url}, brand = #{brand} where product_id = #{product_id}
+        update tbl_product set product_price = #{product_price}, product_name = #{product_name}, product_desc = #{product_desc}, product_url = #{product_url}, brand = #{brand}, stock = #{stock} where product_id = #{product_id}
     </update>
-
 
     <!-- 상품 삭제 -->
     <delete id="deleteProduct">
         delete from tbl_product where product_id = #{product_id}
     </delete>
+
+    <!-- 상품 주문 혹은 주문 취소시 재고 수량 조정 -->
+    <update id="updateStock">
+        update tbl_product set stock = stock + #{amount} where product_id = #{product_id}
+    </update>
+
 </mapper>

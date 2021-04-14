@@ -207,19 +207,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body cart-modal">
                 처리가 완료되었습니다.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal">Close</button>
-                <sec:authorize access="isAnonymous()">
-                    <a href="#"  class="btn btn-primary loginBtn">로그인</a>
-                </sec:authorize>
+                <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal">닫기</button>
             </div>
         </div>
     </div>
 </div>
 
+
+<!-- popup modal -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

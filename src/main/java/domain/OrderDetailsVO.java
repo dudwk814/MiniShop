@@ -2,6 +2,8 @@ package domain;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class OrderDetailsVO {
 
@@ -10,4 +12,5 @@ public class OrderDetailsVO {
     private int product_id;
     private int amount;
     private String userid;
+
 }

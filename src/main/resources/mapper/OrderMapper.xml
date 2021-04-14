@@ -48,9 +48,10 @@
         select order_id, userid, post_code, street_address, address, detail_address, sum_price, order_date, payment_option from tbl_order where order_id = #{order_id}
     </select>
 
-    <!-- 특정 회원에 대한 오더 디테일 조회 -->
+    <!-- order_id에 대한 오더 디테일 조회 -->
     <select id="getOrderDetails" resultType="domain.OrderDetailsVO">
-        select order_details_num, order_id, product_id, amount, userid from tbl_order_details where order_id = #{order_id}
+        select order_details_num, order_id, product_id, amount, userid
+        from tbl_order_details where order_id = #{order_id}
     </select>
 
     <!-- 특정 회원 주문 내역 Oracle -->

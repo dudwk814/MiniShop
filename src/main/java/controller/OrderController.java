@@ -4,18 +4,22 @@ import domain.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import security.domain.CustomUser;
 import service.CartService;
+import service.ProductService;
 import service.UserService;
 import service.OrderService;
 
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/order/")
@@ -28,6 +32,8 @@ public class OrderController {
     private final CartService cartService;
 
     private final OrderService orderService;
+
+    private final ProductService productService;
 
     /**
      * 주문 폼으로 이동
@@ -101,6 +107,8 @@ public class OrderController {
 
         cartService.deleteAfterOrder(orderVO.getUserid());
 
+        rttr.addFlashAttribute("result", "주문이 정상적으로 완료되었습니다.");
+
 
 
 
@@ -109,34 +117,61 @@ public class OrderController {
     }
 
     /**
-     *
+     * 주문 결과 확인 창으로 이동
      * @param model
      * @param orderId
      * @param rttr
      * @return
      */
+    @Transactional
     @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
     @GetMapping("/order")
     public String orderGet(Model model, String orderId, RedirectAttributes rttr) {
 
+        List<ProductVO> productVOList = new ArrayList<>();
+        Map<Integer, Integer> amountMap = new HashMap<>();
+        int totalPrice = 0;
+
+
         OrderVO getOrderVO = orderService.get(orderId);
         List<OrderDetailsVO> getOrderDetailsVO = orderService.getOrderDetails(orderId);
+
+        for (int i = 0; i < getOrderDetailsVO.size(); i++) {
+            ProductVO product = productService.getProduct(getOrderDetailsVO.get(i).getProduct_id());
+
+            int amount = getOrderDetailsVO.get(i).getAmount();
+            productVOList.add(product);
+            amountMap.put(i, amount);
+
+            totalPrice += product.getProduct_price() * amount;
+
+        }
 
         if (getOrderVO == null) {
             boolean orderNotExist = true;
             model.addAttribute("orderNotExist", orderNotExist);
-            model.addAttribute("msg", "장바구니가 비었습니다.");
+            model.addAttribute("result", "장바구니가 비었습니다.");
         }
         model.addAttribute("order", getOrderVO);
         model.addAttribute("orderDetails", getOrderDetailsVO);
-        rttr.addFlashAttribute("result", "주문이 정상적으로 완료되었습니다.");
+        model.addAttribute("productVOList", productVOList);
+        model.addAttribute("amountMap", amountMap);
+        model.addAttribute("totalPrice", totalPrice);
+
 
         return "order/orderResult";
     }
 
 
-
-    @PreAuthorize("isAuthenticated() and ((#userid == principal.user.userid) or hasAnyRole('ROLE_ADMIN'))")
+    /**
+     * 주문 내역 조회창으로 이동
+     * @param userid
+     * @param cri
+     * @param model
+     * @return
+     */
+    @Transactional
+    @PreAuthorize("isAuthenticated() and (( #userid == principal.username ) or hasRole('ROLE_ADMIN'))")
     @GetMapping("/getOrderList")
     public String getOrder(String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 
@@ -163,6 +198,7 @@ public class OrderController {
         return "order/orderList";
     }
 
+    @Transactional
     @PostMapping("/remove")
     public String removeOrder(String order_id, String userid, RedirectAttributes rttr) {
         boolean delete = orderService.delete(order_id);

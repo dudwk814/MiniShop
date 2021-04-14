@@ -198,7 +198,7 @@
         $("#orderBtn").on("click", function (e) {
             e.preventDefault();
 
-            if (${cartCount} == 0) {
+            if (${cartCount == 0}) {
                 alert("장바구니가 비었습니다.")
                 return;
             }

@@ -34,15 +34,19 @@
                     </div>
                     <div class="form-group">
                         <label>제품명</label>
-                        <input name="product_name" class="form-control" placeholder="제품명"/>
+                        <input name="product_name" class="form-control rounded" placeholder="제품명"/>
                     </div>
                     <div class="form-group">
                         <label>제품 가격</label>
-                        <input name="product_price" id="product_price" class="form-control" placeholder="제품 가격"/>
+                        <input name="product_price" id="product_price" class="form-control rounded" placeholder="제품 가격"/>
                     </div>
                     <div class="form-group">
                         <label>브랜드</label>
-                        <input name="brand" class="form-control" placeholder="브랜드"/>
+                        <input name="brand" class="form-control rounded" placeholder="브랜드"/>
+                    </div>
+                    <div class="form-group">
+                        <label>재고 수량</label>
+                        <input type="number" name="stock" class="form-control rounded" placeholder="재고 수량">
                     </div>
                     <div class="form-group">
                         <label>제품 설명</label>
@@ -54,7 +58,7 @@
                         <input type="file" class="form-control-file" name="product_photo" id="product_img">
                         <div class="select-img"><img src=""/></div>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-lg" id="productRegBtn" value="확인">
+                    <input type="submit" class="btn btn-primary btn-lg float-right" id="productRegBtn" value="확인">
                 </form>
             </div>
         </div>

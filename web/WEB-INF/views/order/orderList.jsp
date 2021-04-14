@@ -61,7 +61,7 @@
                                         <td class="image-prod"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${order.order_date}"/></td>
 
                                         <td class="product-name">
-                                            <a href="#">${order.order_id}</a>
+                                            <a href="/order/order?orderId=${order.order_id}">${order.order_id}</a>
                                         </td>
 
                                         <td>${order.payment_option}</td>

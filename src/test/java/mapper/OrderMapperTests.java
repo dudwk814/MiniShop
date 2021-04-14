@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.Criteria;
+import domain.OrderDetailsVO;
 import domain.OrderVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -44,5 +45,17 @@ public class OrderMapperTests {
         List<OrderVO> allList = orderMapper.getAllList();
 
         allList.forEach(order -> {log.info(order);});
+    }
+
+    @Test
+    public void testGetOrderDetails() {
+
+
+
+        List<OrderDetailsVO> orderDetails = orderMapper.getOrderDetails("20210414_919653");
+        for (OrderDetailsVO orderDetail : orderDetails) {
+            log.info(orderDetail.getProduct_id());
+        }
+
     }
 }

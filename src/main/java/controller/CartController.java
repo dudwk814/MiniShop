@@ -36,7 +36,7 @@ public class CartController {
      * @param model
      * @return
      */
-    @PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')")
+    @PreAuthorize("isAuthenticated() and (( #userid == principal.username ) or hasRole('ROLE_ADMIN'))")
     @GetMapping("/cart")
     public String cart(String userid, Model model) {
 

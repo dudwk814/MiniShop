@@ -112,7 +112,7 @@
                             <p class="d-flex">
                                 <span>Delivery</span>
                                 <span><ftm:setLocale value=""/><fmt:formatNumber type="currency" currencySymbol="￦" value="${fee}" maxFractionDigits="0"/>원</span>
-                            </p><span>${fee}</span>
+                            </p>
                             <hr>
                             <p class="d-flex total-price">
                                 <span>Total</span>
@@ -146,6 +146,7 @@
                             </div>
                             <p><button id="orderBtn" type="submit" class="btn btn-primary py-3 px-4">Place an order</button></p>
                 </form><!-- END -->
+
                         </div>
                     </div>
                 </div>

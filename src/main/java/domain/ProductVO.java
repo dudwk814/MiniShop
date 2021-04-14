@@ -14,6 +14,6 @@ public class ProductVO {
     private String product_desc;
     private String product_url;
     private String brand;
-    /*private List<ProductAttachVO> attachList;*/
+    private int stock;
 
 }
