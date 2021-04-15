@@ -33,42 +33,85 @@
                     <c:choose>
                         <c:when test="${fn:length(productList) >= 1}">
                             <c:forEach var="product" items="${productList}">
-                                <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
-                                    <div class="product d-flex flex-column">
-                                        <a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}" class="img-prod"><img class="img-fluid" src="/resources/shop/images/${product.product_url}" alt="Colorlib Template">
-                                            <div class="overlay"></div>
-                                        </a>
-                                        <div class="text py-3 pb-4 px-3">
-                                            <div class="d-flex">
-                                                <div class="cat">
-                                                    <span>Lifestyle</span>
-                                                </div>
-                                                <div class="rating">
+                                <c:choose>
+                                    <c:when test="${product.stock >= 1}">
+                                        <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+                                            <div class="product d-flex flex-column">
+                                                <a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}" class="img-prod"><img class="img-fluid" src="/resources/shop/images/${product.product_url}" alt="Colorlib Template">
+                                                    <div class="overlay"></div>
+                                                </a>
+                                                <div class="text py-3 pb-4 px-3">
+                                                    <div class="d-flex">
+                                                        <div class="cat">
+                                                            <span>Lifestyle</span>
+                                                        </div>
+                                                        <div class="rating">
 
+                                                        </div>
+                                                    </div>
+                                                    <h3><a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}">${product.product_name}</a></h3>
+                                                    <div class="pricing">
+                                                        <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency"
+                                                                                                                          currencySymbol="￦"
+                                                                                                                          value="${product.product_price}"
+                                                                                                                          maxFractionDigits="0"/>원 </span></p>
+                                                    </div>
+                                                    <p class="bottom-area d-flex px-3">
+                                                        <a href="#" class="add-to-cart text-center py-2 mr-1" data-order-id="${product.product_id}" id="addCartBtn${product.product_id}"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                                                    </p>
+                                                    <sec:authorize access="isAuthenticated()">
+                                                        <form method="post" action="/cart/add" id="addCartForm${product.product_id}">
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                            <input type="hidden" name="userid" value="<sec:authentication property="principal.user.userid"/>"/>
+                                                            <input type="hidden" name="amount" value="1"/>
+                                                            <input type="hidden" name="product_name" value="${product.product_name}">
+                                                            <input type="hidden" name="product_id" value="${product.product_id}">
+                                                        </form>
+                                                    </sec:authorize>
                                                 </div>
                                             </div>
-                                            <h3><a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}">${product.product_name}</a></h3>
-                                            <div class="pricing">
-                                                <p class="price"><span><fmt:setLocale value=""/><fmt:formatNumber type="currency"
-                                                                                                                  currencySymbol="￦"
-                                                                                                                  value="${product.product_price}"
-                                                                                                                  maxFractionDigits="0"/>원 </span></p>
-                                            </div>
-                                            <p class="bottom-area d-flex px-3">
-                                                <a href="#" class="add-to-cart text-center py-2 mr-1" data-order-id="${product.product_id}" id="addCartBtn${product.product_id}"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                                            </p>
-                                            <sec:authorize access="isAuthenticated()">
-                                                <form method="post" action="/cart/add" id="addCartForm${product.product_id}">
-                                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                                    <input type="hidden" name="userid" value="<sec:authentication property="principal.user.userid"/>"/>
-                                                    <input type="hidden" name="amount" value="1"/>
-                                                    <input type="hidden" name="product_name" value="${product.product_name}">
-                                                    <input type="hidden" name="product_id" value="${product.product_id}">
-                                                </form>
-                                            </sec:authorize>
                                         </div>
-                                    </div>
-                                </div>
+                                    </c:when>
+                                    <c:when test="${product.stock <= 0}">
+                                        <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+                                            <div class="product d-flex flex-column">
+                                                <a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}" class="img-prod"><img class="img-fluid" src="/resources/shop/images/${product.product_url}" alt="Colorlib Template">
+                                                    <div class="overlay"></div>
+                                                </a>
+                                                <div class="text py-3 pb-4 px-3">
+                                                    <div class="d-flex">
+                                                        <div class="cat">
+                                                            <span>Lifestyle</span>
+                                                        </div>
+                                                        <div class="rating">
+
+                                                        </div>
+                                                    </div>
+                                                    <h3><a href="/product/read?product_id=${product.product_id}&pageNum=${num}&amount=9&price_from=${searchMaker.cri.price_from}&price_to=${searchMaker.cri.price_to}&brand=${searchMaker.cri.brand}">${product.product_name}</a></h3>
+                                                    <div class="pricing">
+                                                        <p class="price"> <span style="color: red;">품절</span> <span><s><fmt:setLocale value=""/><fmt:formatNumber type="currency"
+                                                                                                                                                                  currencySymbol="￦"
+                                                                                                                                                                  value="${product.product_price}"
+                                                                                                                                                                  maxFractionDigits="0"/>원</s></span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="bottom-area d-flex px-3">
+                                                        <a href="#" class="add-to-cart sold-out text-center py-2 mr-1" data-order-id="${product.product_id}" id="addCartBtn${product.product_id}"><span>SOLD OUT<i class="ion-ios-add ml-1"></i></span></a>
+                                                    </p>
+                                                    <sec:authorize access="isAuthenticated()">
+                                                        <form method="post" action="/cart/add" id="addCartForm${product.product_id}">
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                            <input type="hidden" name="userid" value="<sec:authentication property="principal.user.userid"/>"/>
+                                                            <input type="hidden" name="amount" value="1"/>
+                                                            <input type="hidden" name="product_name" value="${product.product_name}">
+                                                            <input type="hidden" name="product_id" value="${product.product_id}">
+                                                        </form>
+                                                    </sec:authorize>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
                             </c:forEach>
                         </c:when>
                         <c:when test="${fn:length(productList) == 0}">
@@ -189,10 +232,16 @@
         $(".add-to-cart").on("click", function (e) {
            e.preventDefault();
 
+            if ($(this).hasClass("sold-out") == true) {
+                alert("품절된 상품입니다.");
+                return;
+            }
+
             <sec:authorize access="isAnonymous()">
                 alert("로그인 해주세요.");
                 return;
             </sec:authorize>
+
 
             var order_id = $(this).data("order-id");
 
@@ -205,6 +254,7 @@
             }
 
         });
+
 
         function reset() {
             location.href = "/shop";

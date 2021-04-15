@@ -66,7 +66,15 @@
                             <input type="hidden" name="product_name" value="${product.product_name}">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <input type="hidden" name="userid" value="${userid}">
-                            <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
+                            <c:choose>
+                                <c:when test="${product.stock >= 1}">
+                                    <input id="addCartBtn" type="submit" class="btn btn-primary btn-lg" value="AddtoCart">
+                                </c:when>
+                                <c:when test="${product.stock <= 0}">
+                                    <input id="addCartBtn" type="submit" class="btn btn-secondary btn-lg" value="SOLD OUT" disabled>
+                                </c:when>
+                            </c:choose>
+
                         </div>
 
                     </form>
