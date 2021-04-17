@@ -6,7 +6,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="customAccessDenied" class="security.CustomAccessDeniedHandler"/>
-    <bean id="customLoginSuccess" class="security.LoginSuccessHandler"/>
     <bean id="customUserDetailsService" class="security.CustomUserDetailsService"/>
 
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
@@ -16,6 +15,11 @@
         <property name="loginpwdname" value="userpw"/>
         <property name="errormsgname" value="ERRORMSG"/>
         <property name="defaultFailureUrl" value="/user/loginForm?error"/>
+    </bean>
+
+    <bean id="loginSuccessHandler" class="security.LoginSuccessHandler">
+        <property name="loginidname" value="userid"/>
+        <property name="defaultUrl" value="/"/>
     </bean>
 
 
@@ -32,14 +36,13 @@
 
 
         <security:access-denied-handler ref="customAccessDenied"/>
-        <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="customLoginSuccess" authentication-failure-handler-ref="loginFailureHandler" username-parameter="userid" password-parameter="userpw"/>
+        <security:form-login login-page="/user/loginForm" authentication-success-handler-ref="loginSuccessHandler" authentication-failure-handler-ref="loginFailureHandler" username-parameter="userid" password-parameter="userpw"/>
         <security:logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/" delete-cookies="remember,JSESSION_ID"/>
         <security:remember-me data-source-ref="dataSource"/>
 
         <security:session-management>
             <security:concurrency-control max-sessions="1"/>
         </security:session-management>
-
 
     </security:http>
 

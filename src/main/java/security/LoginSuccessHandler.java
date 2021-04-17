@@ -1,10 +1,13 @@
 package security;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -19,14 +22,19 @@ import java.io.IOException;
 import java.util.List;
 
 @Log4j
+@Getter
+@Setter
 public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
+
+    private String loginidname;
+    private String defaultUrl;
 
     private RequestCache requestCache = new HttpSessionRequestCache();
     private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
 
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication auth) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
 
         log.warn("Login Success");
 
@@ -36,11 +44,14 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
         String userId = user.getUsername();
 
 
-        HttpSession session = httpServletRequest.getSession();
+        HttpSession session = request.getSession();
 
         session.setAttribute("userid", userId);
 
-        resultRedirectStrategy(httpServletRequest, httpServletResponse, auth);
+        clearAuthenticationAttributes(request);
+
+
+        resultRedirectStrategy(request, response, auth);
     }
 
     protected void resultRedirectStrategy(HttpServletRequest request, HttpServletResponse response,
@@ -52,10 +63,17 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
             String targetUrl = savedRequest.getRedirectUrl();
             redirectStratgy.sendRedirect(request, response, targetUrl);
         } else {
-            redirectStratgy.sendRedirect(request, response, "/");
+            redirectStratgy.sendRedirect(request, response, defaultUrl);
         }
 
     }
+
+    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session==null) return;
+        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+    }
+
 
 
 }

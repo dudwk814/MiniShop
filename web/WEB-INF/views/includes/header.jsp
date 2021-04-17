@@ -50,7 +50,6 @@
     <link rel="stylesheet" href="/resources/toastr-master/build/toastr.css">
 
 
-
     <style>
         .select-img img {
             margin: 20px 100px 0;
@@ -98,39 +97,44 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item"><a href="/board/list" class="nav-link"><i class="fa fa-th-list fa-lg" aria-hidden="true"></i>&nbsp;게시판</a></li>
+                <li class="nav-item"><a href="/board/list" class="nav-link"><i class="fa fa-th-list fa-lg"
+                                                                               aria-hidden="true"></i>&nbsp;게시판</a></li>
 
-                <li class="nav-item"><a href="/shop" class="nav-link"><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i>&nbsp;상품</a></li>
+                <li class="nav-item"><a href="/shop" class="nav-link"><i class="fa fa-shopping-bag fa-lg"
+                                                                         aria-hidden="true"></i>&nbsp;상품</a></li>
 
                 <%-- 로그인 안 한 경우 로그인 모달 생성 --%>
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a href="#" class="nav-link loginBtn"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니<span
-                            class="badge badge-success">${cartCount}</span></a></li>
-                </sec:authorize>
+                <li class="nav-item"><a href="#" class="nav-link cartBtn"><i class="fa fa-shopping-cart fa-lg"
+                                                                             aria-hidden="true"></i>&nbsp;장바구니<span
+                        class="badge badge-success">${cartCount}</span></a></li>
 
-                <%-- 로그인 한 경우 장바구니 페이지로 이동 --%>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a
-                            href="/cart/cart?userid=<sec:authentication property="principal.user.userid"/>" id="cartListBtn"
-                            class="nav-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;장바구니 <span class="badge badge-success">${cartCount}</span> </a></li>
-                </sec:authorize>
+
 
                 <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a href="#" class="nav-link loginBtn" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;로그인</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link loginBtn" data-toggle="modal"
+                                            data-target="#staticBackdrop"><i class="fa fa-user fa-lg"
+                                                                             aria-hidden="true"></i>&nbsp;로그인</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
 
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <li class="nav-item"><a href="/admin/page" class="nav-link"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>&nbsp;관리자</a></li>
+                        <li class="nav-item"><a href="/admin/page" class="nav-link"><i class="fa fa-lock fa-lg"
+                                                                                       aria-hidden="true"></i>&nbsp;관리자</a>
+                        </li>
                     </sec:authorize>
 
                     <li class="nav-item dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;회원</a>
+                           aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"
+                                                                         aria-hidden="true"></i>&nbsp;회원</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown05">
-                            <a class="dropdown-item" href="/user/checkUserForm"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;회원 정보</a>
+                            <a class="dropdown-item" href="/user/checkUserForm"><i class="fa fa-user"
+                                                                                   aria-hidden="true"></i>&nbsp;회원
+                                정보</a>
                             <a class="dropdown-item"
-                               href="/order/getOrderList?userid=<sec:authentication property="principal.user.userid"/>"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;주문
+                               href="/order/getOrderList?userid=<sec:authentication property="principal.user.userid"/>"><i
+                                    class="fa fa-list" aria-hidden="true"></i>&nbsp;주문
                                 내역</a>
                             <div class="dropdown-divider"></div>
                             <a href="/user/logout" class="dropdown-item" id="logoutBtn">
@@ -147,7 +151,8 @@
 <!-- END nav -->
 
 <!--로그인 Modal -->
-<div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -168,7 +173,8 @@
 
                     <div class="form-group">
                         <label for="userpw">비밀번호</label>
-                        <input type="password" class="form-control rounded" name="userpw" id="userpw" placeholder="Password"/>
+                        <input type="password" class="form-control rounded" name="userpw" id="userpw"
+                               placeholder="Password"/>
                     </div>
 
 
@@ -196,11 +202,21 @@
 
 <script>
     $(document).ready(function () {
+
         var modal = $("#loginModal");
 
-        <sec:authorize access="isAuthenticated()">
+        $(".cartBtn").on("click", function (e) {
+            e.preventDefault();
 
-        </sec:authorize>
+            <sec:authorize access="isAnonymous()">
+            modal.modal("show");
+            return;
+            </sec:authorize>
+
+            <sec:authorize access="isAuthenticated()">
+            location.href = "/cart/cart?userid=<sec:authentication property="principal.user.userid"/>";
+            </sec:authorize>
+        });
 
 
         $(".loginBtn").on("click", function (e) {
@@ -208,7 +224,6 @@
 
             modal.modal("show");
         });
-
 
 
     });
