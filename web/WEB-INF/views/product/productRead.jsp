@@ -205,7 +205,7 @@
                     <div class="custom-file">
                         <input type="file" name="uploadFile" class="custom-file-input" id="inputGroupFile04"
                                aria-describedby="inputGroupFileAddon04" multiple>
-                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                        <label class="custom-file-label" for="inputGroupFile04">사진 업로드 (1MB 이하의 사진만 업로드 가능합니다.)</label>
                     </div>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button
@@ -753,9 +753,7 @@
             showList(pageNum);
         });
 
-        /**
-         * 리뷰 모달 닫기 버튼
-         */
+        <!-- 모달 닫기 버튼 클릭시 모달 닫음 -->
         modalCloseBtn.on("click", function () {
             modal.modal("hide");
         });

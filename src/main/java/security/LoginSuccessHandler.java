@@ -30,7 +30,7 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
     private String defaultUrl;
 
     private RequestCache requestCache = new HttpSessionRequestCache();
-    private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 
     @Override
@@ -61,9 +61,9 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         if(savedRequest!=null) {
             String targetUrl = savedRequest.getRedirectUrl();
-            redirectStratgy.sendRedirect(request, response, targetUrl);
+            redirectStrategy.sendRedirect(request, response, targetUrl);
         } else {
-            redirectStratgy.sendRedirect(request, response, defaultUrl);
+            redirectStrategy.sendRedirect(request, response, defaultUrl);
         }
 
     }

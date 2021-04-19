@@ -284,7 +284,7 @@
             </div>
             <div class="modal-footer">
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="inlineCheckbox2">오늘 하루 열지 않기</label>
+                    <label class="form-check-label" for="inlineCheckbox2">오늘 하루 열지 않기</label>r
                     <input name="modalClose" class="form-check-input  float-left" type="checkbox" id="inlineCheckbox2"
                            value="option1">
                 </div>
