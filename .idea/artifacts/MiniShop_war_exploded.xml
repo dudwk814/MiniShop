@@ -74,6 +74,7 @@
           <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.3.0" />
         </element>
       </element>
+      <element id="directory" name="folder" />
     </root>
   </artifact>
 </component>

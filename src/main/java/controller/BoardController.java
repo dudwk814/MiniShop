@@ -174,7 +174,7 @@ public class BoardController {
         rttr.addFlashAttribute("result", "success");
         rttr.addFlashAttribute("cri", cri);
 
-        return "redirect:/board/list";
+        return "redirect:/board/read?bno=" + board.getBno();
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")

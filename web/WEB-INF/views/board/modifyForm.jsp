@@ -24,6 +24,8 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <input type="hidden" name="pageNum" value="${cri.pageNum}">
             <input type="hidden" name="amount" value="${cri.amount}">
+            <input type="hidden" name="keyword" value="${cri.keyword}">
+            <input type="hidden" name="type" value="${cri.type}">
             <div class="form-group">
                 <label for="bno">글 번호</label>
                 <input type="text" class="form-control-plaintext" id="bno" placeholder="bno" name="bno"
