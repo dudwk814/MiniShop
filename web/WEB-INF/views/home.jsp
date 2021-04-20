@@ -83,7 +83,7 @@
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <h2 class="mb-4">F/W New Product</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-                <a href="/shop" class="float-right">더 보기</a>
+                <a href="/shop" class="float-right">더 보기 <i class="fa fa-plus"></i> </a>
             </div>
         </div>
     </div>
@@ -284,7 +284,7 @@
             </div>
             <div class="modal-footer">
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="inlineCheckbox2">오늘 하루 열지 않기</label>r
+                    <label class="form-check-label" for="inlineCheckbox2">오늘 하루 열지 않기</label>
                     <input name="modalClose" class="form-check-input  float-left" type="checkbox" id="inlineCheckbox2"
                            value="option1">
                 </div>

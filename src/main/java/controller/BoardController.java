@@ -117,7 +117,9 @@ public class BoardController {
             // 업로드 경로
             String defaultPath = req.getSession().getServletContext().getRealPath("/");
 
+
             String ckUploadPath = defaultPath + "resources" + File.separator + "ckUpload" + File.separator + uuid + "_" + fileName;
+
 
             out = new FileOutputStream(new File(ckUploadPath));
             out.write(bytes);
@@ -126,6 +128,7 @@ public class BoardController {
             String callback = req.getParameter("CKEditorFuncNum");
             printWriter = res.getWriter();
             String fileUrl = "/resources/ckUpload/" + uuid + "_" + fileName;  // 작성화면
+
 
 
             // 업로드시 메시지 출력
