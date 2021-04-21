@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.FactoryBean;
 
+/**
+ * xss 방어 관련 클래스
+ */
 public class HtmlEscapingObjectMapperFactory implements FactoryBean<ObjectMapper> {
 
     private final ObjectMapper objectMapper;

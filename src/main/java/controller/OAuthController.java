@@ -23,7 +23,13 @@ public class OAuthController {
 
     private final OAuth2Parameters googleOAuth2Parameters;
 
-    // 구글 Callback호출 메소드
+    /**
+     * 구글 callback 호출
+     * @param model
+     * @param code
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/login/google/auth", method = { RequestMethod.GET, RequestMethod.POST })
     public String googleCallback(Model model, @RequestParam String code) throws IOException {
 

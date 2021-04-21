@@ -51,11 +51,6 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewNum;
     }
 
-    /**
-     * 단일 리뷰 조회
-     * @param review_no
-     * @return
-     */
     @Transactional
     @Override
     public ReviewVO get(int review_no) {
@@ -76,12 +71,6 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewVO;
     }
 
-    /**
-     * 리뷰 목록 조회 (페이징)
-     * @param cri
-     * @param product_id
-     * @return
-     */
     @Override
     public ReviewPageDTO getList(Criteria cri, int product_id) {
 
@@ -92,11 +81,6 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewPageDTO;
     }
 
-    /**
-     * 리뷰 수정
-     * @param vo
-     * @return
-     */
     @Transactional
     @Override
     public int modify(ReviewVO vo) {
@@ -114,11 +98,6 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewMapper.modify(vo);
     }
 
-    /**
-     * 리뷰 삭제
-     * @param review_no
-     * @return
-     */
     @Override
     @Transactional
     public int remove(int review_no) {
@@ -135,6 +114,11 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewMapper.delete(review_no);
     }
 
+    /**
+     * 특정 상품 리뷰 갯수 조회
+     * @param product_id
+     * @return
+     */
     @Override
     public int countReview(int product_id) {
         return reviewMapper.countReview(product_id);

@@ -62,7 +62,7 @@
                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.regDate}"/></td>
                             <td>${member.authList[0].auth}</td>
                             <td>
-                                <form action="/admin/member/authModify" method="post" id="memberAuthModifyForm${member.userid}">
+                                <form action="/admin/user/authModify" method="post" id="memberAuthModifyForm${member.userid}">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <input type="hidden" name="userid" value="${member.userid}">
                                     <div class="input-group mb-3">

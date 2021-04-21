@@ -54,7 +54,7 @@ public class CommonController {
     }
 
     /**
-     * 이미지 업로드
+     * 리뷰 이미지 업로드
      * @param uploadFile
      * @return
      */
@@ -203,7 +203,7 @@ public class CommonController {
     }
 
     /**
-     * 이미지 파일 삭제
+     * 리뷰 이미지 파일 삭제
      * @param fileName
      * @param originalFileName
      * @return

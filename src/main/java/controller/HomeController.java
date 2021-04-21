@@ -26,6 +26,12 @@ public class HomeController {
 
     private final ProductService productService;
 
+    /**
+     * 홈 컨트롤러
+     * @param model
+     * @param session
+     * @return
+     */
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
 

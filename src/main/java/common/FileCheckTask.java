@@ -22,6 +22,10 @@ public class FileCheckTask {
 
     private final ReviewAttachMapper reviewAttachMapper;
 
+    /**
+     * 어제 날짜 이미지 업로드 폴더
+     * @return
+     */
     private String getFolderYesterday() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 

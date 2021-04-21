@@ -31,7 +31,12 @@ public class AdminController {
     private final OrderService orderService;
 
 
-    // 관리자 페이지 조회 메소드
+    /**
+     * 관리자 페이지 조회
+     * @param cri
+     * @param model
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/page")
     public String page(Criteria cri, Model model) {
@@ -53,9 +58,15 @@ public class AdminController {
         return "/admin/page";
     }
 
-    // 멤버 권한 등급 번경 메소드
+    /**
+     * 유저 권한 변경
+     * @param model
+     * @param auth
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/member/authModify")
+    @PostMapping("/user/authModify")
     public String memberAuthModify(Model model, authVO auth, RedirectAttributes rttr) {
 
 
@@ -67,7 +78,10 @@ public class AdminController {
         return "redirect:/admin/page";
     }
 
-    // 상품 등록 페이지 이동 메소드
+    /**
+     * 상품 등록 폼으로 이동
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/product/insertProduct")
     public String insertProductPage() {
@@ -75,7 +89,13 @@ public class AdminController {
         return "/admin/insertProduct";
     }
 
-    // 상품 등록 메소드
+    /**
+     * 상품 등록
+     * @param vo
+     * @param product_photo
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/product/insertProduct")
     public String insertProduct(ProductVO vo, MultipartFile product_photo, RedirectAttributes rttr) {
@@ -108,7 +128,12 @@ public class AdminController {
         return "redirect:/admin/page";
     }
 
-    // 상품 수정 페이지 이동 메소드
+    /**
+     * 상품 수정 폼으로 이동
+     * @param product_id
+     * @param model
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/product/modify")
     public String productModifyPage(int product_id, Model model) {
@@ -120,7 +145,13 @@ public class AdminController {
         return "admin/modifyProduct";
     }
 
-    // 상품 수정 메소드
+    /**
+     * 상품 수정
+     * @param vo
+     * @param product_photo
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/product/modify")
     public String productModify(ProductVO vo, MultipartFile product_photo, RedirectAttributes rttr) {
@@ -158,7 +189,12 @@ public class AdminController {
 
     }
 
-    // 상품 삭제 메소드
+    /**
+     * 상품 삭제
+     * @param product_id
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/product/remove")
     public String removeProduct(int product_id, RedirectAttributes rttr) {
@@ -172,7 +208,12 @@ public class AdminController {
         return "redirect:/admin/page";
     }
 
-    // 주문 취소 메소드
+    /**
+     * 주문 취소 (관리자)
+     * @param order_id
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/order/cancel")
     public String orderCancel(String order_id, RedirectAttributes rttr) {

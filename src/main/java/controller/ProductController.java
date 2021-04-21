@@ -17,7 +17,13 @@ public class ProductController {
 
     private final ProductService productService;
 
-    // 상품 조회
+    /**
+     * 상품 조회
+     * @param product_id
+     * @param userid
+     * @param model
+     * @return
+     */
     @GetMapping("/read")
     public String read(int product_id, String userid, Model model) {
 

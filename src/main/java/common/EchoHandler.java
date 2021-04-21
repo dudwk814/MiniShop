@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * WebSocket 관련 메서드
+ */
 @RequiredArgsConstructor
 public class EchoHandler extends TextWebSocketHandler {
 

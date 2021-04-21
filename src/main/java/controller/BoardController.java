@@ -35,6 +35,11 @@ public class BoardController {
 
     private final NoticeService noticeService;
 
+    /**
+     * 게시글 목록
+     * @param cri
+     * @param model
+     */
     @GetMapping("/list")
     public void list(@ModelAttribute("cri") Criteria cri,  Model model) {
 
@@ -49,6 +54,14 @@ public class BoardController {
         model.addAttribute("noticeList", noticeList);
     }
 
+    /**
+     * 게시글 조회
+     * @param bno
+     * @param nno
+     * @param cri
+     * @param model
+     * @return
+     */
     @Transactional
     @GetMapping("/read")
     public String read(@RequestParam(value = "bno", required = false) Long bno,
@@ -68,6 +81,10 @@ public class BoardController {
 
     }
 
+    /**
+     * 게시글 작성 폼으로 이동
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @GetMapping("/registerForm")
     public String registerForm() {
@@ -77,6 +94,12 @@ public class BoardController {
         return "board/registerForm";
     }
 
+    /**
+     * 게시글 작성
+     * @param board
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/register")
     public String register(@ModelAttribute("board") BoardVO board, RedirectAttributes rttr) {
@@ -91,7 +114,13 @@ public class BoardController {
         return "redirect:/board/read?bno=" + board.getBno();
     }
 
-    // ck 에디터에서 파일 업로드
+    /**
+     * CKEDITOR 이미지 업로드
+     * @param req
+     * @param res
+     * @param upload
+     * @throws Exception
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     @PostMapping("/uploadImg")
     public void postCKEditorImgUpload(HttpServletRequest req,
@@ -147,6 +176,13 @@ public class BoardController {
         return;
     }
 
+    /**
+     * 게시글 수정 폼으로 이동
+     * @param bno
+     * @param cri
+     * @param model
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/modifyForm")
     public String modifyForm(@RequestParam("bno") Long bno,
@@ -163,6 +199,13 @@ public class BoardController {
         return "board/modifyForm";
     }
 
+    /**
+     * 게시글 수정
+     * @param board
+     * @param cri
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/modify")
     public String modify(@ModelAttribute("board") BoardVO board, Criteria cri, RedirectAttributes rttr) {
@@ -177,6 +220,13 @@ public class BoardController {
         return "redirect:/board/read?bno=" + board.getBno();
     }
 
+    /**
+     * 게시글 삭제
+     * @param bno
+     * @param cri
+     * @param rttr
+     * @return
+     */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
     @PostMapping("/remove")
     public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
