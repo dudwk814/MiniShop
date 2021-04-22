@@ -2,6 +2,7 @@ console.log("Review Module......");
 
 var reviewService = (function (){
 
+    // 리뷰 등록
     function add(review, callback, error) {
         console.log("add review");
 
@@ -23,6 +24,7 @@ var reviewService = (function (){
         });
     };
 
+    // 리뷰 목록 조회
     function getList(param, callback, error) {
 
         var product_id = param.product_id;
@@ -43,6 +45,7 @@ var reviewService = (function (){
 
         };
 
+    // 리뷰 삭제
     function remove(review_no, callback, error) {
         $.ajax({
             type: 'delete',
@@ -60,6 +63,7 @@ var reviewService = (function (){
         });
     };
 
+    // 리뷰 수정
     function update(review, callback, error) {
 
         console.log("review_no : " + review.review_no);
@@ -82,6 +86,7 @@ var reviewService = (function (){
         });
     };
 
+    // 리뷰 작성 시간 (당일이면 시간, 아니면 날짜)
     function displayTime(timeValue) {
 
         var today = new Date();
@@ -110,6 +115,7 @@ var reviewService = (function (){
         }
     };
 
+    // 리뷰 조회
     function get(review_no, callback, error) {
         $.get("/review/" + review_no + ".json", function (result) {
           if(result) {

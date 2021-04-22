@@ -2,6 +2,7 @@ console.log("Reply Module");
 
 var replyService = (function () {
 
+    // 댓글 등록
     function add(reply, callback, error) {
 
         console.log("add reply");
@@ -25,6 +26,7 @@ var replyService = (function () {
         })
     }
 
+    // 댓글 목록 조회
     function getList(param, callback, error) {
 
         var bno = param.bno;
@@ -44,6 +46,7 @@ var replyService = (function () {
         });
     }
 
+    // 댓글 갯수 조회
     function getReplyCnt(bno, callback, error) {
         $.get("/replies/replyCnt/" + bno + ".json",
             function (data) {
@@ -57,6 +60,7 @@ var replyService = (function () {
         })
     }
 
+    // 댓글 삭제
     function remove(rno, replyer, callback, error) {
         $.ajax({
             type: 'delete',
@@ -78,6 +82,7 @@ var replyService = (function () {
         });
     }
 
+    // 댓글 수정
     function update(reply, callback, error) {
 
         console.log("RNO : " + reply.rno);
@@ -100,6 +105,7 @@ var replyService = (function () {
         });
     }
 
+    // 댓글 작성 시간 (당일이면 시간, 아니면 날짜)
     function displayTime(timeValue) {
 
         var today = new Date();
@@ -128,6 +134,7 @@ var replyService = (function () {
         }
     };
 
+    // 댓글 조회
     function get(rno, callback, error) {
 
         $.get("/replies/" + rno + ".json", function(result) {

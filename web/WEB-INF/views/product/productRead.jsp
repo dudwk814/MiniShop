@@ -698,8 +698,8 @@
             });
         });
 
-        var pageNum = 1;
-        var reviewPageFooter = $(".review_paging");
+        var pageNum = 1;    // 기본 페이징 번호
+        var reviewPageFooter = $(".review_paging"); // 리뷰 페이징
 
         function showReviewPage(reviewCnt) {
 
@@ -740,6 +740,7 @@
 
             reviewPageFooter.html(str);
         }
+
 
         reviewPageFooter.on("click", "li a", function (e) {
             e.preventDefault();
