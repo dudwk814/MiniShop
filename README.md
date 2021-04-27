@@ -27,11 +27,11 @@
     사진 클릭시 확대가능합니다. 
     
   2. **MiniShop의 흐름**<br/>
-    2-1. 회원가입 <br/>
-    ![회원가입 시퀀스다이어그램](https://user-images.githubusercontent.com/50799296/116101211-9ce7ea00-a6e8-11eb-869b-20e8dd433c67.png) <br/>
-    2-2. 로그인 <br/>
-    2-3. 주문 / 주문 취소 <br/>
-    2-4. 관리자 페이지 <br/>
+    2-1. **회원가입** <br/>
+    ![회원가입gif](https://user-images.githubusercontent.com/50799296/116239722-f5c58a00-a79d-11eb-9a8d-aaabd8e76e50.gif)<br/>
+    2-2. **로그인** <br/>
+    2-3. **주문 / 주문 취소** <br/>
+    2-4. **관리자 페이지** <br/>
   
 
 ## 프로젝트 참여 인원 <br/>
