@@ -33,7 +33,7 @@
     
   2. **MiniShop의 흐름**  
     2-1. **MiniShop Sequence Diagram**    
-    ![MiniShop sequence diagram](https://user-images.githubusercontent.com/50799296/116582997-db7fdd80-a950-11eb-9a93-61ca9a291eed.png)  <br/>
+    ![MiniShop sequence diagram](https://user-images.githubusercontent.com/50799296/116583306-2bf73b00-a951-11eb-8661-884cca65c120.png)
     <br/>2-2. **회원가입**       
     ![회원가입gif](https://user-images.githubusercontent.com/50799296/116239722-f5c58a00-a79d-11eb-9a8d-aaabd8e76e50.gif)      <br/>
     <br/>2-3. **로그인**  
