@@ -33,15 +33,15 @@
     
   2. **MiniShop의 흐름**  
     2-1. **MiniShop Sequence Diagram**    
-    ![MiniShop sequence diagram](https://user-images.githubusercontent.com/50799296/116417548-52947380-a876-11eb-90fd-d46c641c1be4.png)  
-    2-2. **회원가입**       
-    ![회원가입gif](https://user-images.githubusercontent.com/50799296/116239722-f5c58a00-a79d-11eb-9a8d-aaabd8e76e50.gif)      
-    2-3. **로그인**  
-    ![로그인 로그아웃gif](https://user-images.githubusercontent.com/50799296/116378687-552ea300-a84d-11eb-9288-9638f719012d.gif)   
-    2-4. **주문 / 주문 취소**  
-    ![주문 취소gif](https://user-images.githubusercontent.com/50799296/116379761-4c8a9c80-a84e-11eb-9166-438da84b4175.gif)  
-    2-5. **관리자 페이지**  
-    ![관리자페이지gif](https://user-images.githubusercontent.com/50799296/116387692-020d1e00-a856-11eb-8d5b-74c43fe405aa.gif)  
+    ![MiniShop sequence diagram](https://user-images.githubusercontent.com/50799296/116582997-db7fdd80-a950-11eb-9a93-61ca9a291eed.png)  <br/>
+    <br/>2-2. **회원가입**       
+    ![회원가입gif](https://user-images.githubusercontent.com/50799296/116239722-f5c58a00-a79d-11eb-9a8d-aaabd8e76e50.gif)      <br/>
+    <br/>2-3. **로그인**  
+    ![로그인 로그아웃gif](https://user-images.githubusercontent.com/50799296/116378687-552ea300-a84d-11eb-9288-9638f719012d.gif)   <br/>
+    <br/>2-4. **주문 / 주문 취소**  
+    ![주문 취소gif](https://user-images.githubusercontent.com/50799296/116379761-4c8a9c80-a84e-11eb-9166-438da84b4175.gif)  <br/>
+    <br/>2-5. **관리자 페이지**  
+    ![관리자페이지gif](https://user-images.githubusercontent.com/50799296/116387692-020d1e00-a856-11eb-8d5b-74c43fe405aa.gif)  <br/>
 
   
 
