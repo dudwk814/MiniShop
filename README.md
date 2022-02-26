@@ -43,7 +43,10 @@
     <br/>2-5. **관리자 페이지**  
     ![관리자페이지gif](https://user-images.githubusercontent.com/50799296/116387692-020d1e00-a856-11eb-8d5b-74c43fe405aa.gif)  <br/>
 
-  
+
+## 라이센스
+- template: <a href="https://colorlib.com/wp/template/minishop/" target="_blank">colorlib</a> (License: CC BY 3.0)
+
 
 ## 프로젝트 참여 인원
   **개인 프로젝트**
