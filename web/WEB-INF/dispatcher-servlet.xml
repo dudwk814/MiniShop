@@ -17,7 +17,7 @@
     <resources mapping="/resources/**" location="/resources/"/>
 
     <!-- ckEditor 이미지 매핑 -->
-    <resources mapping="/ckUpload/**" location="/resources/ckUpload" />
+    <resources mapping="/ckUpload/**" location="file:///dudwk814/tomcat/upload/" />
 
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

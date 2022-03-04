@@ -13,6 +13,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,8 @@ public class  LoginSuccessHandler implements AuthenticationSuccessHandler {
         HttpSession session = request.getSession();
 
         session.setAttribute("userid", userId);
+
+        
 
         clearAuthenticationAttributes(request);
 

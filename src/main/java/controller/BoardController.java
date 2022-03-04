@@ -147,7 +147,7 @@ public class BoardController {
             String defaultPath = req.getSession().getServletContext().getRealPath("/");
 
 
-            String ckUploadPath = defaultPath + "resources" + File.separator + "ckUpload" + File.separator + uuid + "_" + fileName;
+            String ckUploadPath = "/dudwk814/tomcat/upload/" + File.separator + uuid + "_" + fileName;
 
 
             out = new FileOutputStream(new File(ckUploadPath));
@@ -156,7 +156,7 @@ public class BoardController {
 
             String callback = req.getParameter("CKEditorFuncNum");
             printWriter = res.getWriter();
-            String fileUrl = "/resources/ckUpload/" + uuid + "_" + fileName;  // 작성화면
+            String fileUrl = "/ckUpload/" + uuid + "_" + fileName;  // 작성화면
 
 
 
